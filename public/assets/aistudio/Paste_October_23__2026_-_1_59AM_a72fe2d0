@@ -1,0 +1,869 @@
+# MASTER IMPLEMENTATION PROMPT — GLOBECAREER
+## Transform the Existing CV Builder into a Complete International Career Platform
+
+Act as a senior full-stack engineer, product architect, UX/UI designer, subscription-system engineer, SEO specialist, and QA engineer.
+
+We are evolving our existing CV/resume builder into **GlobeCareer**, a complete international career platform for job seekers across 40+ countries.
+
+This is an implementation task, not merely a planning exercise. Inspect the existing project, understand its architecture and current functionality, and implement the required changes directly in the existing codebase.
+
+Do not build a separate replacement application. Preserve working functionality, improve the existing system, and integrate all new features professionally.
+
+Do not stop after producing recommendations or a plan. Complete as much implementation as the current environment supports, test it, and report any genuine blockers.
+
+---
+
+# 1. CORE OBJECTIVE AND BRAND POSITIONING
+
+The product is no longer just a CV builder. GlobeCareer should become a unified international career platform offering:
+
+- CV and resume building
+- Country-specific resume guidance
+- Professional resume templates
+- Cover letter creation and templates
+- Verified job discovery
+- Country-specific job search
+- Country-specific career guides
+- Job application tracking
+- Free and premium subscriptions
+- Subscription management and billing information
+
+The entire application must consistently use the brand name **GlobeCareer**.
+
+Remove outdated product naming from visible UI, page titles, navigation, footer, metadata, and other user-facing areas where appropriate. Do not unnecessarily rename internal code identifiers if doing so risks breaking functionality.
+
+## Brand tagline
+
+Replace the old CV-builder-only tagline with a broader, premium, internationally relevant message.
+
+Preferred primary tagline:
+
+**“Build Your Global Career. Stand Out Anywhere.”**
+
+Supporting description:
+
+“Create country-tailored resumes and cover letters, discover verified job opportunities, and manage your international job search — all in one place.”
+
+Use appropriate shorter variants on compact screens.
+
+Do not claim that every job is verified or available in every country unless the actual data and verification process support those claims.
+
+---
+
+# 2. LOGO AND FAVICON INTEGRATION
+
+I will provide the official GlobeCareer logo and favicon as uploaded assets.
+
+Inspect the supplied assets and integrate them into the existing project.
+
+Requirements:
+
+- Use my supplied logo; do not generate a different logo or substitute a stock icon.
+- Use the supplied favicon for the browser tab and supported platform icons.
+- Preserve the logo's aspect ratio, proportions, and intended appearance.
+- Ensure it looks sharp on desktop, tablet, and mobile.
+- Use the full logo where appropriate in the header and footer.
+- Use the favicon in the appropriate HTML metadata and icon references.
+- Inspect existing manifest and icon configurations and update them where supported.
+- Do not stretch, crop, distort, or recolor the assets without authorization.
+- Avoid duplicate, conflicting favicon references.
+- Confirm that the actual supplied files are integrated rather than merely referenced by filenames that do not exist.
+
+If an asset cannot be accessed or is missing, report that limitation rather than inventing an asset path.
+
+---
+
+# 3. PROFESSIONAL SITE-WIDE NAVIGATION
+
+Redesign the navigation around the major product areas. The navigation should feel like a professional international career platform, not a collection of unrelated tools.
+
+Use this recommended desktop structure:
+
+## A. Resume / CV
+
+Create a main navigation item named **Resume / CV** with a dropdown or mega-menu containing:
+
+1. Resume Builder
+2. Resume Templates
+3. Resume by Country
+4. Resume Examples
+5. Resume Writing Guidance
+
+Where appropriate, include CV/resume terminology for different regions. For example, users in some countries search for “CV” while others commonly use “resume.”
+
+Every option must link to a real, working page or a clearly implemented section.
+
+## B. Cover Letter
+
+Create a main navigation item named **Cover Letter** with:
+
+1. Cover Letter Builder
+2. Cover Letter Templates
+3. Cover Letter by Country
+4. Cover Letter for Different Jobs
+5. Cover Letter Writing Guide
+
+Provide meaningful routes and working navigation. Do not create empty placeholder pages simply to populate the menu.
+
+## C. Jobs
+
+Create a main navigation item named **Jobs** with:
+
+1. Verified Jobs
+2. Jobs by Country
+3. Jobs by Industry or Category
+4. Remote Jobs, if supported by the available data
+5. Job Application Tracker
+
+The Jobs section must include country-based search and filtering for the countries genuinely supported by the application.
+
+## D. Country Guides
+
+Provide a dedicated Country Guides section for international career information.
+
+Include:
+
+- Country-specific resume/CV standards
+- Cover letter conventions
+- Common hiring practices
+- Resume photo requirements, where applicable
+- Paper size and date-format conventions
+- Job application advice
+- Interview preparation
+- Relevant work authorization or visa-related guidance, where accurate and appropriately qualified
+
+Clearly distinguish general career guidance from legal or immigration advice.
+
+## E. Plans
+
+Create one main navigation item named **Plans**.
+
+Clicking Plans must open one unified pricing page showing all three plans together:
+
+- Free
+- Pro Monthly
+- Pro Yearly
+
+Do not create three separate main navigation links or three separate footer plan entries.
+
+## F. Account
+
+Provide appropriate account options where authentication is supported:
+
+- Sign In
+- Create Account
+- My Dashboard
+- My Applications
+- Manage Subscription
+- Billing History, if implemented
+- Account Settings
+- Sign Out
+
+Only show appropriate account actions for the current authentication state.
+
+## Navigation behavior
+
+- Use accessible dropdown menus.
+- Open dropdowns on hover where appropriate, but also support keyboard and click interaction.
+- Make dropdowns usable on mobile through tap-to-expand menus.
+- Avoid hover-only functionality.
+- Provide clear active-page indicators.
+- Prevent menus from being clipped by headers or parent containers.
+- Keep the navigation compact and uncluttered.
+- Ensure all navigation links work with direct URL access, page refresh, and browser back/forward navigation.
+
+---
+
+# 4. COMPLETE RESUME / CV SYSTEM
+
+Inspect the existing resume builder before changing it. Preserve all functioning features and improve the overall experience.
+
+## Resume Builder
+
+Provide a polished, guided resume-building workflow with appropriate sections such as:
+
+- Personal and professional details
+- Professional summary
+- Work experience
+- Education
+- Skills
+- Projects
+- Certifications
+- Languages
+- Awards and achievements
+- Volunteer experience
+- Additional relevant sections
+
+Support adding, editing, deleting, and reordering sections where feasible.
+
+Provide live resume preview and ensure that generated documents reflect the entered data.
+
+Preserve working PDF and DOCX exports if they already exist.
+
+Do not claim that exports work unless they have been tested.
+
+## Resume Templates
+
+Create a dedicated template gallery containing the templates genuinely implemented in the application.
+
+Include suitable categories such as:
+
+- Professional
+- Modern
+- Minimal
+- Executive
+- Academic
+- Entry-Level
+- Creative
+- ATS-Friendly
+
+Categories must correspond to real templates, not just decorative filters.
+
+Users should be able to preview a template and apply it to their existing resume without losing entered information.
+
+## Resume by Country
+
+Use the existing country configuration system, including the currently supported 40+ countries where those configurations are verified.
+
+When a user selects a country, adapt relevant resume guidance and template recommendations to that country.
+
+Respect country-specific conventions such as:
+
+- CV versus resume terminology
+- A4 versus US Letter paper size
+- Date formats
+- Address and contact conventions
+- Photo expectations
+- Resume length recommendations
+- Relevant local hiring practices
+
+Do not impose the same rules on every country.
+
+Preserve existing country configuration data unless changes are needed to fix verified defects.
+
+## Resume Writing Guidance
+
+Provide practical guidance, examples, and contextual assistance for writing strong resumes.
+
+Do not fabricate employment history, education, certifications, or achievements for users.
+
+Any AI-generated suggestions must be editable and must not silently overwrite user content.
+
+---
+
+# 5. COMPLETE COVER LETTER SYSTEM
+
+Cover letters must be a first-class product feature, not a minor text box beneath the resume builder.
+
+Inspect the existing application and implement a complete cover letter experience.
+
+## Cover Letter Builder
+
+Provide a guided form that can accept:
+
+- Applicant information
+- Target job title
+- Employer or company name
+- Job description
+- Relevant work experience
+- Relevant skills and achievements
+- Selected resume information, where supported
+- Preferred tone
+- Selected country or job market
+
+Generate a tailored cover letter using available AI functionality when properly configured.
+
+If the AI provider is unavailable, provide a clear fallback or configuration message. Never pretend that a letter was AI-generated when generation failed.
+
+Users must be able to edit the generated content before exporting or copying it.
+
+## Cover Letter Templates
+
+Create a dedicated gallery with genuine, usable templates such as:
+
+- Professional
+- Modern
+- Formal
+- Entry-Level
+- Career Change
+- Executive
+- Academic
+- Internship
+
+Every template must have a real preview and use the user's cover letter content.
+
+Support appropriate exports or downloads using the formats already supported by the project. Add further export formats only when they can be implemented and tested.
+
+## Cover Letter by Job
+
+Provide guidance and examples for different roles, industries, and experience levels.
+
+Examples may include technology, marketing, finance, design, customer support, administration, healthcare, and entry-level positions.
+
+These examples must be useful starting points, not fabricated claims about the user's qualifications.
+
+## Cover Letter by Country
+
+Adapt tone, conventions, terminology, and formatting to the selected job market where reliable guidance is available.
+
+Link cover letter guidance to the corresponding country and resume pages.
+
+---
+
+# 6. VERIFIED JOB PORTAL
+
+Create a complete Jobs section that integrates with the resume and cover letter workflows.
+
+## Job browsing
+
+Users should be able to browse publicly available job listings without being forced to buy a subscription.
+
+Provide relevant search and filters, including:
+
+- Country
+- City or region, when available
+- Job title and keywords
+- Industry or category
+- Employment type
+- Remote or on-site status, when known
+- Experience level, when available
+- Publication date, where available
+
+Only show filters that correspond to actual listing data.
+
+## Verified job data
+
+Use legitimate job sources, authorized feeds or APIs, and official employer career pages.
+
+For each listing, store and display available information such as:
+
+- Job title
+- Employer name
+- Location
+- Job type
+- Job description or an accurate summary
+- Source URL
+- Official application URL
+- Publication date, if provided
+- Actual application deadline, if published
+- Last verification timestamp
+- Verification status
+
+Never fabricate employers, jobs, application URLs, verification status, publication dates, or expiry dates.
+
+If an employer has not published a deadline, explicitly state that no closing date was published.
+
+Do not mark every imported listing as verified automatically. Establish an actual verification procedure and use truthful status labels.
+
+Do not scrape websites in ways that violate their terms or applicable law.
+
+If live job data integration is not configured, build the integration architecture and an honest empty state. Do not populate production pages with fake jobs.
+
+## Country-specific job search
+
+Provide a country selector that works with the existing country configuration system.
+
+Support the countries for which real jobs are available. A country being supported by the resume builder does not automatically mean that verified job listings exist for that country.
+
+Include helpful country landing pages only when they contain genuine, useful information or actual relevant listings.
+
+## Job details and applications
+
+A job details page should show the available job information, employer, location, verification status, source, and application action.
+
+Where the official application process is external, link to the legitimate employer or authorized source.
+
+When supported, let users save jobs and track their application progress.
+
+---
+
+# 7. SUBSCRIPTION PLANS AND EXACT APPLICATION QUOTAS
+
+Implement three plans with clearly differentiated benefits.
+
+The application limit is a core product rule and must be enforced by the backend or trusted server-side logic, not only by hiding buttons in the frontend.
+
+## Plan 1: Free — $0 forever
+
+Free users must receive:
+
+1. Resume/CV Builder
+2. Basic Resume Templates
+3. Free Cover Letter Builder
+4. Basic Cover Letter Templates
+5. Country-Specific Resume and Career Guidance
+6. Public Job Browsing
+7. Save or track eligible applications, where supported
+8. **One eligible job application per monthly quota period**
+
+Keep the Free tier useful, but restrict the number of actual eligible job applications to one per quota period.
+
+Explain the difference between browsing a job and submitting or using an eligible application action. Browsing public listings must not consume the application quota.
+
+## Plan 2: Pro Monthly — $9.99/month
+
+Monthly subscribers must receive:
+
+1. Everything included in Free
+2. Up to 12 eligible job applications per monthly billing period
+3. Full access to premium job details
+4. Eligible employer contact information when legitimately available
+5. Premium resume templates
+6. Premium cover letter templates
+7. Advanced cover letter customization where supported
+8. Enhanced resume customization and export options where supported
+9. Country-specific job discovery and advanced filters where supported
+10. Job application tracking and organization features where supported
+11. Access to supported premium resume and cover letter guidance
+12. Premium features that are genuinely implemented in the application
+
+The monthly application limit must be exactly 12 eligible applications per monthly billing period.
+
+Do not interpret this as 12 applications per day or 12 simultaneously active applications.
+
+## Plan 3: Pro Yearly — $99.99/year
+
+Annual subscribers must receive:
+
+1. Everything in Pro Monthly
+2. Unlimited eligible job applications while the annual subscription is active
+3. Premium job portal access
+4. Eligible employer contact information
+5. All available premium resume templates
+6. All available premium cover letter templates
+7. Advanced resume and cover letter tools
+8. Full access to supported premium country guides
+9. Supported advanced job-search filters
+10. Full access to the included Pro feature set for the subscription year
+11. Additional genuinely implemented premium features where appropriate
+
+Unlimited means there is no fixed numerical monthly application quota for an active annual subscriber. It does not mean unlimited external job-board submissions if the external platform imposes its own limits.
+
+Do not invent premium functionality that does not exist. Implement supported features where feasible, and clearly identify anything that remains unavailable.
+
+## Pricing presentation
+
+Display these exact prices:
+
+- Free: $0 forever
+- Pro Monthly: $9.99/month
+- Pro Yearly: $99.99/year
+
+For the yearly plan, show:
+
+- Equivalent to approximately $8.33/month
+- Save $19.89 compared with 12 monthly payments
+- Approximately 16.6% savings
+
+The math is:
+
+$9.99 × 12 = $119.88
+
+$119.88 − $99.99 = $19.89
+
+Do not claim 20% or 25% savings.
+
+Ensure the three pricing cards have a consistent visual hierarchy, aligned feature lists, consistent spacing, equal heights where practical, and aligned CTA buttons.
+
+Use the appropriate CTA for each plan, such as Get Started Free, Choose Pro Monthly, and Choose Pro Yearly.
+
+---
+
+# 8. APPLICATION QUOTA ENFORCEMENT
+
+Implement a secure, reliable quota system.
+
+Define an eligible application action clearly. Merely opening, browsing, bookmarking, or reading a job must not consume the quota.
+
+An application should count only when the user performs the defined eligible application action successfully. Do not consume quota for a failed request or duplicate request unless the documented product rules explicitly justify it.
+
+The application quota must be enforced server-side or through a trusted backend.
+
+Requirements:
+
+- Free: one eligible application per monthly quota period.
+- Pro Monthly: 12 eligible applications per monthly billing period.
+- Pro Yearly: unlimited eligible applications while the yearly subscription is active.
+
+Use the appropriate billing period and entitlement information from the trusted subscription record.
+
+Do not rely on client-side local storage as the authoritative quota source.
+
+Implement safe handling for concurrent requests and duplicate submissions where the existing architecture supports it.
+
+Display:
+
+- Current plan
+- Applications used in the current period
+- Remaining applications, where the plan has a limit
+- Next quota reset or billing renewal date, when reliably available
+- Upgrade options when the user reaches their limit
+
+Example messages:
+
+Free: “You've used your 1 included application for this monthly period.”
+
+Pro Monthly: “You've used 8 of your 12 included applications this billing period.”
+
+Pro Yearly: “Unlimited applications are included while your annual subscription is active.”
+
+Do not display misleading remaining counts or renewal dates.
+
+Define what happens to quota usage after upgrades, downgrades, cancellations, failed payments, and renewals. Avoid accidental quota resets that allow users to bypass their limits.
+
+---
+
+# 9. SUBSCRIPTION AND BILLING MANAGEMENT
+
+The Plans page must be the single public destination for comparing all plans.
+
+The application must also include an appropriate subscription management area for signed-in users.
+
+## Plans page
+
+Show the three plans together in one comparison interface.
+
+Include:
+
+- Prices and billing periods
+- Included features
+- Application quotas
+- Clear plan-selection buttons
+- Subscription terms
+- Applicable cancellation and refund information
+- An explanation of the yearly savings
+
+Do not place three separate plan links in the footer.
+
+## Manage Subscription
+
+Provide a Manage Subscription page or account section showing the actual user's:
+
+- Current plan
+- Subscription status
+- Billing interval
+- Renewal or expiration date, when known
+- Available upgrade or downgrade options
+- Cancellation options
+- Billing history, if supported
+- Quota usage
+
+Only display information that is available from the actual subscription system.
+
+## Billing and refunds
+
+Provide clear, accessible information about:
+
+- Billing periods
+- Recurring subscription charges
+- Renewal behavior
+- How to cancel
+- When cancellation takes effect
+- Refund policy
+- How users can contact support regarding billing issues
+
+Do not invent a refund guarantee or claim that refunds are automatic unless that is the actual policy and implementation.
+
+Make cancellation instructions easy to find.
+
+## Payment security
+
+Inspect the existing payment provider and backend integration.
+
+- Do not expose secret API keys in frontend code.
+- Do not trust client-side plan selection or payment-success flags.
+- Grant or revoke subscription entitlements based on trusted payment-provider verification and server-side subscription state.
+- Verify payment webhooks where supported.
+- Handle successful payments, failed payments, cancellations, refunds, chargebacks, expired subscriptions, and renewals appropriately.
+- Do not store raw card details.
+- Do not claim that checkout works unless it has been configured and tested.
+
+If no payment provider is configured, prepare the integration structure and clearly state what credentials, backend configuration, or provider onboarding is required. Never simulate a successful payment in production.
+
+---
+
+# 10. JOB APPLICATION TRACKER
+
+Create or improve a dedicated Job Application Tracker.
+
+Users should be able to organize their job search using statuses such as:
+
+- Saved
+- Planned
+- Applied
+- Assessment
+- Interview
+- Offer
+- Rejected
+- Withdrawn
+
+Where supported, allow users to record:
+
+- Employer
+- Job title
+- Job URL
+- Application date
+- Next follow-up date
+- Notes
+- Status
+- Related resume or cover letter
+
+Ensure that users can access only their own private application records.
+
+Preserve existing local persistence if currently used, but inspect whether authenticated cross-device synchronization is supported. Do not claim server synchronization if data remains local.
+
+Clearly distinguish saved jobs from submitted applications and from quota-consuming eligible application actions.
+
+---
+
+# 11. COUNTRY GUIDES AND 40+ COUNTRY SUPPORT
+
+Preserve the existing supported country configuration system.
+
+Inspect the current country data and use the actual supported country count. Do not claim 40+ countries unless the configuration and relevant features support that statement.
+
+Provide a consistent country page experience that connects:
+
+- Resume/CV guidance
+- Country-appropriate templates
+- Cover letter guidance
+- Job-search advice
+- Available verified job listings
+- Relevant hiring conventions
+- Job application tracking workflows
+
+A country guide should be useful even if there are no live job listings for that country.
+
+Avoid generating dozens of near-identical, low-value pages. Country-specific pages must contain genuinely relevant, accurate information.
+
+Do not invent visa eligibility, immigration requirements, or legal advice.
+
+---
+
+# 12. FOOTER REDESIGN
+
+Create a professional, compact footer with logical groups.
+
+## Career Tools
+
+- Resume Builder
+- Resume Templates
+- Cover Letter Builder
+- Cover Letter Templates
+
+## Jobs
+
+- Verified Jobs
+- Jobs by Country
+- Job Application Tracker
+- Country Guides
+
+## Account and Plans
+
+- Plans & Pricing
+- Manage Subscription
+- Sign In / Create Account, where appropriate
+
+Do not list Free, Pro Monthly, and Pro Yearly as three separate footer links.
+
+## Company and Support
+
+- About GlobeCareer
+- Contact
+- Help / FAQs, if implemented
+- Privacy Policy
+- Terms of Service
+- Subscription and Cancellation Policy
+- Refund Policy
+
+Only link to genuine, accessible pages. Create and review essential missing policy pages rather than linking to broken routes or writing misleading placeholder legal text.
+
+Use a copyright line with the correct brand name and an automatically maintained year where appropriate.
+
+---
+
+# 13. HOMEPAGE REDESIGN
+
+Transform the homepage into a professional career platform landing page.
+
+Recommended structure:
+
+1. Hero section with the new GlobeCareer tagline
+2. Primary CTA: Build Your Resume
+3. Secondary CTA: Explore Verified Jobs
+4. Resume/CV Builder section
+5. Resume Templates section
+6. Cover Letter Builder section
+7. Cover Letter Templates section
+8. Verified Jobs section
+9. Browse Jobs by Country section
+10. Country Guides section
+11. Job Application Tracker section
+12. Subscription plans preview
+13. FAQ section
+14. Final CTA
+15. Professional footer
+
+Use the existing design system and brand identity where practical.
+
+Prioritize a clean, premium, trustworthy appearance. Maintain consistent typography, spacing, button styles, card layouts, border radii, and responsive behavior.
+
+Avoid excessive gradients, unnecessary animations, oversized cards, or cluttered sections.
+
+Ensure that the website remains easy to navigate for first-time visitors.
+
+---
+
+# 14. SEO AND TECHNICAL INTEGRATION
+
+Preserve existing SEO improvements and extend them to the new product structure.
+
+Inspect the existing SEO implementation before making changes.
+
+Requirements:
+
+- Unique, descriptive title and meta description for each important page.
+- Correct canonical URLs.
+- Appropriate Open Graph and social metadata.
+- Correct favicon references.
+- Descriptive internal links.
+- Crawlable navigation links.
+- Working direct access to every intended public route.
+- Working page refresh and browser navigation.
+- Updated sitemap containing genuine, canonical, indexable routes only.
+- Correct robots.txt behavior.
+- Accurate structured data where eligible and supported.
+- No fake review, rating, employer, job, or organization claims.
+- No unnecessary duplicate routes or duplicate metadata.
+- No keyword stuffing.
+- No mass-generated thin country or template pages.
+
+Create useful internal linking between resume pages, cover letter pages, country guides, and relevant job pages.
+
+For pages that require authentication, account data, or private information, ensure they are not exposed through public indexing.
+
+Do not claim that Google has indexed new pages merely because they have been added to the sitemap.
+
+---
+
+# 15. ACCESSIBILITY, RESPONSIVENESS AND USER EXPERIENCE
+
+Check the complete application on desktop, tablet, and mobile layouts.
+
+Ensure:
+
+- Menus are keyboard accessible.
+- Inputs have appropriate labels.
+- Buttons have clear names.
+- Text contrast is sufficient.
+- Focus indicators are visible.
+- Form validation is understandable.
+- Error and success messages are clear.
+- Modals and dropdowns work on touch devices.
+- Cards and feature lists do not overflow.
+- Pricing badges and rounded borders are not clipped.
+- Loading, empty, error, and unavailable states are handled professionally.
+
+Avoid breaking the existing resume-building experience while redesigning the global navigation.
+
+---
+
+# 16. IMPLEMENTATION AND QA WORKFLOW
+
+Follow this sequence.
+
+### Step 1 — Inspect
+
+Inspect the existing source code, routes, components, styling system, country configurations, resume builder, cover letter functionality, jobs functionality, tracker, authentication, subscriptions, payment integrations, and SEO utilities.
+
+Identify existing working features before editing.
+
+### Step 2 — Backup
+
+Use the existing backup/version-control workflow and preserve the current working state.
+
+### Step 3 — Implement
+
+Make the changes directly in the existing application.
+
+Prioritize shared components, reusable styles, consistent navigation, secure entitlement checks, and maintainable architecture.
+
+### Step 4 — Test
+
+Run all relevant checks available in the environment.
+
+Test at minimum:
+
+- Homepage and global navigation
+- Resume creation and template selection
+- Cover letter creation and template selection
+- Country selection and guidance
+- Job search and country filters
+- Job application tracker
+- Free quota limit of one eligible application per period
+- Pro Monthly quota limit of 12 eligible applications per billing period
+- Pro Yearly unlimited application entitlement while active
+- Failed application attempts not incorrectly consuming quota
+- Subscription status and access control
+- Pricing card alignment
+- Logo and favicon integration
+- Footer links
+- Direct route navigation and page refresh
+- Mobile responsiveness
+- SEO metadata and sitemap validity
+
+If a real payment gateway or live job provider is unavailable, test the available safe portions and clearly report the missing integration. Do not claim full end-to-end success without testing it.
+
+### Step 5 — Preserve scope
+
+Do not deploy, publish, or make production changes unless separately authorized.
+
+Do not delete existing data or remove functioning features just to simplify implementation.
+
+### Step 6 — Final report
+
+Provide a clear final report including:
+
+1. Files and components changed.
+2. New or updated routes.
+3. Resume and cover letter features implemented.
+4. Jobs and country-guide features implemented.
+5. Logo and favicon integration status.
+6. Subscription pricing and entitlement rules.
+7. Quota enforcement location and test results.
+8. Payment provider and backend status.
+9. Job data sources and verification status.
+10. SEO and navigation changes.
+11. Tests actually run and their results.
+12. Remaining configuration requirements or blockers.
+
+Separate completed, partially completed, and unimplemented items.
+
+Do not claim that an integration works if it has only been scaffolded.
+
+---
+
+# FINAL ACCEPTANCE CRITERIA
+
+The task is complete only when the existing application has been transformed into a coherent GlobeCareer experience rather than simply receiving a new homepage.
+
+The final result must have:
+
+- Consistent GlobeCareer branding and supplied logo/favicon
+- Professional global navigation and footer
+- A complete resume/CV experience
+- A genuine cover letter builder and template gallery
+- A working job discovery experience using truthful job data
+- Country-specific career guidance based on actual supported configurations
+- A functional job application tracker
+- One unified Plans page
+- Free: one eligible application per monthly quota period
+- Pro Monthly: 12 eligible applications per monthly billing period
+- Pro Yearly: unlimited eligible applications while the annual subscription is active
+- Secure, truthful subscription entitlement handling
+- Clear subscription management, cancellation, and refund information
+- Consistent desktop and mobile UI
+- Preserved and verified SEO functionality
+- A factual QA report with no invented test results
+
+Begin by inspecting the existing project, then implement and verify these changes systematically. Do not stop after writing a plan.

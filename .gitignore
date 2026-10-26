@@ -1,0 +1,35 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Production Build Output
+dist/
+build/
+coverage/
+
+# Environment Variables & Secrets
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# Backup & Distribution Archives
+*.tar.gz
+*.zip
+*.bak
+*.swp
+*~
+
+# Operating System & Editor Files
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+.idea/
+
+# Large Raw Datasets (>100MB exceeds standard GitHub push limit without Git LFS)
+*.csv
+
+# Internal AI Studio Metadata
+.aistudio/

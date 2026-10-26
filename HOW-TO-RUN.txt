@@ -1,0 +1,33 @@
+===============================================================================
+               GlobeCareer — How to Run Locally on Windows
+===============================================================================
+
+RECOMMENDED (Windows):
+1. Make sure Node.js (v20+ recommended) is installed on your computer.
+   If you don't have it yet, get it free from: https://nodejs.org (LTS)
+
+2. Double-click "start.bat" in this folder.
+   - It will automatically verify Node.js
+   - It will install dependencies (first time only)
+   - It will build and launch GlobeCareer in your default browser at:
+     http://localhost:3000
+   - Keep the launcher window open while using the platform.
+
+-------------------------------------------------------------------------------
+ALTERNATIVE (Zero-Install Python Fallback):
+If you have Python 3 on your computer:
+1. Double-click or run "python start.py"
+2. Your browser will open at http://localhost:8080 with the full pre-built site.
+
+-------------------------------------------------------------------------------
+ALTERNATIVE (macOS / Linux):
+1. Open Terminal in this folder.
+2. Run: ./start.sh
+
+-------------------------------------------------------------------------------
+DIRECT BROWSER PREVIEW:
+1. Double-click "preview.html" in this folder to open directly in Chrome, Edge,
+   Firefox, or Safari without a server.
+   (Uses standalone pre-bundled assets/app.js with hash navigation)
+
+===============================================================================

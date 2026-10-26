@@ -1,0 +1,27 @@
+# GlobeCareer — International Career Platform
+
+> GlobeCareer (https://globecareer.com) is a 100% free international CV/resume builder, career document suite, and global job search platform. It features country-specific CV formatting across 40 jurisdictions, ATS optimization, and zero paywalls or subscriptions.
+
+## Core Free Capabilities
+
+- **International Resume Builder (`/resume-builder`):** Interactive CV creator with real-time ATS keyword matching, photo/no-photo compliance for 40 countries, and free vector PDF and DOCX export.
+- **Resume & CV Templates (`/templates`):** Country-tailored single-column ATS layouts and European photo CV formats.
+- **Professional Bio Generator & Templates (`/bio-generator`, `/bio-templates`):** 15+ industry templates with Short, Medium, and Extended outputs in 1st and 3rd person POV.
+- **Resume Summary & Objective Generator (`/summary-generator`, `/summary-templates`):** 18+ ATS-tested professional summaries, graduate objectives, and LinkedIn headlines with 1-click resume builder insertion.
+- **Resignation Letter Generator (`/resignation-letter`, `/resignation-letter-templates`):** 11+ departure scenarios (2-weeks notice, short notice, immediate effect, relocation, retirement) with global notice rules (US, UK, DE, AU) and printable export.
+- **Cover Letter Builder (`/cover-letter-builder`):** Tailored cover letters with country-specific norms and export.
+- **Recommendation Letter Builder & Guide (`/recommendation-letter`, `/recommendation-letter-guide`):** Academic, employment, and graduate reference letters.
+- **Job Application Email Generator (`/email-generator`):** Formal application emails, cold outreach messages, and follow-ups.
+- **Letter & Email Templates (`/letter-templates`):** Curated outreach and reference letter templates.
+- **ATS Resume Checker (`/ats-checker`):** Real-time resume vs. job description match score, missing skills analysis, and formatting audits.
+- **Interview Preparation (`/interview-prep`):** STAR method frameworks, mock practice questions, and international hiring etiquette.
+- **Verified Jobs Portal (`/jobs`):** Authenticated international and remote positions with verified employer links and anti-scam safeguards.
+- **Job Application Tracker (`/job-tracker`):** Free Kanban pipeline for tracking wishlists, applied roles, interviews, offers, and follow-up deadlines.
+- **40 Country CV Hiring Guides (`/country-guides`):** Specific rules on photos, paper sizes (Letter vs. A4), document length, and data privacy for 40 nations: US, UK, Canada, Germany, Australia, France, Japan, UAE, Singapore, Netherlands, Switzerland, Spain, Ireland, New Zealand, Sweden, Poland, and more.
+
+## Platform Standards
+
+- **100% Free:** No credit cards, no subscriptions, no watermarks, no gated downloads.
+- **Privacy First:** Client-side local storage draft persistence.
+- **Canonical Domain:** https://globecareer.com
+- **Sitemap:** https://globecareer.com/sitemap.xml

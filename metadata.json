@@ -1,0 +1,6 @@
+{
+  "name": "GlobeCareer – Build Your Global Career. Stand Out Anywhere.",
+  "description": "Free international career platform. Create ATS-friendly resumes, cover letters, recommendation letters, outreach emails, and interview preparation for 40+ countries.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

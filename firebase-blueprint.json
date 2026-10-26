@@ -1,0 +1,149 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Public and basic profile information for a registered GlobeCV user",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "maxLength": 128 },
+        "email": { "type": "string", "format": "email", "maxLength": 256 },
+        "displayName": { "type": "string", "maxLength": 128 },
+        "photoURL": { "type": "string", "maxLength": 512 },
+        "createdAt": { "type": "string", "maxLength": 64 },
+        "updatedAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["uid", "email"]
+    },
+    "UserSubscription": {
+      "title": "UserSubscription",
+      "description": "Subscription and premium entitlement state for a user",
+      "type": "object",
+      "properties": {
+        "status": { "type": "string", "enum": ["free", "pro", "canceled", "past_due"] },
+        "plan": { "type": "string", "enum": ["none", "monthly", "annual"] },
+        "paddleCustomerId": { "type": "string", "maxLength": 128 },
+        "subscriptionId": { "type": "string", "maxLength": 128 },
+        "currentPeriodEnd": { "type": "string", "maxLength": 64 },
+        "cancelAtPeriodEnd": { "type": "boolean" },
+        "updatedAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["status", "plan"]
+    },
+    "CloudResume": {
+      "title": "CloudResume",
+      "description": "User saved resume stored in the cloud",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "title": { "type": "string", "maxLength": 128 },
+        "targetCountryId": { "type": "string", "maxLength": 16 },
+        "templateId": { "type": "string", "maxLength": 64 },
+        "resumeData": { "type": "object" },
+        "createdAt": { "type": "string", "maxLength": 64 },
+        "updatedAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["id", "userId", "title", "targetCountryId", "templateId", "resumeData"]
+    },
+    "JobApplication": {
+      "title": "JobApplication",
+      "description": "Job application tracked in the candidate pipeline",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "jobTitle": { "type": "string", "maxLength": 200 },
+        "company": { "type": "string", "maxLength": 200 },
+        "country": { "type": "string", "maxLength": 16 },
+        "location": { "type": "string", "maxLength": 200 },
+        "status": { "type": "string", "enum": ["wishlist", "applied", "interviewing", "offered", "rejected"] },
+        "appliedDate": { "type": "string", "maxLength": 64 },
+        "salary": { "type": "string", "maxLength": 100 },
+        "notes": { "type": "string", "maxLength": 2000 },
+        "jobUrl": { "type": "string", "maxLength": 1000 },
+        "updatedAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["id", "userId", "jobTitle", "company", "status"]
+    },
+    "VerifiedJob": {
+      "title": "VerifiedJob",
+      "description": "Authorized international job listing with verification audit metadata",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "title": { "type": "string", "maxLength": 200 },
+        "company": { "type": "string", "maxLength": 200 },
+        "country": { "type": "string", "enum": ["us", "uk", "ca", "au"] },
+        "location": { "type": "string", "maxLength": 200 },
+        "isRemote": { "type": "boolean" },
+        "visaSponsorship": { "type": "string", "enum": ["yes", "no", "unspecified"] },
+        "salary": { "type": "string", "maxLength": 100 },
+        "source": { "type": "string", "enum": ["usajobs", "adzuna", "dwp", "direct_ats"] },
+        "canonicalUrl": { "type": "string", "maxLength": 1000 },
+        "verificationStatus": { "type": "string", "enum": ["verified", "partner", "review"] },
+        "description": { "type": "string", "maxLength": 5000 },
+        "postedAt": { "type": "string", "maxLength": 64 },
+        "verifiedAt": { "type": "string", "maxLength": 64 },
+        "expiresAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["id", "title", "company", "country", "source", "canonicalUrl", "verificationStatus"]
+    },
+    "JobReport": {
+      "title": "JobReport",
+      "description": "User flagged suspicious job or broken link report",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "jobId": { "type": "string", "maxLength": 128 },
+        "jobTitle": { "type": "string", "maxLength": 200 },
+        "reportedBy": { "type": "string", "maxLength": 128 },
+        "reason": { "type": "string", "enum": ["scam_money", "broken_link", "expired", "misleading", "other"] },
+        "details": { "type": "string", "maxLength": 1000 },
+        "status": { "type": "string", "enum": ["pending", "investigating", "resolved", "dismissed"] },
+        "createdAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["id", "jobId", "reason", "status", "createdAt"]
+    },
+    "AdminRecord": {
+      "title": "AdminRecord",
+      "description": "Designated administrative user account authorization",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string", "format": "email", "maxLength": 256 },
+        "role": { "type": "string", "enum": ["super_admin", "moderator"] },
+        "grantedAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["email", "role"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserProfile" },
+      "description": "User profile document"
+    },
+    "/users/{userId}/subscription/current": {
+      "schema": { "$ref": "#/entities/UserSubscription" },
+      "description": "Current active subscription and entitlement record"
+    },
+    "/users/{userId}/resumes/{resumeId}": {
+      "schema": { "$ref": "#/entities/CloudResume" },
+      "description": "Cloud resumes owned by the user"
+    },
+    "/users/{userId}/applications/{appId}": {
+      "schema": { "$ref": "#/entities/JobApplication" },
+      "description": "User job application tracker records"
+    },
+    "/jobs/{jobId}": {
+      "schema": { "$ref": "#/entities/VerifiedJob" },
+      "description": "Verified international job opportunities"
+    },
+    "/job_reports/{reportId}": {
+      "schema": { "$ref": "#/entities/JobReport" },
+      "description": "Job reports submitted for review"
+    },
+    "/admins/{userId}": {
+      "schema": { "$ref": "#/entities/AdminRecord" },
+      "description": "Administrative role registry"
+    }
+  }
+}

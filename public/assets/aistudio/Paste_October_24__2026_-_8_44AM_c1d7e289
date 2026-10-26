@@ -1,0 +1,724 @@
+# MASTER PROMPT: GlobeCareer — Complete Keyword Intelligence, SEO Expansion, Career Tools Development & Production-Readiness Audit
+
+## ROLE & RESPONSIBILITY
+
+Act as a senior SEO strategist, technical SEO engineer, keyword researcher, content architect, career-platform product manager, UX specialist, full-stack developer, and QA engineer with the depth of experience expected from a professional with 20 years in the industry.
+
+You are working on **GlobeCareer**, an international career-development platform focused on CVs and resumes, job opportunities, career documents, professional letters, ATS tools, job application workflows, templates, and career growth.
+
+Your task is to analyze the complete keyword CSV file(s) attached to this request and use the actual data to create and implement a comprehensive SEO and product-expansion strategy.
+
+This is not a request for a generic SEO report or recommendations only. You are expected to inspect the existing application, identify gaps, implement appropriate improvements, build genuinely useful missing functionality, create high-quality content, and validate the results.
+
+**Primary business objective:** maximize relevant organic search traffic, qualified visitors, tool usage, returning users, and long-term growth while making GlobeCareer a credible, useful, international career platform.
+
+Do not merely explain what should be done. Where the current environment and project permissions allow it, do the work, test it, and report the actual results.
+
+---
+
+# PHASE 1 — PROTECT THE EXISTING PROJECT
+
+Before making any changes:
+
+1. Inspect the complete project structure, framework, dependencies, routing, current pages, reusable components, styling system, data files, templates, tools, content, SEO implementation, and deployment configuration.
+2. Identify the actual features that work, features that are partially functional, and features that are only placeholders.
+3. Inspect all existing routes, including resume/CV builders, template hubs, cover letters, recommendation letters, job application email generation, ATS functionality, job-related pages, career guides, and other existing features.
+4. Locate and inspect every attached keyword CSV file. Determine which columns exist and what each column represents.
+5. Create a complete backup or a reversible change set before modifying existing code.
+6. Preserve existing functional features, current design quality, responsive behavior, working routes, existing data, and established user workflows.
+7. Do not replace working implementations with mockups, hardcoded demonstrations, nonfunctional buttons, or superficial interfaces.
+8. Do not remove existing functionality simply because it does not currently have a keyword assigned.
+9. Do not deploy, publish, overwrite production data, or perform destructive actions without the required authorization.
+
+Treat the current project as an existing product that must be expanded carefully, not as a disposable prototype.
+
+---
+
+# PHASE 2 — EXHAUSTIVE CSV INGESTION AND KEYWORD INVENTORY
+
+The attached CSV files are the primary source of truth for the keyword research.
+
+**No valuable keyword, metric, row, cluster, or useful data point may be silently discarded.**
+
+Read the entire contents of every supplied file, not just the first rows, a preview, or a random sample.
+
+## 2.1 Preserve all source data
+
+For every original row, preserve the available source fields, including where present:
+
+- Keyword
+- Search volume
+- Keyword difficulty
+- Search intent
+- CPC
+- Competition
+- SERP features
+- Country or database
+- Parent topic
+- Keyword trend
+- Existing URL
+- Source tool
+- Any additional supplied metric or field
+
+Do not invent missing values or silently replace original metrics with estimates.
+
+If files contain duplicate keywords, retain a record of the duplicates and their original source metrics. Consolidate them into a canonical keyword record only when appropriate, without losing meaningful differences between countries, databases, intents, or data sources.
+
+When SEMrush and Ahrefs provide different metrics, preserve both values and identify their respective sources. Do not pretend that different tools calculate keyword difficulty identically.
+
+## 2.2 Build a master keyword database
+
+Create a structured master inventory with at least these fields:
+
+- Unique keyword ID
+- Original keyword
+- Normalized keyword
+- Original source file
+- Original source row or row identifier, where available
+- Original metrics
+- Country/database
+- Search intent
+- Keyword cluster
+- Funnel stage
+- Relevance to GlobeCareer
+- Current matching URL, if any
+- Recommended target URL
+- Current coverage status
+- Recommended action
+- Implementation status
+- QA status
+- Reason for any exclusion or deferral
+
+Use appropriate extra columns based on the actual source data.
+
+Create a downloadable master CSV or another practical project artifact containing the consolidated inventory. Also provide a summary report showing the total rows received, rows successfully parsed, duplicate records, unique normalized keywords, missing values, and any parsing errors.
+
+Reconcile the row counts against the source files. Every source row must be accounted for.
+
+If a file is too large to process in a single operation, process it in deterministic batches and reconcile all batches. Never silently truncate the dataset.
+
+## 2.3 Identify the valuable keywords
+
+Analyze keyword value using the available evidence, including:
+
+- Search intent and relevance
+- Search volume
+- Keyword difficulty
+- CPC, when available
+- SERP characteristics
+- Conversion potential
+- Relevance to an existing or planned feature
+- Content quality requirements
+- Country-specific relevance
+- Competitive search intent
+
+Prioritize realistic opportunities, particularly relevant low-difficulty keywords, including KD values from 0–29 where present in the supplied dataset.
+
+However, do not discard a relevant keyword solely because its difficulty exceeds 29 or its search volume is low. Place it into an appropriate priority tier for review.
+
+Do not assume that high volume automatically means high value. Do not promise rankings or traffic outcomes.
+
+---
+
+# PHASE 3 — MAP EVERY KEYWORD TO AN APPROPRIATE ACTION
+
+The goal is comprehensive, useful keyword coverage, not creating a separate thin page for every keyword.
+
+Every keyword must receive a documented disposition.
+
+Use these action categories:
+
+1. **OPTIMIZE EXISTING PAGE:** The current page already satisfies the keyword intent but needs better SEO or content.
+2. **EXPAND EXISTING PAGE:** Add a missing section, feature, example, FAQ, template collection, or use case.
+3. **CREATE NEW LANDING PAGE:** A distinct, valuable search intent justifies a new page.
+4. **CREATE BLOG ARTICLE:** The keyword is primarily informational and deserves a useful article.
+5. **CREATE TEMPLATE:** The keyword represents a distinct document, format, audience, or use case that merits a genuine template.
+6. **BUILD NEW TOOL:** A useful tool can satisfy the keyword intent and can be implemented properly.
+7. **ADD TO EXISTING TOOL:** Extend an existing tool instead of unnecessarily creating a duplicate.
+8. **COUNTRY-SPECIFIC EXPANSION:** A distinct country or regional requirement justifies localized functionality or content.
+9. **INTERNAL LINKING:** The keyword is best supported by improving links between relevant existing pages.
+10. **MONITOR / DEFER:** Relevant but not currently feasible, insufficiently supported, or dependent on future functionality.
+11. **EXCLUDE WITH REASON:** Irrelevant, misleading, unsupported, duplicative without additional value, or otherwise unsuitable.
+
+For every keyword, record the chosen action and its justification.
+
+Do not leave valuable keywords unassigned.
+
+If several closely related keywords have the same intent, map them to one strong page and use natural variations within the page. Avoid keyword cannibalization.
+
+If a keyword has a genuinely different intent, evaluate whether a separate page or feature is justified.
+
+Do not create pages simply to make the coverage count look impressive.
+
+---
+
+# PHASE 4 — MAKE GLOBECAREER A COMPREHENSIVE CAREER PLATFORM
+
+Inspect the actual application first, then map its current capabilities against the keyword inventory.
+
+Use the following as feature-discovery areas, not as permission to claim that features already exist.
+
+## A. Resume and CV ecosystem
+
+Audit and improve relevant existing features such as:
+
+- Resume builder
+- CV builder
+- Resume and CV templates
+- Country-specific CV formats
+- ATS-friendly resumes
+- Resume examples
+- Resume formatting guides
+- Resume summaries and professional profiles
+- Career objectives
+- Skills and experience descriptions
+- Resume customization for a specific job
+- Resume scoring and keyword matching
+- PDF and DOCX export, where supported
+- Resume guidance for students, graduates, experienced professionals, and career changers
+
+Country-specific content must be accurate and genuinely relevant to the intended job market.
+
+## B. Cover letter ecosystem
+
+Audit and improve:
+
+- Cover letter builder
+- Cover letter templates
+- Cover letter examples
+- Job-specific cover letters
+- Industry-specific cover letters
+- Entry-level and experienced-candidate use cases
+- Country-specific conventions where supported
+- Relevant guides, examples, and FAQs
+
+Templates must provide meaningful variations, not just different titles attached to identical content.
+
+## C. Recommendation and reference letters
+
+Pay special attention to this area because its keyword coverage may be incomplete.
+
+Inspect and improve the actual recommendation-letter functionality, including appropriate use cases such as:
+
+- Employment recommendation letters
+- Academic recommendation letters
+- Student recommendations
+- Professional references
+- Manager or supervisor recommendations
+- College or graduate-school applications
+- Character references, where appropriate
+- Recommendation-letter templates
+- Recommendation-letter examples
+- Letter formatting and writing guides
+
+Only build distinct templates or pages where the keyword data and user intent justify them.
+
+Distinguish recommendation letters from reference letters when their intended purpose differs.
+
+## D. Email generator and job-application communication
+
+Audit and improve the existing email generator and its template hub.
+
+Consider relevant data-supported use cases such as:
+
+- Job application emails
+- Emails accompanying a resume
+- Email subject lines for job applications
+- Recruiter outreach
+- Job inquiry emails
+- Follow-up emails after applying
+- Interview follow-up messages
+- Thank-you emails after interviews
+- Professional job-related correspondence
+- Email templates and examples
+
+Make templates genuinely usable, editable, and relevant to their intended purpose.
+
+Do not duplicate existing email features under unnecessary new names.
+
+## E. Jobs and career opportunities
+
+Inspect the existing jobs-related functionality and identify which capabilities are genuinely available.
+
+Potential expansion areas include:
+
+- Job discovery and job-search resources
+- Remote-job guidance
+- International career opportunities
+- Entry-level and graduate job resources
+- Job application workflows
+- Job application tracking
+- Career guides and job-search strategies
+- Employer or recruiter communication
+
+If the platform has actual job listings, verify their source, freshness, and functionality.
+
+If it does not have live job listings, do not imply that it does. Do not fabricate vacancies, employers, salaries, job counts, application links, or current opportunities.
+
+For job-related content, clearly distinguish educational guidance from actual listings and external opportunities.
+
+## F. ATS and application tracking
+
+Inspect the existing ATS checker, tracker, and related features.
+
+Evaluate keyword-supported improvements such as:
+
+- Resume-to-job-description matching
+- ATS readability checks
+- Resume keyword analysis
+- Missing keyword identification
+- Job application status tracking
+- Application organization
+- Resume compatibility guidance
+
+Only implement features that can be made functional and that the available architecture supports.
+
+Do not claim access to proprietary ATS scoring systems or guarantee that a resume will pass every employer's ATS.
+
+## G. Additional career tools
+
+Examine all keywords for legitimate opportunities that are not covered by the existing application.
+
+Examples to investigate, when supported by the data, include:
+
+- Professional bio generator
+- Resume summary generator
+- Career objective generator
+- Interview question generator
+- Interview answer preparation
+- Job description analyzer
+- Resignation letter generator
+- Professional reference tools
+- Other relevant career-document generators
+
+**Important example: Bio Generator**
+
+If the keyword inventory contains valuable professional bio generator keywords and the application does not currently have that tool, do not simply skip those keywords.
+
+Evaluate the search intent, expected usefulness, implementation effort, overlap with existing tools, and SEO potential. If justified, build a real professional bio generator with an appropriate route, input fields, useful output, editing functionality, and a way to copy or export the result where supported.
+
+Apply the same decision-making process to every other valuable missing tool.
+
+Do not add irrelevant tools merely to increase the number of features.
+
+---
+
+# PHASE 5 — BUILD A DATA-DRIVEN CONTENT AND TEMPLATE STRATEGY
+
+Create a comprehensive content plan from the keyword database.
+
+## 5.1 Blog and guide opportunities
+
+Identify all meaningful informational keyword clusters and map them to existing articles or new content.
+
+For each proposed article, define:
+
+- Primary keyword
+- Secondary keywords
+- Supporting long-tail keywords
+- Search intent
+- Intended audience
+- Proposed title
+- Suggested URL slug
+- H1
+- H2/H3 outline
+- Search intent requirements
+- Internal links to relevant tools and templates
+- Suggested FAQ questions
+- Relevant calls to action
+- Existing pages that must not be duplicated
+- Implementation status
+
+Create articles that answer the actual searcher's question with useful, specific information.
+
+Do not produce mass-generated, repetitive articles that merely swap job titles, countries, or keywords.
+
+Each article must have a clear purpose and provide original value, such as actionable instructions, examples, explanations, practical comparisons, or a relevant interactive feature.
+
+Where existing articles already cover the topic, improve them rather than automatically creating new URLs.
+
+## 5.2 Template expansion
+
+For relevant template keywords, determine whether the right solution is:
+
+- A new template within an existing template hub
+- A new template category
+- A dedicated landing page
+- An example or article
+- An enhancement to an existing builder
+
+Every new template must be substantively useful, editable where appropriate, and clearly differentiated.
+
+Avoid near-identical pages with only minor wording changes.
+
+Where templates are generated dynamically, ensure that the selected template actually loads the correct content and transfers data properly into the relevant builder.
+
+## 5.3 Content quality
+
+Every article, template page, or landing page must:
+
+- Satisfy its intended search intent
+- Have a clear and useful structure
+- Use the target keywords naturally
+- Avoid keyword stuffing
+- Avoid fabricated statistics, claims, testimonials, and citations
+- Provide meaningful examples and explanations
+- Include relevant internal links
+- Be readable on mobile devices
+- Have a useful next step for the visitor
+- Be accurate for the stated country, industry, or audience
+
+For legal, immigration, employment-law, or other sensitive country-specific requirements, use reliable sources where available and avoid unsupported claims.
+
+Do not claim that a template is officially approved, universally compliant, or guaranteed to succeed unless this is substantiated.
+
+---
+
+# PHASE 6 — TECHNICAL SEO IMPLEMENTATION
+
+Inspect the existing technical SEO setup before making changes.
+
+Implement appropriate improvements where necessary.
+
+## 6.1 Page-level SEO
+
+For every indexable page, review:
+
+- Unique, descriptive title tag
+- Relevant meta description
+- One clear primary H1
+- Logical heading hierarchy
+- Useful and relevant page content
+- Canonical URL
+- Robots directives
+- Open Graph metadata
+- Appropriate structured data
+- Internal links
+- Image alt text where meaningful
+- Mobile usability
+- Loading performance
+- Correct HTTP status and routing behavior
+
+Do not generate identical titles and descriptions across large numbers of pages.
+
+Do not add indexable pages with little or no useful content simply to target additional keywords.
+
+## 6.2 Structured data
+
+Use structured data only when the page and visible content genuinely qualify.
+
+Evaluate appropriate types, including WebSite, Organization, BreadcrumbList, Article, and relevant SoftwareApplication or other supported types where applicable.
+
+Use JobPosting structured data only for legitimate, current job listings that meet the applicable requirements.
+
+Do not add fake reviews, ratings, salaries, job listings, FAQ content, or other unsupported structured data.
+
+Validate generated JSON-LD and ensure that its claims match the actual page.
+
+## 6.3 Architecture and internal linking
+
+Create a logical topical architecture connecting:
+
+- Resume/CV tools and templates
+- Cover letter tools and templates
+- Recommendation and reference letters
+- Job application emails
+- ATS and job application tracking
+- Job-search resources
+- Career guides
+- Supporting articles and relevant country pages
+
+Use contextual internal links and clear navigation.
+
+Avoid orphan pages, excessive navigation links, unnecessary route aliases, and large collections of near-duplicate URLs.
+
+If a URL changes, implement a suitable redirect where supported and preserve existing external links where possible.
+
+Do not remove useful existing routes without a documented migration plan.
+
+## 6.4 Sitemap, indexing and crawlability
+
+Verify:
+
+- XML sitemap generation
+- Inclusion of intended canonical indexable URLs
+- Exclusion of irrelevant, duplicate, and non-indexable URLs
+- robots.txt behavior
+- Canonical consistency
+- Correct HTTP status codes
+- Correct internal links
+- SPA route refresh and direct navigation behavior
+- Existing deployment and hosting constraints
+
+Do not claim that a page is indexed by Google merely because it returns HTTP 200 locally.
+
+Do not claim that rankings, impressions, or organic traffic have improved without actual measurement data.
+
+## 6.5 Performance and accessibility
+
+Preserve the current design system and responsive experience.
+
+Inspect page performance, rendering, image handling, accessibility, semantic HTML, keyboard navigation, form labels, contrast, and major layout shifts.
+
+Fix verified issues that can be safely addressed without breaking the application.
+
+Do not sacrifice functionality or content quality merely to chase an arbitrary performance score.
+
+---
+
+# PHASE 7 — BACKLINKS AND OFF-PAGE SEO
+
+Create a legitimate backlink acquisition strategy based on GlobeCareer's actual features and content.
+
+Investigate opportunities such as:
+
+- Useful career-resource pages that other websites may reference
+- Original career templates and downloadable resources
+- Genuine outreach to relevant education and career websites
+- Relevant professional communities
+- Useful tools that can earn natural references
+- Guest contributions where editorially appropriate
+- Broken-link replacement where a relevant resource genuinely fits
+- Partnerships and resource listings that provide actual value
+
+Prioritize relevance, editorial quality, and genuine usefulness rather than raw backlink counts.
+
+Do not purchase spam links, generate fake referring domains, automate mass unsolicited outreach, create private blog networks, or use deceptive link schemes.
+
+Do not invent backlinks, contact confirmations, referring domains, or completed outreach.
+
+If external outreach cannot be performed from this environment, produce a practical outreach plan and distinguish proposed actions from completed actions.
+
+---
+
+# PHASE 8 — NEW TOOLS, PAGES AND FEATURES MUST BE FUNCTIONAL
+
+When a keyword justifies a new tool or feature:
+
+1. Inspect existing components and utilities for reusable functionality.
+2. Design the smallest complete implementation that satisfies the intended use case.
+3. Add the correct route and navigation entry where appropriate.
+4. Implement working input fields, validation, generation or processing logic, editing, and copy/export functionality where relevant.
+5. Integrate the feature with existing templates and builders when useful.
+6. Add appropriate loading, success, empty, and error states.
+7. Make the tool responsive and accessible.
+8. Add unique, useful explanatory content and relevant SEO metadata.
+9. Add internal links and sitemap integration where appropriate.
+10. Test the full user workflow, not just whether the page renders.
+
+Do not build a cosmetic interface with fake output.
+
+Do not add API-dependent AI functionality that cannot work without the required backend or credentials. If a feature requires an external API, explain the dependency and implement a working alternative only when technically appropriate.
+
+Do not expose secret keys or credentials in client-side code.
+
+Preserve all existing user data and avoid unnecessary changes to shared components.
+
+---
+
+# PHASE 9 — IMPLEMENTATION PRIORITY AND RESOURCE MANAGEMENT
+
+The goal is comprehensive coverage without uncontrolled scope or quality loss.
+
+Classify implementation work into:
+
+**P0 — Critical**
+- Broken existing functionality
+- Important technical SEO defects
+- Existing high-value keywords with no proper target page
+- Missing or broken key conversion workflows
+
+**P1 — High value**
+- Relevant, lower-difficulty keywords with strong intent
+- Missing tools that satisfy meaningful keyword demand
+- Important template and landing-page gaps
+- High-value existing content improvements
+
+**P2 — Expansion**
+- Supporting articles
+- Additional differentiated templates
+- Useful niche or country-specific features
+- Internal-linking improvements
+
+**P3 — Deferred**
+- Low-confidence opportunities
+- Features requiring unavailable infrastructure
+- Low-priority keywords with weak evidence
+- Projects whose implementation cost is not currently justified
+
+Use the actual CSV data to determine the priorities.
+
+Implement as much as can be completed safely and reliably within the available environment.
+
+If the entire scope is too large for one execution, create a durable implementation backlog, save progress, record completed items, and continue systematically. Do not falsely report incomplete work as finished.
+
+Do not stop after producing a strategy if implementation is possible. Conversely, do not rush out hundreds of weak pages simply to claim full coverage.
+
+---
+
+# PHASE 10 — FULL REGRESSION TESTING
+
+After implementation, conduct a real test of the existing and newly added functionality.
+
+## 10.1 Build and code validation
+
+Where supported by the project, run:
+
+- TypeScript or equivalent type checks
+- Production build
+- Linting
+- Automated tests
+- Route validation
+- Link validation
+- Structured-data validation
+- Sitemap and robots.txt checks
+
+Report the actual commands and results. If a tool is unavailable, say so.
+
+## 10.2 Functional testing
+
+Test all affected workflows, including:
+
+- Navigation and dropdowns
+- Direct URL navigation
+- Page refresh on nested routes
+- Country selection
+- Resume/CV template selection
+- Template preview
+- Cover letter creation
+- Recommendation letter creation
+- Email generation
+- New tool input and output
+- Editing and copying
+- PDF/DOCX export, where supported
+- Job-related functionality
+- ATS analysis and application tracking, where supported
+- Mobile navigation
+- Responsive layouts
+- Form validation
+- Error handling
+- Existing user-data preservation
+
+Test the actual output, not merely button clicks or HTTP 200 responses.
+
+Do not claim every country, template, tool, or route passed unless each was actually tested.
+
+## 10.3 SEO regression testing
+
+For every changed or new page, verify:
+
+- Intended URL and canonical
+- Title and description
+- H1 and content relevance
+- Indexability
+- Internal links
+- Sitemap inclusion where appropriate
+- Structured-data validity
+- Duplicate content risks
+- No broken routes
+- No accidental noindex directives
+- No regressions to existing pages
+
+Produce a report listing passed, failed, blocked, and untested items separately.
+
+---
+
+# PHASE 11 — FINAL DELIVERABLES
+
+At the end, provide the following artifacts and reports.
+
+### Deliverable A — Master Keyword Inventory
+A complete, downloadable, consolidated dataset preserving all original keyword rows and metrics, with keyword clusters, target URLs, recommended actions, and implementation status.
+
+### Deliverable B — Keyword Coverage Report
+Show:
+
+- Total source rows
+- Unique keywords
+- Duplicates and how they were handled
+- Keywords mapped to existing pages
+- Keywords assigned to existing-page improvements
+- Keywords assigned to new pages
+- Keywords assigned to articles
+- Keywords assigned to templates
+- Keywords assigned to new tools
+- Keywords deferred or excluded, with reasons
+- Unmapped keywords, if any
+
+The target is zero unexplained unmapped keywords.
+
+### Deliverable C — URL and Content Architecture
+Provide a complete proposed/implemented page inventory with:
+
+- URL
+- Page type
+- Primary keyword
+- Secondary keywords
+- Search intent
+- Content purpose
+- Implementation status
+- Canonical and indexability status
+
+Clearly distinguish existing URLs from proposed and newly implemented URLs.
+
+### Deliverable D — Content and Template Inventory
+List each existing page improved and each article, template, or landing page created, including its target keyword cluster and actual status.
+
+Do not claim an article or template was published or implemented if only its outline or specification exists.
+
+### Deliverable E — Technical SEO Report
+List verified fixes, outstanding issues, relevant validation results, and any hosting or deployment constraints.
+
+### Deliverable F — Backlink Strategy
+Provide realistic opportunities, prioritization, and outreach assets where useful. Clearly separate planned outreach from outreach actually completed.
+
+### Deliverable G — Regression QA Report
+Provide actual test results, including:
+
+- Build and type-check results
+- Routes checked
+- Features tested
+- Export tests
+- Mobile checks
+- SEO checks
+- Failures and blocked tests
+- Remaining risks
+
+### Deliverable H — Final Project Status
+Summarize what was implemented, what remains, and what requires authorization or external access.
+
+If the environment supports downloadable artifacts, save the reports and data files in the project or provide the actual generated files.
+
+---
+
+# NON-NEGOTIABLE RULES
+
+1. The supplied CSV data must be fully accounted for.
+2. Never silently discard a valuable keyword.
+3. Never fabricate source metrics, traffic, backlinks, rankings, or test results.
+4. Never promise guaranteed rankings or a specific amount of traffic.
+5. Never create thin pages merely to target individual keyword variations.
+6. Never stuff keywords unnaturally into content.
+7. Never create fake job listings, testimonials, reviews, or statistics.
+8. Never break existing tools, templates, routes, user data, or styling unnecessarily.
+9. Never label an untested feature as fully functional.
+10. Never claim deployment or indexing when it has not been verified.
+11. Never stop at recommendations when the actual implementation is possible.
+12. When blocked, document the exact blocker and complete all safe, independent work.
+13. Preserve source-to-action traceability so every original keyword can be audited.
+14. Prefer useful functionality, search-intent satisfaction, technical correctness, and sustainable organic growth over vanity metrics.
+15. Use the actual project architecture and existing code rather than assuming a different framework or deployment setup.
+
+## FINAL EXECUTION INSTRUCTION
+
+Start by inspecting the attached CSV files and the existing GlobeCareer project.
+
+First establish the complete keyword inventory and reconcile the source rows. Then audit the current application, map every keyword to a documented action, prioritize the most valuable opportunities, and begin implementing the highest-value work.
+
+Continue through content, templates, missing tools, technical SEO, internal linking, backlink strategy, and regression testing as far as the environment permits.
+
+Do not ask me to manually repeat information already available in the project or supplied files.
+
+At the end, give me an honest, evidence-based report showing exactly what was completed, what was tested, what remains, and how every valuable keyword has been accounted for.
+
+**The objective is to turn GlobeCareer into a technically sound, genuinely useful, comprehensive international career platform with strong organic-search potential — not simply a website containing a large number of keywords or pages.**
