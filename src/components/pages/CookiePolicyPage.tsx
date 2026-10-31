@@ -103,7 +103,7 @@ export const CookiePolicyPage: React.FC<{ onOpenCookieSettings?: () => void }> =
             4. Contact Our Team
           </h2>
           <p className="text-neutral-600 dark:text-neutral-400">
-            For inquiries regarding our use of cookies, data protection, or privacy controls, please email <a href="mailto:support@globecareer.com" className="text-indigo-600 dark:text-indigo-400 font-semibold underline">support@globecareer.com</a>.
+            For inquiries regarding our use of cookies, data protection, or privacy controls, please email <a href="mailto:info@globecareer.online" className="text-indigo-600 dark:text-indigo-400 font-semibold underline">info@globecareer.online</a>.
           </p>
         </section>
       </div>

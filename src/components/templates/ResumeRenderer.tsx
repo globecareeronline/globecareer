@@ -94,7 +94,7 @@ export const ResumeRenderer: React.FC<ResumeRendererProps> = ({
               )}
 
               {/* Contact Info in Sidebar */}
-              <div className="space-y-3">
+              <div data-resume-section="personal" className="space-y-3 transition-colors duration-300">
                 <h4 className="text-xs uppercase font-bold tracking-wider text-neutral-500 border-b border-neutral-300 pb-1">
                   Contact
                 </h4>
@@ -175,7 +175,7 @@ export const ResumeRenderer: React.FC<ResumeRendererProps> = ({
 
               {/* Sidebar Skills */}
               {enabledSections.includes('skills') && data.skills && data.skills.length > 0 && (
-                <div className="space-y-2.5">
+                <div data-resume-section="skills" className="space-y-2.5 transition-colors duration-300">
                   <h4 className="text-xs uppercase font-bold tracking-wider text-neutral-500 border-b border-neutral-300 pb-1">
                     {getSectionTitle('skills', 'Key Skills')}
                   </h4>
@@ -230,7 +230,7 @@ export const ResumeRenderer: React.FC<ResumeRendererProps> = ({
             {/* Main Content Area */}
             <div className="w-[66%] p-8 space-y-6">
               {/* Header Title */}
-              <div className="border-b-2 pb-4" style={{ borderColor: accentColor }}>
+              <div data-resume-section="personal" className="border-b-2 pb-4 transition-colors duration-300" style={{ borderColor: accentColor }}>
                 <h1 className="text-2xl font-extrabold tracking-tight text-neutral-900 uppercase">
                   {data.personal.fullName || 'Your Name'}
                 </h1>
@@ -243,7 +243,7 @@ export const ResumeRenderer: React.FC<ResumeRendererProps> = ({
 
               {/* Professional Summary */}
               {enabledSections.includes('summary') && data.summary && (
-                <div className="space-y-2">
+                <div data-resume-section="summary" className="space-y-2 transition-colors duration-300">
                   <h3 className="text-xs font-bold uppercase tracking-wider text-neutral-800 flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full" style={{ backgroundColor: accentColor }}></span>
                     {getSectionTitle('summary', 'Professional Profile')}
@@ -256,7 +256,7 @@ export const ResumeRenderer: React.FC<ResumeRendererProps> = ({
 
               {/* Work Experience */}
               {enabledSections.includes('experience') && data.experience && data.experience.length > 0 && (
-                <div className="space-y-3">
+                <div data-resume-section="experience" className="space-y-3 transition-colors duration-300">
                   <h3 className="text-xs font-bold uppercase tracking-wider text-neutral-800 flex items-center gap-2 border-b pb-1">
                     <span className="w-2 h-2 rounded-full" style={{ backgroundColor: accentColor }}></span>
                     {getSectionTitle('experience', 'Professional Experience')}
@@ -289,7 +289,7 @@ export const ResumeRenderer: React.FC<ResumeRendererProps> = ({
 
               {/* Education */}
               {enabledSections.includes('education') && data.education && data.education.length > 0 && (
-                <div className="space-y-3">
+                <div data-resume-section="education" className="space-y-3 transition-colors duration-300">
                   <h3 className="text-xs font-bold uppercase tracking-wider text-neutral-800 flex items-center gap-2 border-b pb-1">
                     <span className="w-2 h-2 rounded-full" style={{ backgroundColor: accentColor }}></span>
                     {getSectionTitle('education', 'Education & Qualifications')}
@@ -320,7 +320,7 @@ export const ResumeRenderer: React.FC<ResumeRendererProps> = ({
 
               {/* Projects */}
               {enabledSections.includes('projects') && data.projects && data.projects.length > 0 && (
-                <div className="space-y-3">
+                <div data-resume-section="more" className="space-y-3 transition-colors duration-300">
                   <h3 className="text-xs font-bold uppercase tracking-wider text-neutral-800 flex items-center gap-2 border-b pb-1">
                     <span className="w-2 h-2 rounded-full" style={{ backgroundColor: accentColor }}></span>
                     {getSectionTitle('projects', 'Key Projects')}
@@ -443,7 +443,7 @@ export const ResumeRenderer: React.FC<ResumeRendererProps> = ({
           /* TEMPLATE VARIANT B: FULL-WIDTH HEADER / ATS-FRIENDLY SINGLE-COLUMN LAYOUT */
           <div className="p-8 sm:p-10 space-y-5">
             {/* Header: Photo (if executive), Name, Job Title, Contact Grid */}
-            <div className="border-b-2 pb-5" style={{ borderColor: accentColor }}>
+            <div data-resume-section="personal" className="border-b-2 pb-5 transition-colors duration-300" style={{ borderColor: accentColor }}>
               <div className="flex items-start justify-between gap-6">
                 <div className="flex-1">
                   <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-neutral-900 uppercase">
@@ -521,7 +521,7 @@ export const ResumeRenderer: React.FC<ResumeRendererProps> = ({
             <div className={spacingClass}>
               {/* 1. Summary */}
               {enabledSections.includes('summary') && data.summary && (
-                <div className="break-inside-avoid">
+                <div data-resume-section="summary" className="break-inside-avoid transition-colors duration-300">
                   <h3 className={`font-bold uppercase tracking-wider text-neutral-900 border-b pb-1 mb-2 ${headingTextSize}`} style={{ borderBottomColor: accentColor }}>
                     {getSectionTitle('summary', 'Professional Summary')}
                   </h3>
@@ -533,7 +533,7 @@ export const ResumeRenderer: React.FC<ResumeRendererProps> = ({
 
               {/* 2. Skills (Often placed before or after experience) */}
               {enabledSections.includes('skills') && data.skills && data.skills.length > 0 && (
-                <div className="break-inside-avoid">
+                <div data-resume-section="skills" className="break-inside-avoid transition-colors duration-300">
                   <h3 className={`font-bold uppercase tracking-wider text-neutral-900 border-b pb-1 mb-2 ${headingTextSize}`} style={{ borderBottomColor: accentColor }}>
                     {getSectionTitle('skills', 'Key Skills & Competencies')}
                   </h3>
@@ -551,7 +551,7 @@ export const ResumeRenderer: React.FC<ResumeRendererProps> = ({
 
               {/* 3. Work Experience */}
               {enabledSections.includes('experience') && data.experience && data.experience.length > 0 && (
-                <div>
+                <div data-resume-section="experience" className="transition-colors duration-300">
                   <h3 className={`font-bold uppercase tracking-wider text-neutral-900 border-b pb-1 mb-3 ${headingTextSize}`} style={{ borderBottomColor: accentColor }}>
                     {getSectionTitle('experience', 'Professional Experience')}
                   </h3>
@@ -583,7 +583,7 @@ export const ResumeRenderer: React.FC<ResumeRendererProps> = ({
 
               {/* 4. Education */}
               {enabledSections.includes('education') && data.education && data.education.length > 0 && (
-                <div>
+                <div data-resume-section="education" className="transition-colors duration-300">
                   <h3 className={`font-bold uppercase tracking-wider text-neutral-900 border-b pb-1 mb-3 ${headingTextSize}`} style={{ borderBottomColor: accentColor }}>
                     {getSectionTitle('education', 'Education')}
                   </h3>
@@ -613,7 +613,7 @@ export const ResumeRenderer: React.FC<ResumeRendererProps> = ({
 
               {/* 5. Projects */}
               {enabledSections.includes('projects') && data.projects && data.projects.length > 0 && (
-                <div>
+                <div data-resume-section="more" className="transition-colors duration-300">
                   <h3 className={`font-bold uppercase tracking-wider text-neutral-900 border-b pb-1 mb-2.5 ${headingTextSize}`} style={{ borderBottomColor: accentColor }}>
                     {getSectionTitle('projects', 'Key Projects')}
                   </h3>
@@ -638,7 +638,7 @@ export const ResumeRenderer: React.FC<ResumeRendererProps> = ({
 
               {/* 6. Certifications */}
               {enabledSections.includes('certifications') && data.certifications && data.certifications.length > 0 && (
-                <div className="break-inside-avoid">
+                <div data-resume-section="more" className="break-inside-avoid transition-colors duration-300">
                   <h3 className={`font-bold uppercase tracking-wider text-neutral-900 border-b pb-1 mb-2 ${headingTextSize}`} style={{ borderBottomColor: accentColor }}>
                     {getSectionTitle('certifications', 'Certifications & Accreditations')}
                   </h3>

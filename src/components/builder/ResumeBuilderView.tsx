@@ -3,7 +3,6 @@ import { ResumeData, SeniorityLevel, EmploymentType, TemplateId } from '../../ty
 import { COUNTRIES, getCountryById } from '../../data/countries';
 import { JOB_CATEGORIES } from '../../data/jobCategories';
 import { generateSampleResume, SamplePersonaType } from '../../data/sampleResumes';
-import { exportResumeToDocx } from '../../utils/docxExport';
 import { analyzeResumeATS } from '../../utils/atsScorer';
 import { getCountryTemplateRecommendation } from '../../utils/countryTemplates';
 
@@ -16,13 +15,16 @@ import { AdditionalSectionsEditor } from '../editor/AdditionalSectionsEditor';
 import { DesignCustomizer } from '../editor/DesignCustomizer';
 import { ResumeRenderer } from '../templates/ResumeRenderer';
 import { ATSJobMatcherModal } from '../ats/ATSJobMatcherModal';
+import { WorkflowNavigation, WorkflowStep } from '../common/WorkflowNavigation';
+import { UnifiedDownloadButton, DownloadFormatOption } from '../common/UnifiedDownloadButton';
+import { exportResumeToDocx, exportResumeToTxt, exportResumeToHtml } from '../../utils/documentExport';
 
 import confetti from 'canvas-confetti';
 import { 
   Download, Printer, Undo2, Redo2, Sparkles, FileText, 
   Settings, ZoomIn, ZoomOut, RotateCcw, Save, Upload, 
   Check, AlertTriangle, Layers, User, Briefcase, GraduationCap, 
-  Wrench, Globe, ArrowRight, Cloud 
+  Wrench, Globe, ArrowRight, Cloud, CheckCircle2, X
 } from 'lucide-react';
 
 interface ResumeBuilderViewProps {
@@ -70,15 +72,45 @@ export const ResumeBuilderView: React.FC<ResumeBuilderViewProps> = ({
   // Preview zoom level
   const [zoomLevel, setZoomLevel] = useState<number>(0.85);
 
+  // Preview container ref for section-aware scrolling
+  const previewScrollRef = useRef<HTMLDivElement>(null);
+
   // Modals & indicators
   const [isATSModalOpen, setIsATSModalOpen] = useState(false);
   const [saveStatus, setSaveStatus] = useState<string>('Auto-saved locally');
   const [showImportModal, setShowImportModal] = useState(false);
+  const [showCompletionModal, setShowCompletionModal] = useState(false);
   const [importJsonText, setImportJsonText] = useState('');
   const [importError, setImportError] = useState('');
 
   const country = getCountryById(resumeData.targetCountryId);
   const atsResult = analyzeResumeATS(resumeData);
+
+  // Workflow steps definition
+  const WORKFLOW_STEPS: WorkflowStep[] = [
+    { id: 'personal', label: 'Personal', description: 'Contact & personal details' },
+    { id: 'summary', label: 'Summary', description: 'Professional objective' },
+    { id: 'experience', label: 'Experience', description: 'Work history' },
+    { id: 'education', label: 'Education', description: 'Degrees & schools' },
+    { id: 'skills', label: 'Skills', description: 'Technical & soft competencies' },
+    { id: 'more', label: 'More', description: 'Certifications, languages & references' },
+    { id: 'design', label: 'Design', description: 'Template & typography' },
+  ];
+
+  // Auto-scroll preview to the section currently being edited
+  useEffect(() => {
+    if (!previewScrollRef.current) return;
+    const targetSection = activeTab === 'design' ? 'personal' : activeTab;
+    const sectionEl = previewScrollRef.current.querySelector<HTMLElement>(`[data-resume-section="${targetSection}"]`);
+    if (sectionEl) {
+      sectionEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      sectionEl.classList.add('ring-2', 'ring-blue-500/50', 'rounded-lg', 'transition-all');
+      const timer = setTimeout(() => {
+        sectionEl.classList.remove('ring-2', 'ring-blue-500/50');
+      }, 1200);
+      return () => clearTimeout(timer);
+    }
+  }, [activeTab]);
 
   // Sync to local storage & parent
   useEffect(() => {
@@ -257,6 +289,69 @@ export const ResumeBuilderView: React.FC<ResumeBuilderViewProps> = ({
     URL.revokeObjectURL(url);
   };
 
+  const handleFinishResume = () => {
+    try {
+      confetti({
+        particleCount: 70,
+        spread: 60,
+        origin: { y: 0.6 }
+      });
+    } catch (e) {
+      // ignore
+    }
+    setShowCompletionModal(true);
+  };
+
+  const downloadFormats: DownloadFormatOption[] = [
+    {
+      id: 'pdf',
+      label: 'Vector PDF Document',
+      extension: '.pdf',
+      description: 'Print-ready vector PDF formatted for direct applications',
+      badge: 'Recommended',
+      isPrimary: true,
+      onExport: () => handlePrintPDF()
+    },
+    {
+      id: 'docx',
+      label: 'Microsoft Word (.docx)',
+      extension: '.docx',
+      description: 'Native editable Word document with structured headers and tables',
+      badge: 'Editable',
+      onExport: () => handleDownloadDocx()
+    },
+    {
+      id: 'txt',
+      label: 'Clean ATS Plain Text',
+      extension: '.txt',
+      description: 'Standard text layout optimized for corporate applicant tracking systems',
+      badge: 'ATS-Friendly',
+      onExport: () => {
+        const filename = `${resumeData.personal.fullName || 'Resume'}_${country.name}_ATS`;
+        exportResumeToTxt(resumeData, filename);
+      }
+    },
+    {
+      id: 'html',
+      label: 'Standalone Web Resume',
+      extension: '.html',
+      description: 'Self-contained HTML file viewable in any web browser without software',
+      badge: 'Web',
+      onExport: () => {
+        const filename = `${resumeData.personal.fullName || 'Resume'}_${country.name}_Web`;
+        exportResumeToHtml(resumeData, filename);
+      }
+    },
+    {
+      id: 'json',
+      label: 'GlobeCareer JSON Backup',
+      extension: '.json',
+      description: 'Full data backup to restore or transfer to other devices',
+      badge: 'Backup',
+      onExport: () => handleDownloadJSON()
+    }
+  ];
+
   const handleImportJSON = () => {
     try {
       const parsed = JSON.parse(importJsonText);
@@ -427,27 +522,12 @@ export const ResumeBuilderView: React.FC<ResumeBuilderViewProps> = ({
               </div>
             </div>
 
-            {/* Export DOCX */}
-            <button
-              type="button"
-              onClick={handleDownloadDocx}
-              className="px-3 py-1.5 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 text-neutral-800 dark:text-neutral-200 text-xs font-semibold rounded-xl hover:bg-neutral-50 flex items-center gap-1.5 transition-colors shadow-xs"
-              title="Download Microsoft Word (.docx) file"
-            >
-              <Download className="w-3.5 h-3.5 text-blue-600" />
-              <span>Word DOCX</span>
-            </button>
-
-            {/* Print / Save as PDF */}
-            <button
-              type="button"
-              onClick={handlePrintPDF}
-              className="px-4 py-1.5 bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-900 text-xs font-bold rounded-xl hover:bg-neutral-800 shadow-md flex items-center gap-1.5 transition-colors"
-              title="Print or Save as Vector PDF"
-            >
-              <Printer className="w-3.5 h-3.5" />
-              <span>Download PDF</span>
-            </button>
+            {/* Unified Download Button */}
+            <UnifiedDownloadButton
+              documentTitle="Resume"
+              formats={downloadFormats}
+              size="sm"
+            />
           </div>
         </div>
       </div>
@@ -553,6 +633,16 @@ export const ResumeBuilderView: React.FC<ResumeBuilderViewProps> = ({
             {activeTab === 'design' && (
               <DesignCustomizer data={resumeData} onChange={setResumeData} />
             )}
+
+            {/* Guided Step-by-Step Workflow Navigation */}
+            <WorkflowNavigation
+              steps={WORKFLOW_STEPS}
+              currentStepId={activeTab}
+              onStepChange={(stepId) => setActiveTab(stepId as EditorTab)}
+              onFinish={handleFinishResume}
+              finishLabel="Complete & Preview Resume"
+              className="mt-8 pb-24"
+            />
           </div>
         </div>
 
@@ -600,8 +690,11 @@ export const ResumeBuilderView: React.FC<ResumeBuilderViewProps> = ({
             </div>
           </div>
 
-          {/* Scaled Render Container */}
-          <div className="flex-1 overflow-y-auto p-4 sm:p-8 flex justify-center items-start print:overflow-visible print:p-0 print:m-0 print:block print:w-full">
+          {/* Scaled Render Container with Section Auto-Scroll Ref */}
+          <div 
+            ref={previewScrollRef}
+            className="flex-1 overflow-y-auto p-4 sm:p-8 flex justify-center items-start print:overflow-visible print:p-0 print:m-0 print:block print:w-full scroll-smooth"
+          >
             <ResumeRenderer data={resumeData} scale={zoomLevel} />
           </div>
         </div>
@@ -648,6 +741,110 @@ export const ResumeBuilderView: React.FC<ResumeBuilderViewProps> = ({
                 className="px-4 py-2 text-xs font-semibold bg-blue-600 text-white rounded-xl hover:bg-blue-700"
               >
                 Import Draft
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Completion & Preview Celebration Modal */}
+      {showCompletionModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-in fade-in duration-200">
+          <div className="w-full max-w-lg bg-white dark:bg-neutral-900 rounded-3xl p-6 sm:p-8 space-y-6 border border-neutral-200 dark:border-neutral-800 shadow-2xl relative">
+            <button
+              type="button"
+              onClick={() => setShowCompletionModal(false)}
+              className="absolute top-5 right-5 p-1.5 text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-200 rounded-full hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 rounded-2xl bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0">
+                <CheckCircle2 className="w-6 h-6" />
+              </div>
+              <div>
+                <span className="text-[11px] font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
+                  Workflow Completed
+                </span>
+                <h3 className="text-xl font-extrabold text-neutral-900 dark:text-neutral-100">
+                  Your Resume is Ready!
+                </h3>
+              </div>
+            </div>
+
+            <p className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              Congratulations! Your CV is formatted for <strong>{country.name}</strong> standards, calibrated for applicant tracking systems, and ready for job applications.
+            </p>
+
+            <div className="p-4 bg-neutral-50 dark:bg-neutral-800/60 rounded-2xl border border-neutral-200 dark:border-neutral-700 space-y-2 text-xs">
+              <div className="flex justify-between items-center">
+                <span className="text-neutral-500">Applicant:</span>
+                <span className="font-bold text-neutral-800 dark:text-neutral-200">{resumeData.personal.fullName || 'Alex Rivera'}</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-neutral-500">Target Country:</span>
+                <span className="font-semibold">{country.flag} {country.name} ({country.paperSize.toUpperCase()})</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-neutral-500">ATS Score:</span>
+                <span className="font-bold text-blue-600 dark:text-blue-400">{atsResult.score} / 100 ({atsResult.score >= 80 ? 'ATS High Match' : atsResult.score >= 60 ? 'Good' : 'Needs Optimization'})</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-neutral-500">Selected Template:</span>
+                <span className="font-mono text-[11px] font-semibold">{resumeData.design.templateId}</span>
+              </div>
+            </div>
+
+            {/* Quick Export Choices */}
+            <div className="space-y-2">
+              <span className="text-[11px] font-bold uppercase tracking-wider text-neutral-400 block">
+                Quick Download Options
+              </span>
+              <div className="grid grid-cols-2 gap-2.5">
+                <button
+                  type="button"
+                  onClick={() => {
+                    handlePrintPDF();
+                    setShowCompletionModal(false);
+                  }}
+                  className="p-3 bg-neutral-900 hover:bg-neutral-800 text-white rounded-xl text-xs font-bold flex items-center justify-center gap-2 shadow-sm transition-all cursor-pointer"
+                >
+                  <Printer className="w-4 h-4 text-emerald-400" />
+                  <span>Download PDF</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    handleDownloadDocx();
+                    setShowCompletionModal(false);
+                  }}
+                  className="p-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 text-neutral-800 dark:text-neutral-200 hover:bg-neutral-50 rounded-xl text-xs font-bold flex items-center justify-center gap-2 shadow-xs transition-all cursor-pointer"
+                >
+                  <Download className="w-4 h-4 text-blue-600" />
+                  <span>Download DOCX</span>
+                </button>
+              </div>
+            </div>
+
+            <div className="flex items-center justify-between pt-2 border-t border-neutral-100 dark:border-neutral-800">
+              <button
+                type="button"
+                onClick={() => {
+                  setShowCompletionModal(false);
+                  setIsATSModalOpen(true);
+                }}
+                className="text-xs font-bold text-blue-600 hover:text-blue-700 flex items-center gap-1.5 cursor-pointer"
+              >
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>Review Full ATS Report</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => setShowCompletionModal(false)}
+                className="px-4 py-2 text-xs font-bold bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 text-neutral-700 dark:text-neutral-300 rounded-xl transition-colors cursor-pointer"
+              >
+                Keep Editing
               </button>
             </div>
           </div>
