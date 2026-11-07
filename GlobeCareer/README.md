@@ -120,12 +120,13 @@ GlobeCareer is fully configured for static hosting on **Cloudflare Pages**.
 Fill in the deployment configuration:
 - **Project name:** `globecareer` (or your preferred name)
 - **Production branch:** `main`
-- **Framework preset:** `Vite`
+- **Framework preset:** `Vite` (or None)
+- **Root directory:** `/` (leave empty or `/` if files are at repository root; set to `GlobeCareer` if committed inside a `GlobeCareer` subdirectory)
 - **Build command:** `npm run build`
 - **Build output directory:** `dist`
 
 ### Step 4: Environment Variables (Recommended)
-Under **Environment variables (advanced)**, add:
+Node.js 20 is already pinned automatically via `.nvmrc` and `.node-version`. You can also explicitly verify:
 - `NODE_VERSION` = `20`
 
 ### Step 5: Save and Deploy
