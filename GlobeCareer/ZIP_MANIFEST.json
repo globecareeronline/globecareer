@@ -611,8 +611,8 @@
   },
   {
     "path": "assets/app.js",
-    "size_bytes": 4542079,
-    "sha256": "1dc30d3b5171dc230741b2856493368ec8039ae143e96f57d7def0e621bac924"
+    "size_bytes": 5547823,
+    "sha256": "4d26ddc8d9e6176820cf38e0dece4b864beac686f6edefb8e37ecd6987564ce9"
   },
   {
     "path": "assets/apple-touch-icon.png",
@@ -666,18 +666,18 @@
   },
   {
     "path": "assets/index.css",
-    "size_bytes": 89821,
-    "sha256": "158ae78c278d966b01602e0fa916eae590464456387705ea082169eefb03895c"
+    "size_bytes": 120344,
+    "sha256": "ae4fe70f16638fe1d54c179be65fe1a9049737e9df3c4a71e4afd3bc16114e89"
   },
   {
     "path": "public/ZIP_MANIFEST.json",
-    "size_bytes": 42045,
-    "sha256": "40e912e6896dec0484ecdc9b080909725f6d21e34f16fb9c938508e6e181d19d"
+    "size_bytes": 42809,
+    "sha256": "f192df852b459005c47e02a2758a6348a0c32197aa333320650bcc66fb6b627e"
   },
   {
     "path": "public/ZIP_MANIFEST.txt",
-    "size_bytes": 28929,
-    "sha256": "66ab54dbb5770de8aedcfc9999a84504493e56acc47c95d1866e1ef20e1e8fd6"
+    "size_bytes": 29424,
+    "sha256": "3d197a6cdb79269175e93f61b2e96d280ecc5a2628263211937d1644d52b98e9"
   },
   {
     "path": "public/_headers",
@@ -785,6 +785,11 @@
     "sha256": "589b1fe2c6ffbceac0fecaecf8ee541b16280a11c5556b3de802d2d2233169a7"
   },
   {
+    "path": "public/assets/app.js",
+    "size_bytes": 5547823,
+    "sha256": "4d26ddc8d9e6176820cf38e0dece4b864beac686f6edefb8e37ecd6987564ce9"
+  },
+  {
     "path": "public/assets/globecareer-logo.png",
     "size_bytes": 60362,
     "sha256": "24553fc8e2841419cb1d4cb7c9855666be4e56edfa8c1ae1248882e7e61431cf"
@@ -793,6 +798,11 @@
     "path": "public/assets/globecareer-logo.webp",
     "size_bytes": 9452,
     "sha256": "aa32880bffc68f3441b2a9e8b0b949c941a69e618237aefbca6e7ed7ed9387d8"
+  },
+  {
+    "path": "public/assets/index.css",
+    "size_bytes": 120344,
+    "sha256": "ae4fe70f16638fe1d54c179be65fe1a9049737e9df3c4a71e4afd3bc16114e89"
   },
   {
     "path": "public/assets/aistudio/GlobeCareer_SEO_Keyword_Master_AIStudio_bf039953.txt",
@@ -871,13 +881,13 @@
   },
   {
     "path": "dist/ZIP_MANIFEST.json",
-    "size_bytes": 42045,
-    "sha256": "40e912e6896dec0484ecdc9b080909725f6d21e34f16fb9c938508e6e181d19d"
+    "size_bytes": 42809,
+    "sha256": "f192df852b459005c47e02a2758a6348a0c32197aa333320650bcc66fb6b627e"
   },
   {
     "path": "dist/ZIP_MANIFEST.txt",
-    "size_bytes": 28929,
-    "sha256": "66ab54dbb5770de8aedcfc9999a84504493e56acc47c95d1866e1ef20e1e8fd6"
+    "size_bytes": 29424,
+    "sha256": "3d197a6cdb79269175e93f61b2e96d280ecc5a2628263211937d1644d52b98e9"
   },
   {
     "path": "dist/_headers",
@@ -957,7 +967,7 @@
   {
     "path": "dist/index.html",
     "size_bytes": 9447,
-    "sha256": "0c8f445496ab85f38a86cf3708a62baa11e3fd6711c2edf801e79552c7b570f4"
+    "sha256": "316af7726ba935e4408793036ebad15fbed2f34ab277b10d0dbe0626fc2daa2d"
   },
   {
     "path": "dist/llms.txt",
@@ -995,9 +1005,9 @@
     "sha256": "3cc38db6d5e4234654194433efd33676592383b85da08887651829607a5e9876"
   },
   {
-    "path": "dist/assets/ATSCheckerPage-DTEQokSp.js",
+    "path": "dist/assets/ATSCheckerPage-Bv9z7edt.js",
     "size_bytes": 37430,
-    "sha256": "fecc56a53788e40b54c11933945a6cdaa126a622b537b30a9d6caa6b528118c7"
+    "sha256": "e7ee921cf62d037667b22bf2882693ac3694f3c05b2a4cfaab712f5bd73254b4"
   },
   {
     "path": "dist/assets/ATSGuidePage-B-ylv3P8.js",
@@ -1005,19 +1015,19 @@
     "sha256": "792324a2d207007f5aec4696134ea1afb05ed81d12cb12c736b93ba413d44b30"
   },
   {
-    "path": "dist/assets/AdminDashboard-B7ci2eJK.js",
+    "path": "dist/assets/AdminDashboard-CyslsLLa.js",
     "size_bytes": 27323,
-    "sha256": "150db332fc7a3be00eb755f54d70f4ba7793a862fda46f6a6286a7956bf89e1e"
+    "sha256": "b90ba549c2a4f97e36218cfb9d5244d4af9689cd620f8815216283e7c94c4c39"
   },
   {
-    "path": "dist/assets/ApplicationTrackerPage-JcbmWbsv.js",
+    "path": "dist/assets/ApplicationTrackerPage-CONdMi8W.js",
     "size_bytes": 20157,
-    "sha256": "2ba8522f2163c9d8518c145bde092c33f358f15b0ef4366a2c1ca8fabf22ba3e"
+    "sha256": "fce658e10259b22982df7894d22719c2d19dbd606ab90741cf410f97c436b24d"
   },
   {
-    "path": "dist/assets/AuthModal-mJcHouhi.js",
+    "path": "dist/assets/AuthModal-DO1iIV27.js",
     "size_bytes": 15134,
-    "sha256": "182822307771bff03298ced0dcab9629bc5da08df0057695286c535224b8f88c"
+    "sha256": "4d682205cfa3e2a85d502082bb8c58ce75d78e64086d1b188c158f9e7ab43c22"
   },
   {
     "path": "dist/assets/CVvsResumeGuidePage-BZtkVsYm.js",
@@ -1025,9 +1035,9 @@
     "sha256": "4ae320a4bafda06f03e430b0cafc95ded56bfd40f64c80ba203eb1a76f8c7487"
   },
   {
-    "path": "dist/assets/CloudResumesModal-4Vp_SqBU.js",
+    "path": "dist/assets/CloudResumesModal-BGErlZZz.js",
     "size_bytes": 10024,
-    "sha256": "ededf9dc56ee90a56105b9807e31ef9c8ad257fd7fc52891fa42bcdd8fabb1e6"
+    "sha256": "8a64a639fbb72dae08b2aeb94c40f855c0113d7294335fa9483729cc28e1658c"
   },
   {
     "path": "dist/assets/CookiePolicyPage-CZizu4xc.js",
@@ -1035,19 +1045,19 @@
     "sha256": "83927eb39b419bf492f98a030fd5ebf265056f494c4aca3a2c72ffb3a90526f1"
   },
   {
-    "path": "dist/assets/CountryDetailPage-CKWfugrg.js",
+    "path": "dist/assets/CountryDetailPage-DkYGabd-.js",
     "size_bytes": 27937,
-    "sha256": "4af61f949fe4ebe9dfc822b0c8a4cd9866ac76df68f550702ad9b1d83eabac67"
+    "sha256": "b4c23c414b822b8d5f4bc378e382d7034721736b40d4d226957b4271f14c1f40"
   },
   {
-    "path": "dist/assets/CountryGuidesPage-DsOY7Wen.js",
+    "path": "dist/assets/CountryGuidesPage-BpqElmuY.js",
     "size_bytes": 14601,
-    "sha256": "2e3100780ee83208dd45077dd2b01c659a0bd835383c0d9250bde94e47f70b5d"
+    "sha256": "dacd1863ef3ab089e88cc9c0cfd22fe1733c364df76f32e5c5a9f5c13d1fcfc5"
   },
   {
-    "path": "dist/assets/CoverLetterBuilder-Dt8mSqFD.js",
+    "path": "dist/assets/CoverLetterBuilder-c_B2T28I.js",
     "size_bytes": 32624,
-    "sha256": "7b3fd44ef2237305fe3b10568b0dd825e665ec53ed0d9cd36acc5c662cc08aad"
+    "sha256": "f44e18260e143595b80c78a8faefa73cb59e5f4b6bfa0968890edd5bb032b218"
   },
   {
     "path": "dist/assets/CoverLetterTemplatesPage-Bq3l9oL6.js",
@@ -1070,19 +1080,19 @@
     "sha256": "086c4443cf4a74cf3b1224d855c8d7781f23ad7454898abcdb49ffafb97677f2"
   },
   {
-    "path": "dist/assets/JobApplicationEmailGenerator-nA15v4Qx.js",
+    "path": "dist/assets/JobApplicationEmailGenerator-Bdr-uMYI.js",
     "size_bytes": 41087,
-    "sha256": "8ee2c1b80315e934dc7713168a8254b5162b3ed6eaf4db8fe460850da038d95f"
+    "sha256": "09e5c6e6a50720f376bb8d507025f34b5ad39eaf35ede7ae34c1b67f4d8461d9"
   },
   {
-    "path": "dist/assets/JobExamplesPage-VFmCxrzS.js",
+    "path": "dist/assets/JobExamplesPage-Di-VVfWA.js",
     "size_bytes": 10594,
-    "sha256": "14db48993174a87eaa1d57dc3096ed57c8a07ec7a68d2508d520d6e0cf585803"
+    "sha256": "1a0dcbc8cd76d0389f8098845f3f4c1bea7e9eb1dbde34453f3220dcf686265a"
   },
   {
-    "path": "dist/assets/JobsPage-CLEHAFZT.js",
+    "path": "dist/assets/JobsPage-DTMVipDx.js",
     "size_bytes": 60163,
-    "sha256": "b14372f75a89eb80f681db671673234ba5f63c70384d7514cf1c26952ed93dbc"
+    "sha256": "20db02b10ed6f729b7a31eb5624f2aed30a0369b8efea58a9321d5da8cfd5349"
   },
   {
     "path": "dist/assets/ProfessionalBioGenerator-C3Hm4jdS.js",
@@ -1095,9 +1105,9 @@
     "sha256": "aadda3516afa86b4b83f5fd16c70b20643b6fb98c9d2acce9aee26fcf0ac4082"
   },
   {
-    "path": "dist/assets/RecommendationLetterBuilder-B24ABigt.js",
+    "path": "dist/assets/RecommendationLetterBuilder-CBz_sX9S.js",
     "size_bytes": 46605,
-    "sha256": "71d12b2bdc61c54a22b189cf97d7937a8e620eed1dd43054f271f565ac781c89"
+    "sha256": "191d7ef13216086a8b1951308a03421e836630fb2c1bfcd27d83fbe948098c2c"
   },
   {
     "path": "dist/assets/ResignationLetterGenerator-BlC9Ix98.js",
@@ -1105,9 +1115,9 @@
     "sha256": "abd2dcef6819cadd9fb8e14539eb6004765bb0939600db0ce7de91ce5dec251a"
   },
   {
-    "path": "dist/assets/ResumeBuilderView-D8u5yh2x.js",
+    "path": "dist/assets/ResumeBuilderView-N114hSEr.js",
     "size_bytes": 156288,
-    "sha256": "7c6177fa1f4500ee91c2b6e0c72d03ebbdcd1b1961c5e9f2eb0b6d635208138e"
+    "sha256": "d3f35c34de3c709452d2a572d6a8fcb1dfcdd1bb2836c0b9b78c4ff2caddb33a"
   },
   {
     "path": "dist/assets/ResumeBulletGenerator-CrZm1Yfg.js",
@@ -1120,9 +1130,9 @@
     "sha256": "c4628a0e8b7fefc8b08d4db34212d161f9b92e2271903bbcd8994c8d2298e20c"
   },
   {
-    "path": "dist/assets/ResumeRenderer-CtYAt4XP.js",
+    "path": "dist/assets/ResumeRenderer-Ce3GADpH.js",
     "size_bytes": 41723,
-    "sha256": "316c7cbfcab1dc43dcaa9cc4e63f852ccd9221bd8e67c63da8db3a0170ce93f5"
+    "sha256": "a77c002ccdadb66b686d3e3b3b69270879b68a865715ff1c53f923c3be973f95"
   },
   {
     "path": "dist/assets/ResumeSkillsGuidePage-BuiDRTBm.js",
@@ -1155,14 +1165,19 @@
     "sha256": "7d0acf07e19e5e90cfce3f6c1fdfbf0c8c6efa1dab41c7a88200f50f1e23eba1"
   },
   {
-    "path": "dist/assets/TemplatesPage-DPSkq7o4.js",
+    "path": "dist/assets/TemplatesPage-CSEjYejY.js",
     "size_bytes": 37260,
-    "sha256": "f5deff8b38f3c5fb0afdb527314dd704deed4c6e0e88d949fa0d43c1fc00fd9c"
+    "sha256": "5122b25dc0e315669edd0d91a133869bb843b9832aafac41d4b3cede2ace1997"
   },
   {
-    "path": "dist/assets/confetti.module-aatYG5Yh.js",
+    "path": "dist/assets/app.js",
+    "size_bytes": 5547823,
+    "sha256": "4d26ddc8d9e6176820cf38e0dece4b864beac686f6edefb8e37ecd6987564ce9"
+  },
+  {
+    "path": "dist/assets/confetti.module-DFp6M3R-.js",
     "size_bytes": 33102,
-    "sha256": "5080552c5f43c13e0e6de355f6e4658fb65505997b74f909a88b626a3e919b3d"
+    "sha256": "6815374cc5440f06547d27641408799235eb5b38f19e6832559d2047822b2d23"
   },
   {
     "path": "dist/assets/docxExport-gmVzIABl.js",
@@ -1180,19 +1195,24 @@
     "sha256": "aa32880bffc68f3441b2a9e8b0b949c941a69e618237aefbca6e7ed7ed9387d8"
   },
   {
-    "path": "dist/assets/index-C8RlNEoS.js",
+    "path": "dist/assets/index-BshLlwZQ.css",
+    "size_bytes": 120344,
+    "sha256": "ae4fe70f16638fe1d54c179be65fe1a9049737e9df3c4a71e4afd3bc16114e89"
+  },
+  {
+    "path": "dist/assets/index-D_QyPJGI.js",
     "size_bytes": 516861,
-    "sha256": "b5e2fd088eb3b7f178c3471df1af79247e24e844a260f3f4b240d024bc188344"
+    "sha256": "dba2e211d2929e1dd3fb33abf0b59cdbd5013c790d4101e753ff1f1fef306e53"
   },
   {
-    "path": "dist/assets/index-xV6ddap7.css",
-    "size_bytes": 121363,
-    "sha256": "9838345a17127dc53a1b8c0ac02fee8c87606e78ec3ca6a995f5740dc3e6f8cb"
+    "path": "dist/assets/index.css",
+    "size_bytes": 120344,
+    "sha256": "ae4fe70f16638fe1d54c179be65fe1a9049737e9df3c4a71e4afd3bc16114e89"
   },
   {
-    "path": "dist/assets/realAtsEngine-bF3HCamp.js",
+    "path": "dist/assets/realAtsEngine-BaKo8yUL.js",
     "size_bytes": 20043,
-    "sha256": "07d293cfbdfecc957d65b8fe172442441290545a7f0e48f0c71a31e0d28f666d"
+    "sha256": "1451e0ffc133e414377ce57475c941140bed4b76eb4edeed41a21a98a8b59b3f"
   },
   {
     "path": "dist/assets/rolldown-runtime-pP25SEvz.js",
