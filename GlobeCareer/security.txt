@@ -1,0 +1,8 @@
+# GlobeCareer Security Disclosure Policy (RFC 9116)
+Contact: mailto:info@globecareer.online
+Expires: 2027-10-31T23:59:59.000Z
+Preferred-Languages: en
+Canonical: https://www.globecareer.online/.well-known/security.txt
+Canonical: https://globecareer.online/.well-known/security.txt
+Policy: https://www.globecareer.online/privacy
+Acknowledgments: https://www.globecareer.online/about

@@ -1,0 +1,1282 @@
+[
+  {
+    "path": "GlobeCareer/.env.example",
+    "size_bytes": 445,
+    "sha256": "b6d12c728de0aac8b0bc6239e53aa8088c1431bcb4f9a3d61e5e8a2df1c7c400"
+  },
+  {
+    "path": "GlobeCareer/.gitignore",
+    "size_bytes": 441,
+    "sha256": "34877faebafe26b0485544f34b9a3b65adac852bcff4b2c657b8f711cb71030c"
+  },
+  {
+    "path": "GlobeCareer/CLOUDFLARE_SECURITY_FIXES.md",
+    "size_bytes": 5191,
+    "sha256": "933a3b5f59fd182df803a8d2606c9f04a55cbae9f57b62376a5ac6b2cc4be14c"
+  },
+  {
+    "path": "GlobeCareer/GLOBECAREER_EXECUTION_STATUS.md",
+    "size_bytes": 12662,
+    "sha256": "3c7a686bf523956d374f30196a09a1422e9f1b5d6d98fa770ccbd4fd358167c9"
+  },
+  {
+    "path": "GlobeCareer/HOW-TO-RUN.txt",
+    "size_bytes": 1507,
+    "sha256": "54bed815ab927981ab1a536f70737798c78bc560c7241b0d9d276a2c9ab74a80"
+  },
+  {
+    "path": "GlobeCareer/README.md",
+    "size_bytes": 8998,
+    "sha256": "13f90b3833e274fe8195e4144533cdb7c41698f0b041bbffa3f3621e64b7eac8"
+  },
+  {
+    "path": "GlobeCareer/_headers",
+    "size_bytes": 874,
+    "sha256": "a887777556f8a57297b88e765b79aac54292b4c33580e32245cc86d89d55f686"
+  },
+  {
+    "path": "GlobeCareer/_redirects",
+    "size_bytes": 291,
+    "sha256": "30dd2f6c72cd41c8e9cf13b22e8985e986bed10a3b0670ffcdad073a832ba025"
+  },
+  {
+    "path": "GlobeCareer/android-chrome-192x192.png",
+    "size_bytes": 38460,
+    "sha256": "a01b677a9d698a44182aea913c01ead620aaf7488dbd653830afc85a9d4f000b"
+  },
+  {
+    "path": "GlobeCareer/android-chrome-512x512.png",
+    "size_bytes": 219711,
+    "sha256": "06c89e6f622858cb0c7346689a6cb757d3c2131ceab63ddf00ffc7f506f60a26"
+  },
+  {
+    "path": "GlobeCareer/apple-touch-icon.png",
+    "size_bytes": 34451,
+    "sha256": "2913548d532873c1d3eb4837579942d3e95c032348f4ef8ab97b864be454b090"
+  },
+  {
+    "path": "GlobeCareer/bun.lock",
+    "size_bytes": 106946,
+    "sha256": "5e381152df22d3f3c5b044a87baf8fe955dac08be6ffd5b1226d1feb0c8c4551"
+  },
+  {
+    "path": "GlobeCareer/favicon-16x16.png",
+    "size_bytes": 1253,
+    "sha256": "07b4eeb22c61736438565f6fae35411432daa89aeebe9023c451956ec01f1c2a"
+  },
+  {
+    "path": "GlobeCareer/favicon-32x32.png",
+    "size_bytes": 2380,
+    "sha256": "90c0cc030a9e4b62977f3dbe28dfa5ccc639d52201f3a79cbb0d95d637cb630e"
+  },
+  {
+    "path": "GlobeCareer/favicon-48x48.png",
+    "size_bytes": 4365,
+    "sha256": "f62bf92829acfdda798bc9e9af844a7d0c4e721a20c0e3fda32aefad62026c6b"
+  },
+  {
+    "path": "GlobeCareer/favicon-96x96.png",
+    "size_bytes": 12689,
+    "sha256": "f8a4d697146b20c905655e45b2f80030fc3f6bcd225628f6c102a851da480538"
+  },
+  {
+    "path": "GlobeCareer/favicon.ico",
+    "size_bytes": 15086,
+    "sha256": "d1beddeb5a1940b546ff3eb48e28ccc256bc185c842ad417cee6c1b169703ae1"
+  },
+  {
+    "path": "GlobeCareer/favicon.png",
+    "size_bytes": 4365,
+    "sha256": "3de1cb98b6c4b45df9d41b4639c052ed6c307175dc51b928710229872920a0d4"
+  },
+  {
+    "path": "GlobeCareer/favicon.svg",
+    "size_bytes": 51477,
+    "sha256": "6e0434285bca71068c7010835e0a48607ecafb8f3c5c92d98416c9f476ede009"
+  },
+  {
+    "path": "GlobeCareer/firebase-applet-config.json",
+    "size_bytes": 558,
+    "sha256": "9c40e82549282c03ba038d8edeccd134548b14db9bc401d4606b69b0066cff91"
+  },
+  {
+    "path": "GlobeCareer/firebase-blueprint.json",
+    "size_bytes": 6751,
+    "sha256": "0d6da01122e9fe0d75a1b2122e526cff28635f6aa04a8e7d288a1f57b9362e27"
+  },
+  {
+    "path": "GlobeCareer/firestore.rules",
+    "size_bytes": 2602,
+    "sha256": "e8171d27e75a0ff575b5f3dd408237d512946ff292ed1b6f3f99f40117ce6733"
+  },
+  {
+    "path": "GlobeCareer/globecareer-logo.png",
+    "size_bytes": 60362,
+    "sha256": "24553fc8e2841419cb1d4cb7c9855666be4e56edfa8c1ae1248882e7e61431cf"
+  },
+  {
+    "path": "GlobeCareer/globecareer-logo.webp",
+    "size_bytes": 9452,
+    "sha256": "aa32880bffc68f3441b2a9e8b0b949c941a69e618237aefbca6e7ed7ed9387d8"
+  },
+  {
+    "path": "GlobeCareer/index.html",
+    "size_bytes": 9010,
+    "sha256": "7fad34aa756827da49719b334b924ecf12fe44374b027a867b89213c82aaa81d"
+  },
+  {
+    "path": "GlobeCareer/metadata.json",
+    "size_bytes": 365,
+    "sha256": "89b901f20ad26a9281bfd8764082a1a98f715a2fdad7d9c8f8f74cce92148117"
+  },
+  {
+    "path": "GlobeCareer/package-lock.json",
+    "size_bytes": 85126,
+    "sha256": "f36a08aa1230af4d3d5426dff99e1553b79d7c62ff78724cf592879b8b07941a"
+  },
+  {
+    "path": "GlobeCareer/package.json",
+    "size_bytes": 1034,
+    "sha256": "ce510f43d9bee9dfce1df220af25f66ec378e771bda7a6131ecd6db1cb69fac1"
+  },
+  {
+    "path": "GlobeCareer/preview.html",
+    "size_bytes": 2060,
+    "sha256": "0273a8ba34bbe28a2d03ac4f104e647642fc71100ba7b3e6603b62e47747e850"
+  },
+  {
+    "path": "GlobeCareer/robots.txt",
+    "size_bytes": 1456,
+    "sha256": "0d9b1329ac3c785add8de420e6a04908c41799572add2ce6debb565d97c79425"
+  },
+  {
+    "path": "GlobeCareer/security.txt",
+    "size_bytes": 381,
+    "sha256": "3cc38db6d5e4234654194433efd33676592383b85da08887651829607a5e9876"
+  },
+  {
+    "path": "GlobeCareer/site.webmanifest",
+    "size_bytes": 1042,
+    "sha256": "106f18dcf4c6ed017800ca0ea53e9b723aa12fd6d3672fcf55d40b9abc602620"
+  },
+  {
+    "path": "GlobeCareer/start.bat",
+    "size_bytes": 3893,
+    "sha256": "95e0db5cd4a1abcd4ec0eb5a23fb0deb0db364dfb8c531cf2612a2205c0e5284"
+  },
+  {
+    "path": "GlobeCareer/start.py",
+    "size_bytes": 2703,
+    "sha256": "f6337650e59ff08b764a568f816f37fec5040457f79b7c082395e7a148380e07"
+  },
+  {
+    "path": "GlobeCareer/start.sh",
+    "size_bytes": 1985,
+    "sha256": "9d5c9bf8b48903a785c2326d843b8d3faffbc40fb60c4da52632539520c652de"
+  },
+  {
+    "path": "GlobeCareer/tsconfig.json",
+    "size_bytes": 561,
+    "sha256": "cbc914147cc208c35cb5f6d405f0f0bc3c1c76ae76bf45bbc4f588b924492d2a"
+  },
+  {
+    "path": "GlobeCareer/vite.config.ts",
+    "size_bytes": 1387,
+    "sha256": "4adf83dab9433dfb3ad32615acf8637eab64e6cd681e16af466fce2e88bc0fa7"
+  },
+  {
+    "path": "GlobeCareer/src/App.tsx",
+    "size_bytes": 30972,
+    "sha256": "d65d33bc8b4a4071ed0da5dc8a8a3b9591fa1d8ce0a844c0e09b73fffc7637e5"
+  },
+  {
+    "path": "GlobeCareer/src/index.css",
+    "size_bytes": 2187,
+    "sha256": "f7301d30059b66d2a00550bfd4d56b5d8d073f790b68de2c4a9d37a114939bd6"
+  },
+  {
+    "path": "GlobeCareer/src/main.tsx",
+    "size_bytes": 159,
+    "sha256": "30d02ee59cb6576973dea4368093b2dcae692a40668f288fdbc66a114873fcd3"
+  },
+  {
+    "path": "GlobeCareer/src/components/pages/ATSGuidePage.tsx",
+    "size_bytes": 14731,
+    "sha256": "31be6d0ce3de93ca4bc002df6d79818f4911eaafb0c6959757568ba879acefe3"
+  },
+  {
+    "path": "GlobeCareer/src/components/pages/CVvsResumeGuidePage.tsx",
+    "size_bytes": 22018,
+    "sha256": "0938dbeea5a6b1045647d142c944d0a413b3b6113c898791abe44eb302030b31"
+  },
+  {
+    "path": "GlobeCareer/src/components/pages/CookiePolicyPage.tsx",
+    "size_bytes": 7200,
+    "sha256": "7848a11df9c099a85712f496a494d71a77626a5f77546dc07b97ef2d0f336b91"
+  },
+  {
+    "path": "GlobeCareer/src/components/pages/CountryDetailPage.tsx",
+    "size_bytes": 24405,
+    "sha256": "2b6245bd59053a531ff38f5cbf65bd207e5e6b5a3d99a11fc6cf49b29696e19f"
+  },
+  {
+    "path": "GlobeCareer/src/components/pages/CountryGuidesPage.tsx",
+    "size_bytes": 12399,
+    "sha256": "ad13f224a7ebbceae790f4ea0023b7672eff990d330ff52f82d2bb957ee3be0f"
+  },
+  {
+    "path": "GlobeCareer/src/components/pages/CoverLetterTemplatesPage.tsx",
+    "size_bytes": 55342,
+    "sha256": "97a4563ac5cb2c97e21a882ea3ede1a75364a5d69a412e5e8c6a62c1c33b4bf9"
+  },
+  {
+    "path": "GlobeCareer/src/components/pages/EuropeanCVFormatPage.tsx",
+    "size_bytes": 26498,
+    "sha256": "d239c27e499030b0ec4be7732a11d15b1c9b1dbca2b4472a38bc7d6610eb92f3"
+  },
+  {
+    "path": "GlobeCareer/src/components/pages/FAQPage.tsx",
+    "size_bytes": 8867,
+    "sha256": "0dbd27269663beedaeea808af7ff06d16b919bbadc06171146653a2e3bdc9be2"
+  },
+  {
+    "path": "GlobeCareer/src/components/pages/HomePage.tsx",
+    "size_bytes": 82066,
+    "sha256": "0794db442842f2a37a7753c4e134099658f04be2cfcfff7a965c49fbd3fbb377"
+  },
+  {
+    "path": "GlobeCareer/src/components/pages/JobExamplesPage.tsx",
+    "size_bytes": 9965,
+    "sha256": "a6d355008505fa8b00fe45d73495f040fd013097647fcbd8438514e1eef2c472"
+  },
+  {
+    "path": "GlobeCareer/src/components/pages/RecommendationGuidePage.tsx",
+    "size_bytes": 11785,
+    "sha256": "019a241465c833b8e9f831b1102c1d697b65e169b10f90d70de8cbcc8872ea61"
+  },
+  {
+    "path": "GlobeCareer/src/components/pages/ResumeReferencesGuidePage.tsx",
+    "size_bytes": 23855,
+    "sha256": "6346b1db3dabdb4438b459ba8c66a5cfbe24c60a6bd571bae0f0a53383b505a8"
+  },
+  {
+    "path": "GlobeCareer/src/components/pages/ResumeSkillsGuidePage.tsx",
+    "size_bytes": 31033,
+    "sha256": "e502ce3805f2332541235ccabd2d450b9a6e2bfae8339ad54e0a0ee302223d88"
+  },
+  {
+    "path": "GlobeCareer/src/components/pages/ResumeWritingGuidePage.tsx",
+    "size_bytes": 15946,
+    "sha256": "e8b94e0efc212a4825b29e1a134cfbb870d4fc3633b273e03682995f1712ed7a"
+  },
+  {
+    "path": "GlobeCareer/src/components/pages/ReverseChronologicalGuidePage.tsx",
+    "size_bytes": 31074,
+    "sha256": "d2e1727824ff8a9c7e1746e6010eeb7a7313956430f71fd268da0386bfd334c4"
+  },
+  {
+    "path": "GlobeCareer/src/components/pages/StaticPages.tsx",
+    "size_bytes": 14525,
+    "sha256": "67dd556ec22e18887c7b19f8397bfd3bb4aeb7bb6bfe74f0bc427a556dec3be3"
+  },
+  {
+    "path": "GlobeCareer/src/components/pages/TemplatesPage.tsx",
+    "size_bytes": 35515,
+    "sha256": "b2e59f45864e71cb502c8491b80a2c41eb8aca22643c8278fef3671bb49a0ece"
+  },
+  {
+    "path": "GlobeCareer/src/components/templates/ResumeRenderer.tsx",
+    "size_bytes": 41208,
+    "sha256": "c981188e243e6e73cf47157ff95b6dda88b22f6b3ab68b2fb96433cdb7ee92c7"
+  },
+  {
+    "path": "GlobeCareer/src/components/templates/TemplateList.ts",
+    "size_bytes": 3190,
+    "sha256": "b0ed72201b80c2aae8488ba8466b0b07c1fb509d67a383aa79e1974a993dc983"
+  },
+  {
+    "path": "GlobeCareer/src/components/common/BackToTop.tsx",
+    "size_bytes": 1895,
+    "sha256": "ac092fa9b6b3f3aa6eb8bf86bfcef513eea6e568b61573201f8dc67bfcaa8d9a"
+  },
+  {
+    "path": "GlobeCareer/src/components/common/CookieConsentBanner.tsx",
+    "size_bytes": 13600,
+    "sha256": "3c7caab889e144fd1f5d227761d1b8b76b64c93e824ab986558d93ea4398ab15"
+  },
+  {
+    "path": "GlobeCareer/src/components/common/GlobeCVLogo.tsx",
+    "size_bytes": 4038,
+    "sha256": "1aa3dcb3a5183f901c28b405f7998092609fb15bc35969407880b1fdd5c34b86"
+  },
+  {
+    "path": "GlobeCareer/src/components/common/GlobeCareerLogo.tsx",
+    "size_bytes": 2716,
+    "sha256": "c130aa7e6eae4ac57e2a9639f334025d88111adf6407acedf0b433c62570296d"
+  },
+  {
+    "path": "GlobeCareer/src/components/common/LanguageDetectionBanner.tsx",
+    "size_bytes": 3172,
+    "sha256": "b02079da394d9a64f12710746af8c5c30b383771185e216e82749a5cc03d1715"
+  },
+  {
+    "path": "GlobeCareer/src/components/common/LanguageSelector.tsx",
+    "size_bytes": 6876,
+    "sha256": "bc0b8f297c259976a881a5b65ad25cbec20cf1dbb7a9a0efb164c45705e66c46"
+  },
+  {
+    "path": "GlobeCareer/src/components/common/UnifiedDownloadButton.tsx",
+    "size_bytes": 10474,
+    "sha256": "e5dafff037dea30e4ec0e586992606b8e9f2b89359d24107c6dc6d7ed3f29447"
+  },
+  {
+    "path": "GlobeCareer/src/components/common/WorkflowNavigation.tsx",
+    "size_bytes": 4824,
+    "sha256": "d43d9b4771abaebfecf63b1d747ea0da472b1a86a28f1a13d28c3df619c93fff"
+  },
+  {
+    "path": "GlobeCareer/src/components/common/logoDataUri.ts",
+    "size_bytes": 17059,
+    "sha256": "76af048dbfc93a555d3efc0de0db674705109de71df00467fce28482ed4f3762"
+  },
+  {
+    "path": "GlobeCareer/src/components/coverLetter/CoverLetterBuilder.tsx",
+    "size_bytes": 33385,
+    "sha256": "a68737ccb161560ee59b6da9da123ddc14d6c60bba1cefcfa856f5bc2cd735bb"
+  },
+  {
+    "path": "GlobeCareer/src/components/jobs/JobDetailModal.tsx",
+    "size_bytes": 17660,
+    "sha256": "7a4f4ce00a2977f74f4a4bf7c09646fc49b5a3a8687d6cfe4c5ffd383ec675e7"
+  },
+  {
+    "path": "GlobeCareer/src/components/jobs/JobsPage.tsx",
+    "size_bytes": 24950,
+    "sha256": "b6905268a138fd69faa9761aa5822b129db27503103c506c26a60f83698b0479"
+  },
+  {
+    "path": "GlobeCareer/src/components/jobs/ReportJobModal.tsx",
+    "size_bytes": 7506,
+    "sha256": "67cc926bdd25e76a9c2973f522e7602a77d47274f22139fd0cbd54e4445dd72f"
+  },
+  {
+    "path": "GlobeCareer/src/components/jobs/VerificationEvidenceModal.tsx",
+    "size_bytes": 8313,
+    "sha256": "974ce68d37517f70e7952c49f390496b3936269d1f5853481c3b284005bbf6e5"
+  },
+  {
+    "path": "GlobeCareer/src/components/tracker/ApplicationTrackerPage.tsx",
+    "size_bytes": 21212,
+    "sha256": "dad6ac13b3ddb0d6090ea70a345281a07d928ba49d899e15b1e05b6a3fe1a5eb"
+  },
+  {
+    "path": "GlobeCareer/src/components/editor/AdditionalSectionsEditor.tsx",
+    "size_bytes": 40935,
+    "sha256": "2921c4bf8b7291fc2940cfd4a114db0d53414756f6ee6cd02505a7fba2cef712"
+  },
+  {
+    "path": "GlobeCareer/src/components/editor/DesignCustomizer.tsx",
+    "size_bytes": 18415,
+    "sha256": "e1ebb6d5ceb9ece125686b1fac16d012aeae5e1ae74dcbcf7eb3a35c1b6ca0bd"
+  },
+  {
+    "path": "GlobeCareer/src/components/editor/EducationEditor.tsx",
+    "size_bytes": 11802,
+    "sha256": "475703adc0ec69625ec18c9eb31212d39f110518206e6680fa3da5cd39df70af"
+  },
+  {
+    "path": "GlobeCareer/src/components/editor/ExperienceEditor.tsx",
+    "size_bytes": 17647,
+    "sha256": "35d21837bba030ebec105436fdbb86fc74a5ffd7029158a599be66c752b89960"
+  },
+  {
+    "path": "GlobeCareer/src/components/editor/PersonalEditor.tsx",
+    "size_bytes": 17189,
+    "sha256": "40ab2528ee15b2992a1a6e608f5d3e1a866ce14d670ef773299354cfb2e787a7"
+  },
+  {
+    "path": "GlobeCareer/src/components/editor/SkillsEditor.tsx",
+    "size_bytes": 8474,
+    "sha256": "e71d06fed5dfbfd116f1670b11275c915eb96b29e39d15fc19203374cd422703"
+  },
+  {
+    "path": "GlobeCareer/src/components/editor/SummaryEditor.tsx",
+    "size_bytes": 3074,
+    "sha256": "ccad98b199feef44408578ea2665b2ab4e7a50f6ba9021ebccc58bab72eb89af"
+  },
+  {
+    "path": "GlobeCareer/src/components/ats/ATSCheckerPage.tsx",
+    "size_bytes": 34328,
+    "sha256": "876ecfeae7126e7a37544821544f5ffdee707c48ce69b91b87af6be181513649"
+  },
+  {
+    "path": "GlobeCareer/src/components/ats/ATSJobMatcherModal.tsx",
+    "size_bytes": 11630,
+    "sha256": "776660b92e66b3765fa63b05681153ce6a641d122a609c96b5db3294efc7c8b3"
+  },
+  {
+    "path": "GlobeCareer/src/components/admin/AdminDashboard.tsx",
+    "size_bytes": 23876,
+    "sha256": "a31be29c44285d8d5b7b0924c3fc971967e0e84be1a51be66176d70bfe5046a6"
+  },
+  {
+    "path": "GlobeCareer/src/components/ads/AdSlot.tsx",
+    "size_bytes": 2541,
+    "sha256": "dbdcc5ae27a8b53d13f57edb79751a9b1819a3d63d8e5abe660fda0cb78fc75d"
+  },
+  {
+    "path": "GlobeCareer/src/components/tools/ProfessionalBioGenerator.tsx",
+    "size_bytes": 43226,
+    "sha256": "3dbf38841b41ecd1dd8398b4a2f963091cf460083e98c5e3cca7046c5e5a2083"
+  },
+  {
+    "path": "GlobeCareer/src/components/tools/ResignationLetterGenerator.tsx",
+    "size_bytes": 45438,
+    "sha256": "42c11d15e38cd39bce2e5fd894bd1732231825d18e434672564127e53ee76051"
+  },
+  {
+    "path": "GlobeCareer/src/components/tools/ResumeBulletGenerator.tsx",
+    "size_bytes": 34188,
+    "sha256": "c2b2d0ee8a64e7f8523efea197bccecf4aeceeadc02dc7d972bed4aba3d53dbb"
+  },
+  {
+    "path": "GlobeCareer/src/components/tools/ResumeWordCounter.tsx",
+    "size_bytes": 45402,
+    "sha256": "a4094e580d84847821779dc1a27a414cc22868f5198194ea4da278da5c16b209"
+  },
+  {
+    "path": "GlobeCareer/src/components/tools/SummaryObjectiveGenerator.tsx",
+    "size_bytes": 52761,
+    "sha256": "ac496fa2949d552b372df347d2cce9547ba301351bbe1a88a5cb314563e167bb"
+  },
+  {
+    "path": "GlobeCareer/src/components/layout/Footer.tsx",
+    "size_bytes": 18948,
+    "sha256": "965c319b058cb4147e65b8969630d4d9fff3349b2087ba1334f04a81ae4b2900"
+  },
+  {
+    "path": "GlobeCareer/src/components/layout/Header.tsx",
+    "size_bytes": 65534,
+    "sha256": "aee8a25f697604a566a8f8cba665b9e7f41d941e9c94a965312744dd4a881d45"
+  },
+  {
+    "path": "GlobeCareer/src/components/resumes/CloudResumesModal.tsx",
+    "size_bytes": 11093,
+    "sha256": "933d249b4eb81316a475fadfe7d337dce2476628f817d4d45f138499a8d42509"
+  },
+  {
+    "path": "GlobeCareer/src/components/recommendationLetter/RecommendationLetterBuilder.tsx",
+    "size_bytes": 49881,
+    "sha256": "933ea5d115e9f74d0f7abfe5d1c3ab9e8a5b6bf03c45836fd1ddc5a55921390b"
+  },
+  {
+    "path": "GlobeCareer/src/components/auth/AuthModal.tsx",
+    "size_bytes": 16313,
+    "sha256": "d2e7a932dacf8562c6b46c956a403940561f45282d1d4a76c5a1d46476f7bad6"
+  },
+  {
+    "path": "GlobeCareer/src/components/builder/ResumeBuilderView.tsx",
+    "size_bytes": 38107,
+    "sha256": "c07e75c86fefd3876c771f8b7a7862a193505848dba76c5091c2dd64f17aac01"
+  },
+  {
+    "path": "GlobeCareer/src/components/emailGenerator/JobApplicationEmailGenerator.tsx",
+    "size_bytes": 45282,
+    "sha256": "ddb68fc2538d3688bf99c77bc03b95bad1bd0756e9fbaacdf52115498384227c"
+  },
+  {
+    "path": "GlobeCareer/src/components/interview/InterviewPrepPage.tsx",
+    "size_bytes": 54357,
+    "sha256": "e9cb57b9be08a1618409fd48da726f12b8274e48072177b0fe1cd1ca9577f9b4"
+  },
+  {
+    "path": "GlobeCareer/src/types/auth.ts",
+    "size_bytes": 805,
+    "sha256": "a1faaf52e4a18cc5ede1ba1ae76473b4b9d7e6200561db9135c5d77e6069c186"
+  },
+  {
+    "path": "GlobeCareer/src/types/country.ts",
+    "size_bytes": 1704,
+    "sha256": "2b8bf8d2d3dc757e34072cd385a7f81fc31ed09f6de6eec1379145fd4a43b74c"
+  },
+  {
+    "path": "GlobeCareer/src/types/jobs.ts",
+    "size_bytes": 2216,
+    "sha256": "4701806bcd3d2d68769b6cc0f6355f8ed26ad44b093c394e01cb17bfec2c880b"
+  },
+  {
+    "path": "GlobeCareer/src/types/resume.ts",
+    "size_bytes": 5184,
+    "sha256": "467dfa2990f730e0db134334003e17e2f5cae95c10d7cb9d20865ef2a36919a4"
+  },
+  {
+    "path": "GlobeCareer/src/utils/atsScorer.ts",
+    "size_bytes": 2147,
+    "sha256": "5f81e1d56ffdb1ffd6072ad382aa6f7e46e1990f7d0c2e31a73fcee19ef6eaff"
+  },
+  {
+    "path": "GlobeCareer/src/utils/countryTemplates.ts",
+    "size_bytes": 15283,
+    "sha256": "1d93df27c64d901f2a7520f63b30ddb5a7031a9a6fc812738686ff2de652348e"
+  },
+  {
+    "path": "GlobeCareer/src/utils/documentExport.ts",
+    "size_bytes": 13850,
+    "sha256": "ca4aed3e66067e644f243905954075efb6601e1895b83bf33c6d8f557b45d8d3"
+  },
+  {
+    "path": "GlobeCareer/src/utils/docxExport.ts",
+    "size_bytes": 19357,
+    "sha256": "181dc06070201f7f118e63466c3e539c6fda30c92bcfef0b3e094fc3667baef4"
+  },
+  {
+    "path": "GlobeCareer/src/utils/realAtsEngine.ts",
+    "size_bytes": 33885,
+    "sha256": "0af5e06c0be1bc9d0e415b02870929c7a39aba0b190d1378db3fabd6df9ada96"
+  },
+  {
+    "path": "GlobeCareer/src/utils/seo.ts",
+    "size_bytes": 49171,
+    "sha256": "5a374233a77d56c9bd058436cd11e0d24c72b2594046853fe2441b55338d7a50"
+  },
+  {
+    "path": "GlobeCareer/src/data/bioTemplates.ts",
+    "size_bytes": 57851,
+    "sha256": "73b7fac40cca9391c0f4924702219fca6bd602859db99744928feba2fd8250cf"
+  },
+  {
+    "path": "GlobeCareer/src/data/countries.ts",
+    "size_bytes": 66043,
+    "sha256": "49e760d6466b42098cd669106e551d59d0a8049462702e9ec5ea9673d3a40d18"
+  },
+  {
+    "path": "GlobeCareer/src/data/jobCategories.ts",
+    "size_bytes": 28510,
+    "sha256": "52810aa3f8adc4430538c4acf84e3fbbd438995a410304eebda973719dec9520"
+  },
+  {
+    "path": "GlobeCareer/src/data/resignationTemplates.ts",
+    "size_bytes": 26691,
+    "sha256": "af8f8e2a052ecf6c85042670cc27e1fdbb9856802831cceaee195ea1c67836fa"
+  },
+  {
+    "path": "GlobeCareer/src/data/sampleResumes.ts",
+    "size_bytes": 12506,
+    "sha256": "c39ab3a866e0a4dda2011d29fb9473376918840ae6968c29c782705b8e0137df"
+  },
+  {
+    "path": "GlobeCareer/src/data/summaryTemplates.ts",
+    "size_bytes": 19559,
+    "sha256": "d5476f78e6ce1877a94800cee5368d214c1ca148746541709b03ebc71ae297e4"
+  },
+  {
+    "path": "GlobeCareer/src/data/verifiedJobs.ts",
+    "size_bytes": 37146,
+    "sha256": "2b9c84dbf55ada3185220300b324560823bfe84353bf64950543a2bcc766d88a"
+  },
+  {
+    "path": "GlobeCareer/src/lib/firebase.ts",
+    "size_bytes": 2958,
+    "sha256": "a8a61e2bdcb73b0b32183d3524ff8dae81a56c41fbd9aaba45bf454949f54974"
+  },
+  {
+    "path": "GlobeCareer/src/context/AuthContext.tsx",
+    "size_bytes": 11749,
+    "sha256": "b711d3b354c30a0a30ecc82139745657dad2eee2572a32b10213d99e4a1c9846"
+  },
+  {
+    "path": "GlobeCareer/src/context/LanguageContext.tsx",
+    "size_bytes": 135761,
+    "sha256": "cee97e13af5d64aa41dc99640ce2c122587b9afd32feda99a85377c19177597b"
+  },
+  {
+    "path": "GlobeCareer/assets/android-chrome-192x192.png",
+    "size_bytes": 38460,
+    "sha256": "a01b677a9d698a44182aea913c01ead620aaf7488dbd653830afc85a9d4f000b"
+  },
+  {
+    "path": "GlobeCareer/assets/android-chrome-512x512.png",
+    "size_bytes": 219711,
+    "sha256": "06c89e6f622858cb0c7346689a6cb757d3c2131ceab63ddf00ffc7f506f60a26"
+  },
+  {
+    "path": "GlobeCareer/assets/app.js",
+    "size_bytes": 4542079,
+    "sha256": "1dc30d3b5171dc230741b2856493368ec8039ae143e96f57d7def0e621bac924"
+  },
+  {
+    "path": "GlobeCareer/assets/apple-touch-icon.png",
+    "size_bytes": 34451,
+    "sha256": "2913548d532873c1d3eb4837579942d3e95c032348f4ef8ab97b864be454b090"
+  },
+  {
+    "path": "GlobeCareer/assets/favicon-16x16.png",
+    "size_bytes": 1253,
+    "sha256": "07b4eeb22c61736438565f6fae35411432daa89aeebe9023c451956ec01f1c2a"
+  },
+  {
+    "path": "GlobeCareer/assets/favicon-32x32.png",
+    "size_bytes": 2380,
+    "sha256": "90c0cc030a9e4b62977f3dbe28dfa5ccc639d52201f3a79cbb0d95d637cb630e"
+  },
+  {
+    "path": "GlobeCareer/assets/favicon-48x48.png",
+    "size_bytes": 4365,
+    "sha256": "f62bf92829acfdda798bc9e9af844a7d0c4e721a20c0e3fda32aefad62026c6b"
+  },
+  {
+    "path": "GlobeCareer/assets/favicon-96x96.png",
+    "size_bytes": 12689,
+    "sha256": "f8a4d697146b20c905655e45b2f80030fc3f6bcd225628f6c102a851da480538"
+  },
+  {
+    "path": "GlobeCareer/assets/favicon.ico",
+    "size_bytes": 15086,
+    "sha256": "d1beddeb5a1940b546ff3eb48e28ccc256bc185c842ad417cee6c1b169703ae1"
+  },
+  {
+    "path": "GlobeCareer/assets/favicon.png",
+    "size_bytes": 4365,
+    "sha256": "3de1cb98b6c4b45df9d41b4639c052ed6c307175dc51b928710229872920a0d4"
+  },
+  {
+    "path": "GlobeCareer/assets/favicon.svg",
+    "size_bytes": 51477,
+    "sha256": "6e0434285bca71068c7010835e0a48607ecafb8f3c5c92d98416c9f476ede009"
+  },
+  {
+    "path": "GlobeCareer/assets/globecareer-logo.png",
+    "size_bytes": 60362,
+    "sha256": "24553fc8e2841419cb1d4cb7c9855666be4e56edfa8c1ae1248882e7e61431cf"
+  },
+  {
+    "path": "GlobeCareer/assets/globecareer-logo.webp",
+    "size_bytes": 9452,
+    "sha256": "aa32880bffc68f3441b2a9e8b0b949c941a69e618237aefbca6e7ed7ed9387d8"
+  },
+  {
+    "path": "GlobeCareer/assets/index.css",
+    "size_bytes": 89821,
+    "sha256": "158ae78c278d966b01602e0fa916eae590464456387705ea082169eefb03895c"
+  },
+  {
+    "path": "GlobeCareer/public/ZIP_MANIFEST.json",
+    "size_bytes": 44844,
+    "sha256": "4ac9546e8e93588b61892072594e3dcefed5620f79dbae3964c713c4c5564a37"
+  },
+  {
+    "path": "GlobeCareer/public/ZIP_MANIFEST.txt",
+    "size_bytes": 31824,
+    "sha256": "688c1f2f71f0f8bcabf998328f0c67ecba5dda88c4f7b2f158328a20a89e1117"
+  },
+  {
+    "path": "GlobeCareer/public/_headers",
+    "size_bytes": 874,
+    "sha256": "a887777556f8a57297b88e765b79aac54292b4c33580e32245cc86d89d55f686"
+  },
+  {
+    "path": "GlobeCareer/public/_redirects",
+    "size_bytes": 291,
+    "sha256": "30dd2f6c72cd41c8e9cf13b22e8985e986bed10a3b0670ffcdad073a832ba025"
+  },
+  {
+    "path": "GlobeCareer/public/ai-catalog.json",
+    "size_bytes": 1908,
+    "sha256": "5cdd109256be29406db17100195c483514d75962bbf41f4e842eba8741e00ecf"
+  },
+  {
+    "path": "GlobeCareer/public/android-chrome-192x192.png",
+    "size_bytes": 38460,
+    "sha256": "a01b677a9d698a44182aea913c01ead620aaf7488dbd653830afc85a9d4f000b"
+  },
+  {
+    "path": "GlobeCareer/public/android-chrome-512x512.png",
+    "size_bytes": 210027,
+    "sha256": "6e150e76ffff689198398bc435c52fc010aef8e05e7164a18c2894b56d43eb26"
+  },
+  {
+    "path": "GlobeCareer/public/apple-touch-icon.png",
+    "size_bytes": 34451,
+    "sha256": "2913548d532873c1d3eb4837579942d3e95c032348f4ef8ab97b864be454b090"
+  },
+  {
+    "path": "GlobeCareer/public/favicon-16x16.png",
+    "size_bytes": 1253,
+    "sha256": "07b4eeb22c61736438565f6fae35411432daa89aeebe9023c451956ec01f1c2a"
+  },
+  {
+    "path": "GlobeCareer/public/favicon-32x32.png",
+    "size_bytes": 2380,
+    "sha256": "90c0cc030a9e4b62977f3dbe28dfa5ccc639d52201f3a79cbb0d95d637cb630e"
+  },
+  {
+    "path": "GlobeCareer/public/favicon-48x48.png",
+    "size_bytes": 4365,
+    "sha256": "f62bf92829acfdda798bc9e9af844a7d0c4e721a20c0e3fda32aefad62026c6b"
+  },
+  {
+    "path": "GlobeCareer/public/favicon-96x96.png",
+    "size_bytes": 12689,
+    "sha256": "f8a4d697146b20c905655e45b2f80030fc3f6bcd225628f6c102a851da480538"
+  },
+  {
+    "path": "GlobeCareer/public/favicon.ico",
+    "size_bytes": 15086,
+    "sha256": "d1beddeb5a1940b546ff3eb48e28ccc256bc185c842ad417cee6c1b169703ae1"
+  },
+  {
+    "path": "GlobeCareer/public/favicon.png",
+    "size_bytes": 4365,
+    "sha256": "3de1cb98b6c4b45df9d41b4639c052ed6c307175dc51b928710229872920a0d4"
+  },
+  {
+    "path": "GlobeCareer/public/favicon.svg",
+    "size_bytes": 51477,
+    "sha256": "6e0434285bca71068c7010835e0a48607ecafb8f3c5c92d98416c9f476ede009"
+  },
+  {
+    "path": "GlobeCareer/public/globecareer-logo.png",
+    "size_bytes": 60362,
+    "sha256": "24553fc8e2841419cb1d4cb7c9855666be4e56edfa8c1ae1248882e7e61431cf"
+  },
+  {
+    "path": "GlobeCareer/public/globecareer-logo.webp",
+    "size_bytes": 9452,
+    "sha256": "aa32880bffc68f3441b2a9e8b0b949c941a69e618237aefbca6e7ed7ed9387d8"
+  },
+  {
+    "path": "GlobeCareer/public/llms.txt",
+    "size_bytes": 2964,
+    "sha256": "0db4eca00fc6458beebb40b8330dfad46a0215c21c616023daab405cb2531fb4"
+  },
+  {
+    "path": "GlobeCareer/public/og-image.png",
+    "size_bytes": 114589,
+    "sha256": "e000324ff80e2f21e50c9221e73a75ece996146bf90d39131b5ef8b41060b196"
+  },
+  {
+    "path": "GlobeCareer/public/robots.txt",
+    "size_bytes": 1456,
+    "sha256": "0d9b1329ac3c785add8de420e6a04908c41799572add2ce6debb565d97c79425"
+  },
+  {
+    "path": "GlobeCareer/public/security.txt",
+    "size_bytes": 381,
+    "sha256": "3cc38db6d5e4234654194433efd33676592383b85da08887651829607a5e9876"
+  },
+  {
+    "path": "GlobeCareer/public/site.webmanifest",
+    "size_bytes": 1042,
+    "sha256": "106f18dcf4c6ed017800ca0ea53e9b723aa12fd6d3672fcf55d40b9abc602620"
+  },
+  {
+    "path": "GlobeCareer/public/sitemap.xml",
+    "size_bytes": 9676,
+    "sha256": "589b1fe2c6ffbceac0fecaecf8ee541b16280a11c5556b3de802d2d2233169a7"
+  },
+  {
+    "path": "GlobeCareer/public/assets/globecareer-logo.png",
+    "size_bytes": 60362,
+    "sha256": "24553fc8e2841419cb1d4cb7c9855666be4e56edfa8c1ae1248882e7e61431cf"
+  },
+  {
+    "path": "GlobeCareer/public/assets/globecareer-logo.webp",
+    "size_bytes": 9452,
+    "sha256": "aa32880bffc68f3441b2a9e8b0b949c941a69e618237aefbca6e7ed7ed9387d8"
+  },
+  {
+    "path": "GlobeCareer/public/assets/aistudio/GlobeCareer_SEO_Keyword_Master_AIStudio_bf039953.txt",
+    "size_bytes": 222690,
+    "sha256": "bf03995345f492d90afa41db94de0f369e9615dfe941210f7aad67cce5c70e6e"
+  },
+  {
+    "path": "GlobeCareer/public/assets/aistudio/Paste_October_23__2026_-_1_59AM_a72fe2d0",
+    "size_bytes": 30653,
+    "sha256": "a72fe2d070eb11c29b8cb2a2e5d1bc135e3cc7c81899e6d729a526bffb421714"
+  },
+  {
+    "path": "GlobeCareer/public/assets/aistudio/Paste_October_24__2026_-_8_44AM_c1d7e289",
+    "size_bytes": 29942,
+    "sha256": "c1d7e28967e8dbdf7d4df5b21b83662a9097510c79e055da4aa90317bbf15dbd"
+  },
+  {
+    "path": "GlobeCareer/public/assets/aistudio/europass-cv_all-keywords_us_2026-11-05_ad08fc35.csv",
+    "size_bytes": 477401,
+    "sha256": "ad08fc355e8bd5633afa9db5f7e7db69712df8bbb1ecef80001eefd8c6a680bf"
+  },
+  {
+    "path": "GlobeCareer/public/assets/aistudio/gap.keywords_2026-11-05T17_43_48.473Z_20177d09.csv",
+    "size_bytes": 3623,
+    "sha256": "20177d097c7b17a19147d9729ac443f00be8e02adce77a57467bc03cbcbda3de"
+  },
+  {
+    "path": "GlobeCareer/public/assets/aistudio/gap.keywords_2026-11-05T17_48_29.092Z_812bb2be.csv",
+    "size_bytes": 1526,
+    "sha256": "812bb2be155bc5a362cd11eb428465eebd0dfc5fcae9df0c6458c2b9f9744e93"
+  },
+  {
+    "path": "GlobeCareer/public/assets/aistudio/gap.keywords_2026-11-05T17_49_59.364Z_0ac493d5.csv",
+    "size_bytes": 858498,
+    "sha256": "0ac493d5e0ef293cf780753b622f2dc185fef782055745214a680ebe8b5b802e"
+  },
+  {
+    "path": "GlobeCareer/public/assets/aistudio/image_1ff84ef6.png",
+    "size_bytes": 1655791,
+    "sha256": "1ff84ef635004acc5e8364d849452acda73199a7749f5ff591333535191264d5"
+  },
+  {
+    "path": "GlobeCareer/public/assets/aistudio/image_28fa546f.png",
+    "size_bytes": 74218,
+    "sha256": "28fa546f96cc8f2e55e22eb4afa7333350636fe38795a4127398ca9651609daf"
+  },
+  {
+    "path": "GlobeCareer/public/assets/aistudio/image_78429305.png",
+    "size_bytes": 48334,
+    "sha256": "784293056b8d481c54b3d6c6e4b448b2c36431a3530eeacf21c8a2f73ef31d81"
+  },
+  {
+    "path": "GlobeCareer/public/assets/aistudio/image_b82a102b.png",
+    "size_bytes": 4401,
+    "sha256": "b82a102bc97119e9208cb76c744a874f08edf3b5ffa9981fa54660eac7445078"
+  },
+  {
+    "path": "GlobeCareer/public/assets/aistudio/image_d9a2cdee.png",
+    "size_bytes": 41877,
+    "sha256": "d9a2cdee74829cf57dbbf1ea651e87e79a88f5881f161e6b36d0c400dd6fd463"
+  },
+  {
+    "path": "GlobeCareer/public/assets/aistudio/image_f5792457.png",
+    "size_bytes": 21988,
+    "sha256": "f57924572bde607a0c4b593da289f9ee13d6dea3068ef86aaba676134af28690"
+  },
+  {
+    "path": "GlobeCareer/public/.well-known/security.txt",
+    "size_bytes": 381,
+    "sha256": "3cc38db6d5e4234654194433efd33676592383b85da08887651829607a5e9876"
+  },
+  {
+    "path": "GlobeCareer/.well-known/security.txt",
+    "size_bytes": 381,
+    "sha256": "3cc38db6d5e4234654194433efd33676592383b85da08887651829607a5e9876"
+  },
+  {
+    "path": "GlobeCareer/dist/ZIP_MANIFEST.json",
+    "size_bytes": 44844,
+    "sha256": "4ac9546e8e93588b61892072594e3dcefed5620f79dbae3964c713c4c5564a37"
+  },
+  {
+    "path": "GlobeCareer/dist/ZIP_MANIFEST.txt",
+    "size_bytes": 31824,
+    "sha256": "688c1f2f71f0f8bcabf998328f0c67ecba5dda88c4f7b2f158328a20a89e1117"
+  },
+  {
+    "path": "GlobeCareer/dist/_headers",
+    "size_bytes": 874,
+    "sha256": "a887777556f8a57297b88e765b79aac54292b4c33580e32245cc86d89d55f686"
+  },
+  {
+    "path": "GlobeCareer/dist/_redirects",
+    "size_bytes": 291,
+    "sha256": "30dd2f6c72cd41c8e9cf13b22e8985e986bed10a3b0670ffcdad073a832ba025"
+  },
+  {
+    "path": "GlobeCareer/dist/ai-catalog.json",
+    "size_bytes": 1908,
+    "sha256": "5cdd109256be29406db17100195c483514d75962bbf41f4e842eba8741e00ecf"
+  },
+  {
+    "path": "GlobeCareer/dist/android-chrome-192x192.png",
+    "size_bytes": 38460,
+    "sha256": "a01b677a9d698a44182aea913c01ead620aaf7488dbd653830afc85a9d4f000b"
+  },
+  {
+    "path": "GlobeCareer/dist/android-chrome-512x512.png",
+    "size_bytes": 210027,
+    "sha256": "6e150e76ffff689198398bc435c52fc010aef8e05e7164a18c2894b56d43eb26"
+  },
+  {
+    "path": "GlobeCareer/dist/apple-touch-icon.png",
+    "size_bytes": 34451,
+    "sha256": "2913548d532873c1d3eb4837579942d3e95c032348f4ef8ab97b864be454b090"
+  },
+  {
+    "path": "GlobeCareer/dist/favicon-16x16.png",
+    "size_bytes": 1253,
+    "sha256": "07b4eeb22c61736438565f6fae35411432daa89aeebe9023c451956ec01f1c2a"
+  },
+  {
+    "path": "GlobeCareer/dist/favicon-32x32.png",
+    "size_bytes": 2380,
+    "sha256": "90c0cc030a9e4b62977f3dbe28dfa5ccc639d52201f3a79cbb0d95d637cb630e"
+  },
+  {
+    "path": "GlobeCareer/dist/favicon-48x48.png",
+    "size_bytes": 4365,
+    "sha256": "f62bf92829acfdda798bc9e9af844a7d0c4e721a20c0e3fda32aefad62026c6b"
+  },
+  {
+    "path": "GlobeCareer/dist/favicon-96x96.png",
+    "size_bytes": 12689,
+    "sha256": "f8a4d697146b20c905655e45b2f80030fc3f6bcd225628f6c102a851da480538"
+  },
+  {
+    "path": "GlobeCareer/dist/favicon.ico",
+    "size_bytes": 15086,
+    "sha256": "d1beddeb5a1940b546ff3eb48e28ccc256bc185c842ad417cee6c1b169703ae1"
+  },
+  {
+    "path": "GlobeCareer/dist/favicon.png",
+    "size_bytes": 4365,
+    "sha256": "3de1cb98b6c4b45df9d41b4639c052ed6c307175dc51b928710229872920a0d4"
+  },
+  {
+    "path": "GlobeCareer/dist/favicon.svg",
+    "size_bytes": 51477,
+    "sha256": "6e0434285bca71068c7010835e0a48607ecafb8f3c5c92d98416c9f476ede009"
+  },
+  {
+    "path": "GlobeCareer/dist/globecareer-logo.png",
+    "size_bytes": 60362,
+    "sha256": "24553fc8e2841419cb1d4cb7c9855666be4e56edfa8c1ae1248882e7e61431cf"
+  },
+  {
+    "path": "GlobeCareer/dist/globecareer-logo.webp",
+    "size_bytes": 9452,
+    "sha256": "aa32880bffc68f3441b2a9e8b0b949c941a69e618237aefbca6e7ed7ed9387d8"
+  },
+  {
+    "path": "GlobeCareer/dist/index.html",
+    "size_bytes": 9447,
+    "sha256": "0c8f445496ab85f38a86cf3708a62baa11e3fd6711c2edf801e79552c7b570f4"
+  },
+  {
+    "path": "GlobeCareer/dist/llms.txt",
+    "size_bytes": 2964,
+    "sha256": "0db4eca00fc6458beebb40b8330dfad46a0215c21c616023daab405cb2531fb4"
+  },
+  {
+    "path": "GlobeCareer/dist/og-image.png",
+    "size_bytes": 114589,
+    "sha256": "e000324ff80e2f21e50c9221e73a75ece996146bf90d39131b5ef8b41060b196"
+  },
+  {
+    "path": "GlobeCareer/dist/robots.txt",
+    "size_bytes": 1456,
+    "sha256": "0d9b1329ac3c785add8de420e6a04908c41799572add2ce6debb565d97c79425"
+  },
+  {
+    "path": "GlobeCareer/dist/security.txt",
+    "size_bytes": 381,
+    "sha256": "3cc38db6d5e4234654194433efd33676592383b85da08887651829607a5e9876"
+  },
+  {
+    "path": "GlobeCareer/dist/site.webmanifest",
+    "size_bytes": 1042,
+    "sha256": "106f18dcf4c6ed017800ca0ea53e9b723aa12fd6d3672fcf55d40b9abc602620"
+  },
+  {
+    "path": "GlobeCareer/dist/sitemap.xml",
+    "size_bytes": 9676,
+    "sha256": "589b1fe2c6ffbceac0fecaecf8ee541b16280a11c5556b3de802d2d2233169a7"
+  },
+  {
+    "path": "GlobeCareer/dist/.well-known/security.txt",
+    "size_bytes": 381,
+    "sha256": "3cc38db6d5e4234654194433efd33676592383b85da08887651829607a5e9876"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/ATSCheckerPage-DTEQokSp.js",
+    "size_bytes": 37430,
+    "sha256": "fecc56a53788e40b54c11933945a6cdaa126a622b537b30a9d6caa6b528118c7"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/ATSGuidePage-B-ylv3P8.js",
+    "size_bytes": 17427,
+    "sha256": "792324a2d207007f5aec4696134ea1afb05ed81d12cb12c736b93ba413d44b30"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/AdminDashboard-B7ci2eJK.js",
+    "size_bytes": 27323,
+    "sha256": "150db332fc7a3be00eb755f54d70f4ba7793a862fda46f6a6286a7956bf89e1e"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/ApplicationTrackerPage-JcbmWbsv.js",
+    "size_bytes": 20157,
+    "sha256": "2ba8522f2163c9d8518c145bde092c33f358f15b0ef4366a2c1ca8fabf22ba3e"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/AuthModal-mJcHouhi.js",
+    "size_bytes": 15134,
+    "sha256": "182822307771bff03298ced0dcab9629bc5da08df0057695286c535224b8f88c"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/CVvsResumeGuidePage-BZtkVsYm.js",
+    "size_bytes": 27809,
+    "sha256": "4ae320a4bafda06f03e430b0cafc95ded56bfd40f64c80ba203eb1a76f8c7487"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/CloudResumesModal-4Vp_SqBU.js",
+    "size_bytes": 10024,
+    "sha256": "ededf9dc56ee90a56105b9807e31ef9c8ad257fd7fc52891fa42bcdd8fabb1e6"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/CookiePolicyPage-CZizu4xc.js",
+    "size_bytes": 9010,
+    "sha256": "83927eb39b419bf492f98a030fd5ebf265056f494c4aca3a2c72ffb3a90526f1"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/CountryDetailPage-CKWfugrg.js",
+    "size_bytes": 27937,
+    "sha256": "4af61f949fe4ebe9dfc822b0c8a4cd9866ac76df68f550702ad9b1d83eabac67"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/CountryGuidesPage-DsOY7Wen.js",
+    "size_bytes": 14601,
+    "sha256": "2e3100780ee83208dd45077dd2b01c659a0bd835383c0d9250bde94e47f70b5d"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/CoverLetterBuilder-Dt8mSqFD.js",
+    "size_bytes": 32624,
+    "sha256": "7b3fd44ef2237305fe3b10568b0dd825e665ec53ed0d9cd36acc5c662cc08aad"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/CoverLetterTemplatesPage-Bq3l9oL6.js",
+    "size_bytes": 50856,
+    "sha256": "4817867eb0ae1ae6a9c2dd34790e2ffe85b1156d57c118fc1a9f9d14fc0045e8"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/EuropeanCVFormatPage-CYboapVU.js",
+    "size_bytes": 32137,
+    "sha256": "994293a7e063f404978857b480e23c4f44eeda21405839d404b4d235c67f861b"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/FAQPage-BfLi88i1.js",
+    "size_bytes": 8668,
+    "sha256": "7abe1529a0d85ca6bb30367d5ffa148e721617396718c946475e2b7c5e3bdb82"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/InterviewPrepPage-CZ4iHo5h.js",
+    "size_bytes": 52318,
+    "sha256": "086c4443cf4a74cf3b1224d855c8d7781f23ad7454898abcdb49ffafb97677f2"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/JobApplicationEmailGenerator-nA15v4Qx.js",
+    "size_bytes": 41087,
+    "sha256": "8ee2c1b80315e934dc7713168a8254b5162b3ed6eaf4db8fe460850da038d95f"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/JobExamplesPage-VFmCxrzS.js",
+    "size_bytes": 10594,
+    "sha256": "14db48993174a87eaa1d57dc3096ed57c8a07ec7a68d2508d520d6e0cf585803"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/JobsPage-CLEHAFZT.js",
+    "size_bytes": 60163,
+    "sha256": "b14372f75a89eb80f681db671673234ba5f63c70384d7514cf1c26952ed93dbc"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/ProfessionalBioGenerator-C3Hm4jdS.js",
+    "size_bytes": 90733,
+    "sha256": "2a8614e2ba95fb4254591bdff26f7fc4c6093a08c083df30e873b101071d33fb"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/RecommendationGuidePage-DyUz0vQX.js",
+    "size_bytes": 14430,
+    "sha256": "aadda3516afa86b4b83f5fd16c70b20643b6fb98c9d2acce9aee26fcf0ac4082"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/RecommendationLetterBuilder-B24ABigt.js",
+    "size_bytes": 46605,
+    "sha256": "71d12b2bdc61c54a22b189cf97d7937a8e620eed1dd43054f271f565ac781c89"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/ResignationLetterGenerator-BlC9Ix98.js",
+    "size_bytes": 67615,
+    "sha256": "abd2dcef6819cadd9fb8e14539eb6004765bb0939600db0ce7de91ce5dec251a"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/ResumeBuilderView-D8u5yh2x.js",
+    "size_bytes": 156288,
+    "sha256": "7c6177fa1f4500ee91c2b6e0c72d03ebbdcd1b1961c5e9f2eb0b6d635208138e"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/ResumeBulletGenerator-CrZm1Yfg.js",
+    "size_bytes": 34588,
+    "sha256": "4dbbde5778124c5785c3ba07c7b6a43a2296bf07046cffbdcc8bdf6ea3300e55"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/ResumeReferencesGuidePage-DZzBtCpo.js",
+    "size_bytes": 29331,
+    "sha256": "c4628a0e8b7fefc8b08d4db34212d161f9b92e2271903bbcd8994c8d2298e20c"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/ResumeRenderer-CtYAt4XP.js",
+    "size_bytes": 41723,
+    "sha256": "316c7cbfcab1dc43dcaa9cc4e63f852ccd9221bd8e67c63da8db3a0170ce93f5"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/ResumeSkillsGuidePage-BuiDRTBm.js",
+    "size_bytes": 34782,
+    "sha256": "9ad3729bc6c10a3a7ee097056ebf34ddefe48bcb3a78da6223cda49083586db0"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/ResumeWordCounter-B04v7LcV.js",
+    "size_bytes": 49376,
+    "sha256": "4de7e0515e882cdc4c1237733f92a5a7020beeccaffe2fc5556b99962c3c5924"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/ResumeWritingGuidePage-CI0k_Kyf.js",
+    "size_bytes": 22492,
+    "sha256": "0b1f5153e1a9cb7245bbd07d29af461223d14ea6b1f512d7fff3b44120350d84"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/ReverseChronologicalGuidePage-Bauc8PKe.js",
+    "size_bytes": 40820,
+    "sha256": "0eb9b111f019a7e687465b0c2c4d82ac5d52d96c8c928094844b1c97219ea489"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/StaticPages-BA3DbNJC.js",
+    "size_bytes": 18222,
+    "sha256": "6e762d89b744892187ecbfa53cd20bd72d5ca29d7bddd0b82f5af8459babefc4"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/SummaryObjectiveGenerator-D_BAmhpC.js",
+    "size_bytes": 66552,
+    "sha256": "7d0acf07e19e5e90cfce3f6c1fdfbf0c8c6efa1dab41c7a88200f50f1e23eba1"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/TemplatesPage-DPSkq7o4.js",
+    "size_bytes": 37260,
+    "sha256": "f5deff8b38f3c5fb0afdb527314dd704deed4c6e0e88d949fa0d43c1fc00fd9c"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/confetti.module-aatYG5Yh.js",
+    "size_bytes": 33102,
+    "sha256": "5080552c5f43c13e0e6de355f6e4658fb65505997b74f909a88b626a3e919b3d"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/docxExport-gmVzIABl.js",
+    "size_bytes": 8924,
+    "sha256": "e3116688c69bf3969cb08a4af6280ec0b1f395e84ce4ac5ec5a6324b348ab8c8"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/globecareer-logo.png",
+    "size_bytes": 60362,
+    "sha256": "24553fc8e2841419cb1d4cb7c9855666be4e56edfa8c1ae1248882e7e61431cf"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/globecareer-logo.webp",
+    "size_bytes": 9452,
+    "sha256": "aa32880bffc68f3441b2a9e8b0b949c941a69e618237aefbca6e7ed7ed9387d8"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/index-C8RlNEoS.js",
+    "size_bytes": 516861,
+    "sha256": "b5e2fd088eb3b7f178c3471df1af79247e24e844a260f3f4b240d024bc188344"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/index-xV6ddap7.css",
+    "size_bytes": 121363,
+    "sha256": "9838345a17127dc53a1b8c0ac02fee8c87606e78ec3ca6a995f5740dc3e6f8cb"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/realAtsEngine-bF3HCamp.js",
+    "size_bytes": 20043,
+    "sha256": "07d293cfbdfecc957d65b8fe172442441290545a7f0e48f0c71a31e0d28f666d"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/rolldown-runtime-pP25SEvz.js",
+    "size_bytes": 989,
+    "sha256": "c7d5a9b5d4023712538018b5b2ca9c285054e9b3ad27dc9f9189d24e73ce8395"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/vendor-docx-KHIjo9mw.js",
+    "size_bytes": 416348,
+    "sha256": "5c908f00189c504d2af2df432c1b5d2cf095c77a81c2e1c39f1e6599bf3b9816"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/vendor-firebase-BqbwQrhl.js",
+    "size_bytes": 570474,
+    "sha256": "ca3f521360655e387d61dfbb0fbfe04cffc32e7ce7ec10cb7d031e621a1b8e08"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/vendor-icons-DXZMSfWY.js",
+    "size_bytes": 39144,
+    "sha256": "432ab6685ebc6c6fc34909a9d363c2010fc17c0cf8b61f68e774cff6a60ceac6"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/vendor-react-C78aOUq3.js",
+    "size_bytes": 404724,
+    "sha256": "97fba6c68b670196f49f0810b3bc53090d18b19100b68acd6d167f7c65fc3bc7"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/verifiedJobs-vNd8vWW5.js",
+    "size_bytes": 30109,
+    "sha256": "e61dcc107d17a267ea54670521393860e991a47ecc8672da83b8d7bf3ed7a74f"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/aistudio/GlobeCareer_SEO_Keyword_Master_AIStudio_bf039953.txt",
+    "size_bytes": 222690,
+    "sha256": "bf03995345f492d90afa41db94de0f369e9615dfe941210f7aad67cce5c70e6e"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/aistudio/Paste_October_23__2026_-_1_59AM_a72fe2d0",
+    "size_bytes": 30653,
+    "sha256": "a72fe2d070eb11c29b8cb2a2e5d1bc135e3cc7c81899e6d729a526bffb421714"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/aistudio/Paste_October_24__2026_-_8_44AM_c1d7e289",
+    "size_bytes": 29942,
+    "sha256": "c1d7e28967e8dbdf7d4df5b21b83662a9097510c79e055da4aa90317bbf15dbd"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/aistudio/europass-cv_all-keywords_us_2026-11-05_ad08fc35.csv",
+    "size_bytes": 477401,
+    "sha256": "ad08fc355e8bd5633afa9db5f7e7db69712df8bbb1ecef80001eefd8c6a680bf"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/aistudio/gap.keywords_2026-11-05T17_43_48.473Z_20177d09.csv",
+    "size_bytes": 3623,
+    "sha256": "20177d097c7b17a19147d9729ac443f00be8e02adce77a57467bc03cbcbda3de"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/aistudio/gap.keywords_2026-11-05T17_48_29.092Z_812bb2be.csv",
+    "size_bytes": 1526,
+    "sha256": "812bb2be155bc5a362cd11eb428465eebd0dfc5fcae9df0c6458c2b9f9744e93"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/aistudio/gap.keywords_2026-11-05T17_49_59.364Z_0ac493d5.csv",
+    "size_bytes": 858498,
+    "sha256": "0ac493d5e0ef293cf780753b622f2dc185fef782055745214a680ebe8b5b802e"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/aistudio/image_1ff84ef6.png",
+    "size_bytes": 1655791,
+    "sha256": "1ff84ef635004acc5e8364d849452acda73199a7749f5ff591333535191264d5"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/aistudio/image_28fa546f.png",
+    "size_bytes": 74218,
+    "sha256": "28fa546f96cc8f2e55e22eb4afa7333350636fe38795a4127398ca9651609daf"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/aistudio/image_78429305.png",
+    "size_bytes": 48334,
+    "sha256": "784293056b8d481c54b3d6c6e4b448b2c36431a3530eeacf21c8a2f73ef31d81"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/aistudio/image_b82a102b.png",
+    "size_bytes": 4401,
+    "sha256": "b82a102bc97119e9208cb76c744a874f08edf3b5ffa9981fa54660eac7445078"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/aistudio/image_d9a2cdee.png",
+    "size_bytes": 41877,
+    "sha256": "d9a2cdee74829cf57dbbf1ea651e87e79a88f5881f161e6b36d0c400dd6fd463"
+  },
+  {
+    "path": "GlobeCareer/dist/assets/aistudio/image_f5792457.png",
+    "size_bytes": 21988,
+    "sha256": "f57924572bde607a0c4b593da289f9ee13d6dea3068ef86aaba676134af28690"
+  }
+]
