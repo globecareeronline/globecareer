@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { VerifiedJob, JobReport } from '../../types/jobs';
 import { useAuth } from '../../context/AuthContext';
-import { db, handleFirestoreError, OperationType } from '../../lib/firebase';
+import { db, handleFirestoreError, OperationType } from '../../lib/firestore';
 import { collection, addDoc } from 'firebase/firestore';
 import { X, Flag, AlertCircle, CheckCircle2 } from 'lucide-react';
 

@@ -1,7 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import {
   auth,
-  db,
   googleProvider,
   signInWithPopup,
   signInWithEmailAndPassword,
@@ -11,11 +10,8 @@ import {
   sendEmailVerification,
   updateProfile,
   deleteUser,
-  User,
-  handleFirestoreError,
-  OperationType
+  type User
 } from '../lib/firebase';
-import { doc, getDoc, setDoc, onSnapshot, serverTimestamp } from 'firebase/firestore';
 import { UserSubscription } from '../types/auth';
 
 interface AuthContextType {
@@ -72,38 +68,44 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         const userIsAdmin = ADMIN_EMAILS.includes(currentUser.email?.toLowerCase() || '');
         setIsAdmin(userIsAdmin);
 
-        // Sync or get user profile
-        const userRef = doc(db, 'users', currentUser.uid);
-        try {
-          const userSnap = await getDoc(userRef);
-          if (!userSnap.exists()) {
-            await setDoc(userRef, {
-              uid: currentUser.uid,
-              email: currentUser.email || '',
-              displayName: currentUser.displayName || '',
-              photoURL: currentUser.photoURL || '',
-              createdAt: new Date().toISOString(),
-              updatedAt: new Date().toISOString(),
-            }, { merge: true });
+        // Lazily import Firestore only when an authenticated session exists
+        import('../lib/firestore').then(async ({ db, doc, getDoc, setDoc, onSnapshot }) => {
+          // Sync or get user profile
+          const userRef = doc(db, 'users', currentUser.uid);
+          try {
+            const userSnap = await getDoc(userRef);
+            if (!userSnap.exists()) {
+              await setDoc(userRef, {
+                uid: currentUser.uid,
+                email: currentUser.email || '',
+                displayName: currentUser.displayName || '',
+                photoURL: currentUser.photoURL || '',
+                createdAt: new Date().toISOString(),
+                updatedAt: new Date().toISOString(),
+              }, { merge: true });
+            }
+          } catch (err) {
+            console.warn('User profile sync:', err);
           }
-        } catch (err) {
-          console.warn('User profile sync:', err);
-        }
 
-        // Listen to subscription updates
-        const subRef = doc(db, 'users', currentUser.uid, 'subscription', 'current');
-        unsubSub = onSnapshot(subRef, (docSnap) => {
-          if (docSnap.exists()) {
-            const data = docSnap.data() as UserSubscription;
-            setSubscription(data);
-          } else {
-            // Default free tier
+          // Listen to subscription updates
+          const subRef = doc(db, 'users', currentUser.uid, 'subscription', 'current');
+          unsubSub = onSnapshot(subRef, (docSnap) => {
+            if (docSnap.exists()) {
+              const data = docSnap.data() as UserSubscription;
+              setSubscription(data);
+            } else {
+              // Default free tier
+              setSubscription(defaultSubscription);
+            }
+            setLoading(false);
+          }, (error) => {
+            console.warn('Subscription listener:', error);
             setSubscription(defaultSubscription);
-          }
-          setLoading(false);
-        }, (error) => {
-          console.warn('Subscription listener:', error);
-          setSubscription(defaultSubscription);
+            setLoading(false);
+          });
+        }).catch((err) => {
+          console.warn('Firestore dynamic load notice:', err);
           setLoading(false);
         });
       } else {
@@ -159,6 +161,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
         // Initialize user document in Firestore
         try {
+          const { db, doc, setDoc } = await import('../lib/firestore');
           const userRef = doc(db, 'users', cred.user.uid);
           await setDoc(userRef, {
             uid: cred.user.uid,
@@ -260,6 +263,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     };
 
     try {
+      const { db, doc, setDoc } = await import('../lib/firestore');
       const subRef = doc(db, 'users', auth.currentUser.uid, 'subscription', 'current');
       await setDoc(subRef, subData, { merge: true });
       setSubscription(subData);
@@ -276,6 +280,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       cancelAtPeriodEnd: true,
     };
     try {
+      const { db, doc, setDoc } = await import('../lib/firestore');
       const subRef = doc(db, 'users', auth.currentUser.uid, 'subscription', 'current');
       await setDoc(subRef, subData, { merge: true });
       setSubscription(subData);
@@ -296,6 +301,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     // Update subscription in Firestore if user is signed in
     if (auth.currentUser) {
       try {
+        const { db, doc, setDoc } = await import('../lib/firestore');
         const subRef = doc(db, 'users', auth.currentUser.uid, 'subscription', 'current');
         await setDoc(subRef, { applicationsUsedThisPeriod: currentUsed }, { merge: true });
       } catch (err) {
@@ -320,6 +326,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
     if (auth.currentUser) {
       try {
+        const { db, doc, setDoc } = await import('../lib/firestore');
         const appRef = doc(db, 'users', auth.currentUser.uid, 'applications', appId);
         await setDoc(appRef, newAppRecord);
       } catch (err) {

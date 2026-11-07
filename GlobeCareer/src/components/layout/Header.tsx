@@ -795,7 +795,7 @@ export const Header: React.FC<HeaderProps> = ({
           <button
             type="button"
             onClick={onToggleDarkMode}
-            className="p-2 text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors rounded-xl cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+            className="min-w-[44px] min-h-[44px] flex items-center justify-center p-2.5 text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors rounded-xl cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
             title="Toggle Light / Dark Mode"
             aria-label="Toggle theme"
           >
@@ -905,7 +905,7 @@ export const Header: React.FC<HeaderProps> = ({
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-100 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+            className="lg:hidden min-w-[44px] min-h-[44px] flex items-center justify-center p-2.5 text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-100 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
             aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}

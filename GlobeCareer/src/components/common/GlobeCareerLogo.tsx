@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { GLOBECAREER_LOGO_DATA_URI } from './logoDataUri';
 
 export interface GlobeCareerLogoProps {
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
@@ -25,31 +24,32 @@ export const GlobeCareerLogo: React.FC<GlobeCareerLogoProps> = ({
   // Resolve initial path based on execution environment (file:// vs web server)
   const getInitialSrc = () => {
     if (typeof window !== 'undefined' && window.location.protocol === 'file:') {
-      return './globecareer-logo.png';
+      return './globecareer-logo.webp';
     }
-    return '/globecareer-logo.png';
+    return '/globecareer-logo.webp';
   };
 
   const [imgSrc, setImgSrc] = useState<string>(getInitialSrc);
   const [retryStep, setRetryStep] = useState<number>(0);
 
   const handleError = () => {
-    // Graceful fallback chain for all filesystem / server / standalone environments
+    // Graceful fallback chain: WebP -> PNG variations -> Embedded Data URI
     if (retryStep === 0) {
       setRetryStep(1);
-      setImgSrc('globecareer-logo.png');
+      setImgSrc('/globecareer-logo.png');
     } else if (retryStep === 1) {
       setRetryStep(2);
-      setImgSrc('./assets/globecareer-logo.png');
+      setImgSrc('globecareer-logo.png');
     } else if (retryStep === 2) {
       setRetryStep(3);
-      setImgSrc('./public/globecareer-logo.png');
+      setImgSrc('./assets/globecareer-logo.png');
     } else if (retryStep === 3) {
       setRetryStep(4);
-      setImgSrc('/globecareer-logo.png');
-    } else {
+      setImgSrc('./public/globecareer-logo.png');
+    } else if (retryStep === 4) {
+      setRetryStep(5);
       // Guaranteed zero-fail fallback: embedded high-resolution data URI of the exact original square logo
-      setImgSrc(GLOBECAREER_LOGO_DATA_URI);
+      import('./logoDataUri').then((m) => setImgSrc(m.GLOBECAREER_LOGO_DATA_URI)).catch(() => {});
     }
   };
 

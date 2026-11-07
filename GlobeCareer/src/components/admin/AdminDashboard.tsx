@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
-import { db } from '../../lib/firebase';
+import { db } from '../../lib/firestore';
 import { collection, query, onSnapshot, doc, updateDoc } from 'firebase/firestore';
 import { VERIFIED_JOBS } from '../../data/verifiedJobs';
 import { VerifiedJob, JobReport } from '../../types/jobs';
