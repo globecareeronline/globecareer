@@ -103,6 +103,7 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search language / Sprache..."
+                aria-label="Search language"
                 className="w-full bg-transparent border-none text-xs text-neutral-800 dark:text-neutral-100 focus:outline-none placeholder:text-neutral-400"
                 autoFocus
               />

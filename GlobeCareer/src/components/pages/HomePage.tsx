@@ -1330,16 +1330,21 @@ export const HomePage: React.FC<HomePageProps> = ({
             >
               <button
                 type="button"
+                aria-expanded={openFaq === idx}
+                aria-controls={`faq-answer-${idx}`}
                 onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
                 className="w-full p-4 sm:p-5 text-left flex items-center justify-between gap-4 font-bold text-xs sm:text-sm cursor-pointer hover:bg-neutral-50 dark:hover:bg-neutral-800/50 transition-colors"
               >
                 <span>{faq.q}</span>
-                <span className="text-blue-600 shrink-0 font-mono text-base">
+                <span className="text-blue-600 shrink-0 font-mono text-base" aria-hidden="true">
                   {openFaq === idx ? '−' : '+'}
                 </span>
               </button>
               {openFaq === idx && (
-                <div className="px-4 pb-5 pt-1 text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed border-t border-neutral-100 dark:border-neutral-800/80">
+                <div
+                  id={`faq-answer-${idx}`}
+                  className="px-4 pb-5 pt-1 text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed border-t border-neutral-100 dark:border-neutral-800/80"
+                >
                   {faq.a}
                 </div>
               )}

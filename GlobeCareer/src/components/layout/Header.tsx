@@ -159,14 +159,12 @@ export const Header: React.FC<HeaderProps> = ({
 
             {openDropdown === 'resume' && (
               <div
-                role="menu"
                 className="absolute left-0 top-full pt-1.5 w-80 z-50 animate-in fade-in slide-in-from-top-1 duration-150"
               >
                 <div className="bg-white dark:bg-neutral-900 rounded-2xl shadow-xl border border-neutral-200 dark:border-neutral-800 py-2 text-xs">
                   {/* 1. Resume Builder */}
                   <a
                     href="/resume-builder"
-                    role="menuitem"
                     onClick={(e) => {
                       e.preventDefault();
                       handleNavClick('builder');
@@ -183,7 +181,6 @@ export const Header: React.FC<HeaderProps> = ({
                   {/* 2. Resume Templates */}
                   <a
                     href="/templates"
-                    role="menuitem"
                     onClick={(e) => {
                       e.preventDefault();
                       handleNavClick('templates');
@@ -200,7 +197,6 @@ export const Header: React.FC<HeaderProps> = ({
                   {/* 3. ATS Checker */}
                   <a
                     href="/ats-checker"
-                    role="menuitem"
                     onClick={(e) => {
                       e.preventDefault();
                       handleNavClick('ats-checker');
@@ -217,7 +213,6 @@ export const Header: React.FC<HeaderProps> = ({
                   {/* 4. Country Guides (40+) */}
                   <a
                     href="/country-guides"
-                    role="menuitem"
                     onClick={(e) => {
                       e.preventDefault();
                       handleNavClick('guides');
@@ -234,7 +229,6 @@ export const Header: React.FC<HeaderProps> = ({
                   {/* 5. European CV Format Guide */}
                   <a
                     href="/european-cv-format"
-                    role="menuitem"
                     onClick={(e) => {
                       e.preventDefault();
                       handleNavClick('european-cv-format');
@@ -251,7 +245,6 @@ export const Header: React.FC<HeaderProps> = ({
                   {/* 6. Skills for Resume Guide */}
                   <a
                     href="/resume-skills"
-                    role="menuitem"
                     onClick={(e) => {
                       e.preventDefault();
                       handleNavClick('resume-skills');
@@ -268,7 +261,6 @@ export const Header: React.FC<HeaderProps> = ({
                   {/* 7. CV vs Resume Guide */}
                   <a
                     href="/cv-vs-resume"
-                    role="menuitem"
                     onClick={(e) => {
                       e.preventDefault();
                       handleNavClick('cv-vs-resume');
@@ -285,7 +277,6 @@ export const Header: React.FC<HeaderProps> = ({
                   {/* 8. Reverse Chronological Format Guide */}
                   <a
                     href="/reverse-chronological-resume-format"
-                    role="menuitem"
                     onClick={(e) => {
                       e.preventDefault();
                       handleNavClick('reverse-chronological');
@@ -302,7 +293,6 @@ export const Header: React.FC<HeaderProps> = ({
                   {/* 9. References on Resume Guide */}
                   <a
                     href="/references-on-resume"
-                    role="menuitem"
                     onClick={(e) => {
                       e.preventDefault();
                       handleNavClick('references-on-resume');
@@ -348,14 +338,12 @@ export const Header: React.FC<HeaderProps> = ({
 
             {openDropdown === 'templates' && (
               <div
-                role="menu"
                 className="absolute left-0 top-full pt-1.5 w-80 z-50 animate-in fade-in slide-in-from-top-1 duration-150"
               >
                 <div className="bg-white dark:bg-neutral-900 rounded-2xl shadow-xl border border-neutral-200 dark:border-neutral-800 py-2 text-xs">
                   {/* 1. Resume & CV Templates */}
                   <a
                     href="/templates"
-                    role="menuitem"
                     onClick={(e) => {
                       e.preventDefault();
                       handleNavClick('templates');
@@ -372,7 +360,6 @@ export const Header: React.FC<HeaderProps> = ({
                   {/* 2. Letter & Email Templates */}
                   <a
                     href="/letter-templates"
-                    role="menuitem"
                     onClick={(e) => {
                       e.preventDefault();
                       handleNavClick('letter-templates');
@@ -389,7 +376,6 @@ export const Header: React.FC<HeaderProps> = ({
                   {/* 3. Professional Bio Templates */}
                   <a
                     href="/bio-templates"
-                    role="menuitem"
                     onClick={(e) => {
                       e.preventDefault();
                       handleNavClick('bio-templates');
@@ -406,7 +392,6 @@ export const Header: React.FC<HeaderProps> = ({
                   {/* 4. Summary & Objective Templates */}
                   <a
                     href="/summary-templates"
-                    role="menuitem"
                     onClick={(e) => {
                       e.preventDefault();
                       handleNavClick('summary-templates');
@@ -423,7 +408,6 @@ export const Header: React.FC<HeaderProps> = ({
                   {/* 5. Resignation Letter Templates */}
                   <a
                     href="/resignation-letter-templates"
-                    role="menuitem"
                     onClick={(e) => {
                       e.preventDefault();
                       handleNavClick('resignation-letter-templates');
@@ -440,7 +424,6 @@ export const Header: React.FC<HeaderProps> = ({
                   {/* 6. Role-Specific Resume Examples */}
                   <a
                     href="/resume-examples"
-                    role="menuitem"
                     onClick={(e) => {
                       e.preventDefault();
                       handleNavClick('job-examples');
@@ -486,14 +469,12 @@ export const Header: React.FC<HeaderProps> = ({
 
             {openDropdown === 'letters' && (
               <div
-                role="menu"
                 className="absolute left-0 top-full pt-1.5 w-80 z-50 animate-in fade-in slide-in-from-top-1 duration-150"
               >
                 <div className="bg-white dark:bg-neutral-900 rounded-2xl shadow-xl border border-neutral-200 dark:border-neutral-800 py-2 text-xs">
                   {/* 1. Cover Letter Builder */}
                   <a
                     href="/cover-letter-builder"
-                    role="menuitem"
                     onClick={(e) => {
                       e.preventDefault();
                       handleNavClick('cover-letter');
@@ -510,7 +491,6 @@ export const Header: React.FC<HeaderProps> = ({
                   {/* 2. Recommendation Letter Builder */}
                   <a
                     href="/recommendation-letter"
-                    role="menuitem"
                     onClick={(e) => {
                       e.preventDefault();
                       handleNavClick('recommendation-letter');
@@ -527,7 +507,6 @@ export const Header: React.FC<HeaderProps> = ({
                   {/* 3. Job Application Email Generator */}
                   <a
                     href="/email-generator"
-                    role="menuitem"
                     onClick={(e) => {
                       e.preventDefault();
                       handleNavClick('email-generator');
@@ -544,7 +523,6 @@ export const Header: React.FC<HeaderProps> = ({
                   {/* 4. Letter & Email Templates */}
                   <a
                     href="/letter-templates"
-                    role="menuitem"
                     onClick={(e) => {
                       e.preventDefault();
                       handleNavClick('letter-templates');
@@ -590,14 +568,12 @@ export const Header: React.FC<HeaderProps> = ({
 
             {openDropdown === 'tools' && (
               <div
-                role="menu"
                 className="absolute left-0 top-full pt-1.5 w-80 z-50 animate-in fade-in slide-in-from-top-1 duration-150"
               >
                 <div className="bg-white dark:bg-neutral-900 rounded-2xl shadow-xl border border-neutral-200 dark:border-neutral-800 py-2 text-xs">
                   {/* 1. Professional Bio Generator */}
                   <a
                     href="/bio-generator"
-                    role="menuitem"
                     onClick={(e) => {
                       e.preventDefault();
                       handleNavClick('bio-generator');
@@ -614,7 +590,6 @@ export const Header: React.FC<HeaderProps> = ({
                   {/* 2. Resume Summary & Objective Generator */}
                   <a
                     href="/summary-generator"
-                    role="menuitem"
                     onClick={(e) => {
                       e.preventDefault();
                       handleNavClick('summary-generator');
@@ -631,7 +606,6 @@ export const Header: React.FC<HeaderProps> = ({
                   {/* 3. Resignation Letter Generator */}
                   <a
                     href="/resignation-letter"
-                    role="menuitem"
                     onClick={(e) => {
                       e.preventDefault();
                       handleNavClick('resignation-letter');
@@ -648,7 +622,6 @@ export const Header: React.FC<HeaderProps> = ({
                   {/* 4. Interview Preparation */}
                   <a
                     href="/interview-prep"
-                    role="menuitem"
                     onClick={(e) => {
                       e.preventDefault();
                       handleNavClick('interview-prep');
@@ -665,7 +638,6 @@ export const Header: React.FC<HeaderProps> = ({
                   {/* 5. Recommendation Letter Guide */}
                   <a
                     href="/recommendation-letter-guide"
-                    role="menuitem"
                     onClick={(e) => {
                       e.preventDefault();
                       handleNavClick('recommendation-guide');
@@ -682,7 +654,6 @@ export const Header: React.FC<HeaderProps> = ({
                   {/* 6. Resume Word Counter & Length Analyzer */}
                   <a
                     href="/resume-word-counter"
-                    role="menuitem"
                     onClick={(e) => {
                       e.preventDefault();
                       handleNavClick('resume-word-counter');
@@ -699,7 +670,6 @@ export const Header: React.FC<HeaderProps> = ({
                   {/* 7. Resume Bullet Point Generator */}
                   <a
                     href="/resume-bullet-generator"
-                    role="menuitem"
                     onClick={(e) => {
                       e.preventDefault();
                       handleNavClick('resume-bullet-generator');
@@ -745,13 +715,11 @@ export const Header: React.FC<HeaderProps> = ({
 
             {openDropdown === 'jobs' && (
               <div
-                role="menu"
                 className="absolute left-0 top-full pt-1.5 w-64 z-50 animate-in fade-in slide-in-from-top-1 duration-150"
               >
                 <div className="bg-white dark:bg-neutral-900 rounded-2xl shadow-xl border border-neutral-200 dark:border-neutral-800 py-2 text-xs">
                   <a
                     href="/jobs"
-                    role="menuitem"
                     onClick={(e) => {
                       e.preventDefault();
                       handleNavClick('jobs');
@@ -766,7 +734,6 @@ export const Header: React.FC<HeaderProps> = ({
                   </a>
                   <a
                     href="/job-tracker"
-                    role="menuitem"
                     onClick={(e) => {
                       e.preventDefault();
                       handleNavClick('tracker');
