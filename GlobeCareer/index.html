@@ -59,8 +59,9 @@
       />
     </noscript>
 
-    <!-- Canonical URL -->
+    <!-- Canonical URL & Agentic Discovery -->
     <link rel="canonical" href="https://globecareer.online/" />
+    <link rel="alternate" type="text/markdown" href="/llms.txt" title="LLM Site Summary" />
 
     <!-- Social & OpenGraph Metadata -->
     <meta property="og:type" content="website" />
@@ -117,6 +118,47 @@
         link.href = './assets/index.css';
         document.head.appendChild(link);
       }
+    </script>
+    <!-- WebMCP (Web Model Context Protocol) Autonomous AI Agent Tool Registration -->
+    <script>
+      (function() {
+        if (typeof navigator !== 'undefined' && 'modelContext' in navigator && typeof navigator.modelContext.registerTool === 'function') {
+          try {
+            navigator.modelContext.registerTool({
+              name: "startResumeBuilder",
+              description: "Launch the international resume builder customized by target destination country and industry sector",
+              inputSchema: {
+                type: "object",
+                properties: {
+                  country: { type: "string", description: "Two-letter ISO country code (e.g. us, uk, de, ca, au)" },
+                  industry: { type: "string", description: "Target career industry sector identifier" }
+                }
+              },
+              execute: async function(params) {
+                var url = '/resume-builder';
+                if (params && params.country) url += '?country=' + encodeURIComponent(params.country);
+                window.location.href = url;
+                return { status: "success", url: url };
+              }
+            });
+            navigator.modelContext.registerTool({
+              name: "checkAtsScore",
+              description: "Analyze candidate resume against job vacancy description for ATS keyword match score",
+              inputSchema: {
+                type: "object",
+                properties: {
+                  resumeText: { type: "string", description: "Full plain text of the candidate resume" },
+                  jobDescription: { type: "string", description: "Full job vacancy description text" }
+                }
+              },
+              execute: async function() {
+                window.location.href = '/ats-checker';
+                return { status: "success", url: "/ats-checker" };
+              }
+            });
+          } catch (e) {}
+        }
+      })();
     </script>
   </head>
   <body class="bg-neutral-50 text-neutral-900 antialiased selection:bg-neutral-900 selection:text-white dark:bg-neutral-950 dark:text-neutral-100">

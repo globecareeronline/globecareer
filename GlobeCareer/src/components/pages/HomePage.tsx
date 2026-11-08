@@ -126,9 +126,17 @@ export const HomePage: React.FC<HomePageProps> = ({
             </button>
           </div>
 
-          {/* Quick Country & Sector Launchpad */}
+          {/* Quick Country & Sector Launchpad (Declarative WebMCP Tool for Automated & Human Browsing) */}
           <div className="pt-6 max-w-3xl mx-auto">
-            <div className="p-3 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-xl flex flex-col sm:flex-row items-center gap-2.5 text-left">
+            <form
+              toolname="startResumeBuilder"
+              tooldescription="Select target destination country and career industry sector to launch the country-tailored international resume builder"
+              onSubmit={(e) => {
+                e.preventDefault();
+                onStartResume(selectedCountry, selectedCategory);
+              }}
+              className="p-3 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-xl flex flex-col sm:flex-row items-center gap-2.5 text-left"
+            >
               {/* Country Selector */}
               <div className="w-full sm:flex-1 relative px-2 py-1">
                 <label htmlFor="target-destination-country" className="text-[10px] font-bold uppercase tracking-wider text-neutral-600 dark:text-neutral-400 block mb-1">
@@ -138,7 +146,9 @@ export const HomePage: React.FC<HomePageProps> = ({
                   <span className="text-2xl" aria-hidden="true">{country.flag}</span>
                   <select
                     id="target-destination-country"
+                    name="country"
                     aria-label="Target Destination Country"
+                    toolparamdescription="ISO country code for localized CV rules (e.g. us, uk, de, ca, au)"
                     value={selectedCountry}
                     onChange={(e) => setSelectedCountry(e.target.value)}
                     className="w-full bg-transparent text-xs font-bold text-neutral-900 dark:text-neutral-100 focus:outline-none cursor-pointer"
@@ -161,7 +171,9 @@ export const HomePage: React.FC<HomePageProps> = ({
                 </label>
                 <select
                   id="target-industry-category"
+                  name="industry"
                   aria-label="Target Industry Category"
+                  toolparamdescription="Target career industry category for customized keywords and sections"
                   value={selectedCategory}
                   onChange={(e) => setSelectedCategory(e.target.value)}
                   className="w-full bg-transparent text-xs font-bold text-neutral-900 dark:text-neutral-100 focus:outline-none cursor-pointer truncate"
@@ -176,14 +188,14 @@ export const HomePage: React.FC<HomePageProps> = ({
 
               {/* Launch CTA */}
               <button
-                type="button"
-                onClick={() => onStartResume(selectedCountry, selectedCategory)}
+                type="submit"
+                aria-label="Launch Resume Builder with selected country and category"
                 className="w-full sm:w-auto px-6 py-3.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-colors flex items-center justify-center gap-2 shrink-0 shadow-sm cursor-pointer"
               >
                 <span>{t('home.previewCvRules', 'Preview CV Rules')}</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
-            </div>
+            </form>
 
             {/* Quick Country Micro-Rules Under Launchpad */}
             <div className="flex flex-wrap items-center justify-center gap-3 mt-3 text-xs text-neutral-500">

@@ -1,18 +1,14 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import {
-  auth,
-  googleProvider,
-  signInWithPopup,
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-  signOut,
-  sendPasswordResetEmail,
-  sendEmailVerification,
-  updateProfile,
-  deleteUser,
-  type User
-} from '../lib/firebase';
+import type { User } from 'firebase/auth';
 import { UserSubscription } from '../types/auth';
+
+let firebaseAuthPromise: Promise<typeof import('../lib/firebase')> | null = null;
+const getFirebaseAuth = () => {
+  if (!firebaseAuthPromise) {
+    firebaseAuthPromise = import('../lib/firebase');
+  }
+  return firebaseAuthPromise;
+};
 
 interface AuthContextType {
   user: User | null;
@@ -53,76 +49,86 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   useEffect(() => {
     let unsubSub: (() => void) | null = null;
+    let unsubAuth: (() => void) | null = null;
+    let isMounted = true;
 
-    const unsubscribeAuth = auth.onAuthStateChanged(async (currentUser) => {
-      setUser(currentUser);
-      
-      // Clean up previous subscription listener if user changed
-      if (unsubSub) {
-        unsubSub();
-        unsubSub = null;
-      }
+    getFirebaseAuth().then(({ auth }) => {
+      if (!isMounted) return;
 
-      if (currentUser) {
-        // Check admin email
-        const userIsAdmin = ADMIN_EMAILS.includes(currentUser.email?.toLowerCase() || '');
-        setIsAdmin(userIsAdmin);
+      unsubAuth = auth.onAuthStateChanged(async (currentUser) => {
+        if (!isMounted) return;
+        setUser(currentUser);
+        
+        // Clean up previous subscription listener if user changed
+        if (unsubSub) {
+          unsubSub();
+          unsubSub = null;
+        }
 
-        // Lazily import Firestore only when an authenticated session exists
-        import('../lib/firestore').then(async ({ db, doc, getDoc, setDoc, onSnapshot }) => {
-          // Sync or get user profile
-          const userRef = doc(db, 'users', currentUser.uid);
-          try {
-            const userSnap = await getDoc(userRef);
-            if (!userSnap.exists()) {
-              await setDoc(userRef, {
-                uid: currentUser.uid,
-                email: currentUser.email || '',
-                displayName: currentUser.displayName || '',
-                photoURL: currentUser.photoURL || '',
-                createdAt: new Date().toISOString(),
-                updatedAt: new Date().toISOString(),
-              }, { merge: true });
+        if (currentUser) {
+          // Check admin email
+          const userIsAdmin = ADMIN_EMAILS.includes(currentUser.email?.toLowerCase() || '');
+          setIsAdmin(userIsAdmin);
+
+          // Lazily import Firestore only when an authenticated session exists
+          import('../lib/firestore').then(async ({ db, doc, getDoc, setDoc, onSnapshot }) => {
+            // Sync or get user profile
+            const userRef = doc(db, 'users', currentUser.uid);
+            try {
+              const userSnap = await getDoc(userRef);
+              if (!userSnap.exists()) {
+                await setDoc(userRef, {
+                  uid: currentUser.uid,
+                  email: currentUser.email || '',
+                  displayName: currentUser.displayName || '',
+                  photoURL: currentUser.photoURL || '',
+                  createdAt: new Date().toISOString(),
+                  updatedAt: new Date().toISOString(),
+                }, { merge: true });
+              }
+            } catch (err) {
+              console.warn('User profile sync:', err);
             }
-          } catch (err) {
-            console.warn('User profile sync:', err);
-          }
 
-          // Listen to subscription updates
-          const subRef = doc(db, 'users', currentUser.uid, 'subscription', 'current');
-          unsubSub = onSnapshot(subRef, (docSnap) => {
-            if (docSnap.exists()) {
-              const data = docSnap.data() as UserSubscription;
-              setSubscription(data);
-            } else {
-              // Default free tier
+            // Listen to subscription updates
+            const subRef = doc(db, 'users', currentUser.uid, 'subscription', 'current');
+            unsubSub = onSnapshot(subRef, (docSnap) => {
+              if (docSnap.exists()) {
+                const data = docSnap.data() as UserSubscription;
+                setSubscription(data);
+              } else {
+                setSubscription(defaultSubscription);
+              }
+              setLoading(false);
+            }, (error) => {
+              console.warn('Subscription listener:', error);
               setSubscription(defaultSubscription);
-            }
-            setLoading(false);
-          }, (error) => {
-            console.warn('Subscription listener:', error);
-            setSubscription(defaultSubscription);
+              setLoading(false);
+            });
+          }).catch((err) => {
+            console.warn('Firestore dynamic load notice:', err);
             setLoading(false);
           });
-        }).catch((err) => {
-          console.warn('Firestore dynamic load notice:', err);
+        } else {
+          setIsAdmin(false);
+          setSubscription(defaultSubscription);
           setLoading(false);
-        });
-      } else {
-        setIsAdmin(false);
-        setSubscription(defaultSubscription);
-        setLoading(false);
-      }
+        }
+      });
+    }).catch(() => {
+      if (isMounted) setLoading(false);
     });
 
     return () => {
+      isMounted = false;
       if (unsubSub) unsubSub();
-      unsubscribeAuth();
+      if (unsubAuth) unsubAuth();
     };
   }, []);
 
   const signInWithGoogle = async () => {
     try {
+      const { auth, googleProvider, signInWithPopup } = await getFirebaseAuth();
       await signInWithPopup(auth, googleProvider);
     } catch (error) {
       console.error('Google Sign-in Error:', error);
@@ -132,6 +138,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const signInWithEmail = async (email: string, pass: string) => {
     try {
+      const { auth, signInWithEmailAndPassword } = await getFirebaseAuth();
       await signInWithEmailAndPassword(auth, email, pass);
     } catch (error) {
       console.error('Email Sign-in Error:', error);
@@ -141,6 +148,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const signUpWithEmail = async (email: string, pass: string, name?: string) => {
     try {
+      const { auth, createUserWithEmailAndPassword, updateProfile, sendEmailVerification } = await getFirebaseAuth();
       const cred = await createUserWithEmailAndPassword(auth, email, pass);
       if (cred.user) {
         // Set user profile display name immediately
@@ -190,6 +198,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const sendResetEmail = async (email: string) => {
     try {
+      const { auth, sendPasswordResetEmail } = await getFirebaseAuth();
       await sendPasswordResetEmail(auth, email);
     } catch (error) {
       console.error('Password Reset Error:', error);
@@ -198,6 +207,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const sendVerification = async () => {
+    const { auth, sendEmailVerification } = await getFirebaseAuth();
     if (auth.currentUser) {
       try {
         await sendEmailVerification(auth.currentUser);
@@ -210,6 +220,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const logout = async () => {
     try {
+      const { auth, signOut } = await getFirebaseAuth();
       await signOut(auth);
       setSubscription(defaultSubscription);
       setIsAdmin(false);
@@ -220,6 +231,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const deleteAccount = async () => {
+    const { auth, deleteUser } = await getFirebaseAuth();
     if (auth.currentUser) {
       try {
         await deleteUser(auth.currentUser);
@@ -233,6 +245,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const activateProSubscription = async (plan: 'monthly' | 'annual', orderId?: string) => {
+    const { auth } = await getFirebaseAuth();
     if (!auth.currentUser) {
       throw new Error('Must be signed in to activate subscription');
     }
@@ -274,6 +287,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const cancelProSubscription = async () => {
+    const { auth } = await getFirebaseAuth();
     if (!auth.currentUser) return;
     const subData: UserSubscription = {
       ...subscription,
@@ -290,6 +304,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const recordJobApplication = async (jobId: string, jobTitle: string, company: string, location?: string) => {
+    const { auth } = await getFirebaseAuth();
     const currentUsed = (subscription.applicationsUsedThisPeriod || 0) + 1;
     const remaining = 999999;
 

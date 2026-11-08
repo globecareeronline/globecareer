@@ -39,7 +39,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         <div className="py-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 border-b border-neutral-200 dark:border-neutral-800">
           {/* Group 1: Career Tools */}
           <div className="space-y-3">
-            <h4 className="font-bold text-neutral-900 dark:text-neutral-100 uppercase tracking-wider text-[11px]">{t('nav.careerTools', 'Career Tools')}</h4>
+            <h3 className="font-bold text-neutral-900 dark:text-neutral-100 uppercase tracking-wider text-[11px]">{t('nav.careerTools', 'Career Tools')}</h3>
             <div className="flex flex-col space-y-2 text-xs">
               <a
                 href="/resume-builder"
@@ -134,7 +134,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
           {/* Group 2: Template Libraries */}
           <div className="space-y-3">
-            <h4 className="font-bold text-neutral-900 dark:text-neutral-100 uppercase tracking-wider text-[11px]">{t('nav.resumeTemplates', 'Template Libraries')}</h4>
+            <h3 className="font-bold text-neutral-900 dark:text-neutral-100 uppercase tracking-wider text-[11px]">{t('nav.resumeTemplates', 'Template Libraries')}</h3>
             <div className="flex flex-col space-y-2 text-xs">
               <a
                 href="/templates"
@@ -189,7 +189,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
           {/* Group 3: Jobs & Mobility */}
           <div className="space-y-3">
-            <h4 className="font-bold text-neutral-900 dark:text-neutral-100 uppercase tracking-wider text-[11px]">{t('nav.jobsAndMobility', 'Jobs & Mobility')}</h4>
+            <h3 className="font-bold text-neutral-900 dark:text-neutral-100 uppercase tracking-wider text-[11px]">{t('nav.jobsAndMobility', 'Jobs & Mobility')}</h3>
             <div className="flex flex-col space-y-2 text-xs">
               <a
                 href="/jobs"
@@ -284,9 +284,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
           {/* Group 4: About & Legal */}
           <div className="space-y-3">
-            <h4 className="font-bold text-neutral-900 dark:text-neutral-100 uppercase tracking-wider text-[11px]">
+            <h3 className="font-bold text-neutral-900 dark:text-neutral-100 uppercase tracking-wider text-[11px]">
               About &amp; Legal
-            </h4>
+            </h3>
             <div className="flex flex-col space-y-2 text-xs">
               <a
                 href="/about"
@@ -353,9 +353,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         {/* 3. Questions & Regional Localization in Lower-Row Position */}
         <div className="pt-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="space-y-1">
-            <h4 className="font-bold text-neutral-900 dark:text-neutral-100 uppercase tracking-wider text-[11px]">
+            <h3 className="font-bold text-neutral-900 dark:text-neutral-100 uppercase tracking-wider text-[11px]">
               {t('common.questions', 'Questions?')}
-            </h4>
+            </h3>
             <div className="text-xs">
               <a
                 href="mailto:info@globecareer.online"

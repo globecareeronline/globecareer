@@ -386,6 +386,14 @@ function AppContent() {
 
   return (
     <div className={`min-h-screen flex flex-col transition-colors duration-150 ${isDarkMode ? 'dark bg-neutral-950 text-neutral-100' : 'bg-neutral-50 text-neutral-900'}`}>
+      {/* Skip to Main Content Link for Keyboard and Screen Reader Accessibility */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:px-4 focus:py-2.5 focus:bg-blue-600 focus:text-white focus:font-bold focus:rounded-xl focus:shadow-xl focus:outline-none focus:ring-2 focus:ring-white"
+      >
+        Skip to main content
+      </a>
+
       {/* Universal Header with Top Bar Contract */}
       {currentPage !== 'admin' && (
         <Header
@@ -402,7 +410,7 @@ function AppContent() {
       )}
 
       {/* Main View Router */}
-      <main className="flex-1">
+      <main id="main-content" tabIndex={-1} className="flex-1 focus:outline-none">
         {currentPage === 'home' && (
           <HomePage
             onStartResume={(cId, catId) => handleStartResume(cId, catId)}
