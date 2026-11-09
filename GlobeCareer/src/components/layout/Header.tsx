@@ -26,7 +26,8 @@ import {
   Sparkles,
   Clock,
   Target,
-  Users
+  Users,
+  ChevronDown
 } from 'lucide-react';
 
 interface HeaderProps {
@@ -56,6 +57,11 @@ export const Header: React.FC<HeaderProps> = ({
   const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const navRef = useRef<HTMLDivElement>(null);
 
+  // Combined Sign Up / Sign In dropdown
+  const [authDropdownOpen, setAuthDropdownOpen] = useState(false);
+  const authCloseTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const authDropdownRef = useRef<HTMLDivElement>(null);
+
   // Hover handlers with small graceful buffer to prevent flicker
   const handleMouseEnter = (menu: 'resume' | 'templates' | 'letters' | 'tools' | 'jobs') => {
     if (closeTimeoutRef.current) {
@@ -72,18 +78,37 @@ export const Header: React.FC<HeaderProps> = ({
     }, 150);
   };
 
-  // Close desktop dropdown on outside click or escape
+  const handleAuthMouseEnter = () => {
+    if (authCloseTimeoutRef.current) {
+      clearTimeout(authCloseTimeoutRef.current);
+      authCloseTimeoutRef.current = null;
+    }
+    setAuthDropdownOpen(true);
+  };
+
+  const handleAuthMouseLeave = () => {
+    if (authCloseTimeoutRef.current) clearTimeout(authCloseTimeoutRef.current);
+    authCloseTimeoutRef.current = setTimeout(() => {
+      setAuthDropdownOpen(false);
+    }, 150);
+  };
+
+  // Close desktop dropdowns on outside click or escape
   useEffect(() => {
     const handleOutside = (e: MouseEvent) => {
       if (navRef.current && !navRef.current.contains(e.target as Node)) {
         setOpenDropdown(null);
         setUserDropdownOpen(false);
       }
+      if (authDropdownRef.current && !authDropdownRef.current.contains(e.target as Node)) {
+        setAuthDropdownOpen(false);
+      }
     };
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         setOpenDropdown(null);
         setUserDropdownOpen(false);
+        setAuthDropdownOpen(false);
       }
     };
     document.addEventListener('mousedown', handleOutside);
@@ -92,6 +117,7 @@ export const Header: React.FC<HeaderProps> = ({
       document.removeEventListener('mousedown', handleOutside);
       document.removeEventListener('keydown', handleKey);
       if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
+      if (authCloseTimeoutRef.current) clearTimeout(authCloseTimeoutRef.current);
     };
   }, []);
 
@@ -334,7 +360,7 @@ export const Header: React.FC<HeaderProps> = ({
                   : ''
               }`}
             >
-              <span>{t('nav.resumeTemplates', 'Templates')}</span>
+              <span>{t('nav.templates', 'Templates')}</span>
             </button>
 
             {openDropdown === 'templates' && (
@@ -854,21 +880,80 @@ export const Header: React.FC<HeaderProps> = ({
               )}
             </div>
           ) : (
-            <div className="flex items-center gap-1 sm:gap-1.5">
+            <div
+              ref={authDropdownRef}
+              className="relative"
+              onMouseEnter={handleAuthMouseEnter}
+              onMouseLeave={handleAuthMouseLeave}
+            >
               <button
                 type="button"
-                onClick={() => onOpenAuth?.('signin')}
-                className="hidden sm:inline-flex px-3 py-1.5 text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white rounded-xl text-xs font-semibold transition-colors cursor-pointer"
+                onClick={() => setAuthDropdownOpen(!authDropdownOpen)}
+                aria-haspopup="true"
+                aria-expanded={authDropdownOpen}
+                aria-label="Account access options: Sign Up Free or Sign In"
+                className="inline-flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 bg-neutral-900 hover:bg-neutral-800 dark:bg-neutral-100 dark:hover:bg-neutral-200 text-white dark:text-neutral-900 rounded-xl text-xs font-bold transition-colors cursor-pointer shadow-xs whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
               >
-                {t('auth.signIn', 'Sign In')}
+                <span>{t('auth.signUp', 'Sign Up Free')}</span>
+                <ChevronDown
+                  className={`w-3.5 h-3.5 opacity-70 transition-transform duration-200 ${
+                    authDropdownOpen ? 'rotate-180' : ''
+                  }`}
+                />
               </button>
-              <button
-                type="button"
-                onClick={() => onOpenAuth?.('signup')}
-                className="px-2.5 sm:px-3.5 py-1.5 bg-neutral-900 hover:bg-neutral-800 dark:bg-neutral-100 dark:hover:bg-neutral-200 text-white dark:text-neutral-900 rounded-xl text-xs font-bold transition-colors cursor-pointer shadow-xs whitespace-nowrap"
-              >
-                {t('auth.signUp', 'Sign Up Free')}
-              </button>
+
+              {authDropdownOpen && (
+                <div
+                  className="absolute right-0 top-full pt-1.5 w-60 z-50 animate-in fade-in slide-in-from-top-1 duration-150"
+                  aria-label="Account access options"
+                >
+                  <div className="bg-white dark:bg-neutral-900 rounded-2xl shadow-xl border border-neutral-200 dark:border-neutral-800 p-2 text-xs space-y-1">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setAuthDropdownOpen(false);
+                        onOpenAuth?.('signup');
+                      }}
+                      className="w-full flex items-start gap-2.5 p-2.5 rounded-xl hover:bg-neutral-50 dark:hover:bg-neutral-800 text-left transition-colors cursor-pointer group"
+                    >
+                      <div className="p-1.5 bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900 rounded-lg shrink-0 mt-0.5">
+                        <Sparkles className="w-3.5 h-3.5" />
+                      </div>
+                      <div className="min-w-0">
+                        <div className="font-bold text-neutral-900 dark:text-neutral-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                          {t('auth.signUp', 'Sign Up Free')}
+                        </div>
+                        <div className="text-[11px] text-neutral-600 dark:text-neutral-400">
+                          Create a free account to sync resumes &amp; applications
+                        </div>
+                      </div>
+                    </button>
+
+                    <div className="border-t border-neutral-100 dark:border-neutral-800 my-1" />
+
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setAuthDropdownOpen(false);
+                        onOpenAuth?.('signin');
+                      }}
+                      className="w-full flex items-start gap-2.5 p-2.5 rounded-xl hover:bg-neutral-50 dark:hover:bg-neutral-800 text-left transition-colors cursor-pointer group"
+                    >
+                      <div className="p-1.5 bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 rounded-lg shrink-0 mt-0.5">
+                        <UserCheck className="w-3.5 h-3.5" />
+                      </div>
+                      <div className="min-w-0">
+                        <div className="font-bold text-neutral-900 dark:text-neutral-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                          {t('auth.signIn', 'Sign In')}
+                        </div>
+                        <div className="text-[11px] text-neutral-600 dark:text-neutral-400">
+                          Already have an account? Access saved data
+                        </div>
+                      </div>
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
           )}
 
@@ -941,7 +1026,7 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Templates */}
           <div className="border-t border-neutral-100 dark:border-neutral-800 pt-3 space-y-1">
             <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-400 block px-2 pb-1">
-              {t('nav.resumeTemplates', 'Templates')}
+              {t('nav.templates', 'Templates')}
             </span>
             <a
               href="/templates"

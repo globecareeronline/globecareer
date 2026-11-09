@@ -64,6 +64,7 @@ export const EN_TRANSLATIONS: Translations = {
     // Nav
     'nav.resumeAndCv': 'Resume & CV',
     'nav.resumeBuilder': 'Resume Builder',
+    'nav.templates': 'Templates',
     'nav.resumeTemplates': 'Resume Templates',
     'nav.resumeExamples': 'Resume Examples',
     'nav.atsGuide': 'ATS Hiring Guide',

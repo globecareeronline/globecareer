@@ -4,6 +4,7 @@ export const EXTRA_TRANSLATIONS: Partial<Record<LanguageCode, Translations>> = {
   de: {
     'nav.resumeAndCv': 'Lebenslauf & CV',
     'nav.resumeBuilder': 'Lebenslauf-Generator',
+    'nav.templates': 'Vorlagen',
     'nav.resumeTemplates': 'Lebenslauf-Vorlagen',
     'nav.resumeExamples': 'Lebenslauf-Beispiele',
     'nav.atsGuide': 'ATS-Leitfaden',
