@@ -60,6 +60,7 @@
     <!-- Canonical URL & Agentic Discovery -->
     <link rel="canonical" href="https://globecareer.online/" />
     <link rel="alternate" type="text/markdown" href="/llms.txt" title="LLM Site Summary" />
+    <link rel="alternate" type="text/markdown" href="/llms-full.txt" title="LLM Full Documentation" />
 
     <!-- Social & OpenGraph Metadata -->
     <meta property="og:type" content="website" />
@@ -120,41 +121,99 @@
     <!-- WebMCP (Web Model Context Protocol) Autonomous AI Agent Tool Registration -->
     <script>
       (function() {
-        if (typeof navigator !== 'undefined' && 'modelContext' in navigator && typeof navigator.modelContext.registerTool === 'function') {
-          try {
-            navigator.modelContext.registerTool({
-              name: "startResumeBuilder",
-              description: "Launch the international resume builder customized by target destination country and industry sector",
-              inputSchema: {
-                type: "object",
-                properties: {
-                  country: { type: "string", description: "Two-letter ISO country code (e.g. us, uk, de, ca, au)" },
-                  industry: { type: "string", description: "Target career industry sector identifier" }
-                }
+        var tools = [
+          {
+            name: "startResumeBuilder",
+            title: "Start International Resume Builder",
+            description: "Launch the international resume builder customized by target destination country and industry sector",
+            inputSchema: {
+              type: "object",
+              properties: {
+                country: { type: "string", description: "Two-letter ISO country code (e.g. us, uk, de, ca, au, ch, fr, jp)" },
+                industry: { type: "string", description: "Target career industry sector identifier (e.g. tech, healthcare, finance)" }
               },
-              execute: async function(params) {
-                var url = '/resume-builder';
-                if (params && params.country) url += '?country=' + encodeURIComponent(params.country);
-                window.location.href = url;
-                return { status: "success", url: url };
-              }
-            });
-            navigator.modelContext.registerTool({
-              name: "checkAtsScore",
-              description: "Analyze candidate resume against job vacancy description for ATS keyword match score",
-              inputSchema: {
-                type: "object",
-                properties: {
-                  resumeText: { type: "string", description: "Full plain text of the candidate resume" },
-                  jobDescription: { type: "string", description: "Full job vacancy description text" }
-                }
+              additionalProperties: false
+            },
+            execute: async function(params) {
+              var url = '/resume-builder';
+              if (params && params.country) url += '?country=' + encodeURIComponent(params.country);
+              window.location.href = url;
+              return { status: "success", url: url };
+            }
+          },
+          {
+            name: "start-resume-builder",
+            title: "Start International Resume Builder (Kebab Case)",
+            description: "Launch the international resume builder customized by target destination country and industry sector",
+            inputSchema: {
+              type: "object",
+              properties: {
+                country: { type: "string", description: "Two-letter ISO country code (e.g. us, uk, de, ca, au, ch, fr, jp)" },
+                industry: { type: "string", description: "Target career industry sector identifier" }
               },
-              execute: async function() {
-                window.location.href = '/ats-checker';
-                return { status: "success", url: "/ats-checker" };
-              }
-            });
-          } catch (e) {}
+              additionalProperties: false
+            },
+            execute: async function(params) {
+              var url = '/resume-builder';
+              if (params && params.country) url += '?country=' + encodeURIComponent(params.country);
+              window.location.href = url;
+              return { status: "success", url: url };
+            }
+          },
+          {
+            name: "checkAtsScore",
+            title: "Check Resume ATS Compatibility",
+            description: "Analyze candidate resume against job vacancy description for ATS keyword match score",
+            inputSchema: {
+              type: "object",
+              properties: {
+                resumeText: { type: "string", description: "Full plain text of the candidate resume" },
+                jobDescription: { type: "string", description: "Full job vacancy description text" }
+              },
+              additionalProperties: false
+            },
+            execute: async function() {
+              window.location.href = '/ats-checker';
+              return { status: "success", url: "/ats-checker" };
+            }
+          },
+          {
+            name: "check-ats-score",
+            title: "Check Resume ATS Compatibility (Kebab Case)",
+            description: "Analyze candidate resume against job vacancy description for ATS keyword match score",
+            inputSchema: {
+              type: "object",
+              properties: {
+                resumeText: { type: "string", description: "Full plain text of the candidate resume" },
+                jobDescription: { type: "string", description: "Full job vacancy description text" }
+              },
+              additionalProperties: false
+            },
+            execute: async function() {
+              window.location.href = '/ats-checker';
+              return { status: "success", url: "/ats-checker" };
+            }
+          }
+        ];
+
+        function registerAll(mc) {
+          if (!mc || typeof mc.registerTool !== 'function') return;
+          tools.forEach(function(tool) {
+            try {
+              mc.registerTool(tool);
+            } catch (e) {}
+          });
+        }
+
+        // Register across Document, Navigator, and Window contexts
+        if (typeof document !== 'undefined' && document.modelContext) {
+          registerAll(document.modelContext);
+        }
+        if (typeof navigator !== 'undefined' && navigator.modelContext) {
+          registerAll(navigator.modelContext);
+        }
+        if (typeof window !== 'undefined' && window.modelContext) {
+          registerAll(window.modelContext);
         }
       })();
     </script>

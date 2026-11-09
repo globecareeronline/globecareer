@@ -29,13 +29,12 @@ export const LanguageDetectionBanner: React.FC = () => {
 
   return (
     <aside
-      role="region"
       aria-label="Language preference notification"
       className="fixed bottom-5 start-5 z-40 max-w-[340px] sm:max-w-sm bg-white/95 dark:bg-neutral-900/95 backdrop-blur-md border border-neutral-200 dark:border-neutral-800 shadow-xl rounded-2xl p-3.5 text-xs text-neutral-800 dark:text-neutral-200 animate-in fade-in slide-in-from-bottom-3 duration-200"
     >
       <div className="flex items-start justify-between gap-3 mb-2.5">
         <div className="flex items-center gap-2">
-          <span className="text-lg leading-none" role="img" aria-hidden="true">
+          <span className="text-lg leading-none" aria-hidden="true">
             {languageInfo.flag}
           </span>
           <div>

@@ -156,20 +156,19 @@ export const UnifiedDownloadButton: React.FC<UnifiedDownloadButtonProps> = ({
       {isOpen && (
         <div 
           className="absolute right-0 mt-2 w-72 sm:w-80 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 shadow-2xl py-2 z-50 animate-in fade-in zoom-in-95 duration-150"
-          role="menu"
-          aria-orientation="vertical"
+          aria-label="Download format options"
         >
           {/* Header */}
           <div className="px-4 py-2.5 border-b border-neutral-100 dark:border-neutral-800">
             <div className="flex items-center justify-between">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
+              <span className="text-[11px] font-bold uppercase tracking-wider text-neutral-600 dark:text-neutral-400">
                 Export {documentTitle}
               </span>
               <span className="text-[10px] font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded-full">
                 100% Free
               </span>
             </div>
-            <p className="text-[11px] text-neutral-500 dark:text-neutral-400 mt-0.5">
+            <p className="text-[11px] text-neutral-600 dark:text-neutral-400 mt-0.5">
               Select your preferred file format:
             </p>
           </div>
@@ -186,7 +185,6 @@ export const UnifiedDownloadButton: React.FC<UnifiedDownloadButtonProps> = ({
                   type="button"
                   onClick={() => handleSelectFormat(format)}
                   disabled={Boolean(activeFormatId)}
-                  role="menuitem"
                   className={`w-full p-2.5 rounded-xl text-left flex items-center justify-between gap-3 transition-colors cursor-pointer group ${
                     isSuccess 
                       ? 'bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-300 dark:border-emerald-800' 

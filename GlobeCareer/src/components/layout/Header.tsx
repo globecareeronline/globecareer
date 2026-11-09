@@ -121,6 +121,7 @@ export const Header: React.FC<HeaderProps> = ({
           }}
           className="whitespace-nowrap shrink-0 flex items-center text-left cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg"
           title="GlobeCareer – Build Your Global Career. Stand Out Anywhere."
+          aria-label="GlobeCareer Homepage"
         >
           <GlobeCareerLogo size="sm" showWordmark={true} />
         </a>
@@ -774,6 +775,9 @@ export const Header: React.FC<HeaderProps> = ({
             <div className="relative">
               <button
                 type="button"
+                aria-label="User account menu"
+                aria-haspopup="true"
+                aria-expanded={userDropdownOpen}
                 onClick={() => setUserDropdownOpen(!userDropdownOpen)}
                 className="flex items-center gap-2 py-1.5 px-3 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded-xl text-xs font-semibold text-neutral-800 dark:text-neutral-200 transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
               >

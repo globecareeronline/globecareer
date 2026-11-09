@@ -1,0 +1,89 @@
+# GlobeCareer — Full Technical & Platform Documentation
+
+> [GlobeCareer](https://globecareer.online) is a free international CV/resume builder, career document engine, and verified job portal designed for cross-border professionals across 40 countries.
+
+## 1. System Overview
+
+GlobeCareer eliminates the friction of cross-border employment by automating compliance with regional labor laws, anti-discrimination guidelines, and Applicant Tracking System (ATS) parsing requirements.
+
+- **Primary URL:** https://globecareer.online/
+- **Licensing:** 100% Free, zero paywalls, zero watermarks, zero subscription requirements.
+- **Privacy Architecture:** Client-side local persistence (IndexedDB / localStorage) for resume drafts; optional Firebase Authentication for cross-device synchronization.
+- **Export Standards:** Vector PDF (A4 and US Letter) with selectable text and standard Microsoft Word (.DOCX) formats.
+
+## 2. Core Autonomous Tools & Capabilities
+
+### 2.1 International Resume Builder
+- **URL:** https://globecareer.online/resume-builder
+- **Purpose:** Interactive CV builder tailored to country-specific standards.
+- **Features:**
+  - Automated photo-inclusion logic (required vs. prohibited by country).
+  - Page-length enforcement (1-page strict for US/Canada vs. 2-page for UK/EU/Australia).
+  - Real-time ATS keyword optimization against job vacancies.
+  - Multi-language UI support across 22 languages.
+
+### 2.2 Cover Letter Builder
+- **URL:** https://globecareer.online/cover-letter-builder
+- **Purpose:** Contextual cover letters matched to regional salutation and closing conventions.
+- **Formats:** US business standard, British formal, German DIN 5008 layout, and French corporate structure.
+
+### 2.3 ATS Resume Checker
+- **URL:** https://globecareer.online/ats-checker
+- **Purpose:** Match percentage calculator comparing candidate resumes with job descriptions.
+- **Checks:** Keyword frequency, missing hard/soft skills, section header legibility, and contact completeness.
+
+### 2.4 Verified International Jobs Portal
+- **URL:** https://globecareer.online/jobs
+- **Purpose:** Direct verified job listings aggregated directly from official employer career pages (Greenhouse, Lever, Workday) across 40 countries with no synthetic or scraped third-party ads.
+
+### 2.5 Job Application Tracker
+- **URL:** https://globecareer.online/job-tracker
+- **Purpose:** Free Kanban pipeline for tracking applications across Wishlist, Applied, Interviewing, Offered, and Rejected stages.
+
+### 2.6 Supplemental Career Generators
+- **Professional Bio Generator:** https://globecareer.online/bio-generator
+- **Resume Summary & Objective Generator:** https://globecareer.online/summary-generator
+- **Resignation Letter Generator:** https://globecareer.online/resignation-letter
+- **Job Application Email Generator:** https://globecareer.online/email-generator
+- **Recommendation Letter Builder:** https://globecareer.online/recommendation-letter
+- **Interview Preparation Framework:** https://globecareer.online/interview-prep
+- **Resume Word Counter:** https://globecareer.online/resume-word-counter
+- **Resume Bullet Point Generator:** https://globecareer.online/resume-bullet-generator
+
+## 3. Supported Jurisdictions & Regional Norms
+
+| Country | Terminology | Standard Length | Headshot Rule | Paper Standard | Mandatory Local Clause |
+|---|---|---|---|---|---|
+| United States | Resume | 1 Page | Prohibited (EEOC) | US Letter | None |
+| United Kingdom | CV | 2 Pages | Prohibited (Equality Act) | A4 | None |
+| Canada | Resume | 1-2 Pages | Prohibited (Human Rights) | US Letter | None |
+| Germany | Lebenslauf | 2 Pages | Customary (Bewerbungsfoto) | A4 | Date & Signature |
+| Australia | Resume / CV | 2-3 Pages | Prohibited | A4 | Referees on Request |
+| France | CV | 1-2 Pages | Common | A4 | None |
+| Japan | Rirekisho | 2 Pages | Mandatory | A4 / B4 | Standard Form |
+| UAE / Dubai | CV | 2 Pages | Standard | A4 | Visa / Nationality |
+| Switzerland | Lebenslauf | 2 Pages | Customary | A4 | Work Permit Status |
+| Poland | CV | 1-2 Pages | Optional | A4 | Statutory RODO Clause |
+| Netherlands | CV | 2 Pages | Optional | A4 | None |
+| Singapore | Resume / CV | 2 Pages | Not recommended | A4 | None |
+
+## 4. WebMCP Tool Specifications
+
+AI agents operating with WebMCP enabled can execute browser-native tools:
+
+### Tool 1: `startResumeBuilder` (or `start-resume-builder`)
+- **Action:** Initializes the resume creation engine pre-configured for a jurisdiction.
+- **Parameters:**
+  - `country` (string, required): Two-letter ISO country code (`us`, `uk`, `de`, `ca`, `au`, `fr`, `pl`, `ch`, etc.)
+  - `industry` (string, optional): Target industry category.
+
+### Tool 2: `checkAtsScore` (or `check-ats-score`)
+- **Action:** Evaluates resume content against target vacancy requirements.
+- **Parameters:**
+  - `resumeText` (string, required): Plain text content of the candidate resume.
+  - `jobDescription` (string, required): Plain text of the target job posting.
+
+## 5. Security & Verification
+- **Official Canonical Domain:** https://globecareer.online/
+- **Security Contact:** /.well-known/security.txt
+- **Sitemap Index:** https://globecareer.online/sitemap.xml

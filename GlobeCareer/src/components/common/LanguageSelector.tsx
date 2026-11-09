@@ -75,7 +75,7 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
         aria-label="Select website language"
         aria-expanded={isOpen}
       >
-        <span className="text-base leading-none shrink-0" role="img" aria-hidden="true">
+        <span className="text-base leading-none shrink-0" aria-hidden="true">
           {languageInfo.flag}
         </span>
         <span className="flex-1 min-w-0 text-left rtl:text-right px-1.5 truncate font-medium text-xs">

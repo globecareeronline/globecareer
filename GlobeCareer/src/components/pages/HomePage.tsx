@@ -84,7 +84,7 @@ export const HomePage: React.FC<HomePageProps> = ({
       <section className="relative pt-10 sm:pt-16 pb-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div className="text-center space-y-6 max-w-4xl mx-auto">
           {/* Trust Meta */}
-          <div className="flex items-center justify-center gap-2 text-xs font-semibold text-neutral-500 dark:text-neutral-400">
+          <div className="flex items-center justify-center gap-2 text-xs font-semibold text-neutral-600 dark:text-neutral-400">
             <Globe className="w-4 h-4 text-blue-600 dark:text-blue-400 shrink-0" />
             <span>40+ Countries</span>
             <span aria-hidden="true">·</span>
@@ -130,7 +130,11 @@ export const HomePage: React.FC<HomePageProps> = ({
           <div className="pt-6 max-w-3xl mx-auto">
             <form
               toolname="startResumeBuilder"
+              tool-name="startResumeBuilder"
+              data-tool-name="startResumeBuilder"
               tooldescription="Select target destination country and career industry sector to launch the country-tailored international resume builder"
+              tool-description="Select target destination country and career industry sector to launch the country-tailored international resume builder"
+              data-tool-description="Select target destination country and career industry sector to launch the country-tailored international resume builder"
               onSubmit={(e) => {
                 e.preventDefault();
                 onStartResume(selectedCountry, selectedCategory);
@@ -198,7 +202,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             </form>
 
             {/* Quick Country Micro-Rules Under Launchpad */}
-            <div className="flex flex-wrap items-center justify-center gap-3 mt-3 text-xs text-neutral-500">
+            <div className="flex flex-wrap items-center justify-center gap-3 mt-3 text-xs text-neutral-600 dark:text-neutral-400">
               <span>{country.name}: <strong className="text-neutral-900 dark:text-neutral-100">{country.cvTerminology}</strong></span>
               <span>·</span>
               <span>Photo: <strong className="text-neutral-900 dark:text-neutral-100 capitalize">{country.photoRule}</strong></span>
@@ -232,7 +236,7 @@ export const HomePage: React.FC<HomePageProps> = ({
               <span className="text-2xl">🇺🇸</span>
               <div>
                 <h3 className="font-bold text-sm">United States</h3>
-                <span className="text-[11px] text-neutral-500">1-Page Strict Resume</span>
+                <span className="text-[11px] text-neutral-600 dark:text-neutral-400">1-Page Strict Resume</span>
               </div>
             </div>
             <div className="text-xs text-rose-700 dark:text-rose-400 font-semibold flex items-center gap-1.5">
@@ -250,7 +254,7 @@ export const HomePage: React.FC<HomePageProps> = ({
               <span className="text-2xl">🇩🇪</span>
               <div>
                 <h3 className="font-bold text-sm">Germany</h3>
-                <span className="text-[11px] text-neutral-500">Tabellarischer Lebenslauf</span>
+                <span className="text-[11px] text-neutral-600 dark:text-neutral-400">Tabellarischer Lebenslauf</span>
               </div>
             </div>
             <div className="text-xs text-blue-700 dark:text-blue-400 font-semibold flex items-center gap-1.5">
@@ -268,7 +272,7 @@ export const HomePage: React.FC<HomePageProps> = ({
               <span className="text-2xl">🇬🇧</span>
               <div>
                 <h3 className="font-bold text-sm">United Kingdom</h3>
-                <span className="text-[11px] text-neutral-500">2-Page Curriculum Vitae</span>
+                <span className="text-[11px] text-neutral-600 dark:text-neutral-400">2-Page Curriculum Vitae</span>
               </div>
             </div>
             <div className="text-xs text-rose-700 dark:text-rose-400 font-semibold flex items-center gap-1.5">
@@ -286,7 +290,7 @@ export const HomePage: React.FC<HomePageProps> = ({
               <span className="text-2xl">🇵🇱</span>
               <div>
                 <h3 className="font-bold text-sm">Poland</h3>
-                <span className="text-[11px] text-neutral-500">CV z Klauzulą RODO</span>
+                <span className="text-[11px] text-neutral-600 dark:text-neutral-400">CV z Klauzulą RODO</span>
               </div>
             </div>
             <div className="text-xs text-purple-700 dark:text-purple-400 font-semibold flex items-center gap-1.5">
@@ -413,13 +417,13 @@ export const HomePage: React.FC<HomePageProps> = ({
           </div>
 
           <div className="w-full md:w-80 p-5 bg-neutral-50 dark:bg-neutral-950 rounded-2xl border border-neutral-200 dark:border-neutral-800 space-y-3 font-mono text-[11px] text-neutral-600 dark:text-neutral-400 shadow-inner">
-            <div className="text-neutral-400 text-[10px] uppercase tracking-wider font-bold">Standard European Header</div>
+            <div className="text-neutral-600 dark:text-neutral-400 text-[10px] uppercase tracking-wider font-bold">Standard European Header</div>
             <div className="border-b border-neutral-200 dark:border-neutral-800 pb-2">
               <div className="font-bold text-neutral-900 dark:text-neutral-100">Jane Doe</div>
               <div>Hiring Manager · Talent Acquisition</div>
               <div>Tech Corp Europe B.V. · Amsterdam</div>
             </div>
-            <div className="text-[10px] italic text-neutral-500">
+            <div className="text-[10px] italic text-neutral-600 dark:text-neutral-400">
               "Dear Hiring Team, I am writing to express my strong enthusiasm for the Senior Engineer opening in Berlin..."
             </div>
             <div className="pt-2 flex justify-between text-[10px] text-emerald-600 font-semibold">
@@ -442,7 +446,7 @@ export const HomePage: React.FC<HomePageProps> = ({
               <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
                 Verified International Jobs Portal
               </h2>
-              <p className="text-sm text-neutral-400 leading-relaxed">
+              <p className="text-sm text-neutral-300 leading-relaxed">
                 Connect your country-tailored CV to legitimate vacancies. We research and import real opportunities from official employer career pages, verified ATS portals, and authorized platforms across 40+ countries.
               </p>
             </div>
@@ -463,7 +467,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                 <CheckCircle2 className="w-4 h-4" />
                 Zero Fabricated Postings
               </div>
-              <p className="text-xs text-neutral-400 leading-relaxed">
+              <p className="text-xs text-neutral-300 leading-relaxed">
                 Every listing is verified directly from official career pages (e.g. Stripe, Monzo, Canva, ASML) or employer ATS boards. Never synthetic vacancies.
               </p>
             </div>
@@ -473,7 +477,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                 <Clock className="w-4 h-4" />
                 Actual Deadlines & Verification Timestamps
               </div>
-              <p className="text-xs text-neutral-400 leading-relaxed">
+              <p className="text-xs text-neutral-300 leading-relaxed">
                 We record actual published closing dates or state "No closing date published". Expired vacancies are automatically labelled and filtered.
               </p>
             </div>
@@ -483,7 +487,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                 <Send className="w-4 h-4" />
                 Direct Official Application Gateways
               </div>
-              <p className="text-xs text-neutral-400 leading-relaxed">
+              <p className="text-xs text-neutral-300 leading-relaxed">
                 Subscribers receive direct links to official employer ATS application pages and verified employer contact emails where legitimately published.
               </p>
             </div>
@@ -501,7 +505,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             <h2 className="text-2xl font-bold tracking-tight">
               Browse 40 Supported Jurisdictions
             </h2>
-            <p className="text-xs text-neutral-500 mt-1">
+            <p className="text-xs text-neutral-600 dark:text-neutral-400 mt-1">
               Select any country to review hiring nuances or start an authentic pre-configured resume.
             </p>
           </div>
@@ -526,7 +530,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             >
               <div className="text-2xl group-hover:scale-110 transition-transform">{c.flag}</div>
               <div className="text-xs font-bold truncate">{c.name}</div>
-              <div className="text-[10px] text-neutral-400 font-mono truncate">{c.cvTerminology}</div>
+              <div className="text-[10px] text-neutral-600 dark:text-neutral-400 font-mono truncate">{c.cvTerminology}</div>
             </button>
           ))}
         </div>
@@ -560,24 +564,24 @@ export const HomePage: React.FC<HomePageProps> = ({
 
           <div className="w-full md:w-80 grid grid-cols-2 gap-3 text-xs">
             <div className="p-4 bg-neutral-50 dark:bg-neutral-950 rounded-2xl border border-neutral-200 dark:border-neutral-800 space-y-1">
-              <div className="text-[10px] font-bold uppercase tracking-wider text-neutral-400">Saved</div>
+              <div className="text-[10px] font-bold uppercase tracking-wider text-neutral-600 dark:text-neutral-400">Saved</div>
               <div className="text-lg font-black font-mono">14</div>
-              <div className="text-[11px] text-neutral-500">Target roles in review</div>
+              <div className="text-[11px] text-neutral-600 dark:text-neutral-400">Target roles in review</div>
             </div>
             <div className="p-4 bg-neutral-50 dark:bg-neutral-950 rounded-2xl border border-neutral-200 dark:border-neutral-800 space-y-1">
               <div className="text-[10px] font-bold uppercase tracking-wider text-blue-600">Applied</div>
               <div className="text-lg font-black font-mono text-blue-600">8</div>
-              <div className="text-[11px] text-neutral-500">Official submissions</div>
+              <div className="text-[11px] text-neutral-600 dark:text-neutral-400">Official submissions</div>
             </div>
             <div className="p-4 bg-neutral-50 dark:bg-neutral-950 rounded-2xl border border-neutral-200 dark:border-neutral-800 space-y-1">
               <div className="text-[10px] font-bold uppercase tracking-wider text-purple-600">Interviews</div>
               <div className="text-lg font-black font-mono text-purple-600">3</div>
-              <div className="text-[11px] text-neutral-500">Active screening calls</div>
+              <div className="text-[11px] text-neutral-600 dark:text-neutral-400">Active screening calls</div>
             </div>
             <div className="p-4 bg-neutral-50 dark:bg-neutral-950 rounded-2xl border border-neutral-200 dark:border-neutral-800 space-y-1">
               <div className="text-[10px] font-bold uppercase tracking-wider text-emerald-600">Offers</div>
               <div className="text-lg font-black font-mono text-emerald-600">1</div>
-              <div className="text-[11px] text-neutral-500">Formal contracts</div>
+              <div className="text-[11px] text-neutral-600 dark:text-neutral-400">Formal contracts</div>
             </div>
           </div>
         </div>
@@ -1054,7 +1058,7 @@ export const HomePage: React.FC<HomePageProps> = ({
               <h3 className="font-bold text-sm text-neutral-900 dark:text-neutral-100 group-hover:text-blue-600 transition-colors">
                 Reverse Chronological Resume Format
               </h3>
-              <p className="text-[11px] text-neutral-500 leading-relaxed">
+              <p className="text-[11px] text-neutral-600 dark:text-neutral-400 leading-relaxed">
                 The gold standard resume structure preferred by 95% of recruiters, featuring section breakdowns and copyable templates.
               </p>
             </div>
@@ -1082,7 +1086,7 @@ export const HomePage: React.FC<HomePageProps> = ({
               <h3 className="font-bold text-sm text-neutral-900 dark:text-neutral-100 group-hover:text-indigo-600 transition-colors">
                 European CV Format (Europass Style)
               </h3>
-              <p className="text-[11px] text-neutral-500 leading-relaxed">
+              <p className="text-[11px] text-neutral-600 dark:text-neutral-400 leading-relaxed">
                 A4 paper conventions, CEFR A1-C2 multilingual language matrices, and European hiring norms across 27 EU nations.
               </p>
             </div>
@@ -1110,7 +1114,7 @@ export const HomePage: React.FC<HomePageProps> = ({
               <h3 className="font-bold text-sm text-neutral-900 dark:text-neutral-100 group-hover:text-teal-600 transition-colors">
                 CV vs. Resume Differences
               </h3>
-              <p className="text-[11px] text-neutral-500 leading-relaxed">
+              <p className="text-[11px] text-neutral-600 dark:text-neutral-400 leading-relaxed">
                 Understand 1-page US standards vs. 2-page UK/EU CV norms, photo legislation, and terminology differences.
               </p>
             </div>
@@ -1138,7 +1142,7 @@ export const HomePage: React.FC<HomePageProps> = ({
               <h3 className="font-bold text-sm text-neutral-900 dark:text-neutral-100 group-hover:text-amber-600 transition-colors">
                 Top Skills for Resume Catalog
               </h3>
-              <p className="text-[11px] text-neutral-500 leading-relaxed">
+              <p className="text-[11px] text-neutral-600 dark:text-neutral-400 leading-relaxed">
                 Vetted hard and soft skills categorized by domain (Software, Data, Finance, Healthcare) for optimal ATS keyword matching.
               </p>
             </div>
@@ -1166,7 +1170,7 @@ export const HomePage: React.FC<HomePageProps> = ({
               <h3 className="font-bold text-sm text-neutral-900 dark:text-neutral-100 group-hover:text-emerald-600 transition-colors">
                 References on a Resume
               </h3>
-              <p className="text-[11px] text-neutral-500 leading-relaxed">
+              <p className="text-[11px] text-neutral-600 dark:text-neutral-400 leading-relaxed">
                 Why references are omitted from resumes, how to build a separate Reference Sheet, and email request templates.
               </p>
             </div>
@@ -1194,7 +1198,7 @@ export const HomePage: React.FC<HomePageProps> = ({
               <h3 className="font-bold text-sm text-neutral-900 dark:text-neutral-100 group-hover:text-purple-600 transition-colors">
                 Definitive Guide to ATS
               </h3>
-              <p className="text-[11px] text-neutral-500 leading-relaxed">
+              <p className="text-[11px] text-neutral-600 dark:text-neutral-400 leading-relaxed">
                 Technical breakdown of how Workday, Taleo, and Greenhouse parse text and the 7 fatal formatting traps to avoid.
               </p>
             </div>
@@ -1222,7 +1226,7 @@ export const HomePage: React.FC<HomePageProps> = ({
               <h3 className="font-bold text-sm text-neutral-900 dark:text-neutral-100 group-hover:text-rose-600 transition-colors">
                 International Resume Writing Guide
               </h3>
-              <p className="text-[11px] text-neutral-500 leading-relaxed">
+              <p className="text-[11px] text-neutral-600 dark:text-neutral-400 leading-relaxed">
                 The Google X-Y-Z formula in detail, action verb directories, and duty vs achievement transformation examples.
               </p>
             </div>
@@ -1250,7 +1254,7 @@ export const HomePage: React.FC<HomePageProps> = ({
               <h3 className="font-bold text-sm text-neutral-900 dark:text-neutral-100 group-hover:text-cyan-600 transition-colors">
                 40 Country-Specific Hiring Guides
               </h3>
-              <p className="text-[11px] text-neutral-500 leading-relaxed">
+              <p className="text-[11px] text-neutral-600 dark:text-neutral-400 leading-relaxed">
                 Legal photo requirements, standard page lengths, and date conventions verified for 40 international jurisdictions.
               </p>
             </div>
@@ -1270,7 +1274,7 @@ export const HomePage: React.FC<HomePageProps> = ({
           <h2 className="text-2xl font-bold tracking-tight">
             Trusted by Cross-Border Candidates
           </h2>
-          <p className="text-xs text-neutral-500">
+          <p className="text-xs text-neutral-600 dark:text-neutral-400">
             Real outcomes from professionals navigating international relocations and cross-border hiring rules.
           </p>
         </div>
@@ -1282,7 +1286,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             </p>
             <div className="pt-2 border-t border-neutral-100 dark:border-neutral-800">
               <span className="text-xs font-bold block">Jonas Weber</span>
-              <span className="text-[11px] text-neutral-500">Staff Software Engineer · Relocated to California, USA</span>
+              <span className="text-[11px] text-neutral-600 dark:text-neutral-400">Staff Software Engineer · Relocated to California, USA</span>
             </div>
           </div>
 
@@ -1292,7 +1296,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             </p>
             <div className="pt-2 border-t border-neutral-100 dark:border-neutral-800">
               <span className="text-xs font-bold block">Claire Laurent</span>
-              <span className="text-[11px] text-neutral-500">Engineering Manager · Relocated to Zurich, Switzerland</span>
+              <span className="text-[11px] text-neutral-600 dark:text-neutral-400">Engineering Manager · Relocated to Zurich, Switzerland</span>
             </div>
           </div>
 
@@ -1302,7 +1306,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             </p>
             <div className="pt-2 border-t border-neutral-100 dark:border-neutral-800">
               <span className="text-xs font-bold block">Mikołaj Zieliński</span>
-              <span className="text-[11px] text-neutral-500">Fintech Product Lead · Kraków, Poland</span>
+              <span className="text-[11px] text-neutral-600 dark:text-neutral-400">Fintech Product Lead · Kraków, Poland</span>
             </div>
           </div>
         </div>
@@ -1317,7 +1321,7 @@ export const HomePage: React.FC<HomePageProps> = ({
           <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
             Frequently Asked Questions
           </h2>
-          <p className="text-xs sm:text-sm text-neutral-500">
+          <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400">
             Clear, straightforward answers about GlobeCareer, country compliance, and free career tools.
           </p>
         </div>
@@ -1359,7 +1363,7 @@ export const HomePage: React.FC<HomePageProps> = ({
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
             Build Your Global Career Today
           </h2>
-          <p className="text-sm text-neutral-400 max-w-xl mx-auto leading-relaxed">
+          <p className="text-sm text-neutral-300 max-w-xl mx-auto leading-relaxed">
             Free to use without registration. 100% private in your browser. Download print-ready vector PDFs and native Microsoft Word DOCX files.
           </p>
           <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">

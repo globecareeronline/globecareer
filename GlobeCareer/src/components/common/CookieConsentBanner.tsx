@@ -78,8 +78,7 @@ export const CookieConsentBanner: React.FC<{ onNavigateToPolicy?: (page: string)
       {/* Floating Bottom Banner */}
       {isOpen && !showModal && (
         <aside
-          role="region"
-          aria-label="Cookie consent banner"
+          aria-label="Cookie and privacy preferences"
           className="fixed bottom-4 left-4 right-4 sm:left-auto sm:right-6 sm:max-w-md z-50 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-2xl p-5 shadow-2xl text-xs text-neutral-700 dark:text-neutral-300 space-y-3 transition-all duration-300"
         >
           <div className="flex items-start justify-between gap-3">
@@ -191,6 +190,7 @@ export const CookieConsentBanner: React.FC<{ onNavigateToPolicy?: (page: string)
                   <label className="relative inline-flex items-center cursor-pointer">
                     <input
                       type="checkbox"
+                      aria-label="Enable Analytics & Experience Metrics"
                       checked={preferences.analytics}
                       onChange={(e) =>
                         setPreferences({ ...preferences, analytics: e.target.checked })
@@ -214,6 +214,7 @@ export const CookieConsentBanner: React.FC<{ onNavigateToPolicy?: (page: string)
                   <label className="relative inline-flex items-center cursor-pointer">
                     <input
                       type="checkbox"
+                      aria-label="Enable Advertising & Sponsor Personalization"
                       checked={preferences.marketing}
                       onChange={(e) =>
                         setPreferences({ ...preferences, marketing: e.target.checked })

@@ -21,7 +21,8 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               onNavigate('home');
             }}
             className="text-left cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg inline-block"
-            title="GlobeCareer – {t('home.heroTitle1', 'Build Your Global Career.')} {t('home.heroTitle2', 'Stand Out Anywhere.')}"
+            title="GlobeCareer – Build Your Global Career. Stand Out Anywhere."
+            aria-label="GlobeCareer Homepage"
           >
             <GlobeCareerLogo size="sm" showWordmark={true} />
           </a>
@@ -29,7 +30,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             <p className="text-xs font-semibold text-neutral-900 dark:text-neutral-100">
               {t('home.heroTitle1', 'Build Your Global Career.')} {t('home.heroTitle2', 'Stand Out Anywhere.')}
             </p>
-            <p className="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed">
+            <p className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
               Free country-tailored resume builder, cover letters, outreach tools, and career templates across 40+ countries. Zero paywalls, zero watermarks.
             </p>
           </div>
@@ -367,13 +368,13 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           </div>
 
           <div className="flex items-center gap-2">
-            <span className="text-xs text-neutral-500">{t('common.language', 'Language')}:</span>
+            <span className="text-xs text-neutral-600 dark:text-neutral-400">{t('common.language', 'Language')}:</span>
             <LanguageSelector variant="footer" />
           </div>
         </div>
 
         {/* Global Compliance & Trust Strip */}
-        <div className="mt-8 pt-6 border-t border-neutral-200 dark:border-neutral-800 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-neutral-500 dark:text-neutral-400">
+        <div className="mt-8 pt-6 border-t border-neutral-200 dark:border-neutral-800 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-neutral-600 dark:text-neutral-400">
           <p>© {new Date().getFullYear()} GlobeCareer. All rights reserved. Free international career platform.</p>
           <div className="flex items-center gap-6">
             <span>{t('common.allCountries', '40+ Countries Supported')}</span>
