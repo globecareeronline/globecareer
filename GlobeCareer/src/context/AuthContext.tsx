@@ -52,75 +52,95 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     let unsubAuth: (() => void) | null = null;
     let isMounted = true;
 
-    getFirebaseAuth().then(({ auth }) => {
-      if (!isMounted) return;
-
-      unsubAuth = auth.onAuthStateChanged(async (currentUser) => {
+    const initAuth = () => {
+      getFirebaseAuth().then(({ auth }) => {
         if (!isMounted) return;
-        setUser(currentUser);
-        
-        // Clean up previous subscription listener if user changed
-        if (unsubSub) {
-          unsubSub();
-          unsubSub = null;
-        }
 
-        if (currentUser) {
-          // Check admin email
-          const userIsAdmin = ADMIN_EMAILS.includes(currentUser.email?.toLowerCase() || '');
-          setIsAdmin(userIsAdmin);
+        unsubAuth = auth.onAuthStateChanged(async (currentUser) => {
+          if (!isMounted) return;
+          setUser(currentUser);
+          
+          // Clean up previous subscription listener if user changed
+          if (unsubSub) {
+            unsubSub();
+            unsubSub = null;
+          }
 
-          // Lazily import Firestore only when an authenticated session exists
-          import('../lib/firestore').then(async ({ db, doc, getDoc, setDoc, onSnapshot }) => {
-            // Sync or get user profile
-            const userRef = doc(db, 'users', currentUser.uid);
-            try {
-              const userSnap = await getDoc(userRef);
-              if (!userSnap.exists()) {
-                await setDoc(userRef, {
-                  uid: currentUser.uid,
-                  email: currentUser.email || '',
-                  displayName: currentUser.displayName || '',
-                  photoURL: currentUser.photoURL || '',
-                  createdAt: new Date().toISOString(),
-                  updatedAt: new Date().toISOString(),
-                }, { merge: true });
+          if (currentUser) {
+            // Check admin email
+            const userIsAdmin = ADMIN_EMAILS.includes(currentUser.email?.toLowerCase() || '');
+            setIsAdmin(userIsAdmin);
+
+            // Lazily import Firestore only when an authenticated session exists
+            import('../lib/firestore').then(async ({ db, doc, getDoc, setDoc, onSnapshot }) => {
+              // Sync or get user profile
+              const userRef = doc(db, 'users', currentUser.uid);
+              try {
+                const userSnap = await getDoc(userRef);
+                if (!userSnap.exists()) {
+                  await setDoc(userRef, {
+                    uid: currentUser.uid,
+                    email: currentUser.email || '',
+                    displayName: currentUser.displayName || '',
+                    photoURL: currentUser.photoURL || '',
+                    createdAt: new Date().toISOString(),
+                    updatedAt: new Date().toISOString(),
+                  }, { merge: true });
+                }
+              } catch (err) {
+                console.warn('User profile sync:', err);
               }
-            } catch (err) {
-              console.warn('User profile sync:', err);
-            }
 
-            // Listen to subscription updates
-            const subRef = doc(db, 'users', currentUser.uid, 'subscription', 'current');
-            unsubSub = onSnapshot(subRef, (docSnap) => {
-              if (docSnap.exists()) {
-                const data = docSnap.data() as UserSubscription;
-                setSubscription(data);
-              } else {
+              // Listen to subscription updates
+              const subRef = doc(db, 'users', currentUser.uid, 'subscription', 'current');
+              unsubSub = onSnapshot(subRef, (docSnap) => {
+                if (docSnap.exists()) {
+                  const data = docSnap.data() as UserSubscription;
+                  setSubscription(data);
+                } else {
+                  setSubscription(defaultSubscription);
+                }
+                setLoading(false);
+              }, (error) => {
+                console.warn('Subscription listener:', error);
                 setSubscription(defaultSubscription);
-              }
-              setLoading(false);
-            }, (error) => {
-              console.warn('Subscription listener:', error);
-              setSubscription(defaultSubscription);
+                setLoading(false);
+              });
+            }).catch((err) => {
+              console.warn('Firestore dynamic load notice:', err);
               setLoading(false);
             });
-          }).catch((err) => {
-            console.warn('Firestore dynamic load notice:', err);
+          } else {
+            setIsAdmin(false);
+            setSubscription(defaultSubscription);
             setLoading(false);
-          });
-        } else {
-          setIsAdmin(false);
-          setSubscription(defaultSubscription);
-          setLoading(false);
-        }
+          }
+        });
+      }).catch(() => {
+        if (isMounted) setLoading(false);
       });
-    }).catch(() => {
-      if (isMounted) setLoading(false);
-    });
+    };
+
+    // Defer auth iframe boot until after initial render and idle to maximize Mobile FCP & LCP
+    let idleHandle: number | null = null;
+    let timerHandle: ReturnType<typeof setTimeout> | null = null;
+
+    if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
+      idleHandle = (window as any).requestIdleCallback(initAuth, { timeout: 2500 });
+    } else if (typeof window !== 'undefined') {
+      timerHandle = setTimeout(initAuth, 1200);
+    } else {
+      initAuth();
+    }
 
     return () => {
       isMounted = false;
+      if (idleHandle !== null && typeof window !== 'undefined' && 'cancelIdleCallback' in window) {
+        (window as any).cancelIdleCallback(idleHandle);
+      }
+      if (timerHandle !== null) {
+        clearTimeout(timerHandle);
+      }
       if (unsubSub) unsubSub();
       if (unsubAuth) unsubAuth();
     };
