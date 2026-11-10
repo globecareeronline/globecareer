@@ -1,0 +1,106 @@
+{
+  "$schema": "https://agenticresourcediscovery.org/schema/v1/ard.json",
+  "entries": [
+    {
+      "@context": "https://agenticresourcediscovery.org/context/v1",
+      "identifier": "urn:air:globecareer.online:app:resume-builder",
+      "displayName": "GlobeCareer Resume & CV Builder",
+      "type": "application/a2a-agent-card+json",
+      "url": "https://globecareer.online/resume-builder",
+      "description": "Interactive country-tailored resume and CV builder supporting 40+ countries, US Letter and A4 formats, with 100% ATS-friendly vector PDF and DOCX export.",
+      "tags": [
+        "resume",
+        "cv",
+        "career",
+        "ats",
+        "jobs"
+      ],
+      "representativeQueries": [
+        "Build a free ATS resume for United States jobs",
+        "Create a European standard CV with A4 formatting",
+        "Export professional resume to PDF and DOCX"
+      ],
+      "version": "1.0.0",
+      "updatedAt": "2026-11-09T00:00:00Z"
+    },
+    {
+      "@context": "https://agenticresourcediscovery.org/context/v1",
+      "identifier": "urn:air:globecareer.online:tool:ats-checker",
+      "displayName": "GlobeCareer ATS Resume Checker",
+      "type": "application/mcp-server-card+json",
+      "url": "https://globecareer.online/ats-checker",
+      "description": "Real-time client-side ATS resume parsing and scoring tool comparing keyword relevance, section hierarchy, and formatting compliance.",
+      "tags": [
+        "ats",
+        "resume-checker",
+        "recruiting",
+        "parser"
+      ],
+      "representativeQueries": [
+        "Check my resume score against ATS systems",
+        "Analyze CV keywords for software engineering roles"
+      ],
+      "version": "1.0.0",
+      "updatedAt": "2026-11-09T00:00:00Z"
+    },
+    {
+      "@context": "https://agenticresourcediscovery.org/context/v1",
+      "identifier": "urn:air:globecareer.online:catalog:templates",
+      "displayName": "GlobeCareer International Templates",
+      "type": "application/json",
+      "url": "https://globecareer.online/templates",
+      "description": "Curated library of single-column no-photo ATS templates and European photo CV formats tailored for 40+ countries.",
+      "tags": [
+        "templates",
+        "cv-templates",
+        "resume-templates"
+      ],
+      "representativeQueries": [
+        "Find free ATS-friendly resume templates",
+        "Browse Germany photo CV formats and layouts"
+      ],
+      "version": "1.0.0",
+      "updatedAt": "2026-11-09T00:00:00Z"
+    },
+    {
+      "@context": "https://agenticresourcediscovery.org/context/v1",
+      "identifier": "urn:air:globecareer.online:directory:jobs",
+      "displayName": "GlobeCareer Verified Global Jobs",
+      "type": "application/json",
+      "url": "https://globecareer.online/jobs",
+      "description": "Directory of verified global jobs and cross-border career listings with direct employer application links.",
+      "tags": [
+        "jobs",
+        "careers",
+        "remote-work",
+        "international"
+      ],
+      "representativeQueries": [
+        "Search verified jobs in Europe and North America",
+        "Find visa-sponsored international job vacancies"
+      ],
+      "version": "1.0.0",
+      "updatedAt": "2026-11-09T00:00:00Z"
+    },
+    {
+      "@context": "https://agenticresourcediscovery.org/context/v1",
+      "identifier": "urn:air:globecareer.online:guides:countries",
+      "displayName": "GlobeCareer 40+ Country Career Guides",
+      "type": "application/json",
+      "url": "https://globecareer.online/countries",
+      "description": "Comprehensive hiring standards, photo rules, work permit and visa requirements across 40+ countries.",
+      "tags": [
+        "country-guides",
+        "work-visas",
+        "hiring-norms",
+        "relocation"
+      ],
+      "representativeQueries": [
+        "What are the CV photo rules in Japan and Germany?",
+        "How do salary expectations work on Swiss resumes?"
+      ],
+      "version": "1.0.0",
+      "updatedAt": "2026-11-09T00:00:00Z"
+    }
+  ]
+}

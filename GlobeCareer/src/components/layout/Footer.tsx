@@ -120,7 +120,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   e.preventDefault();
                   onNavigate('resume-word-counter');
                 }}
-                className="text-neutral-600 dark:text-neutral-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium text-emerald-600/90 dark:text-emerald-400/90"
+                className="text-neutral-600 dark:text-neutral-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
               >Resume Word Counter</a>
               <a
                 href="/resume-bullet-generator"
@@ -128,7 +128,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   e.preventDefault();
                   onNavigate('resume-bullet-generator');
                 }}
-                className="text-neutral-600 dark:text-neutral-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium text-amber-600/90 dark:text-amber-400/90"
+                className="text-neutral-600 dark:text-neutral-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
               >Resume Bullet Point Generator</a>
             </div>
           </div>

@@ -216,7 +216,7 @@ export const Header: React.FC<HeaderProps> = ({
                   >
                     <BookmarkPlus className="w-4 h-4 text-purple-600 shrink-0 mt-0.5" />
                     <div>
-                      <div className="font-bold text-neutral-900 dark:text-neutral-100">{t('nav.resumeTemplates', 'Resume Templates')}</div>
+                      <div className="font-bold text-neutral-900 dark:text-neutral-100">{t('nav.templates', 'Templates')}</div>
                       <div className="text-[11px] text-neutral-500">Explore 40+ countries' resume formats and professional templates tailored to local hiring standards.</div>
                     </div>
                   </a>
@@ -997,7 +997,7 @@ export const Header: React.FC<HeaderProps> = ({
               className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl hover:bg-neutral-100 dark:hover:bg-neutral-800"
             >
               <BookmarkPlus className="w-4 h-4 text-purple-600" />
-              <span>{t('nav.resumeTemplates', 'Resume Templates')}</span>
+              <span>{t('nav.templates', 'Templates')}</span>
             </a>
             <a
               href="/ats-checker"

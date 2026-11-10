@@ -72,7 +72,7 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
         type="button"
         onClick={() => setIsOpen(!isOpen)}
         className={buttonClasses}
-        aria-label="Select website language"
+        aria-label={`${languageInfo.nativeName} - Select website language`}
         aria-expanded={isOpen}
       >
         <span className="text-base leading-none shrink-0" aria-hidden="true">

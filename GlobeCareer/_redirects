@@ -1,4 +1,5 @@
 /.well-known/security.txt  /.well-known/security.txt  200
+/.well-known/ard.json      /.well-known/ard.json      200
 /security.txt              /security.txt              200
 /robots.txt                /robots.txt                200
 /sitemap.xml               /sitemap.xml               200

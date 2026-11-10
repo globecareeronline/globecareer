@@ -323,7 +323,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             {/* Category A: No-Photo ATS Formats */}
             <div className="p-6 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-950 space-y-4">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-mono font-bold uppercase tracking-wider text-emerald-600">
+                <span className="text-xs font-mono font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400">
                   Category A · 100% ATS Parsing
                 </span>
                 <span className="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">
@@ -354,7 +354,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             {/* Category B: Photo CV Formats */}
             <div className="p-6 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-950 space-y-4">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-mono font-bold uppercase tracking-wider text-blue-600">
+                <span className="text-xs font-mono font-bold uppercase tracking-wider text-blue-700 dark:text-blue-400">
                   Category B · Continental European & Global
                 </span>
                 <span className="text-xs font-semibold px-2 py-0.5 rounded bg-blue-100 text-blue-800">
@@ -400,9 +400,9 @@ export const HomePage: React.FC<HomePageProps> = ({
               Pair your CV with a structured, role-targeted cover letter matching your resume's typography and palette. Pre-formatted with country-specific salutations, formal addresses, and professional closings.
             </p>
             <div className="flex flex-wrap gap-4 pt-1 text-xs text-neutral-700 dark:text-neutral-300 font-medium">
-              <span className="flex items-center gap-1.5"><Check className="w-4 h-4 text-emerald-600" /> Formal & Modern styles</span>
-              <span className="flex items-center gap-1.5"><Check className="w-4 h-4 text-emerald-600" /> Instant live editor</span>
-              <span className="flex items-center gap-1.5"><Check className="w-4 h-4 text-emerald-600" /> PDF & TXT downloads</span>
+              <span className="flex items-center gap-1.5"><Check className="w-4 h-4 text-emerald-700 dark:text-emerald-400" /> Formal & Modern styles</span>
+              <span className="flex items-center gap-1.5"><Check className="w-4 h-4 text-emerald-700 dark:text-emerald-400" /> Instant live editor</span>
+              <span className="flex items-center gap-1.5"><Check className="w-4 h-4 text-emerald-700 dark:text-emerald-400" /> PDF & TXT downloads</span>
             </div>
             <div className="pt-2">
               <button
@@ -426,7 +426,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             <div className="text-[10px] italic text-neutral-600 dark:text-neutral-400">
               "Dear Hiring Team, I am writing to express my strong enthusiasm for the Senior Engineer opening in Berlin..."
             </div>
-            <div className="pt-2 flex justify-between text-[10px] text-emerald-600 font-semibold">
+            <div className="pt-2 flex justify-between text-[10px] text-emerald-700 dark:text-emerald-400 font-semibold">
               <span>✓ Country Salutation Verified</span>
               <span>A4 / Letter</span>
             </div>
@@ -540,7 +540,7 @@ export const HomePage: React.FC<HomePageProps> = ({
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="p-8 sm:p-10 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-3xl shadow-sm flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="space-y-3 max-w-xl">
-            <span className="text-xs font-mono font-bold uppercase tracking-wider text-emerald-600">
+            <span className="text-xs font-mono font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400">
               Cross-Border Career Management
             </span>
             <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
@@ -564,23 +564,23 @@ export const HomePage: React.FC<HomePageProps> = ({
 
           <div className="w-full md:w-80 grid grid-cols-2 gap-3 text-xs">
             <div className="p-4 bg-neutral-50 dark:bg-neutral-950 rounded-2xl border border-neutral-200 dark:border-neutral-800 space-y-1">
-              <div className="text-[10px] font-bold uppercase tracking-wider text-neutral-600 dark:text-neutral-400">Saved</div>
+              <div className="text-[10px] font-bold uppercase tracking-wider text-neutral-700 dark:text-neutral-300">Saved</div>
               <div className="text-lg font-black font-mono">14</div>
               <div className="text-[11px] text-neutral-600 dark:text-neutral-400">Target roles in review</div>
             </div>
             <div className="p-4 bg-neutral-50 dark:bg-neutral-950 rounded-2xl border border-neutral-200 dark:border-neutral-800 space-y-1">
-              <div className="text-[10px] font-bold uppercase tracking-wider text-blue-600">Applied</div>
-              <div className="text-lg font-black font-mono text-blue-600">8</div>
+              <div className="text-[10px] font-bold uppercase tracking-wider text-blue-700 dark:text-blue-400">Applied</div>
+              <div className="text-lg font-black font-mono text-blue-700 dark:text-blue-400">8</div>
               <div className="text-[11px] text-neutral-600 dark:text-neutral-400">Official submissions</div>
             </div>
             <div className="p-4 bg-neutral-50 dark:bg-neutral-950 rounded-2xl border border-neutral-200 dark:border-neutral-800 space-y-1">
-              <div className="text-[10px] font-bold uppercase tracking-wider text-purple-600">Interviews</div>
-              <div className="text-lg font-black font-mono text-purple-600">3</div>
+              <div className="text-[10px] font-bold uppercase tracking-wider text-purple-700 dark:text-purple-400">Interviews</div>
+              <div className="text-lg font-black font-mono text-purple-700 dark:text-purple-400">3</div>
               <div className="text-[11px] text-neutral-600 dark:text-neutral-400">Active screening calls</div>
             </div>
             <div className="p-4 bg-neutral-50 dark:bg-neutral-950 rounded-2xl border border-neutral-200 dark:border-neutral-800 space-y-1">
-              <div className="text-[10px] font-bold uppercase tracking-wider text-emerald-600">Offers</div>
-              <div className="text-lg font-black font-mono text-emerald-600">1</div>
+              <div className="text-[10px] font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400">Offers</div>
+              <div className="text-lg font-black font-mono text-emerald-700 dark:text-emerald-400">1</div>
               <div className="text-[11px] text-neutral-600 dark:text-neutral-400">Formal contracts</div>
             </div>
           </div>
@@ -590,7 +590,7 @@ export const HomePage: React.FC<HomePageProps> = ({
       {/* 8. COMPLETE FREE CAREER TOOLS SUITE */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
         <div className="text-center max-w-3xl mx-auto space-y-3">
-          <div className="flex items-center justify-center gap-1.5 text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
+          <div className="flex items-center justify-center gap-1.5 text-xs font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400">
             <Sparkles className="w-3.5 h-3.5" />
             <span>100% Free Career Platform · Zero Paywalls</span>
           </div>
@@ -607,11 +607,11 @@ export const HomePage: React.FC<HomePageProps> = ({
           {/* 1. Resume Builder */}
           <div className="bg-white dark:bg-neutral-900 rounded-3xl p-6 sm:p-7 border border-neutral-200 dark:border-neutral-800 shadow-2xs hover:shadow-md transition-all flex flex-col justify-between space-y-6">
             <div className="space-y-4">
-              <div className="w-12 h-12 rounded-2xl bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center">
+              <div className="w-12 h-12 rounded-2xl bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-400 flex items-center justify-center">
                 <FileText className="w-6 h-6" />
               </div>
               <div className="space-y-1">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-blue-600">Core Document</span>
+                <span className="text-[11px] font-bold uppercase tracking-wider text-blue-700 dark:text-blue-400">Core Document</span>
                 <h3 className="text-xl font-bold">Resume Builder</h3>
                 <p className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
                   Format compliant resumes for 40 countries with photo regulation enforcement, live multi-template selection, and unrestricted vector PDF and DOCX downloads.
@@ -619,15 +619,15 @@ export const HomePage: React.FC<HomePageProps> = ({
               </div>
               <ul className="space-y-2 pt-3 border-t border-neutral-100 dark:border-neutral-800 text-xs text-neutral-600 dark:text-neutral-400">
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-700 dark:text-emerald-400 shrink-0" />
                   <span>40 Country legal guidelines built in</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-700 dark:text-emerald-400 shrink-0" />
                   <span>Templates accessible inside builder</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-700 dark:text-emerald-400 shrink-0" />
                   <span>Instant PDF & DOCX export</span>
                 </li>
               </ul>
@@ -645,11 +645,11 @@ export const HomePage: React.FC<HomePageProps> = ({
           {/* 2. Cover Letter Builder */}
           <div className="bg-white dark:bg-neutral-900 rounded-3xl p-6 sm:p-7 border border-neutral-200 dark:border-neutral-800 shadow-2xs hover:shadow-md transition-all flex flex-col justify-between space-y-6">
             <div className="space-y-4">
-              <div className="w-12 h-12 rounded-2xl bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 flex items-center justify-center">
+              <div className="w-12 h-12 rounded-2xl bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-400 flex items-center justify-center">
                 <Send className="w-6 h-6" />
               </div>
               <div className="space-y-1">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-indigo-600">Application Letter</span>
+                <span className="text-[11px] font-bold uppercase tracking-wider text-indigo-700 dark:text-indigo-400">Application Letter</span>
                 <h3 className="text-xl font-bold">Cover Letter Builder</h3>
                 <p className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
                   Generate tailored, country-specific cover letters for target job titles and company cultures. Includes built-in executive and modern templates.
@@ -657,15 +657,15 @@ export const HomePage: React.FC<HomePageProps> = ({
               </div>
               <ul className="space-y-2 pt-3 border-t border-neutral-100 dark:border-neutral-800 text-xs text-neutral-600 dark:text-neutral-400">
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-700 dark:text-emerald-400 shrink-0" />
                   <span>Role & company customization</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-700 dark:text-emerald-400 shrink-0" />
                   <span>Built-in professional templates</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-700 dark:text-emerald-400 shrink-0" />
                   <span>One-click clipboard copy & export</span>
                 </li>
               </ul>
@@ -683,11 +683,11 @@ export const HomePage: React.FC<HomePageProps> = ({
           {/* 3. Recommendation Letter Builder */}
           <div className="bg-white dark:bg-neutral-900 rounded-3xl p-6 sm:p-7 border border-neutral-200 dark:border-neutral-800 shadow-2xs hover:shadow-md transition-all flex flex-col justify-between space-y-6">
             <div className="space-y-4">
-              <div className="w-12 h-12 rounded-2xl bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 flex items-center justify-center">
+              <div className="w-12 h-12 rounded-2xl bg-amber-50 dark:bg-amber-950/60 text-amber-800 dark:text-amber-400 flex items-center justify-center">
                 <Award className="w-6 h-6" />
               </div>
               <div className="space-y-1">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-amber-600">Formal Endorsement</span>
+                <span className="text-[11px] font-bold uppercase tracking-wider text-amber-800 dark:text-amber-400">Formal Endorsement</span>
                 <h3 className="text-xl font-bold">Recommendation Letter Builder</h3>
                 <p className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
                   Draft authoritative reference letters for employment, graduate admissions, scholarships, and international visa applications with structured tone controls.
@@ -695,15 +695,15 @@ export const HomePage: React.FC<HomePageProps> = ({
               </div>
               <ul className="space-y-2 pt-3 border-t border-neutral-100 dark:border-neutral-800 text-xs text-neutral-600 dark:text-neutral-400">
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-700 dark:text-emerald-400 shrink-0" />
                   <span>5 Formal recommendation types</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-700 dark:text-emerald-400 shrink-0" />
                   <span>Customizable strengths & tone</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-700 dark:text-emerald-400 shrink-0" />
                   <span>Editable draft, print & download</span>
                 </li>
               </ul>
@@ -721,11 +721,11 @@ export const HomePage: React.FC<HomePageProps> = ({
           {/* 4. Job Application Email Generator */}
           <div className="bg-white dark:bg-neutral-900 rounded-3xl p-6 sm:p-7 border border-neutral-200 dark:border-neutral-800 shadow-2xs hover:shadow-md transition-all flex flex-col justify-between space-y-6">
             <div className="space-y-4">
-              <div className="w-12 h-12 rounded-2xl bg-rose-50 dark:bg-rose-950/60 text-rose-600 dark:text-rose-400 flex items-center justify-center">
+              <div className="w-12 h-12 rounded-2xl bg-rose-50 dark:bg-rose-950/60 text-rose-700 dark:text-rose-400 flex items-center justify-center">
                 <Mail className="w-6 h-6" />
               </div>
               <div className="space-y-1">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-rose-600">Direct Outreach</span>
+                <span className="text-[11px] font-bold uppercase tracking-wider text-rose-700 dark:text-rose-400">Direct Outreach</span>
                 <h3 className="text-xl font-bold">Job Application Email Generator</h3>
                 <p className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
                   Compose concise outreach emails for direct applications, recruiter messaging, internal employee referrals, post-interview follow-ups, and networking.
@@ -733,15 +733,15 @@ export const HomePage: React.FC<HomePageProps> = ({
               </div>
               <ul className="space-y-2 pt-3 border-t border-neutral-100 dark:border-neutral-800 text-xs text-neutral-600 dark:text-neutral-400">
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-700 dark:text-emerald-400 shrink-0" />
                   <span>5 Proven outreach formats</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-700 dark:text-emerald-400 shrink-0" />
                   <span>Auto-generated subject lines</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-700 dark:text-emerald-400 shrink-0" />
                   <span>One-click copy to mail client</span>
                 </li>
               </ul>
@@ -759,11 +759,11 @@ export const HomePage: React.FC<HomePageProps> = ({
           {/* 5. Interview Preparation */}
           <div className="bg-white dark:bg-neutral-900 rounded-3xl p-6 sm:p-7 border border-neutral-200 dark:border-neutral-800 shadow-2xs hover:shadow-md transition-all flex flex-col justify-between space-y-6">
             <div className="space-y-4">
-              <div className="w-12 h-12 rounded-2xl bg-purple-50 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400 flex items-center justify-center">
+              <div className="w-12 h-12 rounded-2xl bg-purple-50 dark:bg-purple-950/60 text-purple-700 dark:text-purple-400 flex items-center justify-center">
                 <MessageSquare className="w-6 h-6" />
               </div>
               <div className="space-y-1">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-purple-600">Interview Mastery</span>
+                <span className="text-[11px] font-bold uppercase tracking-wider text-purple-700 dark:text-purple-400">Interview Mastery</span>
                 <h3 className="text-xl font-bold">Interview Preparation</h3>
                 <p className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
                   Prepare for behavioral and international hiring rounds with STAR method frameworks, country interview etiquette, and interactive mock practice with live rubric scoring.
@@ -771,15 +771,15 @@ export const HomePage: React.FC<HomePageProps> = ({
               </div>
               <ul className="space-y-2 pt-3 border-t border-neutral-100 dark:border-neutral-800 text-xs text-neutral-600 dark:text-neutral-400">
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-700 dark:text-emerald-400 shrink-0" />
                   <span>STAR response builder with auto-save</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-700 dark:text-emerald-400 shrink-0" />
                   <span>Country hiring etiquette guides</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-700 dark:text-emerald-400 shrink-0" />
                   <span>Interactive mock interview simulator</span>
                 </li>
               </ul>
@@ -797,11 +797,11 @@ export const HomePage: React.FC<HomePageProps> = ({
           {/* 6. ATS Checker */}
           <div className="bg-white dark:bg-neutral-900 rounded-3xl p-6 sm:p-7 border border-neutral-200 dark:border-neutral-800 shadow-2xs hover:shadow-md transition-all flex flex-col justify-between space-y-6">
             <div className="space-y-4">
-              <div className="w-12 h-12 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
+              <div className="w-12 h-12 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 flex items-center justify-center">
                 <ScanLine className="w-6 h-6" />
               </div>
               <div className="space-y-1">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-emerald-600">Screening Intelligence</span>
+                <span className="text-[11px] font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400">Screening Intelligence</span>
                 <h3 className="text-xl font-bold">ATS Resume Checker</h3>
                 <p className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
                   Scan your resume against any target job description. Uncover missing technical keywords, compute transparent match scores, and verify parsing layout safety.
@@ -809,15 +809,15 @@ export const HomePage: React.FC<HomePageProps> = ({
               </div>
               <ul className="space-y-2 pt-3 border-t border-neutral-100 dark:border-neutral-800 text-xs text-neutral-600 dark:text-neutral-400">
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-700 dark:text-emerald-400 shrink-0" />
                   <span>Instant resume vs JD keyword scan</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-700 dark:text-emerald-400 shrink-0" />
                   <span>Identifies missing critical skills</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-700 dark:text-emerald-400 shrink-0" />
                   <span>Layout & section safety diagnostics</span>
                 </li>
               </ul>
@@ -835,11 +835,11 @@ export const HomePage: React.FC<HomePageProps> = ({
           {/* 7. Professional Bio Generator */}
           <div className="bg-white dark:bg-neutral-900 rounded-3xl p-6 sm:p-7 border border-neutral-200 dark:border-neutral-800 shadow-2xs hover:shadow-md transition-all flex flex-col justify-between space-y-6">
             <div className="space-y-4">
-              <div className="w-12 h-12 rounded-2xl bg-cyan-50 dark:bg-cyan-950/60 text-cyan-600 dark:text-cyan-400 flex items-center justify-center">
+              <div className="w-12 h-12 rounded-2xl bg-cyan-50 dark:bg-cyan-950/60 text-cyan-700 dark:text-cyan-400 flex items-center justify-center">
                 <UserCheck className="w-6 h-6" />
               </div>
               <div className="space-y-1">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-cyan-600">Personal Brand</span>
+                <span className="text-[11px] font-bold uppercase tracking-wider text-cyan-700 dark:text-cyan-400">Personal Brand</span>
                 <h3 className="text-xl font-bold">Professional Bio Generator</h3>
                 <p className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
                   Craft executive summaries, conference speaker blurbs, and LinkedIn "About" sections tailored to 1st or 3rd person and multiple length tiers.
@@ -847,15 +847,15 @@ export const HomePage: React.FC<HomePageProps> = ({
               </div>
               <ul className="space-y-2 pt-3 border-t border-neutral-100 dark:border-neutral-800 text-xs text-neutral-600 dark:text-neutral-400">
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-700 dark:text-emerald-400 shrink-0" />
                   <span>Executive, modern, & creative styles</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-700 dark:text-emerald-400 shrink-0" />
                   <span>Short (50w), Medium (120w), & Long (200w)</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-700 dark:text-emerald-400 shrink-0" />
                   <span>Instant 1st/3rd person POV toggle</span>
                 </li>
               </ul>
@@ -873,11 +873,11 @@ export const HomePage: React.FC<HomePageProps> = ({
           {/* 8. Resume Summary & Objective Generator */}
           <div className="bg-white dark:bg-neutral-900 rounded-3xl p-6 sm:p-7 border border-neutral-200 dark:border-neutral-800 shadow-2xs hover:shadow-md transition-all flex flex-col justify-between space-y-6">
             <div className="space-y-4">
-              <div className="w-12 h-12 rounded-2xl bg-teal-50 dark:bg-teal-950/60 text-teal-600 dark:text-teal-400 flex items-center justify-center">
+              <div className="w-12 h-12 rounded-2xl bg-teal-50 dark:bg-teal-950/60 text-teal-700 dark:text-teal-400 flex items-center justify-center">
                 <AlignLeft className="w-6 h-6" />
               </div>
               <div className="space-y-1">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-teal-600">Resume Header Hook</span>
+                <span className="text-[11px] font-bold uppercase tracking-wider text-teal-700 dark:text-teal-400">Resume Header Hook</span>
                 <h3 className="text-xl font-bold">Summary & Objective Generator</h3>
                 <p className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
                   Generate high-impact professional summaries, career objectives, and LinkedIn headlines with live ATS keyword density and direct resume sync.
@@ -885,15 +885,15 @@ export const HomePage: React.FC<HomePageProps> = ({
               </div>
               <ul className="space-y-2 pt-3 border-t border-neutral-100 dark:border-neutral-800 text-xs text-neutral-600 dark:text-neutral-400">
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-700 dark:text-emerald-400 shrink-0" />
                   <span>Summaries, objectives, & headlines</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-700 dark:text-emerald-400 shrink-0" />
                   <span>Live ATS score & keyword highlighting</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-700 dark:text-emerald-400 shrink-0" />
                   <span>1-click apply to active resume builder</span>
                 </li>
               </ul>
@@ -911,11 +911,11 @@ export const HomePage: React.FC<HomePageProps> = ({
           {/* 9. Resignation Letter Generator */}
           <div className="bg-white dark:bg-neutral-900 rounded-3xl p-6 sm:p-7 border border-neutral-200 dark:border-neutral-800 shadow-2xs hover:shadow-md transition-all flex flex-col justify-between space-y-6">
             <div className="space-y-4">
-              <div className="w-12 h-12 rounded-2xl bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 flex items-center justify-center">
+              <div className="w-12 h-12 rounded-2xl bg-amber-50 dark:bg-amber-950/60 text-amber-800 dark:text-amber-400 flex items-center justify-center">
                 <LogOut className="w-6 h-6" />
               </div>
               <div className="space-y-1">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-amber-600">Career Transition</span>
+                <span className="text-[11px] font-bold uppercase tracking-wider text-amber-800 dark:text-amber-400">Career Transition</span>
                 <h3 className="text-xl font-bold">Resignation Letter Generator</h3>
                 <p className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
                   Produce legally sound, respectful formal resignation notices for standard 2 weeks, short notice, immediate departure, career change, or relocation.
@@ -923,15 +923,15 @@ export const HomePage: React.FC<HomePageProps> = ({
               </div>
               <ul className="space-y-2 pt-3 border-t border-neutral-100 dark:border-neutral-800 text-xs text-neutral-600 dark:text-neutral-400">
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-700 dark:text-emerald-400 shrink-0" />
                   <span>6 Separation scenarios & transition offers</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-700 dark:text-emerald-400 shrink-0" />
                   <span>Warm, neutral, & formal diplomatic tones</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-700 dark:text-emerald-400 shrink-0" />
                   <span>Print-ready letter format & instant copy</span>
                 </li>
               </ul>
@@ -949,11 +949,11 @@ export const HomePage: React.FC<HomePageProps> = ({
           {/* 10. Resume Word Counter & Length Analyzer */}
           <div className="bg-white dark:bg-neutral-900 rounded-3xl p-6 sm:p-7 border border-neutral-200 dark:border-neutral-800 shadow-2xs hover:shadow-md transition-all flex flex-col justify-between space-y-6">
             <div className="space-y-4">
-              <div className="w-12 h-12 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
+              <div className="w-12 h-12 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 flex items-center justify-center">
                 <FileText className="w-6 h-6" />
               </div>
               <div className="space-y-1">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-emerald-600">Resume Metrics</span>
+                <span className="text-[11px] font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400">Resume Metrics</span>
                 <h3 className="text-xl font-bold">Resume Word Counter</h3>
                 <p className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
                   Real-time word count, character count, recruiter reading time (7.4s benchmark), and 1-page vs 2-page calibration with passive cliché warnings.
@@ -961,15 +961,15 @@ export const HomePage: React.FC<HomePageProps> = ({
               </div>
               <ul className="space-y-2 pt-3 border-t border-neutral-100 dark:border-neutral-800 text-xs text-neutral-600 dark:text-neutral-400">
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-700 dark:text-emerald-400 shrink-0" />
                   <span>Real-time word, character & reading time</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-700 dark:text-emerald-400 shrink-0" />
                   <span>1-Page vs 2-Page length fit indicator</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-700 dark:text-emerald-400 shrink-0" />
                   <span>Power action verb density & cliché scanner</span>
                 </li>
               </ul>
@@ -987,11 +987,11 @@ export const HomePage: React.FC<HomePageProps> = ({
           {/* 11. Resume Bullet Point Generator */}
           <div className="bg-white dark:bg-neutral-900 rounded-3xl p-6 sm:p-7 border border-neutral-200 dark:border-neutral-800 shadow-2xs hover:shadow-md transition-all flex flex-col justify-between space-y-6">
             <div className="space-y-4">
-              <div className="w-12 h-12 rounded-2xl bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 flex items-center justify-center">
+              <div className="w-12 h-12 rounded-2xl bg-amber-50 dark:bg-amber-950/60 text-amber-800 dark:text-amber-400 flex items-center justify-center">
                 <Target className="w-6 h-6" />
               </div>
               <div className="space-y-1">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-amber-600">Impact Engine</span>
+                <span className="text-[11px] font-bold uppercase tracking-wider text-amber-800 dark:text-amber-400">Impact Engine</span>
                 <h3 className="text-xl font-bold">Bullet Point Generator</h3>
                 <p className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
                   Turn passive job duties into quantifiable achievement bullets using the Google X-Y-Z formula ("Accomplished [X] as measured by [Y], by doing [Z]").
@@ -999,15 +999,15 @@ export const HomePage: React.FC<HomePageProps> = ({
               </div>
               <ul className="space-y-2 pt-3 border-t border-neutral-100 dark:border-neutral-800 text-xs text-neutral-600 dark:text-neutral-400">
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-700 dark:text-emerald-400 shrink-0" />
                   <span>Google X-Y-Z & PAR formula engines</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-700 dark:text-emerald-400 shrink-0" />
                   <span>8 Industry presets (Engineering, Sales, etc.)</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-700 dark:text-emerald-400 shrink-0" />
                   <span>Instant 1-click copy to resume builder</span>
                 </li>
               </ul>
@@ -1053,16 +1053,16 @@ export const HomePage: React.FC<HomePageProps> = ({
                 <span className="px-2 py-0.5 text-[10px] font-bold rounded-full bg-blue-50 dark:bg-blue-950 text-blue-700 dark:text-blue-300">
                   Core Format
                 </span>
-                <Layers className="w-4 h-4 text-blue-600" />
+                <Layers className="w-4 h-4 text-blue-700 dark:text-blue-400" />
               </div>
-              <h3 className="font-bold text-sm text-neutral-900 dark:text-neutral-100 group-hover:text-blue-600 transition-colors">
+              <h3 className="font-bold text-sm text-neutral-900 dark:text-neutral-100 group-hover:text-blue-700 transition-colors">
                 Reverse Chronological Resume Format
               </h3>
               <p className="text-[11px] text-neutral-600 dark:text-neutral-400 leading-relaxed">
                 The gold standard resume structure preferred by 95% of recruiters, featuring section breakdowns and copyable templates.
               </p>
             </div>
-            <span className="text-xs font-bold text-blue-600 dark:text-blue-400 flex items-center gap-1 pt-2 group-hover:translate-x-0.5 transition-transform">
+            <span className="text-xs font-bold text-blue-700 dark:text-blue-400 flex items-center gap-1 pt-2 group-hover:translate-x-0.5 transition-transform">
               Read Guide &amp; Template <ArrowRight className="w-3.5 h-3.5" />
             </span>
           </a>
@@ -1081,16 +1081,16 @@ export const HomePage: React.FC<HomePageProps> = ({
                 <span className="px-2 py-0.5 text-[10px] font-bold rounded-full bg-indigo-50 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300">
                   EU Standard
                 </span>
-                <Globe className="w-4 h-4 text-indigo-600" />
+                <Globe className="w-4 h-4 text-indigo-700 dark:text-indigo-400" />
               </div>
-              <h3 className="font-bold text-sm text-neutral-900 dark:text-neutral-100 group-hover:text-indigo-600 transition-colors">
+              <h3 className="font-bold text-sm text-neutral-900 dark:text-neutral-100 group-hover:text-indigo-700 transition-colors">
                 European CV Format (Europass Style)
               </h3>
               <p className="text-[11px] text-neutral-600 dark:text-neutral-400 leading-relaxed">
                 A4 paper conventions, CEFR A1-C2 multilingual language matrices, and European hiring norms across 27 EU nations.
               </p>
             </div>
-            <span className="text-xs font-bold text-indigo-600 dark:text-indigo-400 flex items-center gap-1 pt-2 group-hover:translate-x-0.5 transition-transform">
+            <span className="text-xs font-bold text-indigo-700 dark:text-indigo-400 flex items-center gap-1 pt-2 group-hover:translate-x-0.5 transition-transform">
               Explore EU Format <ArrowRight className="w-3.5 h-3.5" />
             </span>
           </a>
@@ -1109,16 +1109,16 @@ export const HomePage: React.FC<HomePageProps> = ({
                 <span className="px-2 py-0.5 text-[10px] font-bold rounded-full bg-teal-50 dark:bg-teal-950 text-teal-700 dark:text-teal-300">
                   Regional Comparison
                 </span>
-                <BookOpen className="w-4 h-4 text-teal-600" />
+                <BookOpen className="w-4 h-4 text-teal-700 dark:text-teal-400" />
               </div>
-              <h3 className="font-bold text-sm text-neutral-900 dark:text-neutral-100 group-hover:text-teal-600 transition-colors">
+              <h3 className="font-bold text-sm text-neutral-900 dark:text-neutral-100 group-hover:text-teal-700 transition-colors">
                 CV vs. Resume Differences
               </h3>
               <p className="text-[11px] text-neutral-600 dark:text-neutral-400 leading-relaxed">
                 Understand 1-page US standards vs. 2-page UK/EU CV norms, photo legislation, and terminology differences.
               </p>
             </div>
-            <span className="text-xs font-bold text-teal-600 dark:text-teal-400 flex items-center gap-1 pt-2 group-hover:translate-x-0.5 transition-transform">
+            <span className="text-xs font-bold text-teal-700 dark:text-teal-400 flex items-center gap-1 pt-2 group-hover:translate-x-0.5 transition-transform">
               Compare Differences <ArrowRight className="w-3.5 h-3.5" />
             </span>
           </a>
@@ -1137,16 +1137,16 @@ export const HomePage: React.FC<HomePageProps> = ({
                 <span className="px-2 py-0.5 text-[10px] font-bold rounded-full bg-amber-50 dark:bg-amber-950 text-amber-700 dark:text-amber-300">
                   Keywords
                 </span>
-                <Sparkles className="w-4 h-4 text-amber-500" />
+                <Sparkles className="w-4 h-4 text-amber-600" />
               </div>
-              <h3 className="font-bold text-sm text-neutral-900 dark:text-neutral-100 group-hover:text-amber-600 transition-colors">
+              <h3 className="font-bold text-sm text-neutral-900 dark:text-neutral-100 group-hover:text-amber-700 transition-colors">
                 Top Skills for Resume Catalog
               </h3>
               <p className="text-[11px] text-neutral-600 dark:text-neutral-400 leading-relaxed">
                 Vetted hard and soft skills categorized by domain (Software, Data, Finance, Healthcare) for optimal ATS keyword matching.
               </p>
             </div>
-            <span className="text-xs font-bold text-amber-600 dark:text-amber-400 flex items-center gap-1 pt-2 group-hover:translate-x-0.5 transition-transform">
+            <span className="text-xs font-bold text-amber-800 dark:text-amber-400 flex items-center gap-1 pt-2 group-hover:translate-x-0.5 transition-transform">
               Browse Skills Catalog <ArrowRight className="w-3.5 h-3.5" />
             </span>
           </a>
@@ -1165,16 +1165,16 @@ export const HomePage: React.FC<HomePageProps> = ({
                 <span className="px-2 py-0.5 text-[10px] font-bold rounded-full bg-emerald-50 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300">
                   Modern Etiquette
                 </span>
-                <Users className="w-4 h-4 text-emerald-600" />
+                <Users className="w-4 h-4 text-emerald-700 dark:text-emerald-400" />
               </div>
-              <h3 className="font-bold text-sm text-neutral-900 dark:text-neutral-100 group-hover:text-emerald-600 transition-colors">
+              <h3 className="font-bold text-sm text-neutral-900 dark:text-neutral-100 group-hover:text-emerald-700 transition-colors">
                 References on a Resume
               </h3>
               <p className="text-[11px] text-neutral-600 dark:text-neutral-400 leading-relaxed">
                 Why references are omitted from resumes, how to build a separate Reference Sheet, and email request templates.
               </p>
             </div>
-            <span className="text-xs font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1 pt-2 group-hover:translate-x-0.5 transition-transform">
+            <span className="text-xs font-bold text-emerald-700 dark:text-emerald-400 flex items-center gap-1 pt-2 group-hover:translate-x-0.5 transition-transform">
               Reference Sheet Guide <ArrowRight className="w-3.5 h-3.5" />
             </span>
           </a>
@@ -1193,16 +1193,16 @@ export const HomePage: React.FC<HomePageProps> = ({
                 <span className="px-2 py-0.5 text-[10px] font-bold rounded-full bg-purple-50 dark:bg-purple-950 text-purple-700 dark:text-purple-300">
                   Parsing Rules
                 </span>
-                <ShieldCheck className="w-4 h-4 text-purple-600" />
+                <ShieldCheck className="w-4 h-4 text-purple-700 dark:text-purple-400" />
               </div>
-              <h3 className="font-bold text-sm text-neutral-900 dark:text-neutral-100 group-hover:text-purple-600 transition-colors">
+              <h3 className="font-bold text-sm text-neutral-900 dark:text-neutral-100 group-hover:text-purple-700 transition-colors">
                 Definitive Guide to ATS
               </h3>
               <p className="text-[11px] text-neutral-600 dark:text-neutral-400 leading-relaxed">
                 Technical breakdown of how Workday, Taleo, and Greenhouse parse text and the 7 fatal formatting traps to avoid.
               </p>
             </div>
-            <span className="text-xs font-bold text-purple-600 dark:text-purple-400 flex items-center gap-1 pt-2 group-hover:translate-x-0.5 transition-transform">
+            <span className="text-xs font-bold text-purple-700 dark:text-purple-400 flex items-center gap-1 pt-2 group-hover:translate-x-0.5 transition-transform">
               Read ATS Guide <ArrowRight className="w-3.5 h-3.5" />
             </span>
           </a>
@@ -1221,16 +1221,16 @@ export const HomePage: React.FC<HomePageProps> = ({
                 <span className="px-2 py-0.5 text-[10px] font-bold rounded-full bg-rose-50 dark:bg-rose-950 text-rose-700 dark:text-rose-300">
                   Formulas
                 </span>
-                <Award className="w-4 h-4 text-rose-600" />
+                <Award className="w-4 h-4 text-rose-700 dark:text-rose-400" />
               </div>
-              <h3 className="font-bold text-sm text-neutral-900 dark:text-neutral-100 group-hover:text-rose-600 transition-colors">
+              <h3 className="font-bold text-sm text-neutral-900 dark:text-neutral-100 group-hover:text-rose-700 transition-colors">
                 International Resume Writing Guide
               </h3>
               <p className="text-[11px] text-neutral-600 dark:text-neutral-400 leading-relaxed">
                 The Google X-Y-Z formula in detail, action verb directories, and duty vs achievement transformation examples.
               </p>
             </div>
-            <span className="text-xs font-bold text-rose-600 dark:text-rose-400 flex items-center gap-1 pt-2 group-hover:translate-x-0.5 transition-transform">
+            <span className="text-xs font-bold text-rose-700 dark:text-rose-400 flex items-center gap-1 pt-2 group-hover:translate-x-0.5 transition-transform">
               Writing Guide <ArrowRight className="w-3.5 h-3.5" />
             </span>
           </a>
@@ -1249,16 +1249,16 @@ export const HomePage: React.FC<HomePageProps> = ({
                 <span className="px-2 py-0.5 text-[10px] font-bold rounded-full bg-cyan-50 dark:bg-cyan-950 text-cyan-700 dark:text-cyan-300">
                   Global Norms
                 </span>
-                <Compass className="w-4 h-4 text-cyan-600" />
+                <Compass className="w-4 h-4 text-cyan-700 dark:text-cyan-400" />
               </div>
-              <h3 className="font-bold text-sm text-neutral-900 dark:text-neutral-100 group-hover:text-cyan-600 transition-colors">
+              <h3 className="font-bold text-sm text-neutral-900 dark:text-neutral-100 group-hover:text-cyan-700 transition-colors">
                 40 Country-Specific Hiring Guides
               </h3>
               <p className="text-[11px] text-neutral-600 dark:text-neutral-400 leading-relaxed">
                 Legal photo requirements, standard page lengths, and date conventions verified for 40 international jurisdictions.
               </p>
             </div>
-            <span className="text-xs font-bold text-cyan-600 dark:text-cyan-400 flex items-center gap-1 pt-2 group-hover:translate-x-0.5 transition-transform">
+            <span className="text-xs font-bold text-cyan-700 dark:text-cyan-400 flex items-center gap-1 pt-2 group-hover:translate-x-0.5 transition-transform">
               Explore 40 Countries <ArrowRight className="w-3.5 h-3.5" />
             </span>
           </a>
@@ -1268,7 +1268,7 @@ export const HomePage: React.FC<HomePageProps> = ({
       {/* 10. TESTIMONIALS & TRUST SIGNALS */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="text-center max-w-xl mx-auto space-y-2">
-          <span className="text-xs font-mono font-bold uppercase tracking-wider text-blue-600">
+          <span className="text-xs font-mono font-bold uppercase tracking-wider text-blue-700 dark:text-blue-400">
             Global Candidate Success
           </span>
           <h2 className="text-2xl font-bold tracking-tight">
@@ -1315,7 +1315,7 @@ export const HomePage: React.FC<HomePageProps> = ({
       {/* 10. FREQUENTLY ASKED QUESTIONS (FAQ) */}
       <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
         <div className="text-center space-y-2">
-          <span className="text-xs font-mono font-bold uppercase tracking-wider text-blue-600">
+          <span className="text-xs font-mono font-bold uppercase tracking-wider text-blue-700 dark:text-blue-400">
             Got Questions?
           </span>
           <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
@@ -1340,7 +1340,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                 className="w-full p-4 sm:p-5 text-left flex items-center justify-between gap-4 font-bold text-xs sm:text-sm cursor-pointer hover:bg-neutral-50 dark:hover:bg-neutral-800/50 transition-colors"
               >
                 <span>{faq.q}</span>
-                <span className="text-blue-600 shrink-0 font-mono text-base" aria-hidden="true">
+                <span className="text-blue-700 dark:text-blue-400 shrink-0 font-mono text-base" aria-hidden="true">
                   {openFaq === idx ? '−' : '+'}
                 </span>
               </button>
