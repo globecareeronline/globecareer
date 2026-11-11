@@ -1474,6 +1474,272 @@ export const COUNTRIES: CountryConfig[] = [
     sources: [
       { title: 'National Career Service Portal', institution: 'Ministry of Labour and Employment (Government of India)', notes: 'Indian Government employment guidelines' }
     ]
+  },
+  {
+    id: 'pk',
+    name: 'Pakistan',
+    region: 'Asia-Pacific',
+    code: 'PK',
+    flag: '🇵🇰',
+    cvTerminology: 'Curriculum Vitae (CV) / Resume',
+    standardLength: '2 pages standard',
+    paperSize: 'a4',
+    photoRule: 'optional',
+    photoNotice: 'Photos are common and accepted in local corporate sectors, while multinational companies and tech firms in Karachi, Lahore, and Islamabad prefer clean, no-photo ATS-friendly resumes.',
+    dateConvention: 'DD/MM/YYYY or Month Year',
+    dateFormatExample: '15/06/2021 – Present',
+    addressConvention: 'Area/Sector, City, Province (e.g., Gulberg III, Lahore, Punjab)',
+    phonePrefix: '+92',
+    spellingVariant: 'UK English',
+    personalDataRules: {
+      dobAllowed: true,
+      dobLabel: 'Date of Birth (Optional)',
+      nationalityAllowed: true,
+      maritalStatusAllowed: false,
+      workAuthStatusRecommended: true,
+      workAuthLabel: 'Work Authorization / CNIC Verified',
+      requiresGDPRClause: false,
+      drivingLicenseCommon: false
+    },
+    atsRecommendations: '2-page reverse-chronological layout with dedicated technical competencies, academic degrees (with university name and graduation year), and quantified professional outcomes.',
+    recommendedStructure: ['summary', 'skills', 'experience', 'projects', 'education', 'certifications'],
+    keyHiringNuances: [
+      'Two-page standard is preferred by mid-size and enterprise Pakistani employers',
+      'Mention notice period availability (e.g. immediate joiner, 30 days) to expedite recruiter outreach',
+      'For software and digital roles, link GitHub, LinkedIn, and live project demos',
+      'Keep CNIC number private until formal job offer stage'
+    ],
+    sources: [
+      { title: 'Pakistan National Job Portal (NJP)', institution: 'Ministry of Federal Education and Professional Training', notes: 'National employment conventions' }
+    ]
+  },
+  {
+    id: 'bd',
+    name: 'Bangladesh',
+    region: 'Asia-Pacific',
+    code: 'BD',
+    flag: '🇧🇩',
+    cvTerminology: 'Curriculum Vitae (CV)',
+    standardLength: '2 pages standard',
+    paperSize: 'a4',
+    photoRule: 'standard',
+    photoNotice: 'A professional passport-size photograph with a clean white or light blue background is customary on Bangladeshi CVs, especially in corporate, banking, and government organizations.',
+    dateConvention: 'DD/MM/YYYY',
+    dateFormatExample: '01/08/2020 – Present',
+    addressConvention: 'Area/Road, City, Postal Code (e.g., Dhanmondi, Dhaka 1205)',
+    phonePrefix: '+880',
+    spellingVariant: 'UK English',
+    personalDataRules: {
+      dobAllowed: true,
+      dobLabel: 'Date of Birth',
+      nationalityAllowed: true,
+      maritalStatusAllowed: false,
+      workAuthStatusRecommended: true,
+      workAuthLabel: 'Bangladeshi National / Work Permit',
+      requiresGDPRClause: false,
+      drivingLicenseCommon: false
+    },
+    atsRecommendations: 'Organized sections with reverse chronological work history, clear educational details (HSC/SSC and Bachelor degree GPA/CGPA), and corporate training credentials.',
+    recommendedStructure: ['summary', 'skills', 'experience', 'education', 'projects', 'certifications', 'references'],
+    keyHiringNuances: [
+      'Educational qualifications (degree, university, passing year, CGPA) carry substantial weight in Bangladeshi recruitment',
+      'Two professional references with workplace designations and official contact numbers are typically expected',
+      'Banking and corporate conglomerates place high emphasis on formal presentation and verified milestones'
+    ],
+    sources: [
+      { title: 'Bureau of Manpower, Employment and Training (BMET)', institution: 'Government of the People\'s Republic of Bangladesh', notes: 'National manpower guidelines' }
+    ]
+  },
+  {
+    id: 'br',
+    name: 'Brazil',
+    nativeName: 'Brasil',
+    region: 'Latin America',
+    code: 'BR',
+    flag: '🇧🇷',
+    cvTerminology: 'Currículo (CV)',
+    standardLength: '1 to 2 pages',
+    paperSize: 'a4',
+    photoRule: 'discouraged',
+    photoNotice: 'Photos are discouraged on corporate currículos under Brazilian fair-hiring practices and LGPD (Lei Geral de Proteção de Dados), unless specifically mandated for broadcast or modeling roles.',
+    dateConvention: 'MM/YYYY',
+    dateFormatExample: '03/2021 – Presente',
+    addressConvention: 'Bairro, Cidade - Estado, CEP (e.g., Pinheiros, São Paulo - SP, 05422-000)',
+    phonePrefix: '+55',
+    spellingVariant: 'Local / International English',
+    personalDataRules: {
+      dobAllowed: false,
+      nationalityAllowed: true,
+      maritalStatusAllowed: false,
+      workAuthStatusRecommended: true,
+      workAuthLabel: 'Autorização de Trabalho (Brasileiro / Visto de Trabalho / RNE)',
+      requiresGDPRClause: true,
+      gdprClauseText: 'Autorizo o tratamento dos meus dados pessoais para fins de recrutamento conforme a Lei Geral de Proteção de Dados (LGPD - Lei nº 13.709/2018).',
+      drivingLicenseCommon: false
+    },
+    atsRecommendations: 'Clean single-column layout, clear objective (Objetivo Profissional), Portuguese and English language proficiencies, and measurable achievements.',
+    recommendedStructure: ['summary', 'skills', 'experience', 'education', 'languages', 'certifications'],
+    keyHiringNuances: [
+      'State your professional objective (Objetivo) concisely right under personal details',
+      'Do not include sensitive personal documents like CPF or RG numbers on initial CV submissions',
+      'Differentiate between academic Currículo Lattes (used for university research) and professional Currículo Vitae (corporate hiring)',
+      'Highlight English proficiency level (Básico, Intermediário, Avançado, Fluente) as bilingual skills offer high compensation advantages in Brazil'
+    ],
+    sources: [
+      { title: 'Guia do Trabalhador e Emprego', institution: 'Ministério do Trabalho e Emprego (Brasil)', notes: 'Normas gerais de empregabilidade' }
+    ]
+  },
+  {
+    id: 'tr',
+    name: 'Turkey',
+    nativeName: 'Türkiye',
+    region: 'Europe',
+    code: 'TR',
+    flag: '🇹🇷',
+    cvTerminology: 'Özgeçmiş (CV)',
+    standardLength: '1 to 2 pages',
+    paperSize: 'a4',
+    photoRule: 'standard',
+    photoNotice: 'A professional headshot is customary on Turkish özgeçmiş documents. Applications through corporate portals (such as Kariyer.net) and direct HR submissions standardly feature a professional photo.',
+    dateConvention: 'DD.MM.YYYY or MM/YYYY',
+    dateFormatExample: '15.09.2021 – Halen',
+    addressConvention: 'İlçe, İl (e.g., Kadıköy, İstanbul)',
+    phonePrefix: '+90',
+    spellingVariant: 'UK English',
+    personalDataRules: {
+      dobAllowed: true,
+      dobLabel: 'Doğum Tarihi',
+      nationalityAllowed: true,
+      maritalStatusAllowed: false,
+      workAuthStatusRecommended: true,
+      workAuthLabel: 'Çalışma İzni / T.C. Vatandaşı / Askerlik Durumu',
+      requiresGDPRClause: true,
+      gdprClauseText: '6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) kapsamında özgeçmişimde yer alan bilgilerimin iş başvurusu sürecinde işlenmesine rıza gösteriyorum.',
+      drivingLicenseCommon: true
+    },
+    atsRecommendations: 'Clear reverse-chronological order, dedicated languages and computer competencies section, and military service status (Askerlik durumu) for male candidates.',
+    recommendedStructure: ['summary', 'skills', 'experience', 'education', 'languages', 'certifications'],
+    keyHiringNuances: [
+      'Military service status (Yapıldı / Muaf / Tecilli) is standardly requested by Turkish corporate employers for male candidates',
+      'Foreign language proficiencies (especially English, German, or Russian) evaluated via YDS/TOEFL scores are highly prized',
+      'A KVKK data processing consent clause should be included at the bottom of the CV'
+    ],
+    sources: [
+      { title: 'Türkiye İş Kurumu (İŞKUR) Kariyer Rehberi', institution: 'Çalışma ve Sosyal Güvenlik Bakanlığı', notes: 'Ulusal istihdam standartları' }
+    ]
+  },
+  {
+    id: 'my',
+    name: 'Malaysia',
+    region: 'Asia-Pacific',
+    code: 'MY',
+    flag: '🇲🇾',
+    cvTerminology: 'Resume / Curriculum Vitae',
+    standardLength: '2 pages',
+    paperSize: 'a4',
+    photoRule: 'optional',
+    photoNotice: 'Photographs are common in local small-to-medium businesses, whereas international Shared Services Centres (SSCs) and tech multinationals in Greater Kuala Lumpur and Cyberjaya adhere to no-photo ATS standards.',
+    dateConvention: 'DD/MM/YYYY or Month Year',
+    dateFormatExample: 'July 2021 – Present',
+    addressConvention: 'Area, Postcode City, State (e.g., Bangsar, 59100 Kuala Lumpur, Wilayah Persekutuan)',
+    phonePrefix: '+60',
+    spellingVariant: 'UK English',
+    personalDataRules: {
+      dobAllowed: true,
+      dobLabel: 'Date of Birth (Optional)',
+      nationalityAllowed: true,
+      maritalStatusAllowed: false,
+      workAuthStatusRecommended: true,
+      workAuthLabel: 'Work Authorization (Malaysian Citizen / Employment Pass / PR)',
+      requiresGDPRClause: false,
+      drivingLicenseCommon: true
+    },
+    atsRecommendations: '2-page clean format, detailed multilingual fluency (English, Bahasa Malaysia, Mandarin/Tamil), and notice period expectations.',
+    recommendedStructure: ['summary', 'skills', 'experience', 'education', 'languages', 'certifications'],
+    keyHiringNuances: [
+      'State multilingual abilities explicitly (e.g., Fluent in English and Bahasa Malaysia; conversational Mandarin)',
+      'State your availability / notice period (e.g. 1 month notice / immediate) and expected salary range where customary',
+      'Keep national registration identity card (NRIC) numbers masked until formal interview verification'
+    ],
+    sources: [
+      { title: 'MYFutureJobs National Employment Portal', institution: 'Social Security Organisation (PERKESO), Malaysia', notes: 'National employment guidelines' }
+    ]
+  },
+  {
+    id: 'id',
+    name: 'Indonesia',
+    region: 'Asia-Pacific',
+    code: 'ID',
+    flag: '🇮🇩',
+    cvTerminology: 'Curriculum Vitae (CV)',
+    standardLength: '1 to 2 pages',
+    paperSize: 'a4',
+    photoRule: 'standard',
+    photoNotice: 'A formal studio photograph (pas foto) in formal business attire is customary in Indonesian corporate, state-owned enterprise (BUMN), and banking recruitment.',
+    dateConvention: 'DD/MM/YYYY',
+    dateFormatExample: '01/04/2021 – Sekarang',
+    addressConvention: 'Kecamatan, Kota, Provinsi, Kode Pos (e.g., Tebet, Jakarta Selatan, DKI Jakarta 12810)',
+    phonePrefix: '+62',
+    spellingVariant: 'Local / International English',
+    personalDataRules: {
+      dobAllowed: true,
+      dobLabel: 'Tanggal Lahir',
+      nationalityAllowed: true,
+      maritalStatusAllowed: false,
+      workAuthStatusRecommended: true,
+      workAuthLabel: 'WNI (Warga Negara Indonesia) / KITAS / Izin Kerja',
+      requiresGDPRClause: false,
+      drivingLicenseCommon: true
+    },
+    atsRecommendations: 'Chronological work experience, clear division between educational credentials (IPK / GPA if above 3.0), professional skills, and organizational / committee involvement.',
+    recommendedStructure: ['summary', 'skills', 'experience', 'education', 'organizational', 'certifications'],
+    keyHiringNuances: [
+      'Bilingual CVs (in English or Bahasa Indonesia) are common; tech startups and foreign investment firms prefer English',
+      'Grade Point Average (IPK) is frequently stated for candidates with less than 5 years experience',
+      'Organizational leadership experience (Kepengurusan / volunteer projects) is highly respected in early-career vetting'
+    ],
+    sources: [
+      { title: 'Sistem Informasi Ketenagakerjaan (SIAPkerja)', institution: 'Kementerian Ketenagakerjaan Republik Indonesia', notes: 'Pedoman penyusunan CV tenaga kerja' }
+    ]
+  },
+  {
+    id: 'ru',
+    name: 'Russia',
+    nativeName: 'Россия',
+    region: 'Europe',
+    code: 'RU',
+    flag: '🇷🇺',
+    cvTerminology: 'Резюме (Resume)',
+    standardLength: '1 to 2 pages',
+    paperSize: 'a4',
+    photoRule: 'standard',
+    photoNotice: 'A professional business portrait is standard and highly expected on Russian резюме, aligning with formats on major employment portals like HeadHunter (hh.ru) and SuperJob.',
+    dateConvention: 'MM.YYYY or Month Year',
+    dateFormatExample: '05.2021 – Настоящее время',
+    addressConvention: 'Город, Метро / Район (e.g., Москва, м. Белорусская)',
+    phonePrefix: '+7',
+    spellingVariant: 'Local / International English',
+    personalDataRules: {
+      dobAllowed: true,
+      dobLabel: 'Дата рождения',
+      nationalityAllowed: true,
+      maritalStatusAllowed: false,
+      workAuthStatusRecommended: true,
+      workAuthLabel: 'Гражданство РФ / Разрешение на работу',
+      requiresGDPRClause: true,
+      gdprClauseText: 'В соответствии с Федеральным законом № 152-ФЗ «О персональных данных» даю согласие на обработку моих персональных данных.',
+      drivingLicenseCommon: true
+    },
+    atsRecommendations: 'Reverse chronological employment history with concrete responsibilities, quantified achievements (достижения), technology stacks, and language fluencies.',
+    recommendedStructure: ['summary', 'skills', 'experience', 'education', 'languages', 'certifications'],
+    keyHiringNuances: [
+      'Structuring experience into distinct "Обязанности" (Duties) and "Достижения" (Achievements with metrics) is standard',
+      'Nearest metro station in Moscow/Saint Petersburg is customarily stated for commute planning',
+      'Foreign language proficiencies (English B1/B2/C1) and technical certifications are key differentiators'
+    ],
+    sources: [
+      { title: 'Портал «Работа в России»', institution: 'Федеральная служба по труду и занятости (Роструд)', notes: 'Официальные стандарты резюме и трудоустройства' }
+    ]
   }
 ];
 

@@ -128,10 +128,10 @@ export const Header: React.FC<HeaderProps> = ({
     setOpenDropdown(null);
   };
 
-  const isResumeActive = ['builder', 'ats-checker', 'guides', 'country-detail'].includes(currentPage);
+  const isResumeActive = ['builder', 'ats-checker', 'guides', 'country-detail', 'ats-maker', 'resume-map'].includes(currentPage);
   const isTemplatesActive = ['templates', 'letter-templates', 'bio-templates', 'summary-templates', 'resignation-letter-templates', 'job-examples'].includes(currentPage);
   const isLettersActive = ['cover-letter', 'cover-letter-templates', 'recommendation-letter', 'email-generator'].includes(currentPage);
-  const isToolsActive = ['bio-generator', 'summary-generator', 'resignation-letter', 'interview-prep', 'recommendation-guide'].includes(currentPage);
+  const isToolsActive = ['bio-generator', 'summary-generator', 'objective-generator', 'phrase-generator', 'resignation-letter', 'interview-prep', 'recommendation-guide', 'resume-word-counter', 'resume-bullet-generator', 'ats-maker', 'resume-map'].includes(currentPage);
   const isJobsActive = ['jobs', 'tracker'].includes(currentPage);
 
   return (
@@ -709,6 +709,54 @@ export const Header: React.FC<HeaderProps> = ({
                       <div className="text-[11px] text-neutral-500">Build high-impact accomplishment bullets with the Google X-Y-Z formula.</div>
                     </div>
                   </a>
+
+                  {/* 8. Resume Phrase Generator */}
+                  <a
+                    href="/resume-phrase-generator"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavClick('phrase-generator');
+                    }}
+                    className="flex items-start gap-3 px-4 py-2.5 hover:bg-neutral-50 dark:hover:bg-neutral-800 text-neutral-800 dark:text-neutral-200 focus-visible:bg-neutral-100 dark:focus-visible:bg-neutral-800 border-t border-neutral-100 dark:border-neutral-800"
+                  >
+                    <Sparkles className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
+                    <div>
+                      <div className="font-bold text-neutral-900 dark:text-neutral-100">Resume Phrase Generator</div>
+                      <div className="text-[11px] text-neutral-500">Generate power action phrases across leadership, tech, sales, and analytics.</div>
+                    </div>
+                  </a>
+
+                  {/* 9. ATS Resume Maker */}
+                  <a
+                    href="/ats-resume-maker"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavClick('ats-maker');
+                    }}
+                    className="flex items-start gap-3 px-4 py-2.5 hover:bg-neutral-50 dark:hover:bg-neutral-800 text-neutral-800 dark:text-neutral-200 focus-visible:bg-neutral-100 dark:focus-visible:bg-neutral-800 border-t border-neutral-100 dark:border-neutral-800"
+                  >
+                    <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                    <div>
+                      <div className="font-bold text-neutral-900 dark:text-neutral-100">ATS Resume Maker</div>
+                      <div className="text-[11px] text-neutral-500">Build 100% ATS-proof single-column resumes for Workday and Greenhouse.</div>
+                    </div>
+                  </a>
+
+                  {/* 10. Online Resume Map */}
+                  <a
+                    href="/resume-map"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavClick('resume-map');
+                    }}
+                    className="flex items-start gap-3 px-4 py-2.5 hover:bg-neutral-50 dark:hover:bg-neutral-800 text-neutral-800 dark:text-neutral-200 focus-visible:bg-neutral-100 dark:focus-visible:bg-neutral-800 border-t border-neutral-100 dark:border-neutral-800"
+                  >
+                    <Globe className="w-4 h-4 text-purple-600 shrink-0 mt-0.5" />
+                    <div>
+                      <div className="font-bold text-neutral-900 dark:text-neutral-100">Online Resume Map</div>
+                      <div className="text-[11px] text-neutral-500">Explore interactive CV standards, photo laws, and paper sizes for 47 countries.</div>
+                    </div>
+                  </a>
                 </div>
               </div>
             )}
@@ -1218,6 +1266,39 @@ export const Header: React.FC<HeaderProps> = ({
             >
               <BookOpen className="w-4 h-4 text-blue-600" />
               <span>{t('nav.recommendationGuide', 'Recommendation Letter Guide')}</span>
+            </a>
+            <a
+              href="/resume-phrase-generator"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick('phrase-generator');
+              }}
+              className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl hover:bg-neutral-100 dark:hover:bg-neutral-800"
+            >
+              <Sparkles className="w-4 h-4 text-blue-600" />
+              <span>Resume Phrase Generator</span>
+            </a>
+            <a
+              href="/ats-resume-maker"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick('ats-maker');
+              }}
+              className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl hover:bg-neutral-100 dark:hover:bg-neutral-800"
+            >
+              <ShieldCheck className="w-4 h-4 text-emerald-600" />
+              <span>ATS Resume Maker</span>
+            </a>
+            <a
+              href="/resume-map"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick('resume-map');
+              }}
+              className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl hover:bg-neutral-100 dark:hover:bg-neutral-800"
+            >
+              <Globe className="w-4 h-4 text-purple-600" />
+              <span>Online Resume Map (47 Countries)</span>
             </a>
           </div>
 

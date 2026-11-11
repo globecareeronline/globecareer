@@ -49,6 +49,9 @@ const ResumeSkillsGuidePage = React.lazy(() => import('./components/pages/Resume
 const CVvsResumeGuidePage = React.lazy(() => import('./components/pages/CVvsResumeGuidePage').then(m => ({ default: m.CVvsResumeGuidePage })));
 const ResumeWordCounter = React.lazy(() => import('./components/tools/ResumeWordCounter').then(m => ({ default: m.ResumeWordCounter })));
 const ResumeBulletGenerator = React.lazy(() => import('./components/tools/ResumeBulletGenerator').then(m => ({ default: m.ResumeBulletGenerator })));
+const ResumePhraseGenerator = React.lazy(() => import('./components/tools/ResumePhraseGenerator').then(m => ({ default: m.ResumePhraseGenerator })));
+const ATSResumeMakerPage = React.lazy(() => import('./components/tools/ATSResumeMakerPage').then(m => ({ default: m.ATSResumeMakerPage })));
+const GlobalResumeMap = React.lazy(() => import('./components/tools/GlobalResumeMap').then(m => ({ default: m.GlobalResumeMap })));
 const ReverseChronologicalGuidePage = React.lazy(() => import('./components/pages/ReverseChronologicalGuidePage').then(m => ({ default: m.ReverseChronologicalGuidePage })));
 const ResumeReferencesGuidePage = React.lazy(() => import('./components/pages/ResumeReferencesGuidePage').then(m => ({ default: m.ResumeReferencesGuidePage })));
 
@@ -100,12 +103,26 @@ const PAGE_TO_PATH: Record<string, string> = {
   'cv-vs-resume': '/cv-vs-resume',
   'resume-word-counter': '/resume-word-counter',
   'resume-bullet-generator': '/resume-bullet-generator',
+  'phrase-generator': '/resume-phrase-generator',
+  'ats-maker': '/ats-resume-maker',
+  'resume-map': '/resume-map',
+  'objective-generator': '/resume-objective-generator',
   'reverse-chronological': '/reverse-chronological-resume-format',
   'references-on-resume': '/references-on-resume',
   admin: '/admin',
 };
 
 const PAGE_ALIAS_MAP: Record<string, string> = {
+  'resume-phrase-generator': 'phrase-generator',
+  'phrase-generator': 'phrase-generator',
+  'ats-resume-maker': 'ats-maker',
+  'ats-cv-maker': 'ats-maker',
+  'resume-map': 'resume-map',
+  'resume-map-online': 'resume-map',
+  'map-resume-online': 'resume-map',
+  'online-resume-map': 'resume-map',
+  'resume-objective-generator': 'objective-generator',
+  'career-objective-generator': 'objective-generator',
   'reverse-chronological-resume-format': 'reverse-chronological',
   'chronological-resume-template': 'reverse-chronological',
   'resume-writing-guide': 'writing-guide',
@@ -158,6 +175,16 @@ const PATH_TO_PAGE: Record<string, string> = {
   '/resume-bullet-generator': 'resume-bullet-generator',
   '/bullet-generator': 'resume-bullet-generator',
   '/bullet-point-generator': 'resume-bullet-generator',
+  '/resume-phrase-generator': 'phrase-generator',
+  '/phrase-generator': 'phrase-generator',
+  '/ats-resume-maker': 'ats-maker',
+  '/ats-cv-maker': 'ats-maker',
+  '/resume-map': 'resume-map',
+  '/resume-map-online': 'resume-map',
+  '/map-resume-online': 'resume-map',
+  '/online-resume-map': 'resume-map',
+  '/resume-objective-generator': 'objective-generator',
+  '/career-objective-generator': 'objective-generator',
   '/reverse-chronological-resume-format': 'reverse-chronological',
   '/chronological-resume-template': 'reverse-chronological',
   '/reverse-chronological': 'reverse-chronological',
@@ -180,7 +207,6 @@ const PATH_TO_PAGE: Record<string, string> = {
   '/professional-bio-templates': 'bio-templates',
   '/summary-generator': 'summary-generator',
   '/resume-summary-generator': 'summary-generator',
-  '/career-objective-generator': 'summary-generator',
   '/summary-templates': 'summary-templates',
   '/resume-summary-templates': 'summary-templates',
   '/career-objective-templates': 'summary-templates',
@@ -585,6 +611,63 @@ function AppContent() {
               <ResumeBulletGenerator
                 onNavigate={navigateTo}
                 onStartBuilder={() => navigateTo('builder')}
+              />
+            )}
+
+            {currentPage === 'phrase-generator' && (
+              <ResumePhraseGenerator
+                onNavigate={navigateTo}
+                onApplyToResume={(phrase) => {
+                  setActiveResumeData(prev => {
+                    const exp = [...(prev.experience || [])];
+                    if (exp.length > 0) {
+                      exp[0] = {
+                        ...exp[0],
+                        description: [...(exp[0].description || []), phrase]
+                      };
+                    }
+                    return { ...prev, experience: exp };
+                  });
+                  navigateTo('builder');
+                }}
+              />
+            )}
+
+            {currentPage === 'ats-maker' && (
+              <ATSResumeMakerPage
+                onNavigate={navigateTo}
+                onStartResumeForCountry={(countryId) => {
+                  setSelectedCountryId(countryId);
+                  navigateTo('builder');
+                }}
+              />
+            )}
+
+            {currentPage === 'resume-map' && (
+              <GlobalResumeMap
+                onNavigate={navigateTo}
+                onSelectCountry={(countryId) => {
+                  setSelectedCountryId(countryId);
+                  navigateTo('country-detail', countryId);
+                }}
+                onStartResumeForCountry={(countryId) => {
+                  setSelectedCountryId(countryId);
+                  navigateTo('builder');
+                }}
+              />
+            )}
+
+            {currentPage === 'objective-generator' && (
+              <SummaryObjectiveGenerator
+                onNavigate={navigateTo}
+                initialMode="objective"
+                onApplyToResume={(summaryText) => {
+                  setActiveResumeData(prev => ({
+                    ...prev,
+                    summary: summaryText
+                  }));
+                  navigateTo('builder');
+                }}
               />
             )}
 

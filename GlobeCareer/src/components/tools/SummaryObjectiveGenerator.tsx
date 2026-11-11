@@ -109,15 +109,27 @@ interface SummaryObjectiveGeneratorProps {
   onNavigate?: (page: string) => void;
   onApplyToResume?: (summaryText: string) => void;
   initialTab?: 'generator' | 'templates';
+  initialMode?: SummaryMode;
 }
 
 export const SummaryObjectiveGenerator: React.FC<SummaryObjectiveGeneratorProps> = ({
   onNavigate,
   onApplyToResume,
-  initialTab = 'generator'
+  initialTab = 'generator',
+  initialMode
 }) => {
   const [activeTab, setActiveTab] = useState<'generator' | 'templates'>(initialTab);
-  const [formData, setFormData] = useState<SummaryFormData>(INITIAL_FORM);
+  const [formData, setFormData] = useState<SummaryFormData>(() => {
+    if (initialMode) {
+      return {
+        ...INITIAL_FORM,
+        mode: initialMode,
+        experienceLevel: initialMode === 'objective' ? 'entry' : 'senior',
+        yearsOfExperience: initialMode === 'objective' ? '0' : '8'
+      };
+    }
+    return INITIAL_FORM;
+  });
   const [generatedOptions, setGeneratedOptions] = useState<GeneratedOption[] | null>(null);
   const [copiedIdx, setCopiedIdx] = useState<number | null>(null);
   const [copiedTemplateId, setCopiedTemplateId] = useState<string | null>(null);

@@ -3,7 +3,8 @@ export type CountryRegion =
   | 'Europe' 
   | 'Asia-Pacific' 
   | 'Middle East' 
-  | 'Africa';
+  | 'Africa'
+  | 'Latin America';
 
 export type PhotoConvention = 
   | 'discouraged'    // E.g. US, UK, Canada, Australia, Ireland (anti-discrimination laws)

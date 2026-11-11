@@ -98,11 +98,12 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
   }),
 
   guides: () => ({
-    title: 'Country CV Formats & Hiring Guides (40 Countries) | GlobeCareer',
-    description: 'Explore verified CV formats, photo requirements, paper sizes, and legal hiring rules across 40 nations, including the US, UK, Germany, Canada, and Australia.',
+    title: 'Global CV Standards & Hiring Rules Across 47 Countries | GlobeCareer',
+    description: 'Explore verified CV formats, photo rules, paper sizes, and legal hiring standards across 47 nations, including US, UK, Canada, India, Pakistan, Brazil, and Germany.',
     canonicalPath: '/country-guides',
     ogType: 'website',
     keywords: [
+      'cv standards',
       'international cv format',
       'country specific resume guide',
       'cv photo requirements',
@@ -112,7 +113,7 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
     structuredData: {
       '@context': 'https://schema.org',
       '@type': 'CollectionPage',
-      name: 'Country-Specific CV and Resume Guides',
+      name: 'Country-Specific CV and Resume Guides (47 Countries)',
       url: `${BASE_DOMAIN}/country-guides`,
       description: 'Directory of verified hiring conventions, photo regulations, and resume formats for 40 countries worldwide.',
       mainEntity: {
@@ -217,7 +218,141 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
       };
     }
 
-    // Default dynamic configuration for remaining countries
+    if (countryId === 'in') {
+      return {
+        title: 'India Resume & CV Format Guide (2-Page Standard) | GlobeCareer',
+        description: 'Complete guide to Indian CV formatting: 2–3 page IT and tech resumes, notice period highlights, academic achievements, and A4 standards.',
+        canonicalPath: '/country/in',
+        ogType: 'article',
+        keywords: ['india resume format', 'cv format india', 'resume template india', 'indian cv format for freshers', 'notice period on resume'],
+        structuredData: {
+          '@context': 'https://schema.org',
+          '@type': 'Article',
+          headline: 'Indian Resume and Curriculum Vitae Hiring Guidelines',
+          description: 'Hiring standards in India: 2-page tech format, notice period conventions, and academic project formatting.',
+          mainEntityOfPage: `${BASE_DOMAIN}/country/in`
+        }
+      };
+    }
+
+    if (countryId === 'pk') {
+      return {
+        title: 'Pakistan CV Format & Resume Guide (2-Page Standard) | GlobeCareer',
+        description: 'Master the standard Pakistani CV format: 2-page professional layout, education & division conventions, notice period, and ATS compatibility.',
+        canonicalPath: '/country/pk',
+        ogType: 'article',
+        keywords: ['pakistan cv format', 'cv format in pakistan', 'resume template pakistan', 'pakistan job application format', 'best cv format for pakistan'],
+        structuredData: {
+          '@context': 'https://schema.org',
+          '@type': 'Article',
+          headline: 'Pakistan Curriculum Vitae and Resume Standards',
+          description: 'Verified guidelines for formatting corporate and tech job applications in Pakistan.',
+          mainEntityOfPage: `${BASE_DOMAIN}/country/pk`
+        }
+      };
+    }
+
+    if (countryId === 'bd') {
+      return {
+        title: 'Bangladesh CV Format & Standard Resume Guide | GlobeCareer',
+        description: 'Official Bangladeshi CV conventions: 2-page structured format, passport photograph norms, SSC/HSC and university CGPA layout, and references.',
+        canonicalPath: '/country/bd',
+        ogType: 'article',
+        keywords: ['bangladesh cv format', 'cv format bangladesh', 'bd jobs cv format', 'standard cv format in bangladesh', 'resume format bd'],
+        structuredData: {
+          '@context': 'https://schema.org',
+          '@type': 'Article',
+          headline: 'Bangladesh Curriculum Vitae Standards and Hiring Guidelines',
+          description: 'Standard documentation guidelines for corporate, banking, and government CVs in Bangladesh.',
+          mainEntityOfPage: `${BASE_DOMAIN}/country/bd`
+        }
+      };
+    }
+
+    if (countryId === 'br') {
+      return {
+        title: 'Brazil Currículo Vitae Format & LGPD Guide | GlobeCareer',
+        description: 'Learn Brazilian Currículo standards: 1–2 page professional format, LGPD data protection consent, objective statement, and no-photo corporate rules.',
+        canonicalPath: '/country/br',
+        ogType: 'article',
+        keywords: ['curriculo vitae brasil', 'modelo de curriculo', 'curriculo formato brasil', 'curriculo lattes vs profissional', 'brazil resume format'],
+        structuredData: {
+          '@context': 'https://schema.org',
+          '@type': 'Article',
+          headline: 'Padrões de Currículo Vitae e Emprego no Brasil',
+          description: 'Diretrizes oficiais para elaboração de currículos profissionais compatíveis com a LGPD no Brasil.',
+          mainEntityOfPage: `${BASE_DOMAIN}/country/br`
+        }
+      };
+    }
+
+    if (countryId === 'tr') {
+      return {
+        title: 'Turkey Özgeçmiş (CV) Format & KVKK Guide | GlobeCareer',
+        description: 'Standard Turkish özgeçmiş conventions: professional photo placement, military service status, KVKK consent clause, and reverse chronological layout.',
+        canonicalPath: '/country/tr',
+        ogType: 'article',
+        keywords: ['turkey cv format', 'ozgecmis ornekleri', 'turkce cv formati', 'kvkk cv metni', 'kariyer net cv formati'],
+        structuredData: {
+          '@context': 'https://schema.org',
+          '@type': 'Article',
+          headline: 'Türkiye Özgeçmiş (CV) Standartları ve İşe Alım Rehberi',
+          description: 'Türkiye iş piyasası için profesyonel özgeçmiş hazırlama kuralları ve KVKK onay bildirimleri.',
+          mainEntityOfPage: `${BASE_DOMAIN}/country/tr`
+        }
+      };
+    }
+
+    if (countryId === 'my') {
+      return {
+        title: 'Malaysia Resume & CV Format Guide | GlobeCareer',
+        description: 'Complete guide to Malaysian CV conventions: 2-page professional layout, language proficiencies (Bahasa Malaysia, English), and SSC/MNC hiring standards.',
+        canonicalPath: '/country/my',
+        ogType: 'article',
+        keywords: ['malaysia resume format', 'cv format malaysia', 'jobstreet cv format', 'malaysian resume template', 'resume format for fresh graduates malaysia'],
+        structuredData: {
+          '@context': 'https://schema.org',
+          '@type': 'Article',
+          headline: 'Malaysian Resume and Curriculum Vitae Hiring Standards',
+          description: 'Guidelines for preparing professional resumes for local companies and multinational SSCs in Malaysia.',
+          mainEntityOfPage: `${BASE_DOMAIN}/country/my`
+        }
+      };
+    }
+
+    if (countryId === 'id') {
+      return {
+        title: 'Indonesia CV Format & Pas Foto Standards | GlobeCareer',
+        description: 'Master Indonesian CV conventions: 1–2 page format, pas foto requirements, IPK/GPA guidelines, and bilingual English/Bahasa Indonesia structures.',
+        canonicalPath: '/country/id',
+        ogType: 'article',
+        keywords: ['indonesia cv format', 'format cv indonesia', 'contoh cv lamaran kerja', 'cv ats indonesia', 'pas foto cv indonesia'],
+        structuredData: {
+          '@context': 'https://schema.org',
+          '@type': 'Article',
+          headline: 'Panduan dan Standar Format CV Lamaran Kerja di Indonesia',
+          description: 'Pedoman resmi penyusunan curriculum vitae profesional untuk perusahaan swasta, BUMN, dan startup di Indonesia.',
+          mainEntityOfPage: `${BASE_DOMAIN}/country/id`
+        }
+      };
+    }
+
+    if (countryId === 'ru') {
+      return {
+        title: 'Russia Резюме Format & hh.ru Standards Guide | GlobeCareer',
+        description: 'Complete guide to Russian резюме standards: 1–2 page professional format, photo conventions, metro station location, and quantified achievements.',
+        canonicalPath: '/country/ru',
+        ogType: 'article',
+        keywords: ['russia resume format', 'резюме образец', 'формат резюме россия', 'составить резюме для работы', 'hh ru резюме стандарты'],
+        structuredData: {
+          '@context': 'https://schema.org',
+          '@type': 'Article',
+          headline: 'Стандарты составления резюме для трудоустройства в России',
+          description: 'Официальные правила оформления резюме в соответствии с требованиями порталов HeadHunter и работодателей РФ.',
+          mainEntityOfPage: `${BASE_DOMAIN}/country/ru`
+        }
+      };
+    }
     return {
       title: `${c.name} ${c.cvTerminology} Format & Hiring Guide | GlobeCareer`,
       description: `Official hiring guidelines for ${c.name}: ${c.photoRule === 'discouraged' ? 'Photo discouraged' : c.photoRule === 'standard' ? 'Photo customary' : 'Photo optional'}, standard length ${c.standardLength}, ${c.paperSize.toUpperCase()} paper size.`,
@@ -389,11 +524,12 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
   }),
 
   'bio-generator': () => ({
-    title: 'Free Professional Bio Generator (Short, LinkedIn & Executive) | GlobeCareer',
-    description: 'Generate polished professional biographies, executive summaries, speaker bios, and LinkedIn profiles. 100% free with tailored tones and instant export.',
+    title: 'Short Professional Bio Generator – 1-Click LinkedIn, Twitter & Executive Bios | GlobeCareer',
+    description: 'Generate concise 2-sentence to 150-word professional bios for LinkedIn, executive portfolios, speakers, and resumes. 100% free with 5 custom tone options.',
     canonicalPath: '/bio-generator',
     ogType: 'website',
     keywords: [
+      'short professional bio generator',
       'professional bio generator',
       'short bio generator',
       'executive bio generator',
@@ -417,22 +553,22 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
   }),
 
   'summary-generator': () => ({
-    title: 'Free Resume Summary & Career Objective Generator | GlobeCareer',
-    description: 'Create high-scoring ATS resume summaries, entry-level career objectives, and LinkedIn headlines. 100% free with 1-click insertion into the Resume Builder.',
+    title: 'Free Resume Summary Generator – 3 ATS Profiles in 10s | GlobeCareer',
+    description: 'Generate ATS-optimized professional resume summaries tailored to your target job title, experience level, and key skills. 1-click copy & direct builder insertion.',
     canonicalPath: '/summary-generator',
     ogType: 'website',
     keywords: [
       'resume summary generator',
-      'career objective generator',
+      'free resume summary generator',
       'professional summary generator',
-      'resume objective examples',
       'resume summary examples',
-      'ats resume summary'
+      'ats resume summary',
+      'summary statement generator'
     ],
     structuredData: {
       '@context': 'https://schema.org',
       '@type': 'WebApplication',
-      name: 'GlobeCareer Resume Summary & Objective Generator',
+      name: 'GlobeCareer Resume Summary Generator',
       url: `${BASE_DOMAIN}/summary-generator`,
       applicationCategory: 'BusinessApplication',
       operatingSystem: 'All',
@@ -527,8 +663,8 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
   }),
 
   'resignation-letter-templates': () => ({
-    title: 'Free Resignation Letter Templates (2 Weeks, Short Notice & Relocation) | GlobeCareer',
-    description: '11+ free formal resignation letter templates covering standard two weeks notice, short notice, immediate effect, relocation, retirement, and career pivots.',
+    title: '11+ Free Resignation Letter Templates – 2 Weeks Notice & Immediate | GlobeCareer',
+    description: 'Download and copy 11+ professional resignation letter templates for two weeks notice, short notice, relocation, and career pivots. Free formal DOCX & text.',
     canonicalPath: '/resignation-letter-templates',
     ogType: 'website',
     keywords: [
@@ -536,7 +672,8 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
       'two weeks notice letter template',
       'short notice resignation letter',
       'resignation letter due to relocation',
-      'immediate resignation letter template'
+      'immediate resignation letter template',
+      'formal resignation letter template'
     ],
     structuredData: {
       '@context': 'https://schema.org',
@@ -1165,6 +1302,222 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
               acceptedAnswer: {
                 '@type': 'Answer',
                 text: 'No. Employers already assume references are available upon request. Writing this phrase is outdated and wastes a line of resume space.'
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }),
+
+  'objective-generator': () => ({
+    title: 'Free Resume Objective Generator – Entry-Level & Career Change ATS Objectives | GlobeCareer',
+    description: 'Create tailored, ATS-friendly resume objectives for entry-level jobs, internships, recent college grads, and career pivots. Free instant generation with proven formulas.',
+    canonicalPath: '/resume-objective-generator',
+    ogType: 'website',
+    keywords: [
+      'resume objective generator',
+      'free resume objective generator',
+      'career objective generator',
+      'entry level resume objective',
+      'student resume objective generator',
+      'ats resume objective'
+    ],
+    structuredData: {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'WebApplication',
+          name: 'GlobeCareer Resume Objective Generator',
+          url: `${BASE_DOMAIN}/resume-objective-generator`,
+          applicationCategory: 'BusinessApplication',
+          operatingSystem: 'All',
+          description: 'Interactive resume objective generator engineered for entry-level candidates, students, and career changers.',
+          offers: {
+            '@type': 'Offer',
+            price: '0',
+            priceCurrency: 'USD'
+          }
+        },
+        {
+          '@type': 'FAQPage',
+          mainEntity: [
+            {
+              '@type': 'Question',
+              name: 'What is the difference between a resume summary and a resume objective?',
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: 'A resume summary highlights past achievements and quantifiable metrics for experienced professionals (3+ years). A resume objective focuses on transferable skills, education, and the future value an entry-level candidate or career changer will deliver to the employer.'
+              }
+            },
+            {
+              '@type': 'Question',
+              name: 'How long should a resume objective be?',
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: 'A resume objective should be 2 to 3 concise sentences (30 to 50 words) that state the target role, core hard skills or degree, and the specific value offered to the company.'
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }),
+
+  'phrase-generator': () => ({
+    title: 'Free Resume Phrase Generator – 80+ Power Action Phrases | GlobeCareer',
+    description: 'Generate high-impact, quantifiable resume phrases and action statements across leadership, engineering, sales, analytics, and operations. 100% free.',
+    canonicalPath: '/resume-phrase-generator',
+    ogType: 'website',
+    keywords: [
+      'resume phrase generator',
+      'resume action phrases',
+      'power phrases for resume',
+      'resume bullet point generator',
+      'professional phrases for resume',
+      'quantifiable resume statements'
+    ],
+    structuredData: {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'WebApplication',
+          name: 'GlobeCareer Resume Phrase Generator',
+          url: `${BASE_DOMAIN}/resume-phrase-generator`,
+          applicationCategory: 'BusinessApplication',
+          operatingSystem: 'All',
+          description: 'Interactive phrase generator that transforms passive duties into high-impact, quantifiable accomplishment statements for resumes.',
+          offers: {
+            '@type': 'Offer',
+            price: '0',
+            priceCurrency: 'USD'
+          }
+        },
+        {
+          '@type': 'FAQPage',
+          mainEntity: [
+            {
+              '@type': 'Question',
+              name: 'Why should I avoid writing "Responsible for" on my resume?',
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: '"Responsible for" merely recites your basic job description rather than your accomplishments. High-impact action phrases lead with powerful past-tense verbs (e.g. Spearheaded, Engineered, Accelerated) and include quantifiable business outcomes.'
+              }
+            },
+            {
+              '@type': 'Question',
+              name: 'How do I quantify accomplishments if my role didn\'t have sales numbers?',
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: 'You can quantify scale, frequency, team size, time savings, volume processed, or adoption rates (e.g., "mentored 5 junior engineers", "shortened weekly reporting from 8 hours to 2 hours", "managed $250k budget").'
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }),
+
+  'ats-maker': () => ({
+    title: 'Free ATS Resume Maker – Build Applicant Tracking System-Proof CVs | GlobeCareer',
+    description: 'Create an ATS-proof resume guaranteed to parse cleanly into Workday, Taleo, Greenhouse, and Lever. Single-column templates with instant PDF & Word export.',
+    canonicalPath: '/ats-resume-maker',
+    ogType: 'website',
+    keywords: [
+      'ats resume maker',
+      'ats cv maker',
+      'ats friendly resume maker',
+      'applicant tracking system resume builder',
+      'workday resume format',
+      'free ats resume builder'
+    ],
+    structuredData: {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'WebApplication',
+          name: 'GlobeCareer ATS Resume Maker',
+          url: `${BASE_DOMAIN}/ats-resume-maker`,
+          applicationCategory: 'BusinessApplication',
+          operatingSystem: 'All',
+          description: 'Specialized single-column ATS resume maker engineered to achieve 100% parsing fidelity across enterprise Applicant Tracking Systems.',
+          offers: {
+            '@type': 'Offer',
+            price: '0',
+            priceCurrency: 'USD'
+          }
+        },
+        {
+          '@type': 'FAQPage',
+          mainEntity: [
+            {
+              '@type': 'Question',
+              name: 'What makes a resume ATS compliant?',
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: 'An ATS-compliant resume utilizes a single-column layout, standard section titles (Work Experience, Education, Skills), machine-readable dates (MM/YYYY), selectable vector text, and zero floating text boxes or multi-column tables.'
+              }
+            },
+            {
+              '@type': 'Question',
+              name: 'Does an ATS reject resumes automatically?',
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: 'ATS platforms do not reject candidates on their own. They parse the text, index skills and tenure, and rank candidates based on keyword match to the job description. Parsing errors cause candidates to rank near the bottom where recruiters seldom look.'
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }),
+
+  'resume-map': () => ({
+    title: 'Online Resume Map – Global CV & Hiring Standards Across 47 Countries | GlobeCareer',
+    description: 'Explore interactive international CV standards across 47 countries. Compare photo rules, US Letter vs A4 paper sizes, and regional hiring regulations.',
+    canonicalPath: '/resume-map',
+    ogType: 'website',
+    keywords: [
+      'resume map online',
+      'map resume online',
+      'online resume map',
+      'global resume map',
+      'international cv standards map',
+      'world cv requirements'
+    ],
+    structuredData: {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'WebApplication',
+          name: 'GlobeCareer Online Resume Map',
+          url: `${BASE_DOMAIN}/resume-map`,
+          applicationCategory: 'BusinessApplication',
+          operatingSystem: 'All',
+          description: 'Interactive global map and comparative matrix of international resume and CV standards across 47 countries.',
+          offers: {
+            '@type': 'Offer',
+            price: '0',
+            priceCurrency: 'USD'
+          }
+        },
+        {
+          '@type': 'FAQPage',
+          mainEntity: [
+            {
+              '@type': 'Question',
+              name: 'Which countries strictly prohibit photos on resumes?',
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: 'Photos are strictly discouraged in the United States (EEOC guidelines), United Kingdom (Equality Act 2010), Canada (Human Rights Act), Australia, and Ireland to avoid unconscious bias claims.'
+              }
+            },
+            {
+              '@type': 'Question',
+              name: 'Which countries require a professional photo on a CV?',
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: 'Professional photos are standard and customary in Germany (Lebenslauf), Austria, Switzerland, France, Japan (Rirekisho), and commonly expected across the Middle East (UAE, Saudi Arabia, Qatar).'
               }
             }
           ]

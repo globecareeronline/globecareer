@@ -31,7 +31,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               {t('home.heroTitle1', 'Build Your Global Career.')} {t('home.heroTitle2', 'Stand Out Anywhere.')}
             </p>
             <p className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
-              Free country-tailored resume builder, cover letters, outreach tools, and career templates across 40+ countries. Zero paywalls, zero watermarks.
+              Free country-tailored resume builder, cover letters, outreach tools, and career templates across 47+ countries. Zero paywalls, zero watermarks.
             </p>
           </div>
         </div>
@@ -130,6 +130,30 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 }}
                 className="text-neutral-600 dark:text-neutral-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
               >Resume Bullet Point Generator</a>
+              <a
+                href="/resume-phrase-generator"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigate('phrase-generator');
+                }}
+                className="text-neutral-600 dark:text-neutral-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
+              >Resume Phrase Generator</a>
+              <a
+                href="/ats-resume-maker"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigate('ats-maker');
+                }}
+                className="text-neutral-600 dark:text-neutral-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
+              >ATS Resume Maker</a>
+              <a
+                href="/resume-map"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigate('resume-map');
+                }}
+                className="text-neutral-600 dark:text-neutral-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
+              >Online Resume Map</a>
             </div>
           </div>
 

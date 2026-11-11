@@ -1235,7 +1235,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             </span>
           </a>
 
-          {/* Card 8: Country Guides (40 Countries) */}
+          {/* Card 8: Country Guides (47 Countries) */}
           <a
             href="/country-guides"
             onClick={(e) => {
@@ -1252,14 +1252,98 @@ export const HomePage: React.FC<HomePageProps> = ({
                 <Compass className="w-4 h-4 text-cyan-700 dark:text-cyan-400" />
               </div>
               <h3 className="font-bold text-sm text-neutral-900 dark:text-neutral-100 group-hover:text-cyan-700 transition-colors">
-                40 Country-Specific Hiring Guides
+                47 Country-Specific Hiring Guides
               </h3>
               <p className="text-[11px] text-neutral-600 dark:text-neutral-400 leading-relaxed">
-                Legal photo requirements, standard page lengths, and date conventions verified for 40 international jurisdictions.
+                Legal photo requirements, standard page lengths, and date conventions verified for 47 international jurisdictions.
               </p>
             </div>
             <span className="text-xs font-bold text-cyan-700 dark:text-cyan-400 flex items-center gap-1 pt-2 group-hover:translate-x-0.5 transition-transform">
-              Explore 40 Countries <ArrowRight className="w-3.5 h-3.5" />
+              Explore 47 Countries <ArrowRight className="w-3.5 h-3.5" />
+            </span>
+          </a>
+
+          {/* Card 9: ATS Resume Maker */}
+          <a
+            href="/ats-resume-maker"
+            onClick={(e) => {
+              e.preventDefault();
+              onNavigate('ats-maker');
+            }}
+            className="p-5 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 hover:border-emerald-500 rounded-2xl transition-all space-y-2 shadow-2xs group cursor-pointer flex flex-col justify-between"
+          >
+            <div className="space-y-1.5">
+              <div className="flex items-center justify-between">
+                <span className="px-2 py-0.5 text-[10px] font-bold rounded-full bg-emerald-50 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300">
+                  ATS Verified
+                </span>
+                <ShieldCheck className="w-4 h-4 text-emerald-700 dark:text-emerald-400" />
+              </div>
+              <h3 className="font-bold text-sm text-neutral-900 dark:text-neutral-100 group-hover:text-emerald-700 transition-colors">
+                ATS Resume Maker Workspace
+              </h3>
+              <p className="text-[11px] text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                Single-column verified layouts guaranteed to parse cleanly into Workday, Taleo, Greenhouse, and Lever.
+              </p>
+            </div>
+            <span className="text-xs font-bold text-emerald-700 dark:text-emerald-400 flex items-center gap-1 pt-2 group-hover:translate-x-0.5 transition-transform">
+              Launch ATS Maker <ArrowRight className="w-3.5 h-3.5" />
+            </span>
+          </a>
+
+          {/* Card 10: Resume Phrase Generator */}
+          <a
+            href="/resume-phrase-generator"
+            onClick={(e) => {
+              e.preventDefault();
+              onNavigate('phrase-generator');
+            }}
+            className="p-5 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 hover:border-blue-500 rounded-2xl transition-all space-y-2 shadow-2xs group cursor-pointer flex flex-col justify-between"
+          >
+            <div className="space-y-1.5">
+              <div className="flex items-center justify-between">
+                <span className="px-2 py-0.5 text-[10px] font-bold rounded-full bg-blue-50 dark:bg-blue-950 text-blue-700 dark:text-blue-300">
+                  Action Phrases
+                </span>
+                <Sparkles className="w-4 h-4 text-blue-700 dark:text-blue-400" />
+              </div>
+              <h3 className="font-bold text-sm text-neutral-900 dark:text-neutral-100 group-hover:text-blue-700 transition-colors">
+                Resume Phrase Generator
+              </h3>
+              <p className="text-[11px] text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                Generate high-impact action phrases across leadership, engineering, sales, analytics, and customer success.
+              </p>
+            </div>
+            <span className="text-xs font-bold text-blue-700 dark:text-blue-400 flex items-center gap-1 pt-2 group-hover:translate-x-0.5 transition-transform">
+              Generate Phrases <ArrowRight className="w-3.5 h-3.5" />
+            </span>
+          </a>
+
+          {/* Card 11: Online Resume Map */}
+          <a
+            href="/resume-map"
+            onClick={(e) => {
+              e.preventDefault();
+              onNavigate('resume-map');
+            }}
+            className="p-5 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 hover:border-purple-500 rounded-2xl transition-all space-y-2 shadow-2xs group cursor-pointer flex flex-col justify-between"
+          >
+            <div className="space-y-1.5">
+              <div className="flex items-center justify-between">
+                <span className="px-2 py-0.5 text-[10px] font-bold rounded-full bg-purple-50 dark:bg-purple-950 text-purple-700 dark:text-purple-300">
+                  Interactive Map
+                </span>
+                <Globe className="w-4 h-4 text-purple-700 dark:text-purple-400" />
+              </div>
+              <h3 className="font-bold text-sm text-neutral-900 dark:text-neutral-100 group-hover:text-purple-700 transition-colors">
+                Online Global Resume Map
+              </h3>
+              <p className="text-[11px] text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                Interactive world map comparing photo rules, page lengths, and paper dimensions across 47 countries.
+              </p>
+            </div>
+            <span className="text-xs font-bold text-purple-700 dark:text-purple-400 flex items-center gap-1 pt-2 group-hover:translate-x-0.5 transition-transform">
+              View World Map <ArrowRight className="w-3.5 h-3.5" />
             </span>
           </a>
         </div>

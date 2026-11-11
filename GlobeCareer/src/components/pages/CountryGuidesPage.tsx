@@ -15,7 +15,8 @@ const REGIONS: (CountryRegion | 'All')[] = [
   'Europe',
   'Asia-Pacific',
   'Middle East',
-  'Africa'
+  'Africa',
+  'Latin America'
 ];
 
 export const CountryGuidesPage: React.FC<CountryGuidesPageProps> = ({
@@ -59,7 +60,7 @@ export const CountryGuidesPage: React.FC<CountryGuidesPageProps> = ({
           Verified Hiring Norms & Legal Regulations
         </span>
         <h1 className="text-3xl sm:text-4xl font-extrabold text-neutral-900 dark:text-neutral-100 tracking-tight">
-          Country-Specific CV & Resume Guides (40 Countries)
+          Country-Specific CV & Resume Guides (47 Countries)
         </h1>
         <p className="text-sm sm:text-base text-neutral-600 dark:text-neutral-400 max-w-3xl leading-relaxed">
           Hiring practices differ radically worldwide. In the US, UK, and Canada, candidate photos risk immediate rejection due to anti-bias laws; in Germany, Switzerland, and the Gulf, photos and personal declarations are customary. Explore verified standards for each jurisdiction.
