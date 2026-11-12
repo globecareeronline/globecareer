@@ -25,7 +25,7 @@ import {
   Download, Printer, Undo2, Redo2, Sparkles, FileText, 
   Settings, ZoomIn, ZoomOut, RotateCcw, Save, Upload, 
   Check, AlertTriangle, Layers, User, Briefcase, GraduationCap, 
-  Wrench, Globe, ArrowRight, Cloud, CheckCircle2, X
+  Wrench, Globe, ArrowRight, Cloud, CheckCircle2, X, ShieldCheck
 } from 'lucide-react';
 
 interface ResumeBuilderViewProps {
@@ -444,6 +444,19 @@ export const ResumeBuilderView: React.FC<ResumeBuilderViewProps> = ({
               <Sparkles className="w-3.5 h-3.5" />
               <span>{t('ats.badge', 'ATS Score')}: {atsResult.score}/100</span>
             </button>
+
+            {/* ATS Guardrail Status */}
+            {['ats_classic', 'ivy_compact', 'uk_corporate', 'nordic_minimal'].includes(resumeData.design.templateId) && (
+              <button
+                type="button"
+                onClick={() => setIsATSModalOpen(true)}
+                className="hidden md:flex items-center gap-1.5 px-2.5 py-1.5 bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200 dark:border-emerald-800 text-emerald-700 dark:text-emerald-300 text-xs font-semibold rounded-xl hover:bg-emerald-100 transition-colors shadow-xs cursor-pointer"
+                title="Single-column ATS format locked. Click to run ATS audit."
+              >
+                <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+                <span className="hidden lg:inline">ATS Mode Active</span>
+              </button>
+            )}
 
             {/* Load Sample Dropdown */}
             <div className="relative group">

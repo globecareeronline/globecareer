@@ -1538,7 +1538,9 @@ export function applyPageSEO(pageKey: string, params?: Record<string, any>): Pag
   if (typeof document === 'undefined') return meta;
 
   // 1. Title
-  document.title = meta.title;
+  if (document.title !== meta.title) {
+    document.title = meta.title;
+  }
 
   // 2. Meta description
   let descTag = document.querySelector('meta[name="description"]');
@@ -1547,22 +1549,27 @@ export function applyPageSEO(pageKey: string, params?: Record<string, any>): Pag
     descTag.setAttribute('name', 'description');
     document.head.appendChild(descTag);
   }
-  descTag.setAttribute('content', meta.description);
+  if (descTag.getAttribute('content') !== meta.description) {
+    descTag.setAttribute('content', meta.description);
+  }
 
   // 3. Canonical link
+  const targetCanonical = `${BASE_DOMAIN}${meta.canonicalPath}`;
   let canonicalTag = document.querySelector('link[rel="canonical"]');
   if (!canonicalTag) {
     canonicalTag = document.createElement('link');
     canonicalTag.setAttribute('rel', 'canonical');
     document.head.appendChild(canonicalTag);
   }
-  canonicalTag.setAttribute('href', `${BASE_DOMAIN}${meta.canonicalPath}`);
+  if (canonicalTag.getAttribute('href') !== targetCanonical) {
+    canonicalTag.setAttribute('href', targetCanonical);
+  }
 
   // 4. OpenGraph tags
   const ogTags: Record<string, string> = {
     'og:title': meta.title,
     'og:description': meta.description,
-    'og:url': `${BASE_DOMAIN}${meta.canonicalPath}`,
+    'og:url': targetCanonical,
     'og:type': meta.ogType || 'website'
   };
 
@@ -1573,7 +1580,9 @@ export function applyPageSEO(pageKey: string, params?: Record<string, any>): Pag
       tag.setAttribute('property', prop);
       document.head.appendChild(tag);
     }
-    tag.setAttribute('content', val);
+    if (tag.getAttribute('content') !== val) {
+      tag.setAttribute('content', val);
+    }
   });
 
   // 5. Twitter tags
@@ -1589,17 +1598,22 @@ export function applyPageSEO(pageKey: string, params?: Record<string, any>): Pag
       tag.setAttribute('name', name);
       document.head.appendChild(tag);
     }
-    tag.setAttribute('content', val);
+    if (tag.getAttribute('content') !== val) {
+      tag.setAttribute('content', val);
+    }
   });
 
   // 6. Robots indexability
+  const targetRobots = meta.noIndex ? 'noindex, nofollow' : 'index, follow';
   let robotsTag = document.querySelector('meta[name="robots"]');
   if (!robotsTag) {
     robotsTag = document.createElement('meta');
     robotsTag.setAttribute('name', 'robots');
     document.head.appendChild(robotsTag);
   }
-  robotsTag.setAttribute('content', meta.noIndex ? 'noindex, nofollow' : 'index, follow');
+  if (robotsTag.getAttribute('content') !== targetRobots) {
+    robotsTag.setAttribute('content', targetRobots);
+  }
 
   // 7. Dynamic JSON-LD Structured Data
   let script = document.getElementById('dynamic-page-schema') as HTMLScriptElement | null;
@@ -1609,7 +1623,10 @@ export function applyPageSEO(pageKey: string, params?: Record<string, any>): Pag
     script.type = 'application/ld+json';
     document.head.appendChild(script);
   }
-  script.textContent = JSON.stringify(meta.structuredData);
+  const serializedSchema = JSON.stringify(meta.structuredData);
+  if (script.textContent !== serializedSchema) {
+    script.textContent = serializedSchema;
+  }
 
   return meta;
 }

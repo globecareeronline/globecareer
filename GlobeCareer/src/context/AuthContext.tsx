@@ -121,20 +121,61 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       });
     };
 
-    // Defer auth iframe boot until after initial render and idle to maximize Mobile FCP & LCP
+    // Check if an existing Firebase authenticated session is saved on this device
+    const hasStoredUser = () => {
+      try {
+        if (typeof window === 'undefined' || !window.localStorage) return false;
+        for (let i = 0; i < localStorage.length; i++) {
+          const k = localStorage.key(i);
+          if (k && k.startsWith('firebase:authUser:')) return true;
+        }
+      } catch (e) {}
+      return false;
+    };
+
     let idleHandle: number | null = null;
     let timerHandle: ReturnType<typeof setTimeout> | null = null;
+    let hasTriggered = false;
 
-    if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
-      idleHandle = (window as any).requestIdleCallback(initAuth, { timeout: 2500 });
-    } else if (typeof window !== 'undefined') {
-      timerHandle = setTimeout(initAuth, 1200);
-    } else {
+    const triggerInit = () => {
+      if (hasTriggered || !isMounted) return;
+      hasTriggered = true;
+      cleanupListeners();
       initAuth();
+    };
+
+    const cleanupListeners = () => {
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('pointerdown', triggerInit);
+        window.removeEventListener('touchstart', triggerInit);
+        window.removeEventListener('keydown', triggerInit);
+      }
+    };
+
+    // If a signed-in user already exists, initialize smoothly via idle callback
+    if (hasStoredUser()) {
+      if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
+        idleHandle = (window as any).requestIdleCallback(triggerInit, { timeout: 2500 });
+      } else if (typeof window !== 'undefined') {
+        timerHandle = setTimeout(triggerInit, 1500);
+      } else {
+        triggerInit();
+      }
+    } else {
+      // For anonymous visitors, mark loading complete immediately and defer heavy auth bundle
+      // until user interaction or relaxed 8s idle window to eliminate ~53 KiB of unused JS
+      setLoading(false);
+      if (typeof window !== 'undefined') {
+        window.addEventListener('pointerdown', triggerInit, { passive: true, once: true });
+        window.addEventListener('touchstart', triggerInit, { passive: true, once: true });
+        window.addEventListener('keydown', triggerInit, { passive: true, once: true });
+        timerHandle = setTimeout(triggerInit, 8000);
+      }
     }
 
     return () => {
       isMounted = false;
+      cleanupListeners();
       if (idleHandle !== null && typeof window !== 'undefined' && 'cancelIdleCallback' in window) {
         (window as any).cancelIdleCallback(idleHandle);
       }

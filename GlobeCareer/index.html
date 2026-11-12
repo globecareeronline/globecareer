@@ -35,7 +35,7 @@
     </script>
 
     <!-- Preload LCP Asset: High-Priority WebP Logo -->
-    <link rel="preload" as="image" href="/globecareer-logo.webp" type="image/webp" fetchpriority="high" />
+    <link rel="preload" as="image" href="/globecareer-logo.webp" type="image/webp" />
 
     <!-- High-Performance Google Fonts (Non-Render-Blocking with zero preload warning) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -115,7 +115,11 @@
         document.head.appendChild(link);
       }
     </script>
-    <!-- WebMCP (Web Model Context Protocol) Autonomous AI Agent Tool Registration -->
+  </head>
+  <body class="bg-neutral-50 text-neutral-900 antialiased selection:bg-neutral-900 selection:text-white dark:bg-neutral-950 dark:text-neutral-100">
+    <div id="root"></div>
+
+    <!-- WebMCP (Web Model Context Protocol) Autonomous AI Agent Tool Registration (Deferred) -->
     <script>
       (function() {
         var tools = [
@@ -214,9 +218,6 @@
         }
       })();
     </script>
-  </head>
-  <body class="bg-neutral-50 text-neutral-900 antialiased selection:bg-neutral-900 selection:text-white dark:bg-neutral-950 dark:text-neutral-100">
-    <div id="root"></div>
     <script>
       // Standalone script loader for direct local execution without server (file:// protocol)
       if (window.location.protocol === 'file:') {

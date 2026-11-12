@@ -379,11 +379,16 @@ const [isAutoDetected] = useState<boolean>(initial.isAutoDetected);
   // Sync html document dir and lang attributes
   useEffect(() => {
     if (typeof document !== 'undefined') {
-      document.documentElement.lang = currentLanguage;
-      document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
-      if (isRTL) {
+      if (document.documentElement.lang !== currentLanguage) {
+        document.documentElement.lang = currentLanguage;
+      }
+      const targetDir = isRTL ? 'rtl' : 'ltr';
+      if (document.documentElement.dir !== targetDir) {
+        document.documentElement.dir = targetDir;
+      }
+      if (isRTL && !document.documentElement.classList.contains('rtl-layout')) {
         document.documentElement.classList.add('rtl-layout');
-      } else {
+      } else if (!isRTL && document.documentElement.classList.contains('rtl-layout')) {
         document.documentElement.classList.remove('rtl-layout');
       }
     }

@@ -410,6 +410,91 @@ function AppContent() {
     navigateTo('builder');
   };
 
+  const handleStartATSResume = (options: {
+    countryId: string;
+    templateId: TemplateId;
+    jobCategory: string;
+    startMode: 'sample' | 'blank';
+    persona?: SamplePersonaType;
+  }) => {
+    const country = getCountryById(options.countryId);
+    let newResume: ResumeData;
+
+    if (options.startMode === 'blank') {
+      newResume = {
+        id: `resume-${Date.now()}`,
+        targetCountryId: options.countryId,
+        targetJobCategory: options.jobCategory,
+        seniority: 'Mid-Level (3-6 yrs)',
+        employmentType: 'Full-time',
+        lastModified: Date.now(),
+        personal: {
+          fullName: '',
+          jobTitle: '',
+          email: '',
+          phone: `${country.phonePrefix} `,
+          city: '',
+          stateOrRegion: '',
+          country: country.name,
+          hasPhoto: false
+        },
+        summary: '',
+        experience: [],
+        education: [],
+        skills: [],
+        certifications: [],
+        projects: [],
+        languages: [],
+        awards: [],
+        volunteer: [],
+        publications: [],
+        references: [],
+        referencesUponRequestOnly: true,
+        customSections: [],
+        sectionsOrder: [
+          { id: 'summary', title: 'Professional Summary', enabled: true },
+          { id: 'experience', title: 'Work Experience', enabled: true },
+          { id: 'education', title: 'Education', enabled: true },
+          { id: 'skills', title: 'Skills & Competencies', enabled: true },
+          { id: 'certifications', title: 'Certifications', enabled: true },
+          { id: 'projects', title: 'Projects', enabled: true },
+          { id: 'languages', title: 'Languages', enabled: true },
+          { id: 'references', title: 'References', enabled: true }
+        ],
+        design: {
+          templateId: options.templateId,
+          fontFamily: 'sans',
+          fontSize: 'normal',
+          spacing: 'normal',
+          accentColor: '#1e3a8a',
+          paperSize: country.paperSize,
+          showPhoto: false,
+          photoShape: 'circle',
+          photoPosition: 'top-right'
+        }
+      };
+    } else {
+      newResume = generateSampleResume(options.countryId, options.persona || 'experienced', options.jobCategory);
+      newResume.design = {
+        ...newResume.design,
+        templateId: options.templateId,
+        showPhoto: false, // Strict ATS rule: no photo for ATS compliance
+        paperSize: country.paperSize,
+        fontFamily: 'sans',
+        spacing: 'normal'
+      };
+    }
+
+    setActiveResumeData(newResume);
+    setSelectedCountryId(options.countryId);
+    try {
+      localStorage.setItem('globecareer_resume_data', JSON.stringify(newResume));
+    } catch (e) {
+      // ignore
+    }
+    navigateTo('builder');
+  };
+
   return (
     <div className={`min-h-screen flex flex-col transition-colors duration-150 ${isDarkMode ? 'dark bg-neutral-950 text-neutral-100' : 'bg-neutral-50 text-neutral-900'}`}>
       {/* Skip to Main Content Link for Keyboard and Screen Reader Accessibility */}
@@ -636,9 +721,14 @@ function AppContent() {
             {currentPage === 'ats-maker' && (
               <ATSResumeMakerPage
                 onNavigate={navigateTo}
+                onStartATSResume={handleStartATSResume}
                 onStartResumeForCountry={(countryId) => {
-                  setSelectedCountryId(countryId);
-                  navigateTo('builder');
+                  handleStartATSResume({
+                    countryId,
+                    templateId: 'ats_classic',
+                    jobCategory: 'it-software',
+                    startMode: 'sample'
+                  });
                 }}
               />
             )}

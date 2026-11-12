@@ -5,12 +5,18 @@ export const BackToTop: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      const scrollY = window.scrollY || document.documentElement.scrollTop;
-      setIsVisible(scrollY > 350);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+          setIsVisible(scrollY > 350);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
-    handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
