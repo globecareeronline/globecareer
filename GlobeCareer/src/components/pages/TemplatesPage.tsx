@@ -581,6 +581,119 @@ export const TemplatesPage: React.FC<TemplatesPageProps> = ({
         </div>
       </section>
 
+      {/* Microsoft Word & Google Docs compatibility — targets "microsoft resume templates" and "resume template for google docs" */}
+      <section id="word-google-docs" className="p-6 sm:p-8 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-3xl shadow-sm space-y-6 scroll-mt-24">
+        <div className="space-y-2">
+          <h2 className="text-xl sm:text-2xl font-bold text-neutral-900 dark:text-neutral-100">
+            Microsoft Word and Google Docs Resume Templates
+          </h2>
+          <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed max-w-3xl">
+            You do not need a separate resume template for Microsoft Word and another for Google Docs. Every layout on this page exports as a native Microsoft Word <strong>(.docx)</strong> file as well as a print-ready PDF, so the same document opens cleanly in Word, Word Online, Pages and Google Docs. Pick the format that matches your target country, fill it in once, and download the file type your employer or job portal asks for.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+          <div className="p-4 bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl space-y-1.5">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-blue-600">Step 1</span>
+            <span className="font-bold text-neutral-900 dark:text-neutral-100 block">Choose a country-compliant layout</span>
+            <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              Select your target hiring country above. The recommended template already applies the right paper size (US Letter or A4), date convention and photo rule.
+            </p>
+          </div>
+          <div className="p-4 bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl space-y-1.5">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-blue-600">Step 2</span>
+            <span className="font-bold text-neutral-900 dark:text-neutral-100 block">Download the .docx or PDF</span>
+            <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              The builder keeps the text selectable and single-flow so applicant tracking systems can read it, then downloads a real Word document rather than an image wrapped in a file.
+            </p>
+          </div>
+          <div className="p-4 bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl space-y-1.5">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-blue-600">Step 3</span>
+            <span className="font-bold text-neutral-900 dark:text-neutral-100 block">Open it in Word or Google Docs</span>
+            <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              In Google Drive choose <em>File → Open → Upload</em> and select the .docx file; Drive converts it to an editable document you can export back to Word or PDF.
+            </p>
+          </div>
+        </div>
+
+        <div className="space-y-3">
+          <h3 className="text-sm font-bold uppercase tracking-wider text-neutral-900 dark:text-neutral-100">
+            Which Template to Open in Word or Google Docs
+          </h3>
+          <div className="overflow-x-auto">
+            <table className="w-full text-xs border border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden">
+              <thead className="bg-neutral-100 dark:bg-neutral-800 text-left">
+                <tr>
+                  <th scope="col" className="p-2.5 font-bold">Template</th>
+                  <th scope="col" className="p-2.5 font-bold">Best for</th>
+                  <th scope="col" className="p-2.5 font-bold">Editing notes</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-neutral-200 dark:divide-neutral-800 text-neutral-700 dark:text-neutral-300">
+                <tr>
+                  <td className="p-2.5 font-semibold whitespace-nowrap">ATS Classic Clean</td>
+                  <td className="p-2.5">US, UK, Canada, Australia, Ireland</td>
+                  <td className="p-2.5">Single column; do not add tables, text boxes or header images in Word.</td>
+                </tr>
+                <tr>
+                  <td className="p-2.5 font-semibold whitespace-nowrap">Ivy League Compact</td>
+                  <td className="p-2.5">Finance, consulting, law, US corporate</td>
+                  <td className="p-2.5">Dense 1-page layout; trim to the margins rather than shrinking the font below 10 pt.</td>
+                </tr>
+                <tr>
+                  <td className="p-2.5 font-semibold whitespace-nowrap">UK Standard 2-Pager</td>
+                  <td className="p-2.5">United Kingdom, Ireland, Commonwealth</td>
+                  <td className="p-2.5">Keep the personal profile to three lines and preserve the references statement.</td>
+                </tr>
+                <tr>
+                  <td className="p-2.5 font-semibold whitespace-nowrap">Continental European (Lebenslauf)</td>
+                  <td className="p-2.5">Germany, Austria, Switzerland, France</td>
+                  <td className="p-2.5">A4 with optional photo; keep the tabular chronology intact when editing.</td>
+                </tr>
+                <tr>
+                  <td className="p-2.5 font-semibold whitespace-nowrap">Tech &amp; Engineering</td>
+                  <td className="p-2.5">Software, data, engineering roles</td>
+                  <td className="p-2.5">Projects and tooling sit above education for experienced candidates.</td>
+                </tr>
+                <tr>
+                  <td className="p-2.5 font-semibold whitespace-nowrap">Creative Studio &amp; Portfolio</td>
+                  <td className="p-2.5">Design, marketing, agency applications</td>
+                  <td className="p-2.5">Visual layout for direct applications; submit the ATS version to job portals instead.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div className="p-4 bg-amber-50/60 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-900/50 rounded-2xl space-y-1.5 text-xs">
+          <span className="font-bold text-amber-900 dark:text-amber-200 block">If you edit the file outside GlobeCareer</span>
+          <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed">
+            Word and Google Docs make it easy to break a resume without noticing. Avoid inserting layout tables, drawing text boxes, icons in place of bullets, or a photo in the document header — those are the structures that most often cause a parser to lose your job titles and dates. If you must reformat, re-run the result through the{' '}
+            <a href="/ats-checker" onClick={(e) => { e.preventDefault(); if (onNavigate) onNavigate('ats-checker'); }} className="text-blue-600 dark:text-blue-400 font-bold underline hover:text-blue-700">ATS Resume Checker</a>{' '}
+            before you submit.
+          </p>
+        </div>
+
+        <div className="flex flex-col sm:flex-row gap-3">
+          <button
+            type="button"
+            onClick={() => { if (onNavigate) onNavigate('builder'); }}
+            className="px-5 py-2.5 text-xs font-bold uppercase tracking-wider bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-900 rounded-xl hover:bg-neutral-800 shadow-md transition-colors inline-flex items-center justify-center gap-2"
+          >
+            Build in the Free Editor
+            <ArrowRight className="w-4 h-4" />
+          </button>
+          <button
+            type="button"
+            onClick={() => { if (onNavigate) onNavigate('writing-guide'); }}
+            className="px-5 py-2.5 text-xs font-bold uppercase tracking-wider bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-700 text-neutral-900 dark:text-neutral-100 rounded-xl hover:border-blue-500 transition-colors inline-flex items-center justify-center gap-2"
+          >
+            Resume Length &amp; Writing Guide
+            <ArrowRight className="w-4 h-4" />
+          </button>
+        </div>
+      </section>
+
       {/* Recommended Format Specifications & Regional Guidelines (Phase 12 Internal Linking) */}
       <section className="space-y-4 pt-4 border-t border-neutral-200 dark:border-neutral-800">
         <div>

@@ -136,7 +136,7 @@ export const Header: React.FC<HeaderProps> = ({
 
   return (
     <header className="sticky top-0 z-40 bg-white/95 dark:bg-neutral-900/95 backdrop-blur-md border-b border-neutral-200 dark:border-neutral-800 transition-colors">
-      <div ref={navRef} className="max-w-7xl mx-auto flex items-center justify-between gap-4 px-4 sm:px-6 lg:px-8 py-2.5">
+      <div ref={navRef} className="max-w-7xl mx-auto flex items-center justify-between gap-2 sm:gap-4 px-3 sm:px-6 lg:px-8 py-2.5">
         
         {/* Zone 1: Official Logo & Brand */}
         <a
@@ -837,7 +837,7 @@ export const Header: React.FC<HeaderProps> = ({
           <button
             type="button"
             onClick={onToggleDarkMode}
-            className="min-w-[44px] min-h-[44px] flex items-center justify-center p-2.5 text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors rounded-xl cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+            className="hidden sm:flex min-w-[44px] min-h-[44px] items-center justify-center p-2.5 text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors rounded-xl cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
             title="Toggle Light / Dark Mode"
             aria-label="Toggle theme"
           >
@@ -942,7 +942,8 @@ export const Header: React.FC<HeaderProps> = ({
                 aria-label="Account access options: Sign Up Free or Sign In"
                 className="inline-flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 bg-neutral-900 hover:bg-neutral-800 dark:bg-neutral-100 dark:hover:bg-neutral-200 text-white dark:text-neutral-900 rounded-xl text-xs font-bold transition-colors cursor-pointer shadow-xs whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
               >
-                <span>{t('auth.signUp', 'Sign Up Free')}</span>
+                <span className="sm:hidden">{t('auth.signUpShort', 'Sign Up')}</span>
+                <span className="hidden sm:inline">{t('auth.signUp', 'Sign Up Free')}</span>
                 <ChevronDown
                   className={`w-3.5 h-3.5 opacity-70 transition-transform duration-200 ${
                     authDropdownOpen ? 'rotate-180' : ''
@@ -1336,7 +1337,18 @@ export const Header: React.FC<HeaderProps> = ({
             <span className="text-xs font-semibold text-neutral-600 dark:text-neutral-400">
               {t('common.language', 'Language')}
             </span>
-            <LanguageSelector variant="header" />
+            <div className="flex items-center gap-1">
+              <button
+                type="button"
+                onClick={onToggleDarkMode}
+                className="min-w-[44px] min-h-[44px] flex items-center justify-center p-2.5 text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors rounded-xl cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+                title="Toggle Light / Dark Mode"
+                aria-label="Toggle theme"
+              >
+                {isDarkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+              </button>
+              <LanguageSelector variant="header" />
+            </div>
           </div>
 
           {/* Mobile Auth Actions */}

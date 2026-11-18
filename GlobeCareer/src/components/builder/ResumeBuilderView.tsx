@@ -372,6 +372,9 @@ export const ResumeBuilderView: React.FC<ResumeBuilderViewProps> = ({
 
   return (
     <div className="min-h-screen bg-neutral-100 dark:bg-neutral-950 flex flex-col">
+      {/* The builder UI is a dense editor with no visual page title; this H1 keeps
+          the page accessible and gives the document a single, unique heading. */}
+      <h1 className="sr-only">Free International Resume Builder</h1>
       {/* Top Application Ribbon */}
       <div className="bg-white dark:bg-neutral-900 border-b border-neutral-200 dark:border-neutral-800 px-4 py-2.5 sticky top-0 z-30 shadow-xs no-print">
         <div className="max-w-[1700px] mx-auto flex flex-wrap items-center justify-between gap-3">

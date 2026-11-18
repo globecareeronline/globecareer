@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { LanguageProvider } from './context/LanguageContext';
 import { Header } from './components/layout/Header';
@@ -54,6 +54,7 @@ const ATSResumeMakerPage = React.lazy(() => import('./components/tools/ATSResume
 const GlobalResumeMap = React.lazy(() => import('./components/tools/GlobalResumeMap').then(m => ({ default: m.GlobalResumeMap })));
 const ReverseChronologicalGuidePage = React.lazy(() => import('./components/pages/ReverseChronologicalGuidePage').then(m => ({ default: m.ReverseChronologicalGuidePage })));
 const ResumeReferencesGuidePage = React.lazy(() => import('./components/pages/ResumeReferencesGuidePage').then(m => ({ default: m.ResumeReferencesGuidePage })));
+const RoleResumeExamplesPage = React.lazy(() => import('./components/pages/RoleResumeExamplesPage').then(m => ({ default: m.RoleResumeExamplesPage })));
 
 const PageLoadingFallback: React.FC = () => (
   <div className="min-h-[50vh] flex flex-col items-center justify-center p-8">
@@ -62,6 +63,7 @@ const PageLoadingFallback: React.FC = () => (
   </div>
 );
 
+import { matchRolePath } from './routes';
 import { generateSampleResume, SamplePersonaType } from './data/sampleResumes';
 import { ResumeData, TemplateId } from './types/resume';
 import { VerifiedJob } from './types/jobs';
@@ -233,7 +235,7 @@ const PATH_TO_PAGE: Record<string, string> = {
   '/admin': 'admin',
 };
 
-function parseRouteFromLocation(): { page: string; countryId?: string } {
+function parseRouteFromLocation(): { page: string; countryId?: string; roleSlug?: string } {
   if (typeof window === 'undefined') return { page: 'home' };
 
   // File protocol local execution: parse from URL hash (e.g. file:///path/index.html#/templates)
@@ -243,6 +245,8 @@ function parseRouteFromLocation(): { page: string; countryId?: string } {
     if (hashCountryMatch) {
       return { page: 'country-detail', countryId: hashCountryMatch[1] };
     }
+    const hashRoleSlug = matchRolePath(rawHash);
+    if (hashRoleSlug) return { page: 'role-example', roleSlug: hashRoleSlug };
     const hashMapped = PATH_TO_PAGE[rawHash];
     if (hashMapped) return { page: hashMapped };
     return { page: 'home' };
@@ -254,6 +258,9 @@ function parseRouteFromLocation(): { page: string; countryId?: string } {
     return { page: 'country-detail', countryId: countryMatch[1] };
   }
   
+  const roleSlug = matchRolePath(pathname);
+  if (roleSlug) return { page: 'role-example', roleSlug };
+
   const mapped = PATH_TO_PAGE[pathname];
   if (mapped) return { page: mapped };
 
@@ -261,8 +268,18 @@ function parseRouteFromLocation(): { page: string; countryId?: string } {
 }
 
 function AppContent() {
-  const [currentPage, setCurrentPage] = useState<string>('home');
-  const [selectedCountryId, setSelectedCountryId] = useState<string>('us');
+  // Resolve the route during the first render instead of in an effect. Otherwise
+  // every deep link paints the homepage first and then swaps to the real page,
+  // which produces a full-page layout shift.
+  const initialRoute = useRef<ReturnType<typeof parseRouteFromLocation> | null>(null);
+  if (initialRoute.current === null) {
+    initialRoute.current = parseRouteFromLocation();
+  }
+  const firstRoute = initialRoute.current;
+
+  const [currentPage, setCurrentPage] = useState<string>(firstRoute.page);
+  const [selectedCountryId, setSelectedCountryId] = useState<string>(firstRoute.countryId || 'us');
+  const [selectedRoleSlug, setSelectedRoleSlug] = useState<string>(firstRoute.roleSlug || '');
   const [selectedCoverLetterTemplate, setSelectedCoverLetterTemplate] = useState<CoverLetterTemplateSpec | undefined>();
   const [selectedRecommendationPreset, setSelectedRecommendationPreset] = useState<any | undefined>();
   const [selectedEmailPreset, setSelectedEmailPreset] = useState<any | undefined>();
@@ -304,20 +321,18 @@ function AppContent() {
   // Initial route parse, popstate, and hashchange listener for SEO and clean URL / local file navigation
   useEffect(() => {
     const handleRouteSync = () => {
-      const { page, countryId } = parseRouteFromLocation();
+      const { page, countryId, roleSlug } = parseRouteFromLocation();
       setCurrentPage(page);
       if (countryId) setSelectedCountryId(countryId);
-      applyPageSEO(page, { countryId });
+      if (roleSlug) setSelectedRoleSlug(roleSlug);
+      applyPageSEO(page, { countryId, roleSlug });
     };
 
-    const initial = parseRouteFromLocation();
-    if (initial.page !== 'home' || initial.countryId) {
-      setCurrentPage(initial.page);
-      if (initial.countryId) setSelectedCountryId(initial.countryId);
-      applyPageSEO(initial.page, { countryId: initial.countryId });
-    } else {
-      applyPageSEO('home');
-    }
+    // The first render already used the parsed route; this only applies metadata.
+    applyPageSEO(initialRoute.current!.page, {
+      countryId: initialRoute.current!.countryId,
+      roleSlug: initialRoute.current!.roleSlug
+    });
 
     window.addEventListener('popstate', handleRouteSync);
     window.addEventListener('hashchange', handleRouteSync);
@@ -332,11 +347,40 @@ function AppContent() {
   };
 
   const navigateTo = (rawPage: string, countryIdParam?: string) => {
+    // Role-level resume example pages are addressed as `role-example:<slug>`.
+    if (rawPage.startsWith('role-example:')) {
+      const slug = rawPage.slice('role-example:'.length);
+      setCurrentPage('role-example');
+      setSelectedRoleSlug(slug);
+      const rolePath = `/resume-examples/${slug}`;
+      if (typeof window !== 'undefined') {
+        try {
+          if (window.location.protocol === 'file:') {
+            window.location.hash = rolePath;
+          } else if (window.location.pathname !== rolePath) {
+            window.history.pushState(null, '', rolePath);
+          }
+        } catch (e) {
+          try {
+            window.location.hash = rolePath;
+          } catch (_) {}
+        }
+      }
+      applyPageSEO('role-example', { roleSlug: slug });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
     const page = PAGE_ALIAS_MAP[rawPage] || rawPage;
     setCurrentPage(page);
     let targetPath = PAGE_TO_PATH[page] || '/';
+    let resolvedCountryId = countryIdParam || selectedCountryId;
     if (page === 'country-detail') {
       const cId = countryIdParam || selectedCountryId || 'us';
+      // Keep local state in step with the URL, otherwise the newly pushed
+      // /country/:id path would render the previously selected country.
+      resolvedCountryId = cId;
+      setSelectedCountryId(cId);
       targetPath = `/country/${cId}`;
     }
 
@@ -353,7 +397,7 @@ function AppContent() {
         } catch (_) {}
       }
     }
-    applyPageSEO(page, { countryId: countryIdParam || selectedCountryId });
+    applyPageSEO(page, { countryId: resolvedCountryId });
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -552,10 +596,7 @@ function AppContent() {
                 countryId={selectedCountryId}
                 onBack={() => navigateTo('guides')}
                 onStartResume={(cId, persona) => handleStartResume(cId, undefined, persona)}
-                onNavigate={(page, cId) => {
-                  if (cId) setSelectedCountryId(cId);
-                  navigateTo(page);
-                }}
+                onNavigate={(page, cId) => navigateTo(page, cId)}
               />
             )}
 
@@ -619,6 +660,7 @@ function AppContent() {
             {currentPage === 'job-examples' && (
               <JobExamplesPage
                 onSelectCategory={handleSelectJobCategory}
+                onNavigate={navigateTo}
               />
             )}
 
@@ -775,6 +817,14 @@ function AppContent() {
               />
             )}
 
+            {currentPage === 'role-example' && (
+              <RoleResumeExamplesPage
+                roleSlug={selectedRoleSlug}
+                onNavigate={navigateTo}
+                onSelectCategory={handleSelectJobCategory}
+              />
+            )}
+
             {currentPage === 'cover-letter' && (
               <CoverLetterBuilder
                 resumeData={activeResumeData}
@@ -904,6 +954,10 @@ function AppContent() {
     </div>
   );
 }
+
+// Route tables are exported so the build-time prerenderer and route audit use
+// exactly the same map as the running application.
+export { PATH_TO_PAGE, PAGE_TO_PATH, PAGE_ALIAS_MAP };
 
 export default function App() {
   return (

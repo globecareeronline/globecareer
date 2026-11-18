@@ -1,27 +1,53 @@
 # GlobeCareer — International Career Platform
 
-> [GlobeCareer](https://globecareer.online) is a 100% free international CV and resume builder, career document suite, and global job search platform. It features country-specific CV formatting across 40 jurisdictions, ATS optimization, and zero paywalls or subscriptions.
+> [GlobeCareer](https://globecareer.online) is a 100% free international CV and resume builder, career document suite, and global job search platform. It features country-specific CV formatting across 47 jurisdictions, ATS optimization, and zero paywalls or subscriptions.
 
 ## Core Free Capabilities
 
-- [International Resume Builder](https://globecareer.online/resume-builder): Interactive CV creator with real-time ATS keyword matching, photo and no-photo compliance for 40 countries, and free vector PDF and DOCX export.
-- [Resume & CV Templates](https://globecareer.online/templates): Country-tailored single-column ATS layouts and European photo CV formats.
+- [International Resume Builder](https://globecareer.online/resume-builder): Interactive CV creator with real-time ATS keyword matching, photo and no-photo compliance for 47 countries, and free vector PDF and DOCX export.
+- [ATS Resume Maker](https://globecareer.online/ats-resume-maker): Guided ATS-first resume workflow that starts from a country and industry preset.
+- [Resume & CV Templates](https://globecareer.online/templates): Country-tailored single-column ATS layouts and European photo CV formats, downloadable as Microsoft Word (.docx) or PDF.
 - [Cover Letter Builder](https://globecareer.online/cover-letter-builder): Tailored cover letters with country-specific norms and export.
-- [Cover Letter Templates](https://globecareer.online/letter-templates): Curated outreach and reference letter templates.
+- [Cover Letter & Letter Templates](https://globecareer.online/letter-templates): Curated cover letter, recommendation letter, and outreach templates.
 - [ATS Resume Checker](https://globecareer.online/ats-checker): Real-time resume versus job description match score, missing skills analysis, and formatting audits.
 - [Job Application Email Generator](https://globecareer.online/email-generator): Formal application emails, cold outreach messages, and follow-ups.
 - [Recommendation Letter Builder](https://globecareer.online/recommendation-letter): Academic, employment, and graduate reference letters.
 - [Recommendation Letter Guide](https://globecareer.online/recommendation-letter-guide): Step-by-step guidance on requesting and structuring reference letters.
 - [Interview Preparation](https://globecareer.online/interview-prep): STAR method frameworks, mock practice questions, and international hiring etiquette.
-- [Professional Bio Generator](https://globecareer.online/bio-generator): 15+ industry templates with Short, Medium, and Extended outputs.
-- [Resume Summary & Objective Generator](https://globecareer.online/summary-generator): 18+ ATS-tested professional summaries and LinkedIn headlines.
-- [Resignation Letter Generator](https://globecareer.online/resignation-letter): 11+ departure scenarios with global notice rules for US, UK, Germany, and Australia.
-- [Resume Word Counter](https://globecareer.online/resume-word-counter): Word count and readability analysis for international job applications.
+- [Professional Bio Generator](https://globecareer.online/bio-generator): Industry templates with Short, Medium, and Extended outputs.
+- [Bio Templates](https://globecareer.online/bio-templates): First-person and third-person professional bio examples.
+- [Resume Summary & Objective Generator](https://globecareer.online/summary-generator): ATS-tested professional summaries and LinkedIn headlines.
+- [Resume Summary Templates](https://globecareer.online/summary-templates): Copy-ready resume summaries and career objectives by industry.
+- [Resume Objective Generator](https://globecareer.online/resume-objective-generator): Career objective and objective statement examples.
+- [Resignation Letter Generator](https://globecareer.online/resignation-letter): Departure scenarios with global notice rules for US, UK, Germany, and Australia.
+- [Resignation Letter Templates](https://globecareer.online/resignation-letter-templates): Two weeks notice, short notice, and relocation letters.
+- [Resume Word Counter](https://globecareer.online/resume-word-counter): Word count, readability, and one-page versus two-page fit analysis.
 - [Resume Bullet Point Generator](https://globecareer.online/resume-bullet-generator): Action-verb achievement statements tailored for applicant tracking systems.
+- [Resume Phrase Generator](https://globecareer.online/resume-phrase-generator): Professional phrasing for experience and skills sections.
 - [Verified Jobs Portal](https://globecareer.online/jobs): Authenticated international and remote positions with verified employer links and anti-scam safeguards.
 - [Job Application Tracker](https://globecareer.online/job-tracker): Free Kanban pipeline for tracking wishlists, applied roles, interviews, offers, and follow-up deadlines.
-- [40 Country CV Hiring Guides](https://globecareer.online/country-guides): Specific rules on photos, paper sizes (Letter vs. A4), document length, and data privacy for 40 nations including United States, United Kingdom, Canada, Germany, Australia, France, Japan, UAE, Singapore, Netherlands, Switzerland, Spain, Ireland, New Zealand, Sweden, and Poland.
-- [Frequently Asked Questions](https://globecareer.online/faq): Detailed guidance on resume formats, ATS compliance, photo rules, and international employment.
+- [Online Resume Map](https://globecareer.online/resume-map): Interactive comparison of global CV standards.
+
+## Editorial Guides
+
+- [47 Country CV Hiring Guides](https://globecareer.online/country-guides): Specific rules on photos, paper sizes (Letter vs. A4), document length, and data privacy for 47 nations.
+- [Resume Writing Guide](https://globecareer.online/resume-writing-guide): How long a resume should be by country, the XYZ achievement formula, how to list certifications and volunteer work.
+- [ATS Optimization Handbook](https://globecareer.online/ats-guide): How applicant tracking systems parse resumes and which formatting breaks them.
+- [European CV Format](https://globecareer.online/european-cv-format): ISO A4 dimensions, CEFR language levels, and EU photo conventions.
+- [CV vs Resume](https://globecareer.online/cv-vs-resume): Length, terminology, and photo differences between US resumes and UK/EU CVs.
+- [Top Resume Skills](https://globecareer.online/resume-skills): Hard, soft, and technical skills by industry.
+- [Reverse Chronological Resume Format](https://globecareer.online/reverse-chronological-resume-format): The standard work-history layout.
+- [References on a Resume](https://globecareer.online/references-on-resume): Why references stay off the resume and how to format a reference sheet.
+- [Resume Examples by Role](https://globecareer.online/resume-examples): Industry achievement bullets, ATS keyword banks, and guidance for applying abroad.
+- [Customer Service Resume Guide](https://globecareer.online/resume-examples/customer-service): Responsibilities, CRM fluency, escalation handling and screening keywords for support roles.
+- [Software Engineer Resume Guide](https://globecareer.online/resume-examples/software-engineer): Systems, testing and reliability evidence by engineering level.
+- [Registered Nurse Resume Guide](https://globecareer.online/resume-examples/registered-nurse): Licence-first structure, clinical responsibilities and safe ways to quantify caseload.
+- [Teacher Resume Guide](https://globecareer.online/resume-examples/teacher): Curriculum, phase and safeguarding evidence for school applications.
+- [Data Analyst Resume Guide](https://globecareer.online/resume-examples/data-analyst): SQL depth, dashboard ownership and decision-level impact.
+- [Project Manager Resume Guide](https://globecareer.online/resume-examples/project-manager): Scope, budget and recovery stories by seniority.
+- [Marketing Manager Resume Guide](https://globecareer.online/resume-examples/marketing-manager): Channel ownership, budget management and honest attribution.
+- [Sales Representative Resume Guide](https://globecareer.online/resume-examples/sales-representative): Quota attainment, deal shape and CRM evidence.
+- [Frequently Asked Questions](https://globecareer.online/faq): Resume formats, ATS compliance, photo rules, and international employment.
 
 ## Platform Standards
 

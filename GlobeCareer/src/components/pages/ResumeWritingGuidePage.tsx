@@ -1,9 +1,10 @@
 import React from 'react';
-import { ArrowRight, Sparkles, CheckCircle2, XCircle, BookOpen } from 'lucide-react';
+import { ArrowRight, Sparkles, CheckCircle2, XCircle, BookOpen, Ruler, Award, HeartHandshake } from 'lucide-react';
+import { COUNTRIES } from '../../data/countries';
 
 interface ResumeWritingGuidePageProps {
   onStartBuilder: () => void;
-  onNavigate?: (page: string) => void;
+  onNavigate?: (page: string, countryId?: string) => void;
 }
 
 export const ResumeWritingGuidePage: React.FC<ResumeWritingGuidePageProps> = ({ onStartBuilder, onNavigate }) => {
@@ -163,6 +164,248 @@ export const ResumeWritingGuidePage: React.FC<ResumeWritingGuidePageProps> = ({ 
           <div>• <strong>State your relocation availability:</strong> e.g., <em>"Available to relocate within 30 days."</em></div>
         </div>
       </div>
+
+      {/* Resume Length: targets "how long should a resume be" & "how many pages should a resume be" */}
+      <section id="resume-length" className="p-6 sm:p-8 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-3xl shadow-sm space-y-6 scroll-mt-24">
+        <div className="space-y-2">
+          <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-blue-600">
+            <Ruler className="w-4 h-4" />
+            Document Length
+          </div>
+          <h2 className="text-xl sm:text-2xl font-bold text-neutral-900 dark:text-neutral-100">
+            How Long Should a Resume Be?
+          </h2>
+          <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+            Resume length is not one global rule — it is a local convention. The short answer is one page for the United States and Canada, and two pages for the United Kingdom, Ireland, Australia and most of continental Europe. Recruiters do not reward extra pages; they reward relevance per line, so the correct length is the shortest document that still proves your fit for the role.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+          <div className="p-4 bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl space-y-1.5">
+            <span className="font-bold text-neutral-900 dark:text-neutral-100 block">1 page</span>
+            <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              United States, Canada, Philippines. Standard for early and mid-career candidates; the second page is only justified past roughly ten years of directly relevant experience.
+            </p>
+          </div>
+          <div className="p-4 bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl space-y-1.5">
+            <span className="font-bold text-neutral-900 dark:text-neutral-100 block">2 pages</span>
+            <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              United Kingdom, Ireland, Australia, New Zealand and most EU markets. A full career history, personal profile and language levels usually need the second page.
+            </p>
+          </div>
+          <div className="p-4 bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl space-y-1.5">
+            <span className="font-bold text-neutral-900 dark:text-neutral-100 block">3+ pages</span>
+            <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              Academic CVs (publications, grants, teaching) and US federal resumes (USAJOBS), which list hours per week, salary history and supervisor contacts.
+            </p>
+          </div>
+        </div>
+
+        <div className="space-y-3">
+          <h3 className="text-sm font-bold uppercase tracking-wider text-neutral-900 dark:text-neutral-100">
+            How Many Pages Should a Resume Be by Experience?
+          </h3>
+          <div className="overflow-x-auto">
+            <table className="w-full text-xs border border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden">
+              <thead className="bg-neutral-100 dark:bg-neutral-800 text-left">
+                <tr>
+                  <th scope="col" className="p-2.5 font-bold">Experience</th>
+                  <th scope="col" className="p-2.5 font-bold">US / Canada</th>
+                  <th scope="col" className="p-2.5 font-bold">UK / EU / Australia</th>
+                  <th scope="col" className="p-2.5 font-bold">What to cut first</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-neutral-200 dark:divide-neutral-800 text-neutral-700 dark:text-neutral-300">
+                <tr>
+                  <td className="p-2.5 font-semibold">Student / 0–2 years</td>
+                  <td className="p-2.5">1 page</td>
+                  <td className="p-2.5">1 page</td>
+                  <td className="p-2.5">Coursework lists, hobby sections, unrelated part-time jobs</td>
+                </tr>
+                <tr>
+                  <td className="p-2.5 font-semibold">3–9 years</td>
+                  <td className="p-2.5">1 page</td>
+                  <td className="p-2.5">2 pages</td>
+                  <td className="p-2.5">Oldest roles reduced to one line, generic duties</td>
+                </tr>
+                <tr>
+                  <td className="p-2.5 font-semibold">10–19 years</td>
+                  <td className="p-2.5">1–2 pages</td>
+                  <td className="p-2.5">2 pages</td>
+                  <td className="p-2.5">Roles older than 15 years condensed into an “Earlier career” line</td>
+                </tr>
+                <tr>
+                  <td className="p-2.5 font-semibold">20+ years / executive</td>
+                  <td className="p-2.5">2 pages</td>
+                  <td className="p-2.5">2–3 pages</td>
+                  <td className="p-2.5">Chronological detail; keep board roles and headline results</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
+            A dense, well-edited page holds roughly 400–650 words. If you are unsure whether your draft fits, paste it into the{' '}
+            <a href="/resume-word-counter" onClick={(e) => { e.preventDefault(); onNavigate?.('resume-word-counter'); }} className="text-blue-600 dark:text-blue-400 font-bold underline hover:text-blue-700">Resume Word Counter</a>{' '}
+            to check word count and estimated page fit before exporting.
+          </p>
+        </div>
+
+        <div className="space-y-3">
+          <h3 className="text-sm font-bold uppercase tracking-wider text-neutral-900 dark:text-neutral-100">
+            Standard Resume Length by Country
+          </h3>
+          <p className="text-xs text-neutral-600 dark:text-neutral-400">
+            Length conventions published in our country hiring guides. Select a country to see its full formatting rules, photo guidance and paper size.
+          </p>
+          <div className="max-h-80 overflow-y-auto border border-neutral-200 dark:border-neutral-800 rounded-xl">
+            <table className="w-full text-xs">
+              <thead className="bg-neutral-100 dark:bg-neutral-800 text-left sticky top-0">
+                <tr>
+                  <th scope="col" className="p-2.5 font-bold">Country</th>
+                  <th scope="col" className="p-2.5 font-bold">CV term</th>
+                  <th scope="col" className="p-2.5 font-bold">Standard length</th>
+                  <th scope="col" className="p-2.5 font-bold">Paper</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-neutral-200 dark:divide-neutral-800 text-neutral-700 dark:text-neutral-300">
+                {COUNTRIES.map((c) => (
+                  <tr key={c.id}>
+                    <td className="p-2.5 font-semibold whitespace-nowrap">
+                      <a
+                        href={`/country/${c.id}`}
+                        onClick={(e) => { e.preventDefault(); onNavigate?.('country-detail', c.id); }}
+                        className="hover:text-blue-600 hover:underline"
+                        title={`${c.name} CV and resume guide`}
+                      >
+                        {c.flag} {c.name}
+                      </a>
+                    </td>
+                    <td className="p-2.5 whitespace-nowrap">{c.cvTerminology}</td>
+                    <td className="p-2.5">{c.standardLength}</td>
+                    <td className="p-2.5 whitespace-nowrap uppercase">{c.paperSize}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {/* Certifications: targets "how to put certifications on resume" */}
+      <section id="certifications" className="p-6 sm:p-8 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-3xl shadow-sm space-y-5 scroll-mt-24">
+        <div className="space-y-2">
+          <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-blue-600">
+            <Award className="w-4 h-4" />
+            Credentials
+          </div>
+          <h2 className="text-xl sm:text-2xl font-bold text-neutral-900 dark:text-neutral-100">
+            How to Put Certifications on a Resume
+          </h2>
+          <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+            Certifications belong in their own section directly after Education when they are job-critical (nursing licences, CPA, PMP, cloud certifications), or near the top under your summary when a licence is a hard hiring requirement. Each entry needs four elements: the credential name written out in full, the issuing body, the year awarded, and the expiry or licence number where a recruiter would expect to verify it.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+          <div className="p-4 bg-emerald-50/50 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-900/50 rounded-2xl space-y-2">
+            <div className="flex items-center gap-1.5 font-bold text-emerald-700 dark:text-emerald-400">
+              <CheckCircle2 className="w-4 h-4" />
+              Complete entry:
+            </div>
+            <p className="text-neutral-700 dark:text-neutral-300">
+              “AWS Certified Solutions Architect – Associate — Amazon Web Services, 2024. Valid to 2027.”
+            </p>
+            <p className="text-[11px] text-neutral-500">
+              Full name, issuer, year and validity — every field an ATS or licence check can index.
+            </p>
+          </div>
+          <div className="p-4 bg-rose-50/50 dark:bg-rose-950/20 border border-rose-200 dark:border-rose-900/50 rounded-2xl space-y-2">
+            <div className="flex items-center gap-1.5 font-bold text-rose-700 dark:text-rose-400">
+              <XCircle className="w-4 h-4" />
+              Incomplete entry:
+            </div>
+            <p className="text-neutral-700 dark:text-neutral-300 italic">
+              “AWS certified, advanced computer skills.”
+            </p>
+            <p className="text-[11px] text-neutral-500">
+              No issuer, no year and no verifiable title — it reads as filler rather than proof.
+            </p>
+          </div>
+        </div>
+
+        <div className="space-y-2 text-xs text-neutral-700 dark:text-neutral-300">
+          <h3 className="text-sm font-bold uppercase tracking-wider text-neutral-900 dark:text-neutral-100">
+            Rules That Survive ATS Parsing
+          </h3>
+          <div className="space-y-1.5">
+            <div>• <strong>Spell out the acronym once:</strong> “Project Management Professional (PMP)” so both the abbreviation and the full phrase match a job description.</div>
+            <div>• <strong>Use one line per credential:</strong> name, issuer, year. Avoid logos, badge images and multi-column boxes that parsers skip.</div>
+            <div>• <strong>List in-progress certifications with an expected date:</strong> “CFA Level II — candidate, exam scheduled 2027” rather than leaving them out.</div>
+            <div>• <strong>Drop expired certifications</strong> unless they are foundational, and never label an unaccredited course as a certification.</div>
+            <div>• <strong>Match the job description wording</strong> where both forms are correct — the same credential can appear as “CompTIA Security+” or “Security Plus”.</div>
+          </div>
+        </div>
+
+        <div className="p-4 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950/40 dark:to-indigo-950/40 border border-blue-200 dark:border-blue-900 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+          <p className="text-xs text-neutral-600 dark:text-neutral-300">
+            Check whether the certifications a job description asks for actually appear in your document with the{' '}
+            <a href="/ats-checker" onClick={(e) => { e.preventDefault(); onNavigate?.('ats-checker'); }} className="text-blue-600 dark:text-blue-400 font-bold underline hover:text-blue-700">ATS Resume Checker</a>.
+          </p>
+          <button
+            type="button"
+            onClick={() => onNavigate?.('ats-checker')}
+            className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold whitespace-nowrap shadow-xs shrink-0"
+          >
+            Scan My Resume
+          </button>
+        </div>
+      </section>
+
+      {/* Volunteer work: targets "how to put volunteer work on resume" */}
+      <section id="volunteer-work" className="p-6 sm:p-8 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-3xl shadow-sm space-y-5 scroll-mt-24">
+        <div className="space-y-2">
+          <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-blue-600">
+            <HeartHandshake className="w-4 h-4" />
+            Experience
+          </div>
+          <h2 className="text-xl sm:text-2xl font-bold text-neutral-900 dark:text-neutral-100">
+            How to Put Volunteer Work on a Resume
+          </h2>
+          <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+            Volunteer work earns a place on your resume when it proves a skill the job asks for, fills a gap in your paid history, or shows sustained commitment. If it is directly relevant, list it inside your Work Experience section with the same structure as a paid role. If it is supporting evidence rather than core experience, give it a short “Volunteer Experience” section after your employment history.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+          <div className="p-4 bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl space-y-1.5">
+            <span className="font-bold text-neutral-900 dark:text-neutral-100 block">Include it when…</span>
+            <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              You are a recent graduate or career changer, the volunteering used the same tools as the target role, you held a coordinating or fundraising responsibility, or the commitment spans a year or more.
+            </p>
+          </div>
+          <div className="p-4 bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl space-y-1.5">
+            <span className="font-bold text-neutral-900 dark:text-neutral-100 block">Leave it out when…</span>
+            <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              The document is already at its market length limit, the activity was a one-off event, or it reveals a personal affiliation (religious, political or health-related) that many employers instruct recruiters to ignore.
+            </p>
+          </div>
+        </div>
+
+        <div className="space-y-2 text-xs">
+          <h3 className="text-sm font-bold uppercase tracking-wider text-neutral-900 dark:text-neutral-100">
+            Format It Like a Job, Not a Hobby
+          </h3>
+          <div className="p-4 bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl space-y-2 text-neutral-700 dark:text-neutral-300">
+            <p><strong>Role, organisation, city — dates.</strong> “Volunteer Tutor, Community Learning Centre, Manchester — 2023–Present.”</p>
+            <p className="italic">
+              “Tutored 12 GCSE students weekly in mathematics, raising mock-exam pass rates from 58% to 83% over two terms.”
+            </p>
+            <p className="text-[11px] text-neutral-500">
+              Notice the XYZ pattern: outcome, measurement, method. The same framing applies whether the work was paid or unpaid — see the action verb bank above for openers.
+            </p>
+          </div>
+        </div>
+      </section>
 
       {/* Cross-Link Tools & Free Template Libraries */}
       <div className="p-6 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-3xl space-y-4 shadow-xs">

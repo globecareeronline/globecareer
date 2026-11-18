@@ -5,6 +5,7 @@
  */
 
 import { getCountryById, COUNTRIES } from '../data/countries';
+import { getRoleExample } from '../data/roleExamples';
 
 export interface PageSEOMetadata {
   title: string;
@@ -370,11 +371,14 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
   },
 
   templates: () => ({
-    title: 'ATS Resume Templates & Formats (Single-Column & Photo) | GlobeCareer',
-    description: 'Browse free ATS-tested resume templates and international photo CV formats. Engineered for corporate ATS parsing and European executive standards.',
+    title: 'Free Resume Templates for Word & Google Docs (ATS-Ready) | GlobeCareer',
+    description: 'Download free Microsoft Word (.docx) and Google Docs resume templates, plus country-specific photo CV layouts for 47 countries. Single-column, ATS-safe.',
     canonicalPath: '/templates',
     ogType: 'website',
     keywords: [
+      'microsoft resume templates',
+      'resume template for google docs',
+      'word resume template free download',
       'ats resume templates',
       'one page resume',
       'chronological resume template',
@@ -396,11 +400,18 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
   }),
 
   'job-examples': () => ({
-    title: 'Resume Examples & Professional Templates by Role | GlobeCareer',
-    description: 'Explore verified resume examples and proven bullet points for software engineers, marketing, finance, healthcare, and entry-level positions.',
+    title: 'Resume Examples by Role & Resume Example for Applying Abroad | GlobeCareer',
+    description: 'Browse resume examples and ATS keyword banks for 19 industries, plus country-specific guidance for a resume example for applying abroad.',
     canonicalPath: '/resume-examples',
     ogType: 'website',
     keywords: [
+      'resume example for applying abroad',
+      'example of a resume',
+      'resume format examples',
+      'customer service resume',
+      'software engineer resume',
+      'nurse resume template',
+      'sales associate resume',
       'software engineer resume',
       'entry level it jobs resume',
       'marketing resume examples',
@@ -415,6 +426,55 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
       description: 'Curated resume samples and impact bullet formulas across 10 major career sectors.'
     }
   }),
+
+  // Role-level resume examples (/resume-examples/:slug)
+  'role-example': (params) => {
+    const role = getRoleExample(params?.roleSlug || '');
+    if (!role) {
+      return {
+        title: 'Role-Specific Resume Examples | GlobeCareer',
+        description: 'Browse resume examples by role with responsibilities, required skills and ATS keywords.',
+        canonicalPath: '/resume-examples',
+        ogType: 'website',
+        structuredData: {
+          '@context': 'https://schema.org',
+          '@type': 'CollectionPage',
+          name: 'Role-Specific Resume Examples',
+          url: `${BASE_DOMAIN}/resume-examples`
+        }
+      };
+    }
+
+    return {
+      title: role.metaTitle,
+      description: role.metaDescription,
+      canonicalPath: `/resume-examples/${role.slug}`,
+      ogType: 'article',
+      keywords: role.keywords,
+      structuredData: {
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'Article',
+            headline: role.h1,
+            description: role.metaDescription,
+            articleSection: 'Resume Examples',
+            about: { '@type': 'Occupation', name: role.roleName },
+            url: `${BASE_DOMAIN}/resume-examples/${role.slug}`,
+            isPartOf: { '@type': 'CollectionPage', url: `${BASE_DOMAIN}/resume-examples` }
+          },
+          {
+            '@type': 'FAQPage',
+            mainEntity: role.faqs.map((faq) => ({
+              '@type': 'Question',
+              name: faq.q,
+              acceptedAnswer: { '@type': 'Answer', text: faq.a }
+            }))
+          }
+        ]
+      }
+    };
+  },
 
   'ats-guide': () => ({
     title: 'ATS Resume Optimization Handbook & Screening Checklist | GlobeCareer',
@@ -438,11 +498,16 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
   }),
 
   'writing-guide': () => ({
-    title: 'How to Write a Professional Resume – Complete Guide | GlobeCareer',
-    description: 'Comprehensive resume writing handbook: action verbs, the Google X-Y-Z achievement formula, section hierarchy, and paper size conventions.',
+    title: 'How Long Should a Resume Be? Resume Length Guide by Country | GlobeCareer',
+    description: 'How long should a resume be? Compare 1-page US and 2-page UK/EU standards across 47 countries, plus how to list certifications and volunteer work.',
     canonicalPath: '/resume-writing-guide',
     ogType: 'article',
     keywords: [
+      'how long should a resume be',
+      'how many pages should a resume be',
+      'how long should a cv be',
+      'how to put certifications on resume',
+      'how to put volunteer work on resume',
       'how should a resume look',
       'how long can a resume be',
       'what is a resume summary',
@@ -487,7 +552,7 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
   'cover-letter-templates': () => ({
     title: 'Professional Cover Letter Templates (Modern & Executive) | GlobeCareer',
     description: 'Choose from clean, ATS-compliant cover letter templates designed for corporate, tech, executive, and creative job applications.',
-    canonicalPath: '/cover-letter-templates',
+    canonicalPath: '/letter-templates',
     ogType: 'website',
     keywords: [
       'cover letter templates',
@@ -499,7 +564,7 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
       '@context': 'https://schema.org',
       '@type': 'CollectionPage',
       name: 'Cover Letter Templates',
-      url: `${BASE_DOMAIN}/cover-letter-templates`
+      url: `${BASE_DOMAIN}/letter-templates`
     }
   }),
 
@@ -1524,8 +1589,88 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
         }
       ]
     }
+  }),
+
+  admin: () => ({
+    title: 'Admin Dashboard | GlobeCareer',
+    description: 'Internal administration dashboard for GlobeCareer.',
+    canonicalPath: '/admin',
+    noIndex: true,
+    structuredData: {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      name: 'GlobeCareer Admin Dashboard',
+      url: `${BASE_DOMAIN}/admin`
+    }
   })
 };
+
+/**
+ * Visible breadcrumb trails, mirrored as BreadcrumbList structured data.
+ * Only pages that actually render an on-page breadcrumb <nav> are listed here,
+ * so the markup always reflects content a visitor can see.
+ */
+const PAGE_BREADCRUMBS: Record<
+  string,
+  (params?: Record<string, any>) => { name: string; path: string }[]
+> = {
+  'country-detail': (params) => {
+    const c = getCountryById(params?.countryId || 'us');
+    return [
+      { name: 'Home', path: '/' },
+      { name: 'Country Guides', path: '/country-guides' },
+      { name: `${c.name} CV & Resume Guide`, path: `/country/${c.id}` }
+    ];
+  },
+  'role-example': (params) => {
+    const role = getRoleExample(params?.roleSlug || '');
+    return [
+      { name: 'Home', path: '/' },
+      { name: 'Resume Examples', path: '/resume-examples' },
+      { name: role ? role.roleName : 'Role Resume Examples', path: role ? `/resume-examples/${role.slug}` : '/resume-examples' }
+    ];
+  }
+};
+
+/**
+ * Appends a BreadcrumbList node to a page's structured data when that page
+ * renders a visible breadcrumb trail.
+ */
+function withBreadcrumbSchema(
+  meta: PageSEOMetadata,
+  pageKey: string,
+  params?: Record<string, any>
+): PageSEOMetadata {
+  const trail = PAGE_BREADCRUMBS[pageKey]?.(params);
+  if (!trail) return meta;
+
+  const breadcrumb = {
+    '@type': 'BreadcrumbList',
+    itemListElement: trail.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.name,
+      item: `${BASE_DOMAIN}${item.path}`
+    }))
+  };
+
+  const graph = (meta.structuredData as Record<string, any>)['@graph'];
+  if (Array.isArray(graph)) {
+    return {
+      ...meta,
+      structuredData: { ...meta.structuredData, '@graph': [...graph, breadcrumb] }
+    };
+  }
+
+  const { '@context': _context, ...node } = meta.structuredData as Record<string, any>;
+  return {
+    ...meta,
+    structuredData: {
+      '@context': 'https://schema.org',
+      '@graph': [node, breadcrumb]
+    }
+  };
+}
 
 /**
  * Updates DOM title, meta description, canonical link, OpenGraph tags,
@@ -1533,7 +1678,7 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
  */
 export function applyPageSEO(pageKey: string, params?: Record<string, any>): PageSEOMetadata {
   const getter = PAGE_SEO_MAP[pageKey] || PAGE_SEO_MAP.home;
-  const meta = getter(params);
+  const meta = withBreadcrumbSchema(getter(params), pageKey, params);
 
   if (typeof document === 'undefined') return meta;
 

@@ -3,40 +3,78 @@
 # https://globecareer.online
 # ==============================================================================
 
-# Search Engine Crawlers (Allowed for SEO & Web Indexing)
+# ------------------------------------------------------------------------------
+# Search Engine Crawlers (full access for indexing)
+# ------------------------------------------------------------------------------
 User-agent: Googlebot
 Allow: /
+Disallow: /assets/aistudio/
+Disallow: /ZIP_MANIFEST
 
 User-agent: Bingbot
 Allow: /
+Disallow: /assets/aistudio/
+Disallow: /ZIP_MANIFEST
 
 User-agent: Applebot
 Allow: /
+Disallow: /assets/aistudio/
+Disallow: /ZIP_MANIFEST
 
 User-agent: DuckDuckBot
 Allow: /
+Disallow: /assets/aistudio/
+Disallow: /ZIP_MANIFEST
 
 User-agent: YandexBot
 Allow: /
+Disallow: /assets/aistudio/
+Disallow: /ZIP_MANIFEST
 
 User-agent: Slurp
 Allow: /
+Disallow: /assets/aistudio/
+Disallow: /ZIP_MANIFEST
 
 User-agent: Baiduspider
 Allow: /
+Disallow: /assets/aistudio/
+Disallow: /ZIP_MANIFEST
 
-# AI Search & Retrieval Engines (Allowed for Referral Traffic & Citations)
-User-agent: PerplexityBot
+# ------------------------------------------------------------------------------
+# AI Search & Answer Engines (retrieval crawlers that drive citations and
+# referral traffic). These are explicitly allowed so GlobeCareer can be
+# quoted and linked in AI-generated answers.
+# ------------------------------------------------------------------------------
+User-agent: OAI-SearchBot
 Allow: /
 
 User-agent: ChatGPT-User
 Allow: /
 
-# Block Unauthorized AI Model Training Scrapers & Bulk Harvesters
-User-agent: GPTBot
-Disallow: /
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Google-Gemini-Crawler
+Allow: /
 
 User-agent: Google-Extended
+Allow: /
+
+# ------------------------------------------------------------------------------
+# Model-training scrapers (no referral traffic). Blocked to protect original
+# editorial content from bulk harvesting.
+# ------------------------------------------------------------------------------
+User-agent: GPTBot
 Disallow: /
 
 User-agent: Applebot-Extended
@@ -82,10 +120,14 @@ User-agent: Omgilibot
 Disallow: /
 
 # Default Rule for all other robots
+# /assets/aistudio/ holds internal keyword research exports and scratch notes
+# that ship with the build but are not public content.
 User-agent: *
 Allow: /
 Disallow: /admin
 Disallow: /api/
+Disallow: /assets/aistudio/
+Disallow: /ZIP_MANIFEST
 
 # Canonical Sitemap
 Sitemap: https://globecareer.online/sitemap.xml

@@ -231,13 +231,16 @@ export const ResumeRenderer: React.FC<ResumeRendererProps> = ({
             <div className="w-[66%] p-8 space-y-6">
               {/* Header Title */}
               <div data-resume-section="personal" className="border-b-2 pb-4 transition-colors duration-300" style={{ borderColor: accentColor }}>
-                <h1 className="text-2xl font-extrabold tracking-tight text-neutral-900 uppercase">
+                {/* The resume preview must not emit its own <h1>: the page around
+                    it already has one. Styling is class-driven, so the visual
+                    output is unchanged. */}
+                <h2 className="text-2xl font-extrabold tracking-tight text-neutral-900 uppercase">
                   {data.personal.fullName || 'Your Name'}
-                </h1>
+                </h2>
                 {data.personal.jobTitle && (
-                  <h2 className="text-base font-semibold mt-1 tracking-wide" style={{ color: accentColor }}>
+                  <p className="text-base font-semibold mt-1 tracking-wide" style={{ color: accentColor }}>
                     {data.personal.jobTitle}
-                  </h2>
+                  </p>
                 )}
               </div>
 
@@ -446,13 +449,13 @@ export const ResumeRenderer: React.FC<ResumeRendererProps> = ({
             <div data-resume-section="personal" className="border-b-2 pb-5 transition-colors duration-300" style={{ borderColor: accentColor }}>
               <div className="flex items-start justify-between gap-6">
                 <div className="flex-1">
-                  <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-neutral-900 uppercase">
+                  <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-neutral-900 uppercase">
                     {data.personal.fullName || 'Your Name'}
-                  </h1>
+                  </h2>
                   {data.personal.jobTitle && (
-                    <h2 className="text-base font-semibold mt-1 tracking-wide" style={{ color: accentColor }}>
+                    <p className="text-base font-semibold mt-1 tracking-wide" style={{ color: accentColor }}>
                       {data.personal.jobTitle}
-                    </h2>
+                    </p>
                   )}
 
                   {/* Work authorization badge if specified */}
