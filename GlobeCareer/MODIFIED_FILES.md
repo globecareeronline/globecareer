@@ -87,4 +87,34 @@ No application file, route, asset, integration or research file was deleted.
 - Resume builder, cover letter builder, templates data, ATS engine (`src/utils/realAtsEngine.ts`, `src/utils/atsScorer.ts`)
 - All existing production URLs and their canonicals
 - `public/assets/aistudio/*` research residue (blocked from crawling, not removed)
-- `package.json`, `package-lock.json`, `bun.lock`, `vite.config.ts`, `tsconfig.json`
+- `package.json`, `package-lock.json`, `vite.config.ts`, `tsconfig.json`
+
+## Deployment repair pass — Bun lockfile, Node 24, duplicate-URL consolidation (2026-11-18)
+
+Commit: `0b1715f` (11 files, +1751 / −124). Baseline: repository clone at `c1b2473`, verified byte-identical to `globecareer-final-deployment-2026-11-18.zip` (184 files, `diff -r` clean).
+
+### Modified
+
+| Path | Change |
+|------|--------|
+| `bun.lock` | Regenerated with Bun 1.4.4 (Cloudflare's version) so it matches `package.json`: `motion` and `esbuild` entries removed (both unused), `jsdom` recorded, workspace name `react-example` → `globecareer`. `bun install --frozen-lockfile` now passes and leaves the file byte-identical. |
+| `.nvmrc`, `.node-version` | `20` → `24`. The locked Firebase 13 tree declares `node >= 24.12.0`, and `npm ci` fails on Node 20 with npm 10 (`@google/genai` preinstall spawn error). Cloudflare's build image provides Node 24.22.1 and reads these files. |
+| `scripts/prerender.mjs` | Appends 131 single-hop 301 rules to `dist/_redirects` at build time, generated from `PATH_TO_PAGE` / `PAGE_TO_PATH`: 37 alias paths → canonical, 93 trailing-slash variants → canonical, `/admin/` → `/admin`. `/pricing` and `/plans` excluded (they must 404, not redirect home). |
+| `scripts/serve-dist.mjs` | Now parses `dist/_redirects` and applies rules before static assets, matching Cloudflare Pages, and ignores host-level rules exactly as Pages does. |
+| `scripts/audit-routes.mjs` | Alias paths are now required to 301 to their canonical (was: 200 HTML), all sitemap URLs get a trailing-slash 301 test, and each redirect is followed hop by hop to detect chains, loops and non-200 destinations. The JSON summary gained `redirectsTested` and a full `redirectMap[]`. |
+| `public/_redirects` | Removed `https://www.globecareer.online/* → https://globecareer.online/:splat 301`. Cloudflare Pages cannot redirect by hostname from `_redirects`, so the rule never worked; the correct fix (a dashboard Redirect Rule) is documented in place of it. |
+| `_redirects` | Same correction in the root copy, which is now kept identical to `public/_redirects`. |
+| `README.md`, `HOW-TO-RUN.txt` | Node/npm requirements corrected to Node 24 LTS / npm 11 and `NODE_VERSION=24`, with the reason recorded. |
+| `route_audit_2026-11-18.json` | Regenerated: 94 sitemap URLs, 132 prerendered pages, 101 paths, 130 verified redirects, 0 problems, plus the redirect map. |
+| `SEO_IMPLEMENTATION_REPORT_2026-11-17.md` | Added §16 (deployment repair pass). |
+| `MODIFIED_FILES.md` | This section. |
+
+### Created
+
+| Path | Purpose |
+|------|---------|
+| `FINAL_GOOGLE_INDEXING_AND_DEPLOYMENT_REPORT_2026-11-18.md` | Final report: indexing categories, redirect map, canonical audit, Bun root cause, validation results, push status, live verification, manual actions |
+
+### Deleted
+
+No file was deleted. No page, route, asset, integration or public URL was removed.

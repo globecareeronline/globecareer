@@ -447,3 +447,37 @@ Homepage FCP/LCP moved by −0.2/−0.3 s between the two runs (same machine, ru
 | Lighthouse | see §15.5 | recorded, including the open CLS issue |
 
 Not tested here: Firebase auth/Firestore flows (no credentials in this workspace), Cloudflare Pages redirect/compression behaviour on the live domain, Search Console data. No deploy, commit or push was performed.
+
+---
+
+## 16. Deployment repair and duplicate-URL consolidation (2026-11-18)
+
+This pass started from the finding that **none of §15 was ever live**. Measured with `curl` on 2026-11-18, `https://globecareer.online/`, `/resume-examples`, `/resume-examples/teacher` and `/nonexistent-xyz` all returned the *same* 13,708-byte SPA shell with HTTP 200, and `/pricing` still returned 200. Commit `c1b2473` reached GitHub but never deployed, because Cloudflare Pages installs with `bun install --frozen-lockfile` and `bun.lock` still declared the `motion` and `esbuild` entries that `package.json` had dropped.
+
+### 16.1 What changed
+
+| # | Fix | Where |
+|---|-----|-------|
+| 1 | **Bun lockfile synchronised** with `package.json` using Bun 1.4.4 (Cloudflare's build-image version). `motion` and `esbuild` entries removed rather than re-added; `jsdom` recorded; workspace name corrected to `globecareer`. `bun install --frozen-lockfile` now exits 0 and leaves `bun.lock` byte-identical. | `bun.lock` |
+| 2 | **Node 24 pinned** (`20` → `24`). The locked Firebase 13 packages declare `node >= 24.12.0` and `npm ci` fails on Node 20/npm 10 with `ERR_INVALID_ARG_TYPE` inside `@google/genai`'s preinstall. Verified working on Node 24.22.3/npm 11.19.1; Cloudflare's image supplies Node 24.22.1. | `.nvmrc`, `.node-version`, `README.md`, `HOW-TO-RUN.txt` |
+| 3 | **Duplicate URL consolidation.** 131 static 301 rules generated at build time from the app's route tables: 37 alias paths → canonical, 93 trailing-slash variants → canonical, `/admin/` → `/admin`. No chains, no loops, every destination a 200 page. `/pricing` and `/plans` stay 404 and are never redirected to the homepage. | `scripts/prerender.mjs` |
+| 4 | **Local server now honours `_redirects`**, so the audit tests deployed behaviour instead of only static files — and ignores host-level rules exactly as Cloudflare Pages does. | `scripts/serve-dist.mjs` |
+| 5 | **Audit now proves the redirect layer:** every alias and every sitemap URL's trailing-slash variant must 301 in one hop to the canonical page and end at 200; chains, loops and wrong targets fail the run. Output includes a full `redirectMap[]`. | `scripts/audit-routes.mjs` |
+| 6 | **Dead `www` rule removed.** Cloudflare Pages `_redirects` cannot redirect by hostname (documented: "Domain-level redirects ❌"), so the rule added in `c1b2473` never fired. The file now documents the required dashboard Redirect Rule instead. | `public/_redirects`, `_redirects` |
+
+### 16.2 Verification
+
+| Check | Result |
+|---|---|
+| `bun install --frozen-lockfile` (clean `node_modules`) | **Pass**, exit 0, `bun.lock` unchanged |
+| `npm ci` (Node 24.22.3 / npm 11.19.1) | **Pass**, exit 0 |
+| `npm run lint` (`tsc --noEmit`) | **Pass**, exit 0 |
+| `npm run build` | **Pass**, 132 HTML routes from 95 renders in 33.5 s |
+| `npm run audit:routes` | **Pass** — 94 sitemap URLs, 132 pages, 101 paths, **130 redirects**, 0 problems |
+
+### 16.3 Not verified
+
+- **No deployment and no live change.** The push was refused by GitHub (403: the stored credential `easyworktoolsonline-ux` has no write access), so Cloudflare never received commit `0b1715f`. See §18 of `FINAL_GOOGLE_INDEXING_AND_DEPLOYMENT_REPORT_2026-11-18.md`.
+- **Search Console** still has no export in this workspace, so the reported ~64 non-indexed URLs could not be matched, classified or re-counted. The causes were identified from the live HTML instead.
+- `www` → apex still returns 200 and needs a dashboard Redirect Rule.
+- Firebase auth / Firestore flows remain untested.
