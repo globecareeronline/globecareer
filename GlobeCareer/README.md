@@ -63,8 +63,8 @@ If you have Python installed:
 ## 🚀 Full Developer Setup (Node.js & npm)
 
 ### 1. Prerequisites
-- **Node.js:** v20.0.0 or higher
-- **npm:** v10.0.0 or higher (or `bun` / `pnpm` / `yarn`)
+- **Node.js:** v24 LTS (the locked Firebase 13 packages declare `node >= 24.12.0`)
+- **npm:** v11.0.0 or higher (or `bun` 1.4.4+ / `pnpm` / `yarn`)
 
 ### 2. Installation
 ```bash
@@ -126,8 +126,8 @@ Fill in the deployment configuration:
 - **Build output directory:** `dist`
 
 ### Step 4: Environment Variables (Recommended)
-Node.js 20 is already pinned automatically via `.nvmrc` and `.node-version`. You can also explicitly verify:
-- `NODE_VERSION` = `20`
+Node.js 24 is already pinned automatically via `.nvmrc` and `.node-version`. You can also explicitly verify:
+- `NODE_VERSION` = `24`
 
 ### Step 5: Save and Deploy
 Click **Save and Deploy**. Cloudflare Pages will install dependencies, run the Vite build, and publish your site to an `*.pages.dev` domain in under 2 minutes.

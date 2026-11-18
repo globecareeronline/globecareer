@@ -73,6 +73,61 @@ function canonicalPathOf(url) {
   return url.replace(BASE, '') || '/';
 }
 
+/** Static redirect rules from the built `_redirects` file, keyed by source path. */
+async function readRedirectRules() {
+  const text = await readFile(path.join(DIST, '_redirects'), 'utf8').catch(() => '');
+  const rules = new Map();
+  for (const line of text.split(/\r?\n/)) {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith('#')) continue;
+    const [source, destination, code] = trimmed.split(/\s+/);
+    if (!source || !source.startsWith('/') || !destination || source.includes('*')) continue;
+    if (!rules.has(source)) rules.set(source, { destination, status: Number(code) || 302 });
+  }
+  return rules;
+}
+
+/**
+ * Follows a URL to its final response and records every hop, so a chain or a
+ * loop cannot pass silently. A correct entry is one 301 straight to a 200 page.
+ */
+async function followRedirect(sourcePath) {
+  const first = await fetch(`${origin}${sourcePath}`, { redirect: 'manual' });
+  const location = first.headers.get('location') || '';
+  const visited = [sourcePath];
+  let current = location ? canonicalPathOf(location) : '';
+  let finalStatus = first.status;
+  let hops = 0;
+  let loop = false;
+  while (current && hops < 5) {
+    if (visited.includes(current)) {
+      loop = true;
+      break;
+    }
+    visited.push(current);
+    hops += 1;
+    const response = await fetch(`${origin}${current}`, { redirect: 'manual' });
+    finalStatus = response.status;
+    if (response.status >= 300 && response.status < 400) {
+      current = canonicalPathOf(response.headers.get('location') || '');
+      continue;
+    }
+    current = '';
+  }
+  return {
+    source: sourcePath,
+    status: first.status,
+    location,
+    target: visited[1] || '',
+    finalStatus,
+    hops,
+    loop,
+  };
+}
+
+const redirectRules = await readRedirectRules();
+const redirectMap = [];
+
 const { xml: sitemapXml, urls: sitemapUrls } = await readSiteMapUrls();
 const prerendered = await walkHtml(DIST);
 const prerenderedSet = new Set(prerendered);
@@ -169,15 +224,38 @@ for (const [description, paths] of descriptionMap) {
   if (paths.length > 1) problems.push(`Duplicate meta description across ${paths.join(', ')}`);
 }
 
-// 3. Prerendered paths not listed in the sitemap (aliases) must still serve HTML
-const aliasPaths = prerendered.filter((p) => !sitemapSet.has(`${BASE}${p === '/' ? '/' : p}`) && !sitemapSet.has(`${BASE}${p}`));
+// 3. Duplicate URL consolidation: alias paths must 301 to their canonical URL
+const aliasPaths = prerendered.filter(
+  (p) => p !== '/admin' && !sitemapSet.has(`${BASE}${p}`) && !sitemapSet.has(`${BASE}${p === '/' ? '/' : p}`)
+);
 for (const aliasPath of aliasPaths) {
-  const record = await inspect(aliasPath, 200);
-  record.inSitemap = false;
-  results.push(record);
-  if (record.status !== 200) problems.push(`${aliasPath} (alias): HTTP ${record.status}`);
-  if (!record.canonical) problems.push(`${aliasPath} (alias): missing canonical`);
-  if (record.spinner) problems.push(`${aliasPath} (alias): loading spinner instead of content`);
+  const rule = redirectRules.get(aliasPath);
+  const hop = await followRedirect(aliasPath);
+  redirectMap.push({ kind: 'alias', expectedTarget: rule ? rule.destination : null, ...hop });
+
+  if (!rule) problems.push(`${aliasPath} (alias): no redirect rule in dist/_redirects`);
+  if (hop.status !== 301) problems.push(`${aliasPath} (alias): HTTP ${hop.status}, expected 301`);
+  else if (rule && hop.target !== rule.destination) {
+    problems.push(`${aliasPath} (alias): redirected to ${hop.target}, expected ${rule.destination}`);
+  }
+  if (hop.hops !== 1) problems.push(`${aliasPath} (alias): ${hop.hops} redirect hop(s), expected 1`);
+  if (hop.loop) problems.push(`${aliasPath} (alias): redirect loop`);
+  if (hop.finalStatus !== 200) problems.push(`${aliasPath} (alias): final response ${hop.finalStatus}, expected 200`);
+}
+
+// 3b. Trailing-slash variants must 301 to the canonical (non-slash) URL
+for (const url of sitemapUrls) {
+  const urlPath = canonicalPathOf(url);
+  if (urlPath === '/') continue;
+  const source = `${urlPath}/`;
+  const hop = await followRedirect(source);
+  redirectMap.push({ kind: 'trailing-slash', expectedTarget: urlPath, ...hop });
+
+  if (hop.status !== 301) problems.push(`${source} (trailing slash): HTTP ${hop.status}, expected 301`);
+  else if (hop.target !== urlPath) problems.push(`${source} (trailing slash): redirected to ${hop.target}, expected ${urlPath}`);
+  if (hop.hops !== 1) problems.push(`${source} (trailing slash): ${hop.hops} redirect hop(s), expected 1`);
+  if (hop.loop) problems.push(`${source} (trailing slash): redirect loop`);
+  if (hop.finalStatus !== 200) problems.push(`${source} (trailing slash): final response ${hop.finalStatus}, expected 200`);
 }
 
 // 4. /admin must be reachable but non-indexable
@@ -245,16 +323,19 @@ const summary = {
   generatedAt: new Date().toISOString(),
   sitemapUrls: sitemapUrls.length,
   prerenderedPages: prerendered.length,
-  testedPaths: results.length,
+  testedPaths: results.length + redirectMap.length,
+  redirectsTested: redirectMap.length,
   expected404: BOGUS_PATHS.length,
   failures: problems.length,
   problems,
+  redirectMap,
 };
 await writeFile(path.join(ROOT, `route_audit_${STAMP}.json`), JSON.stringify(summary, null, 2), 'utf8');
 
 console.log(`Sitemap URLs:        ${sitemapUrls.length}`);
 console.log(`Prerendered pages:   ${prerendered.length}`);
 console.log(`Paths tested:        ${results.length}`);
+console.log(`Redirects tested:    ${redirectMap.length} (single hop to a 200 page)`);
 console.log(`Problems:            ${problems.length}`);
 if (problems.length) {
   for (const problem of problems) console.log(`  - ${problem}`);

@@ -2,16 +2,22 @@
 /**
  * Minimal static server that mirrors how Cloudflare Pages resolves a request
  * against the build output:
- *   1. exact file                     -> 200
- *   2. <path>/index.html (clean URL)  -> 200
- *   3. <path>.html                    -> 200
- *   4. otherwise                      -> 404.html with status 404
+ *   1. _redirects rule (always evaluated first, 301/302 or 200 proxy)
+ *   2. exact file                     -> 200
+ *   3. <path>/index.html (clean URL)  -> 200
+ *   4. <path>.html                    -> 200
+ *   5. otherwise                      -> 404.html with status 404
+ *
+ * Only the subset of _redirects syntax this project uses is implemented:
+ * exact paths, `*` wildcards with `:splat`, and an optional status code.
+ * Domain-level rules (a source that is not a path) are ignored, exactly as
+ * Cloudflare Pages ignores them.
  *
  * Used by `npm run audit:routes` and for local verification only.
  */
 import http from 'node:http';
 import zlib from 'node:zlib';
-import { createReadStream, existsSync, statSync } from 'node:fs';
+import { createReadStream, existsSync, readFileSync, statSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -33,6 +39,42 @@ const MIME = {
   '.webmanifest': 'application/manifest+json',
   '.woff2': 'font/woff2',
 };
+
+/** Parses the built `_redirects` file into ordered rules. */
+export function loadRedirects(distDir = DEFAULT_DIST) {
+  const file = path.join(distDir, '_redirects');
+  if (!existsSync(file)) return [];
+  const rules = [];
+  for (const rawLine of readFileSync(file, 'utf8').split(/\r?\n/)) {
+    const line = rawLine.trim();
+    if (!line || line.startsWith('#')) continue;
+    const [source, destination, code] = line.split(/\s+/);
+    // Cloudflare Pages cannot redirect by hostname; a non-path source is ignored.
+    if (!source || !source.startsWith('/') || !destination) continue;
+    rules.push({ source, destination, status: Number(code) || 302 });
+  }
+  return rules;
+}
+
+/** First matching rule for a path, in file order (Cloudflare semantics). */
+function matchRedirect(rules, pathname) {
+  for (const rule of rules) {
+    if (rule.source.includes('*')) {
+      const [prefix, suffix] = rule.source.split('*');
+      if (
+        pathname.length >= prefix.length + suffix.length &&
+        pathname.startsWith(prefix) &&
+        pathname.endsWith(suffix)
+      ) {
+        const splat = pathname.slice(prefix.length, pathname.length - suffix.length);
+        return { status: rule.status, location: rule.destination.replace(/:splat/g, splat) };
+      }
+      continue;
+    }
+    if (rule.source === pathname) return { status: rule.status, location: rule.destination };
+  }
+  return null;
+}
 
 function resolveFile(distDir, pathname) {
   const decoded = decodeURIComponent(pathname.split('?')[0]);
@@ -81,8 +123,29 @@ function sendFile(req, res, status, file) {
 }
 
 export function createDistServer(distDir = DEFAULT_DIST) {
+  const redirects = loadRedirects(distDir);
   return http.createServer((req, res) => {
     const url = new URL(req.url || '/', 'http://localhost');
+
+    const redirect = matchRedirect(redirects, url.pathname);
+    if (redirect) {
+      if (redirect.status >= 300 && redirect.status < 400) {
+        res.writeHead(redirect.status, {
+          Location: `${redirect.location}${url.search}`,
+          'Cache-Control': 'no-store',
+        });
+        res.end();
+        return;
+      }
+      // Rewrite / proxy rules (status 200) resolve the destination as a path.
+      const target = new URL(redirect.location, 'http://localhost');
+      const proxied = resolveFile(distDir, target.pathname);
+      if (proxied) {
+        sendFile(req, res, 200, proxied);
+        return;
+      }
+    }
+
     const file = resolveFile(distDir, url.pathname);
     if (file) {
       sendFile(req, res, 200, file);

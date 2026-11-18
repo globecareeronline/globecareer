@@ -3,7 +3,9 @@
 ===============================================================================
 
 RECOMMENDED (Windows):
-1. Make sure Node.js (v20+ recommended) is installed on your computer.
+1. Make sure Node.js v24 LTS is installed on your computer.
+   (Node 24 is required: the locked Firebase 13 packages declare node >=24.12.0,
+    and `npm ci` fails on Node 20 with npm 10 because of a preinstall script.)
    If you don't have it yet, get it free from: https://nodejs.org (LTS)
 
 2. Double-click "start.bat" in this folder.

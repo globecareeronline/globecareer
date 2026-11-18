@@ -1,6 +1,14 @@
-# Canonical host: redirect the www subdomain to the apex domain so
-# https://www.globecareer.online/* does not serve duplicate content.
-https://www.globecareer.online/*  https://globecareer.online/:splat  301
+# Cloudflare Pages redirect rules for GlobeCareer (root copy).
+#
+# The deployed file is public/_redirects, which Vite copies into dist/ and which
+# Cloudflare Pages reads from the build output. This root copy is kept identical
+# so the two can never disagree.
+#
+# Cloudflare Pages CANNOT redirect by hostname from this file: a source must be
+# a path, and domain-level rules are explicitly unsupported
+# (developers.cloudflare.com/pages/configuration/redirects). The www -> apex 301
+# is therefore a zone-level Redirect Rule in the Cloudflare dashboard
+# (Rules -> Redirect Rules, 301, preserve path and query).
 
 # Machine-readable discovery files
 /.well-known/security.txt  /.well-known/security.txt  200
@@ -11,6 +19,8 @@ https://www.globecareer.online/*  https://globecareer.online/:splat  301
 /llms.txt                  /llms.txt                  200
 /llms-full.txt             /llms-full.txt             200
 
-# Single-page application fallback (must stay last)
 # No SPA catch-all: every valid path is prerendered to its own HTML file at
 # build time, and unmatched paths are served by 404.html with a real 404 status.
+#
+# Duplicate-URL 301 rules (alias paths and trailing-slash variants) are appended
+# to the build output at build time by scripts/prerender.mjs.
