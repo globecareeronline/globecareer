@@ -663,6 +663,7 @@ export const RecommendationLetterBuilder: React.FC<RecommendationLetterBuilderPr
                     Relationship to Candidate
                   </label>
                   <select
+                    aria-label="Relationship to candidate"
                     name="relationship"
                     value={formData.relationship}
                     onChange={handleInputChange}
@@ -709,6 +710,7 @@ export const RecommendationLetterBuilder: React.FC<RecommendationLetterBuilderPr
                     Recommendation Purpose
                   </label>
                   <select
+                    aria-label="Recommendation purpose"
                     name="purpose"
                     value={formData.purpose}
                     onChange={handleInputChange}
@@ -773,6 +775,7 @@ export const RecommendationLetterBuilder: React.FC<RecommendationLetterBuilderPr
                     Preferred Tone
                   </label>
                   <select
+                    aria-label="Preferred tone"
                     name="tone"
                     value={formData.tone}
                     onChange={handleInputChange}
@@ -790,6 +793,7 @@ export const RecommendationLetterBuilder: React.FC<RecommendationLetterBuilderPr
                     Length
                   </label>
                   <select
+                    aria-label="Recommendation length"
                     name="length"
                     value={formData.length}
                     onChange={handleInputChange}

@@ -594,6 +594,7 @@ export const JobApplicationEmailGenerator: React.FC<JobApplicationEmailGenerator
                   Email Purpose / Scenario <span className="text-rose-500">*</span>
                 </label>
                 <select
+                  aria-label="Email purpose or scenario"
                   name="purpose"
                   value={formData.purpose}
                   onChange={handleInputChange}
@@ -762,6 +763,7 @@ export const JobApplicationEmailGenerator: React.FC<JobApplicationEmailGenerator
                     Tone / Communication Style
                   </label>
                   <select
+                    aria-label="Tone or communication style"
                     name="tone"
                     value={formData.tone}
                     onChange={handleInputChange}

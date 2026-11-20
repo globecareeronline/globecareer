@@ -292,6 +292,7 @@ ${letterData.senderName}
                   Target Country & Etiquette Standard
                 </label>
                 <select
+                  aria-label="Target country and etiquette standard"
                   value={countryId}
                   onChange={(e) => handleCountryChange(e.target.value)}
                   className="w-full px-3 py-2 text-xs bg-neutral-50 dark:bg-neutral-950 border border-neutral-300 dark:border-neutral-700 rounded-xl focus:outline-none font-medium"

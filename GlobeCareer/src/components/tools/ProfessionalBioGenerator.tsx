@@ -476,6 +476,7 @@ export const ProfessionalBioGenerator: React.FC<{
                     Voice &amp; Tone
                   </label>
                   <select
+                    aria-label="Voice and tone"
                     name="tone"
                     value={formData.tone}
                     onChange={handleInputChange}

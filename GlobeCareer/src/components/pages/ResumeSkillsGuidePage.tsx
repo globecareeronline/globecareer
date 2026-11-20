@@ -288,6 +288,7 @@ export const ResumeSkillsGuidePage: React.FC<ResumeSkillsGuidePageProps> = ({
             </div>
 
             <select
+              aria-label="Filter skills by industry"
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
               className="py-3 px-4 rounded-xl border border-neutral-300 dark:border-neutral-600 bg-neutral-50 dark:bg-neutral-900 text-neutral-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"

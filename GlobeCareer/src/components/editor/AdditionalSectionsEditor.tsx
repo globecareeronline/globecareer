@@ -427,6 +427,7 @@ export const AdditionalSectionsEditor: React.FC<AdditionalSectionsEditorProps> =
                   </div>
                   <div className="w-48">
                     <select
+                      aria-label="Language proficiency"
                       value={l.proficiency}
                       onChange={(e) => updateLanguage(l.id, 'proficiency', e.target.value as any)}
                       className="w-full px-2.5 py-1.5 text-xs bg-neutral-50 dark:bg-neutral-950 border border-neutral-300 dark:border-neutral-700 rounded-lg focus:outline-none"

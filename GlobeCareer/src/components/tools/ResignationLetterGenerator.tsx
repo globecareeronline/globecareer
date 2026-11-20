@@ -479,6 +479,7 @@ export const ResignationLetterGenerator: React.FC<ResignationLetterGeneratorProp
                       Notice Type
                     </label>
                     <select
+                      aria-label="Notice type"
                       name="resignationType"
                       value={formData.resignationType}
                       onChange={handleInputChange}
@@ -641,6 +642,7 @@ export const ResignationLetterGenerator: React.FC<ResignationLetterGeneratorProp
               <div className="flex items-center gap-2 shrink-0">
                 <Filter className="w-3.5 h-3.5 text-neutral-400" />
                 <select
+                  aria-label="Filter templates by category"
                   value={selectedCategoryFilter}
                   onChange={(e) => setSelectedCategoryFilter(e.target.value)}
                   className="px-3 py-2 bg-neutral-50 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-xl text-xs font-medium text-neutral-800 dark:text-neutral-200"

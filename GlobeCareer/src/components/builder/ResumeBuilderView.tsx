@@ -379,14 +379,15 @@ export const ResumeBuilderView: React.FC<ResumeBuilderViewProps> = ({
       <div className="bg-white dark:bg-neutral-900 border-b border-neutral-200 dark:border-neutral-800 px-4 py-2.5 sticky top-0 z-30 shadow-xs no-print">
         <div className="max-w-[1700px] mx-auto flex flex-wrap items-center justify-between gap-3">
           {/* Left Controls: Country & Job Repertoire */}
-          <div className="flex flex-wrap items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2 min-w-0">
             {/* Country Selector */}
-            <div className="flex items-center gap-1.5 bg-neutral-50 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 px-2.5 py-1.5 rounded-xl shadow-xs">
+            <div className="flex items-center gap-1.5 min-w-0 max-w-full bg-neutral-50 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 px-2.5 py-1.5 rounded-xl shadow-xs">
               <span className="text-base">{country.flag}</span>
               <select
                 value={resumeData.targetCountryId}
                 onChange={(e) => handleCountryChange(e.target.value)}
-                className="bg-transparent text-xs font-bold text-neutral-800 dark:text-neutral-200 focus:outline-none cursor-pointer pr-1"
+                aria-label="Target country and CV terminology"
+                className="bg-transparent text-xs font-bold text-neutral-800 dark:text-neutral-200 focus:outline-none cursor-pointer pr-1 min-w-0 max-w-full truncate"
               >
                 {COUNTRIES.map(c => (
                   <option key={c.id} value={c.id} className="dark:bg-neutral-900">
@@ -400,6 +401,7 @@ export const ResumeBuilderView: React.FC<ResumeBuilderViewProps> = ({
             <select
               value={resumeData.targetJobCategory}
               onChange={(e) => setResumeData({ ...resumeData, targetJobCategory: e.target.value })}
+              aria-label="Target job category"
               className="bg-neutral-50 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-xs font-semibold px-2.5 py-1.5 rounded-xl text-neutral-800 dark:text-neutral-200 focus:outline-none cursor-pointer shadow-xs max-w-[190px] truncate"
             >
               {JOB_CATEGORIES.map(cat => (
@@ -436,8 +438,10 @@ export const ResumeBuilderView: React.FC<ResumeBuilderViewProps> = ({
             </span>
           </div>
 
-          {/* Right Action Tools: ATS Score, Samples, Export DOCX, Print PDF */}
-          <div className="flex items-center gap-2">
+          {/* Right Action Tools: ATS Score, Samples, Export DOCX, Print PDF.
+              flex-wrap + min-w-0 lets the cluster reflow onto a second line on
+              narrow phones instead of forcing page-level horizontal scroll. */}
+          <div className="flex items-center gap-2 flex-wrap justify-end min-w-0">
             {/* ATS Score Button */}
             <button
               type="button"

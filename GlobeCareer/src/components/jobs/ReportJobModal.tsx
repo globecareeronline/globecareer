@@ -116,6 +116,7 @@ export const ReportJobModal: React.FC<ReportJobModalProps> = ({
                   Reason for reporting
                 </label>
                 <select
+                  aria-label="Reason for reporting"
                   value={reason}
                   onChange={(e) => setReason(e.target.value as any)}
                   className="w-full py-2 px-3 text-xs border border-neutral-300 dark:border-neutral-700 rounded-xl focus:outline-hidden focus:border-red-500 focus:ring-1 focus:ring-red-500 bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100"

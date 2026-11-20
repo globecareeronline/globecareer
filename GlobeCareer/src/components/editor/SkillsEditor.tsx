@@ -82,6 +82,7 @@ export const SkillsEditor: React.FC<SkillsEditorProps> = ({ data, onChange }) =>
             className="flex-1 px-3 py-2 text-xs bg-neutral-50 dark:bg-neutral-950 border border-neutral-300 dark:border-neutral-700 rounded-lg focus:outline-none"
           />
           <select
+            aria-label="Skill category"
             value={newSkillCategory}
             onChange={(e) => setNewSkillCategory(e.target.value as any)}
             className="px-3 py-2 text-xs bg-neutral-50 dark:bg-neutral-950 border border-neutral-300 dark:border-neutral-700 rounded-lg focus:outline-none"

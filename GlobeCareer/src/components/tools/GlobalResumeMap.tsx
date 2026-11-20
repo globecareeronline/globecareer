@@ -188,6 +188,7 @@ export const GlobalResumeMap: React.FC<GlobalResumeMapProps> = ({
                 Photo Requirement:
               </label>
               <select
+                aria-label="Photo requirement"
                 value={photoFilter}
                 onChange={e => setPhotoFilter(e.target.value)}
                 className="w-full px-3 py-2 rounded-xl border border-neutral-300 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-950 text-xs font-medium text-neutral-900 dark:text-neutral-100"
@@ -205,6 +206,7 @@ export const GlobalResumeMap: React.FC<GlobalResumeMapProps> = ({
                 Paper Size Convention:
               </label>
               <select
+                aria-label="Paper size convention"
                 value={paperFilter}
                 onChange={e => setPaperFilter(e.target.value)}
                 className="w-full px-3 py-2 rounded-xl border border-neutral-300 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-950 text-xs font-medium text-neutral-900 dark:text-neutral-100"

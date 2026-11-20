@@ -344,6 +344,7 @@ export const ATSResumeMakerPage: React.FC<ATSResumeMakerPageProps> = ({
           <div className="flex items-center gap-2 pt-1">
             <span className="text-xs text-neutral-500">Or select any of 47 countries:</span>
             <select
+              aria-label="Select country CV standard"
               value={selectedCountry}
               onChange={(e) => setSelectedCountry(e.target.value)}
               className="text-xs font-semibold bg-neutral-50 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-xl px-3 py-1.5 text-neutral-800 dark:text-neutral-200 focus:outline-none cursor-pointer"

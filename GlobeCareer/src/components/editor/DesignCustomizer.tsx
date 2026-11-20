@@ -266,6 +266,7 @@ export const DesignCustomizer: React.FC<DesignCustomizerProps> = ({ data, onChan
               Font Family
             </label>
             <select
+              aria-label="Font family"
               value={design.fontFamily}
               onChange={(e) => updateDesign('fontFamily', e.target.value)}
               className="w-full px-2.5 py-1.5 text-xs bg-neutral-50 dark:bg-neutral-950 border border-neutral-300 dark:border-neutral-700 rounded-lg focus:outline-none"
@@ -281,6 +282,7 @@ export const DesignCustomizer: React.FC<DesignCustomizerProps> = ({ data, onChan
               Font Scale
             </label>
             <select
+              aria-label="Font scale"
               value={design.fontSize}
               onChange={(e) => updateDesign('fontSize', e.target.value)}
               className="w-full px-2.5 py-1.5 text-xs bg-neutral-50 dark:bg-neutral-950 border border-neutral-300 dark:border-neutral-700 rounded-lg focus:outline-none"
@@ -296,6 +298,7 @@ export const DesignCustomizer: React.FC<DesignCustomizerProps> = ({ data, onChan
               Section Spacing
             </label>
             <select
+              aria-label="Section spacing"
               value={design.spacing}
               onChange={(e) => updateDesign('spacing', e.target.value)}
               className="w-full px-2.5 py-1.5 text-xs bg-neutral-50 dark:bg-neutral-950 border border-neutral-300 dark:border-neutral-700 rounded-lg focus:outline-none"

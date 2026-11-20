@@ -269,7 +269,7 @@ export const APPLICATION_ARTICLES: Article[] = [
     h1: 'Working in the EU as a US Citizen: Visas, CVs and Realistic Expectations',
     seoTitle: 'Working in the EU as a US Citizen: Routes, Permits and CV Changes',
     description:
-      'There is no EU-wide work visa. Here are the real routes for US citizens — the EU Blue Card, national permits, transfers and study — plus the CV changes Europe expects.',
+      'There is no EU-wide work visa. The real routes for US citizens: the EU Blue Card, national permits, transfers and study — plus the CV changes Europe expects.',
     primaryKeyword: 'eu work visa for us citizens',
     keywords: ['working in europe as an american', 'eu blue card', 'europe jobs for americans', 'us citizen work permit europe'],
     intent: 'informational',

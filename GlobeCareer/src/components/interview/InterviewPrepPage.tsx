@@ -457,6 +457,7 @@ export const InterviewPrepPage: React.FC<{ onNavigate?: (page: string) => void }
               Industry / Field
             </label>
             <select
+              aria-label="Industry or field"
               value={industry}
               onChange={(e) => setIndustry(e.target.value)}
               className="w-full px-3 py-2 text-xs bg-neutral-50 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-xl focus:outline-none focus:border-blue-500 font-semibold"
@@ -475,6 +476,7 @@ export const InterviewPrepPage: React.FC<{ onNavigate?: (page: string) => void }
               Seniority Level
             </label>
             <select
+              aria-label="Seniority level"
               value={seniority}
               onChange={(e) => setSeniority(e.target.value)}
               className="w-full px-3 py-2 text-xs bg-neutral-50 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-xl focus:outline-none focus:border-blue-500 font-semibold"
@@ -491,6 +493,7 @@ export const InterviewPrepPage: React.FC<{ onNavigate?: (page: string) => void }
               Target Country Nuance
             </label>
             <select
+              aria-label="Target country nuance"
               value={country}
               onChange={(e) => setCountry(e.target.value)}
               className="w-full px-3 py-2 text-xs bg-neutral-50 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-xl focus:outline-none focus:border-blue-500 font-semibold"

@@ -334,6 +334,7 @@ export const ApplicationTrackerPage: React.FC<ApplicationTrackerPageProps> = ({
                         <div className="pt-2 border-t border-neutral-100 dark:border-neutral-800 flex items-center justify-between">
                           <span className="text-[10px] text-neutral-400 dark:text-neutral-500">{item.appliedDate}</span>
                           <select
+                            aria-label="Application stage"
                             value={item.status}
                             onChange={(e) => handleUpdateStatus(item.id, e.target.value as any)}
                             className="text-[10px] bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg px-1.5 py-0.5 text-neutral-700 dark:text-neutral-300 focus:outline-hidden cursor-pointer"
@@ -409,6 +410,7 @@ export const ApplicationTrackerPage: React.FC<ApplicationTrackerPageProps> = ({
                 <div>
                   <label className="block font-medium text-neutral-700 dark:text-neutral-300 mb-1">Initial Stage</label>
                   <select
+                    aria-label="Initial stage"
                     value={newStatus}
                     onChange={(e) => setNewStatus(e.target.value as any)}
                     className="w-full p-2 border border-neutral-300 dark:border-neutral-700 rounded-xl focus:outline-hidden focus:border-indigo-600 bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100"

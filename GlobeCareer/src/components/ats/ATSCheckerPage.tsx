@@ -147,6 +147,7 @@ export const ATSCheckerPage: React.FC<ATSCheckerPageProps> = ({
               <select
                 value={selectedCountryId}
                 onChange={(e) => setSelectedCountryId(e.target.value)}
+                aria-label="Target country and CV terminology"
                 className="bg-neutral-50 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg px-2 py-1 text-xs font-medium text-neutral-800 dark:text-neutral-200 focus:outline-none focus:ring-1 focus:ring-blue-500"
               >
                 {COUNTRIES.map(c => (
@@ -325,14 +326,14 @@ export const ATSCheckerPage: React.FC<ATSCheckerPageProps> = ({
         {/* Overall Score Banner */}
         <div className="bg-white dark:bg-neutral-900 rounded-3xl border border-neutral-200 dark:border-neutral-800 p-6 sm:p-8 shadow-sm">
           <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 pb-6 border-b border-neutral-100 dark:border-neutral-800">
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-4 sm:gap-6 min-w-0">
               {/* Score Circle / Dial */}
               <div className={`w-28 h-28 rounded-2xl border-4 flex flex-col items-center justify-center shrink-0 shadow-inner ${getScoreColor(analysis.overallScore)}`}>
                 <span className="text-4xl font-black tracking-tight">{analysis.overallScore}</span>
                 <span className="text-[10px] font-bold uppercase tracking-wider opacity-80">out of 100</span>
               </div>
-              <div className="space-y-1.5">
-                <div className="flex items-center gap-3">
+              <div className="space-y-1.5 min-w-0">
+                <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                   <span className="text-xl sm:text-2xl font-black text-neutral-900 dark:text-neutral-100">
                     Grade {analysis.grade}
                   </span>
