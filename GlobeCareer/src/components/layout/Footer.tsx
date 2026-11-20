@@ -375,6 +375,44 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           </div>
         </div>
 
+        {/* Guides strip: site-wide entry point into the article library */}
+        <div className="pt-6 border-b border-neutral-200 dark:border-neutral-800 pb-6">
+          <h3 className="font-bold text-neutral-900 dark:text-neutral-100 uppercase tracking-wider text-[11px] mb-3">
+            Guides
+          </h3>
+          <div className="flex flex-wrap gap-x-5 gap-y-2 text-xs">
+            <a
+              href="/blog"
+              onClick={(e) => {
+                e.preventDefault();
+                onNavigate('blog');
+              }}
+              className="font-semibold text-blue-700 dark:text-blue-400 hover:underline"
+            >
+              All career guides
+            </a>
+            {[
+              { slug: 'european-cv-template', label: 'European CV template' },
+              { slug: 'europass-cv-format-explained', label: 'Europass CV format' },
+              { slug: 'eqf-levels-explained', label: 'EQF levels' },
+              { slug: 'diploma-supplement-explained', label: 'Diploma Supplement' },
+              { slug: 'job-in-switzerland', label: 'Jobs in Switzerland' },
+            ].map((guide) => (
+              <a
+                key={guide.slug}
+                href={`/blog/${guide.slug}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigate(`article:${guide.slug}`);
+                }}
+                className="text-neutral-600 dark:text-neutral-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              >
+                {guide.label}
+              </a>
+            ))}
+          </div>
+        </div>
+
         {/* 3. Questions & Regional Localization in Lower-Row Position */}
         <div className="pt-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="space-y-1">

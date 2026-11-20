@@ -55,6 +55,8 @@ const GlobalResumeMap = React.lazy(() => import('./components/tools/GlobalResume
 const ReverseChronologicalGuidePage = React.lazy(() => import('./components/pages/ReverseChronologicalGuidePage').then(m => ({ default: m.ReverseChronologicalGuidePage })));
 const ResumeReferencesGuidePage = React.lazy(() => import('./components/pages/ResumeReferencesGuidePage').then(m => ({ default: m.ResumeReferencesGuidePage })));
 const RoleResumeExamplesPage = React.lazy(() => import('./components/pages/RoleResumeExamplesPage').then(m => ({ default: m.RoleResumeExamplesPage })));
+const ArticlePage = React.lazy(() => import('./components/pages/ArticlePage').then(m => ({ default: m.ArticlePage })));
+const BlogIndexPage = React.lazy(() => import('./components/pages/ArticlePage').then(m => ({ default: m.BlogIndexPage })));
 
 const PageLoadingFallback: React.FC = () => (
   <div className="min-h-[50vh] flex flex-col items-center justify-center p-8">
@@ -63,7 +65,7 @@ const PageLoadingFallback: React.FC = () => (
   </div>
 );
 
-import { matchRolePath } from './routes';
+import { matchRolePath, matchArticlePath } from './routes';
 import { generateSampleResume, SamplePersonaType } from './data/sampleResumes';
 import { ResumeData, TemplateId } from './types/resume';
 import { VerifiedJob } from './types/jobs';
@@ -111,6 +113,7 @@ const PAGE_TO_PATH: Record<string, string> = {
   'objective-generator': '/resume-objective-generator',
   'reverse-chronological': '/reverse-chronological-resume-format',
   'references-on-resume': '/references-on-resume',
+  blog: '/blog',
   admin: '/admin',
 };
 
@@ -226,6 +229,7 @@ const PATH_TO_PAGE: Record<string, string> = {
   '/plans': 'home',
   '/subscription': 'tracker',
   '/billing': 'tracker',
+  '/blog': 'blog',
   '/faq': 'faq',
   '/about': 'about',
   '/contact': 'contact',
@@ -235,7 +239,7 @@ const PATH_TO_PAGE: Record<string, string> = {
   '/admin': 'admin',
 };
 
-function parseRouteFromLocation(): { page: string; countryId?: string; roleSlug?: string } {
+function parseRouteFromLocation(): { page: string; countryId?: string; roleSlug?: string; articleSlug?: string } {
   if (typeof window === 'undefined') return { page: 'home' };
 
   // File protocol local execution: parse from URL hash (e.g. file:///path/index.html#/templates)
@@ -247,6 +251,8 @@ function parseRouteFromLocation(): { page: string; countryId?: string; roleSlug?
     }
     const hashRoleSlug = matchRolePath(rawHash);
     if (hashRoleSlug) return { page: 'role-example', roleSlug: hashRoleSlug };
+    const hashArticleSlug = matchArticlePath(rawHash);
+    if (hashArticleSlug) return { page: 'article', articleSlug: hashArticleSlug };
     const hashMapped = PATH_TO_PAGE[rawHash];
     if (hashMapped) return { page: hashMapped };
     return { page: 'home' };
@@ -260,6 +266,9 @@ function parseRouteFromLocation(): { page: string; countryId?: string; roleSlug?
   
   const roleSlug = matchRolePath(pathname);
   if (roleSlug) return { page: 'role-example', roleSlug };
+
+  const articleSlug = matchArticlePath(pathname);
+  if (articleSlug) return { page: 'article', articleSlug };
 
   const mapped = PATH_TO_PAGE[pathname];
   if (mapped) return { page: mapped };
@@ -280,6 +289,7 @@ function AppContent() {
   const [currentPage, setCurrentPage] = useState<string>(firstRoute.page);
   const [selectedCountryId, setSelectedCountryId] = useState<string>(firstRoute.countryId || 'us');
   const [selectedRoleSlug, setSelectedRoleSlug] = useState<string>(firstRoute.roleSlug || '');
+  const [selectedArticleSlug, setSelectedArticleSlug] = useState<string>(firstRoute.articleSlug || '');
   const [selectedCoverLetterTemplate, setSelectedCoverLetterTemplate] = useState<CoverLetterTemplateSpec | undefined>();
   const [selectedRecommendationPreset, setSelectedRecommendationPreset] = useState<any | undefined>();
   const [selectedEmailPreset, setSelectedEmailPreset] = useState<any | undefined>();
@@ -321,17 +331,19 @@ function AppContent() {
   // Initial route parse, popstate, and hashchange listener for SEO and clean URL / local file navigation
   useEffect(() => {
     const handleRouteSync = () => {
-      const { page, countryId, roleSlug } = parseRouteFromLocation();
+      const { page, countryId, roleSlug, articleSlug } = parseRouteFromLocation();
       setCurrentPage(page);
       if (countryId) setSelectedCountryId(countryId);
       if (roleSlug) setSelectedRoleSlug(roleSlug);
-      applyPageSEO(page, { countryId, roleSlug });
+      if (articleSlug) setSelectedArticleSlug(articleSlug);
+      applyPageSEO(page, { countryId, roleSlug, articleSlug });
     };
 
     // The first render already used the parsed route; this only applies metadata.
     applyPageSEO(initialRoute.current!.page, {
       countryId: initialRoute.current!.countryId,
-      roleSlug: initialRoute.current!.roleSlug
+      roleSlug: initialRoute.current!.roleSlug,
+      articleSlug: initialRoute.current!.articleSlug
     });
 
     window.addEventListener('popstate', handleRouteSync);
@@ -347,6 +359,31 @@ function AppContent() {
   };
 
   const navigateTo = (rawPage: string, countryIdParam?: string) => {
+    // Guide articles are addressed as `article:<slug>` so one page key serves the
+    // whole library without listing every slug in the route tables.
+    if (rawPage.startsWith('article:')) {
+      const slug = rawPage.slice('article:'.length);
+      setCurrentPage('article');
+      setSelectedArticleSlug(slug);
+      const articlePath = `/blog/${slug}`;
+      if (typeof window !== 'undefined') {
+        try {
+          if (window.location.protocol === 'file:') {
+            window.location.hash = articlePath;
+          } else if (window.location.pathname !== articlePath) {
+            window.history.pushState(null, '', articlePath);
+          }
+        } catch (e) {
+          try {
+            window.location.hash = articlePath;
+          } catch (_) {}
+        }
+      }
+      applyPageSEO('article', { articleSlug: slug });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
     // Role-level resume example pages are addressed as `role-example:<slug>`.
     if (rawPage.startsWith('role-example:')) {
       const slug = rawPage.slice('role-example:'.length);
@@ -814,6 +851,21 @@ function AppContent() {
               <ResumeReferencesGuidePage
                 onStartBuilder={() => navigateTo('builder')}
                 onNavigate={navigateTo}
+              />
+            )}
+
+            {currentPage === 'blog' && (
+              <BlogIndexPage
+                onNavigate={navigateTo}
+                onStartBuilder={() => navigateTo('builder')}
+              />
+            )}
+
+            {currentPage === 'article' && (
+              <ArticlePage
+                slug={selectedArticleSlug}
+                onNavigate={navigateTo}
+                onStartBuilder={() => navigateTo('builder')}
               />
             )}
 

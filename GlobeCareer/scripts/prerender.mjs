@@ -140,6 +140,7 @@ const App = appModule.default;
 const { PATH_TO_PAGE, PAGE_TO_PATH } = appModule;
 const { COUNTRIES } = await vite.ssrLoadModule('/src/data/countries.ts');
 const { ROLE_EXAMPLES } = await vite.ssrLoadModule('/src/data/roleExamples.ts');
+const { ARTICLES, getArticlePath } = await vite.ssrLoadModule('/src/data/articles/index.ts');
 
 const ReactMod = await import('react');
 const React = ReactMod.default ?? ReactMod;
@@ -164,6 +165,14 @@ for (const role of ROLE_EXAMPLES) {
   const url = `/resume-examples/${role.slug}`;
   if (seenTargets.has(url)) continue;
   targets.push({ key: 'role-example', url, params: { roleSlug: role.slug } });
+  seenTargets.add(url);
+}
+// Guide articles. The router resolves the slug from the jsdom URL, exactly as a
+// real request would, so the rendered page and the client page cannot diverge.
+for (const article of ARTICLES) {
+  const url = getArticlePath(article.slug);
+  if (seenTargets.has(url)) continue;
+  targets.push({ key: 'article', url, params: { articleSlug: article.slug } });
   seenTargets.add(url);
 }
 

@@ -20,6 +20,7 @@ const BOGUS_PATHS = [
   '/pricing',
   '/plans',
   '/resume-examples/not-a-real-role',
+  '/blog/not-a-real-guide',
   '/country/zz',
   '/resume-builder/extra/segment',
 ];

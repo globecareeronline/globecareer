@@ -389,6 +389,35 @@ export const EuropeanCVFormatPage: React.FC<EuropeanCVFormatPageProps> = ({
           </div>
         </section>
 
+        {/* Related reading: guides that go deeper than this page */}
+        <section className="space-y-4">
+          <h2 className="text-xl sm:text-2xl font-bold text-neutral-900 dark:text-white tracking-tight">
+            Go deeper on the European CV
+          </h2>
+          <div className="grid gap-3 sm:grid-cols-3">
+            {[
+              { slug: 'european-cv-template', label: 'Every section, in reading order' },
+              { slug: 'europass-cv-format-explained', label: 'The Europass format, explained' },
+              { slug: 'eqf-levels-explained', label: 'Stating your EQF level' },
+            ].map((guide) => (
+              <a
+                key={guide.slug}
+                href={`/blog/${guide.slug}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigate(`article:${guide.slug}`);
+                }}
+                className="group p-4 rounded-xl bg-white dark:bg-neutral-800/40 border border-neutral-200 dark:border-neutral-700 hover:border-blue-500 transition-colors"
+              >
+                <div className="text-sm font-bold text-neutral-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 flex items-center justify-between gap-2">
+                  <span>{guide.label}</span>
+                  <ArrowRight className="w-3.5 h-3.5 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity text-blue-600" />
+                </div>
+              </a>
+            ))}
+          </div>
+        </section>
+
         {/* Bottom CTA Banner */}
         <section className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 rounded-3xl p-8 sm:p-12 text-white text-center shadow-xl">
           <h2 className="text-2xl sm:text-4xl font-extrabold mb-4">

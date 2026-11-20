@@ -6,6 +6,7 @@
 
 import { getCountryById, COUNTRIES } from '../data/countries';
 import { getRoleExample } from '../data/roleExamples';
+import { ARTICLES, getArticle, getArticlePath } from '../data/articles';
 
 export interface PageSEOMetadata {
   title: string;
@@ -675,7 +676,7 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
 
   'bio-templates': () => ({
     title: 'Free Professional Bio Templates & Executive Bio Examples | GlobeCareer',
-    description: 'Browse 15+ free professional bio templates for software engineers, executives, designers, consultants, and founders. First & third-person formats with 1-click export.',
+    description: 'Browse free professional bio templates for engineers, executives, designers, consultants and founders, in first and third person, with 1-click export.',
     canonicalPath: '/bio-templates',
     ogType: 'website',
     keywords: [
@@ -1283,7 +1284,7 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
 
   'reverse-chronological': () => ({
     title: 'Reverse Chronological Resume Format: Guide, Examples & Free Template | GlobeCareer',
-    description: 'Master the reverse chronological resume format preferred by 95% of recruiters and ATS. Section-by-section breakdown, formatting rules, and free downloadable template.',
+    description: 'Master the reverse chronological resume format: a section-by-section breakdown, formatting rules, and a free downloadable template.',
     canonicalPath: '/reverse-chronological-resume-format',
     ogType: 'article',
     keywords: [
@@ -1377,7 +1378,7 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
 
   'objective-generator': () => ({
     title: 'Free Resume Objective Generator – Entry-Level & Career Change ATS Objectives | GlobeCareer',
-    description: 'Create tailored, ATS-friendly resume objectives for entry-level jobs, internships, recent college grads, and career pivots. Free instant generation with proven formulas.',
+    description: 'Create tailored, ATS-friendly resume objectives for entry-level jobs, internships, graduates and career pivots, generated instantly and free.',
     canonicalPath: '/resume-objective-generator',
     ogType: 'website',
     keywords: [
@@ -1591,6 +1592,93 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
     }
   }),
 
+  blog: () => ({
+    title: 'Career Guides: European CVs, Qualifications & Applications | GlobeCareer',
+    description:
+      'Practical guides to European CV formats, qualification frameworks and cross-border applications, written for people applying outside the country where they studied.',
+    canonicalPath: '/blog',
+    ogType: 'website',
+    keywords: ['cv guides', 'european cv advice', 'job application guides', 'career guides europe'],
+    structuredData: {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: 'GlobeCareer Career Guides',
+      url: `${BASE_DOMAIN}/blog`,
+      description:
+        'Guides to European CV formats, qualification frameworks and cross-border job applications.',
+      mainEntity: {
+        '@type': 'ItemList',
+        itemListElement: ARTICLES.map((article, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          name: article.h1,
+          url: `${BASE_DOMAIN}${getArticlePath(article.slug)}`
+        }))
+      }
+    }
+  }),
+
+  article: (params) => {
+    const article = getArticle(params?.articleSlug || '');
+    const canonicalPath = article ? getArticlePath(article.slug) : '/blog';
+
+    if (!article) {
+      return {
+        title: 'Guide not found | GlobeCareer',
+        description: 'The requested guide is not published. Browse the GlobeCareer career guides index instead.',
+        canonicalPath: '/blog',
+        ogType: 'website',
+        structuredData: {
+          '@context': 'https://schema.org',
+          '@type': 'WebPage',
+          name: 'Career Guides',
+          url: `${BASE_DOMAIN}/blog`
+        }
+      };
+    }
+
+    const graph: Record<string, any>[] = [
+      {
+        '@type': 'BlogPosting',
+        '@id': `${BASE_DOMAIN}${canonicalPath}#article`,
+        headline: article.h1,
+        description: article.description,
+        datePublished: article.published,
+        dateModified: article.updated,
+        inLanguage: 'en',
+        isAccessibleForFree: true,
+        articleSection: article.cluster,
+        keywords: article.keywords.join(', '),
+        about: article.primaryKeyword,
+        author: { '@id': `${BASE_DOMAIN}/#organization` },
+        publisher: { '@id': `${BASE_DOMAIN}/#organization` },
+        mainEntityOfPage: { '@type': 'WebPage', '@id': `${BASE_DOMAIN}${canonicalPath}` },
+        url: `${BASE_DOMAIN}${canonicalPath}`
+      }
+    ];
+
+    if (article.faqs.length > 0) {
+      graph.push({
+        '@type': 'FAQPage',
+        '@id': `${BASE_DOMAIN}${canonicalPath}#faq`,
+        mainEntity: article.faqs.map((faq) => ({
+          '@type': 'Question',
+          name: faq.q,
+          acceptedAnswer: { '@type': 'Answer', text: faq.a }
+        }))
+      });
+    }
+
+    return {
+      title: article.seoTitle,
+      description: article.description,
+      canonicalPath,
+      ogType: 'article',
+      keywords: article.keywords,
+      structuredData: { '@context': 'https://schema.org', '@graph': graph }
+    };
+  },
+
   admin: () => ({
     title: 'Admin Dashboard | GlobeCareer',
     description: 'Internal administration dashboard for GlobeCareer.',
@@ -1628,6 +1716,18 @@ const PAGE_BREADCRUMBS: Record<
       { name: 'Home', path: '/' },
       { name: 'Resume Examples', path: '/resume-examples' },
       { name: role ? role.roleName : 'Role Resume Examples', path: role ? `/resume-examples/${role.slug}` : '/resume-examples' }
+    ];
+  },
+  blog: () => [
+    { name: 'Home', path: '/' },
+    { name: 'Guides', path: '/blog' }
+  ],
+  article: (params) => {
+    const article = getArticle(params?.articleSlug || '');
+    return [
+      { name: 'Home', path: '/' },
+      { name: 'Guides', path: '/blog' },
+      { name: article ? article.h1 : 'Guide', path: article ? getArticlePath(article.slug) : '/blog' }
     ];
   }
 };

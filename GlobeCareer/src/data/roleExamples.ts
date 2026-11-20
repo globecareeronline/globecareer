@@ -115,7 +115,7 @@ export const ROLE_EXAMPLES: RoleExample[] = [
     h1: 'Software Engineer Resume Example & Writing Guide',
     metaTitle: 'Software Engineer Resume Example, Skills & ATS Keywords | GlobeCareer',
     metaDescription:
-      'Software engineer resume example with responsibility statements by level, the languages and tools recruiters search for, and guidance on writing impact-focused bullets.',
+      'Software engineer resume example with responsibility statements by level, the tools recruiters search for, and guidance on writing impact-focused bullets.',
     alsoCalled: ['Software Developer', 'Backend Engineer', 'Full-Stack Engineer', 'Application Developer'],
     intro: [
       'Engineering resumes are read by two audiences: a recruiter matching keywords from the job description, and an engineer who wants to know what you actually built. The first audience decides whether you reach the second, so the document has to be technically specific and scannable at the same time.',
