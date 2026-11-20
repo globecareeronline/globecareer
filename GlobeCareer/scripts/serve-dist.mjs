@@ -3,15 +3,19 @@
  * Minimal static server that mirrors how Cloudflare Pages resolves a request
  * against the build output:
  *   1. _redirects rule (always evaluated first, 301/302 or 200 proxy)
- *   2. exact file                     -> 200
- *   3. <path>/index.html (clean URL)  -> 200
- *   4. <path>.html                    -> 200
- *   5. otherwise                      -> 404.html with status 404
+ *   2. <path>.html               -> 200 (Pages serves /foo from foo.html)
+ *   3. exact file                -> 200
+ *   4. <path>/index.html         -> 308 to <path>/ (Pages' trailing slash)
+ *   5. <path>/index.html exists for <path>/ -> 200
+ *   6. otherwise                 -> 404.html with status 404
  *
- * Only the subset of _redirects syntax this project uses is implemented:
- * exact paths, `*` wildcards with `:splat`, and an optional status code.
- * Domain-level rules (a source that is not a path) are ignored, exactly as
- * Cloudflare Pages ignores them.
+ * Step 2/4/5 reproduce Cloudflare Pages' `html_handling: auto-trailing-slash`
+ * default: a page's canonical URL follows its file name. This matters because a
+ * local server that answers both forms with 200 hides real redirect loops.
+ *
+ * Only the subset of _redirects syntax this project uses is implemented: exact
+ * paths, `*` wildcards with `:splat`, and an optional status code. Host-level
+ * rules (a source that is not a path) are ignored, exactly as Pages ignores them.
  *
  * Used by `npm run audit:routes` and for local verification only.
  */
@@ -76,19 +80,49 @@ function matchRedirect(rules, pathname) {
   return null;
 }
 
-function resolveFile(distDir, pathname) {
-  const decoded = decodeURIComponent(pathname.split('?')[0]);
-  const candidates = [];
+function isFile(candidate) {
+  return existsSync(candidate) && statSync(candidate).isFile();
+}
+
+function safeJoin(distDir, relative) {
+  const resolved = path.join(distDir, relative);
+  return resolved.startsWith(distDir) ? resolved : null;
+}
+
+/**
+ * Resolves a request path the way Pages does. Returns either a file to serve or
+ * a redirect Pages would issue itself.
+ */
+export function resolvePath(distDir, pathname) {
+  const decoded = decodeURIComponent(pathname);
+
   if (decoded.endsWith('/')) {
-    candidates.push(path.join(distDir, decoded, 'index.html'));
-  } else {
-    candidates.push(path.join(distDir, decoded));
-    candidates.push(path.join(distDir, decoded, 'index.html'));
-    candidates.push(path.join(distDir, `${decoded}.html`));
+    // Directory form: /foo/ serves foo/index.html if present, otherwise Pages
+    // strips the slash when foo.html exists.
+    const indexFile = safeJoin(distDir, path.join(decoded, 'index.html'));
+    if (indexFile && isFile(indexFile)) return { file: indexFile };
+    const trimmed = decoded.replace(/\/+$/, '');
+    if (trimmed) {
+      const htmlFile = safeJoin(distDir, `${trimmed}.html`);
+      if (htmlFile && isFile(htmlFile)) {
+        return { redirect: { status: 308, location: trimmed } };
+      }
+    }
+    return null;
   }
-  for (const candidate of candidates) {
-    if (!candidate.startsWith(distDir)) continue;
-    if (existsSync(candidate) && statSync(candidate).isFile()) return candidate;
+
+  // Page file: /foo is served from foo.html (Pages' canonical form for files).
+  const pageFile = safeJoin(distDir, `${decoded}.html`);
+  if (pageFile && isFile(pageFile)) return { file: pageFile };
+
+  // Plain asset: /assets/app.js and friends.
+  const asset = safeJoin(distDir, decoded);
+  if (asset && isFile(asset)) return { file: asset };
+
+  // Directory index requested without the slash: Pages adds the slash.
+  const indexFile = safeJoin(distDir, path.join(decoded, 'index.html'));
+  if (indexFile && isFile(indexFile)) {
+    return { redirect: { status: 308, location: `${decoded}/` } };
   }
   return null;
 }
@@ -139,20 +173,29 @@ export function createDistServer(distDir = DEFAULT_DIST) {
       }
       // Rewrite / proxy rules (status 200) resolve the destination as a path.
       const target = new URL(redirect.location, 'http://localhost');
-      const proxied = resolveFile(distDir, target.pathname);
-      if (proxied) {
-        sendFile(req, res, 200, proxied);
+      const proxied = resolvePath(distDir, target.pathname);
+      if (proxied && proxied.file) {
+        sendFile(req, res, 200, proxied.file);
         return;
       }
     }
 
-    const file = resolveFile(distDir, url.pathname);
-    if (file) {
-      sendFile(req, res, 200, file);
+    const resolved = resolvePath(distDir, url.pathname);
+    if (resolved && resolved.file) {
+      sendFile(req, res, 200, resolved.file);
       return;
     }
+    if (resolved && resolved.redirect) {
+      res.writeHead(resolved.redirect.status, {
+        Location: `${resolved.redirect.location}${url.search}`,
+        'Cache-Control': 'no-store',
+      });
+      res.end();
+      return;
+    }
+
     const notFound = path.join(distDir, '404.html');
-    if (existsSync(notFound)) {
+    if (isFile(notFound)) {
       sendFile(req, res, 404, notFound);
       return;
     }

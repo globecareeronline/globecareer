@@ -267,7 +267,12 @@ function prepareStaticShell(document) {
 }
 
 async function writeRouteFile(routePath, html) {
-  const relative = routePath === '/' ? 'index.html' : path.join(routePath.replace(/^\//, ''), 'index.html');
+  // Cloudflare Pages derives a page's canonical URL from the file name:
+  // `foo.html` is served at `/foo` (200) and `foo/index.html` at `/foo/`, with
+  // the other form 308-redirected. The canonicals, sitemap and internal links
+  // all use extension-less URLs, so the build must emit `<path>.html`. Writing
+  // `<path>/index.html` instead makes every canonical URL a 308 redirect.
+  const relative = routePath === '/' ? 'index.html' : `${routePath.replace(/^\//, '')}.html`;
   const destination = path.join(DIST, relative);
   await mkdir(path.dirname(destination), { recursive: true });
   await writeFile(destination, html, 'utf8');
@@ -352,23 +357,22 @@ await writeFile(path.join(DIST, '404.html'), NOT_FOUND_HTML, 'utf8');
 // Duplicate URL consolidation -> dist/_redirects
 // ---------------------------------------------------------------------------
 // Cloudflare Pages applies _redirects before it serves a static asset, so a
-// rule here wins over the prerendered file. Two duplicate URL families are
-// consolidated to the one indexable URL, each with a single 301 hop:
-//   1. alias paths (old or equivalent slugs) -> the canonical path
-//   2. canonical path + trailing slash       -> the canonical path
-// The rules are derived from the app's own route tables, so renaming a page
-// cannot leave a stale redirect behind. Static rules only (no wildcards), which
-// keeps the whole file inside Cloudflare's 2,000 static-rule budget.
+// rule here wins over the prerendered file. Alias paths (old or equivalent
+// slugs) 301 to the canonical path: one hop, generated from the app's own route
+// tables so renaming a page cannot leave a stale redirect behind. Static rules
+// only (no wildcards), which keeps the file inside Cloudflare's 2,000
+// static-rule budget.
+//
+// Trailing slashes are NOT redirected here: Pages owns that normalisation and
+// answers `/path/` with its own 308 to `/path` when the build emits
+// `<path>.html`. Adding a rule in the opposite direction creates a redirect
+// loop with Pages' 308.
 const redirectRules = [];
 for (const [routePath, key] of Object.entries(PATH_TO_PAGE)) {
   if (SKIP_PATHS.has(routePath)) continue;
   const canonical = PAGE_TO_PATH[key];
   if (!canonical || canonical === routePath) continue;
   redirectRules.push(`${routePath}  ${canonical}  301`);
-}
-for (const target of targets) {
-  if (target.url === '/') continue;
-  redirectRules.push(`${target.url}/  ${target.url}  301`);
 }
 
 const redirectsFile = path.join(DIST, '_redirects');

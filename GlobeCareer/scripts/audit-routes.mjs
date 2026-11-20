@@ -64,6 +64,9 @@ async function walkHtml(dir, prefix = '') {
       found.push(...(await walkHtml(dirPath, `${prefix}/${entry.name}`)));
     } else if (entry.name === 'index.html') {
       found.push(prefix === '' ? '/' : prefix.replace(/\/+/g, '/'));
+    } else if (entry.name.endsWith('.html') && entry.name !== '404.html') {
+      // Pages serves `<path>.html` at `/path`; that is the shape this build emits.
+      found.push(`${prefix}/${entry.name.slice(0, -'.html'.length)}`.replace(/\/+/g, '/'));
     }
   }
   return found;
@@ -243,7 +246,9 @@ for (const aliasPath of aliasPaths) {
   if (hop.finalStatus !== 200) problems.push(`${aliasPath} (alias): final response ${hop.finalStatus}, expected 200`);
 }
 
-// 3b. Trailing-slash variants must 301 to the canonical (non-slash) URL
+// 3b. Trailing-slash variants must reach the canonical URL in one hop. Pages
+// itself issues a 308 for the slash form of a `<path>.html` page, so a 301 is
+// equally acceptable - what must not happen is a second redirect (loop).
 for (const url of sitemapUrls) {
   const urlPath = canonicalPathOf(url);
   if (urlPath === '/') continue;
@@ -251,8 +256,11 @@ for (const url of sitemapUrls) {
   const hop = await followRedirect(source);
   redirectMap.push({ kind: 'trailing-slash', expectedTarget: urlPath, ...hop });
 
-  if (hop.status !== 301) problems.push(`${source} (trailing slash): HTTP ${hop.status}, expected 301`);
-  else if (hop.target !== urlPath) problems.push(`${source} (trailing slash): redirected to ${hop.target}, expected ${urlPath}`);
+  if (hop.status !== 301 && hop.status !== 308) {
+    problems.push(`${source} (trailing slash): HTTP ${hop.status}, expected 301 or 308`);
+  } else if (hop.target !== urlPath) {
+    problems.push(`${source} (trailing slash): redirected to ${hop.target}, expected ${urlPath}`);
+  }
   if (hop.hops !== 1) problems.push(`${source} (trailing slash): ${hop.hops} redirect hop(s), expected 1`);
   if (hop.loop) problems.push(`${source} (trailing slash): redirect loop`);
   if (hop.finalStatus !== 200) problems.push(`${source} (trailing slash): final response ${hop.finalStatus}, expected 200`);
