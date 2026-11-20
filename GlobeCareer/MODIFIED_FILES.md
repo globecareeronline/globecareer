@@ -91,7 +91,7 @@ No application file, route, asset, integration or research file was deleted.
 
 ## Deployment repair pass — Bun lockfile, Node 24, duplicate-URL consolidation (2026-11-18)
 
-Commit: `0b1715f` (11 files, +1751 / −124). Baseline: repository clone at `c1b2473`, verified byte-identical to `globecareer-final-deployment-2026-11-18.zip` (184 files, `diff -r` clean).
+Commits: `0b1715f` (lockfile, Node 24, alias 301s), `528b52a` (reports), `61c7eb4` (`.html` layout and redirect-loop correction). Baseline: repository clone at `c1b2473`, verified byte-identical to `globecareer-final-deployment-2026-11-18.zip` (184 files, `diff -r` clean). Published to `main`; Cloudflare Pages deployed the result and the live domain was verified afterwards.
 
 ### Modified
 
@@ -99,13 +99,13 @@ Commit: `0b1715f` (11 files, +1751 / −124). Baseline: repository clone at `c1b
 |------|--------|
 | `bun.lock` | Regenerated with Bun 1.4.4 (Cloudflare's version) so it matches `package.json`: `motion` and `esbuild` entries removed (both unused), `jsdom` recorded, workspace name `react-example` → `globecareer`. `bun install --frozen-lockfile` now passes and leaves the file byte-identical. |
 | `.nvmrc`, `.node-version` | `20` → `24`. The locked Firebase 13 tree declares `node >= 24.12.0`, and `npm ci` fails on Node 20 with npm 10 (`@google/genai` preinstall spawn error). Cloudflare's build image provides Node 24.22.1 and reads these files. |
-| `scripts/prerender.mjs` | Appends 131 single-hop 301 rules to `dist/_redirects` at build time, generated from `PATH_TO_PAGE` / `PAGE_TO_PATH`: 37 alias paths → canonical, 93 trailing-slash variants → canonical, `/admin/` → `/admin`. `/pricing` and `/plans` excluded (they must 404, not redirect home). |
-| `scripts/serve-dist.mjs` | Now parses `dist/_redirects` and applies rules before static assets, matching Cloudflare Pages, and ignores host-level rules exactly as Pages does. |
-| `scripts/audit-routes.mjs` | Alias paths are now required to 301 to their canonical (was: 200 HTML), all sitemap URLs get a trailing-slash 301 test, and each redirect is followed hop by hop to detect chains, loops and non-200 destinations. The JSON summary gained `redirectsTested` and a full `redirectMap[]`. |
+| `scripts/prerender.mjs` | Writes each route as `<path>.html` instead of `<path>/index.html`: Cloudflare Pages serves `foo.html` at `/foo` (200) and `foo/index.html` at `/foo/` (308-redirecting `/foo`), so only the `.html` layout keeps the canonical, the sitemap and the internal links on a 200 URL. Also appends 37 single-hop 301 rules to `dist/_redirects` at build time, generated from `PATH_TO_PAGE` / `PAGE_TO_PATH`, mapping alias paths to their canonical path. `/pricing` and `/plans` are excluded (they must 404, not redirect home); trailing slashes are left to Pages. |
+| `scripts/serve-dist.mjs` | Now parses `dist/_redirects` and applies rules before static assets, reproduces Pages' `html_handling: auto-trailing-slash` behaviour (serves `<path>.html` at `/path`, answers the slash form with 308), and ignores host-level rules exactly as Pages does — so a redirect loop fails locally instead of shipping. |
+| `scripts/audit-routes.mjs` | Alias paths are required to 301 to their canonical (was: 200 HTML); every sitemap URL's slash variant must reach the canonical URL in one hop (301 or Pages' 308); each redirect is followed hop by hop to detect chains, loops and non-200 destinations. The JSON summary gained `redirectsTested` and a full `redirectMap[]`. |
 | `public/_redirects` | Removed `https://www.globecareer.online/* → https://globecareer.online/:splat 301`. Cloudflare Pages cannot redirect by hostname from `_redirects`, so the rule never worked; the correct fix (a dashboard Redirect Rule) is documented in place of it. |
 | `_redirects` | Same correction in the root copy, which is now kept identical to `public/_redirects`. |
 | `README.md`, `HOW-TO-RUN.txt` | Node/npm requirements corrected to Node 24 LTS / npm 11 and `NODE_VERSION=24`, with the reason recorded. |
-| `route_audit_2026-11-18.json` | Regenerated: 94 sitemap URLs, 132 prerendered pages, 101 paths, 130 verified redirects, 0 problems, plus the redirect map. |
+| `route_audit_2026-11-20.json` | Current audit output: 94 sitemap URLs, 132 prerendered pages, 101 paths, 130 verified redirects (37 alias 301 + 93 Pages 308), 0 problems, plus the full redirect map. `route_audit_2026-11-18.json` is left as the previous run's record. |
 | `SEO_IMPLEMENTATION_REPORT_2026-11-17.md` | Added §16 (deployment repair pass). |
 | `MODIFIED_FILES.md` | This section. |
 

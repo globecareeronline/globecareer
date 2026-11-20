@@ -1,12 +1,12 @@
 # GlobeCareer — Final Google Indexing and Deployment Report
 
-Date: 2026-11-18
+Date: 2026-11-18 (verification runs executed 2026-11-20)
 Project: `https://globecareer.online/` — repository `globecareeronline/globecareer`, branch `main`
 Starting published commit: `c1b2473b4ceb96bf21c4df902418a30357313645`
-Runtimes used for verification: Node.js 24.22.3, npm 11.19.1, Bun 1.4.4 (the version Cloudflare Pages runs)
-Working copy: a fresh clone of the repository at `_gitremote/`, cross-checked byte-for-byte against the previously delivered ZIP (`diff -r`, 184 files, no differences).
+Final published commit: `61c7eb4` (on top of `0b1715f` and `528b52a`), fast-forward from `c1b2473`
+Runtimes used: Node.js 24.22.3, npm 11.19.1, Bun 1.4.4 (Cloudflare's build-image version)
 
-**Status in one line:** the deployment blocker is fixed and verified locally, but the push to GitHub was refused because the machine's only stored GitHub credential (`easyworktoolsonline-ux`) has no write access to this repository. Nothing was deployed, so no live behaviour changed. Details in §18–§20.
+**Status:** the deployment failure is fixed, the site now serves prerendered page-specific HTML, and the live domain was verified after each deployment. Two problems surfaced during live verification and were fixed before this report (§19.2).
 
 ---
 
@@ -21,245 +21,225 @@ Working copy: a fresh clone of the repository at `_gitremote/`, cross-checked by
 | Category 4 | Crawled — currently not indexed | Not quantifiable — no export |
 | Sitemap routes before this pass | 94 (86 + 8 role pages) | **Verified** in `public/sitemap.xml` |
 
-I searched the external safety backup (`F:\GLOBECAREER-SAFETY-BACKUP-2026-11-18\`) and every research folder for a Search Console export and found none: the only data files are four SEMrush CSVs (`gap_keywords`, `globecareer_online-backlinks_matrix`, `globecareer_seo_master_data`, `overview-trend`), two SEMrush PDFs, and the AI-Studio exports. There is no per-URL indexing export, so **the 64 URLs cannot be listed, classified or re-counted from evidence.** Any URL-by-URL table claiming otherwise would be invented.
+The safety backup (`F:\GLOBECAREER-SAFETY-BACKUP-2026-11-18\`) and every research folder were searched for a Search Console export. There is none: the only data files are four SEMrush CSVs (`gap_keywords`, `globecareer_online-backlinks_matrix`, `globecareer_seo_master_data`, `overview-trend`), two SEMrush PDFs and the AI-Studio exports. **The 64 URLs cannot be listed or re-counted from evidence**, and no URL-by-URL table matching them would be honest. What the evidence does establish is why they were not indexed (§3).
 
-What *can* be established without the export is the cause of all four categories, because the cause was visible in the delivered HTML (§3).
+## 2. Current verified issue counts
 
-## 2. Current verified issue counts (technical eligibility, not Google indexing)
+Measured locally against the built output with Pages-equivalent resolution (`npm run audit:routes`), then re-measured **on the live domain** after deployment:
 
-Measured on the built output with Cloudflare Pages resolution rules (`npm run audit:routes`):
+| Measure | Local build | Live domain |
+|---|---|---|
+| Sitemap URLs returning 200 with one `h1`, unique title, unique description, self-referencing canonical, ≥400 chars of text | 94 / 94 | **94 / 94** |
+| Trailing-slash variants resolving to the canonical URL in one hop | 93 / 93 | **93 / 93** |
+| Alias paths 301 → canonical → 200 in one hop | 37 / 37 | **37 / 37** |
+| Removed/unknown URLs returning a real 404 with `noindex, follow` | 6 / 6 | **5 / 5 sampled** |
+| Redirect chains, loops, or redirects not ending at 200 | 0 | **0** |
+| Invalid JSON-LD blocks | 0 | 0 |
+| Route audit problems | **0** | — |
 
-| Measure | Result |
-|---|---|
-| Sitemap URLs returning 200 with a single `h1`, unique title, unique description, self-referencing canonical | **94 / 94** |
-| Pages returning a real HTTP 404 (unknown paths, `/pricing`, `/plans`, bad role/country slugs) | **6 / 6** |
-| Duplicate URL variants returning 301 to the canonical URL in exactly one hop | **130 / 130** |
-| Redirect chains, loops or 301s whose destination is not a 200 page | **0** |
-| Sitemap URLs that are noindex, redirected, duplicate or 404 | **0** |
-| Invalid JSON-LD blocks | **0** |
-| Route audit problems | **0** |
-
-These are statements about technical eligibility. They are **not** a claim that Google has indexed anything — that requires the live deploy and Search Console's own crawl.
+This is technical eligibility, measured. It is **not** a claim that Google has indexed anything: only Search Console can confirm that, and §21 lists the exact manual steps.
 
 ## 3. Status of the four indexing categories
 
-### 3.1 Alternative page with proper canonical tag — **fixed for path-level duplicates; host-level variant needs a dashboard rule**
+### 3.1 Alternative page with proper canonical tag — **FIXED for path-level duplicates; www variant still needs a dashboard rule**
 
-Three sources of "alternative page" URLs existed:
+Three sources existed:
 
-1. **37 alias paths** defined in the app's own route table (`/resume-templates`, `/job-examples`, `/eu-cv-format`, `/word-counter`, `/cover-letter`, …). Each was prerendered and served 200 with a canonical pointing at the canonical path — exactly the definition of this category.
-2. **Trailing-slash variants** of all 93 non-root sitemap URLs (`/templates/`), which returned 200 with the same content.
-3. **`www.globecareer.online`**, which returned 200 with no redirect.
+1. **37 alias paths** (`/resume-templates`, `/job-examples`, `/eu-cv-format`, `/word-counter`, `/cover-letter`, …) served 200 with a canonical pointing elsewhere — the exact definition of this category.
+2. **Trailing-slash variants** of every sitemap URL.
+3. **`www.globecareer.online`** serving 200 with no redirect.
 
-Fix applied: alias paths and trailing-slash variants now return a single-hop 301 to the canonical URL (131 rules generated at build time from the app's route tables, 130 verified). The `www` variant **cannot** be fixed in the repository: Cloudflare Pages `_redirects` does not support domain-level redirects (documented: "Domain-level redirects ❌"), so the rule that was added in `c1b2473` never worked. It has been removed and replaced with a comment naming the correct fix — a zone-level Redirect Rule in the Cloudflare dashboard. Until that rule exists the canonical tag already consolidates the two hostnames, which is why Search Console reports this category as *not an error*.
+Fixes: aliases now 301 to the canonical path (37 rules, generated at build time from `PATH_TO_PAGE`, verified live). Slash variants are normalised by Cloudflare Pages itself (308 to the canonical URL, 93 verified live). `www` **cannot** be fixed from the repository — Cloudflare Pages `_redirects` does not support domain-level redirects — so the non-functional rule from `c1b2473` was removed and the correct fix documented (§21).
 
-### 3.2 Page with redirect — **no unintended redirects remain**
+### 3.2 Page with redirect — **FIXED, and a newly introduced loop was caught and removed**
 
-Before this pass the only redirect rules were seven self-referential `200` proxy entries plus the dead `www` rule. After this pass the file contains 138 rules: 7 proxies, 131 single-hop 301s. Every one of the 130 duplicate-variant 301s was followed programmatically and reaches a 200 page in one hop. `http://` → `https://` is a single 301 at the edge (verified live).
+After the first successful deployment, **every canonical URL returned 308** and the trailing-slash 301 rules added in `0b1715f` bounced against it: `/resume-examples` → 308 → `/resume-examples/` → 301 → `/resume-examples` → … (`curl: (47) Maximum redirects followed`). Root cause: Cloudflare Pages derives a page's canonical URL from the build layout — `foo/index.html` is served at `/foo/` and `/foo` is 308-redirected there.
 
-### 3.3 Discovered — currently not indexed — **cause removed; depends on the deploy**
+Fixed in `61c7eb4` by emitting `<path>.html`, which Pages serves at `/path` with **200** — matching the canonicals, the sitemap and every internal link — and by deleting the trailing-slash rules so Pages owns that normalisation. The local Pages-analogue server now reproduces `html_handling: auto-trailing-slash`, so this class of loop fails `npm run audit:routes` instead of shipping.
 
-This category means Google found the URL (sitemap or link) but chose not to crawl or index it. The live evidence explains why: **every URL on the site returned the same 13,708-byte SPA shell** (verified today with `curl`, §20). With no page-specific HTML there was nothing for Google to prefer over the other 93 identical pages. Prerendering to 132 page-specific HTML files fixes the cause; it only takes effect once a deployment succeeds.
+Live result: 94/94 sitemap URLs 200, 93/93 slash variants one hop, 37/37 aliases one hop, 0 loops.
 
-### 3.4 Crawled — currently not indexed — **cause removed; depends on the deploy**
+### 3.3 Discovered — currently not indexed — **cause removed and verified live**
 
-Same root cause plus soft-404 behaviour: unknown paths and `/pricing` / `/plans` returned the homepage with HTTP 200, so crawled URLs resolved to duplicate or empty content. Prerendered HTML (unique title, description, `h1`, 400+ characters of page-specific text, JSON-LD) plus a real `404.html` with a 404 status removes it.
+The cause was visible in the delivered HTML: **every URL returned the same 13,708-byte SPA shell**, so Google had 94 identical, contentless URLs. The live homepage now returns ~161 KB of page-specific HTML with a title, description, canonical, JSON-LD, one `h1` and ~16.9k characters of text; role pages, country pages and tools each return their own.
+
+### 3.4 Crawled — currently not indexed — **cause removed and verified live**
+
+Same root cause plus soft-404 behaviour: unknown paths, `/pricing` and `/plans` returned the homepage with 200. Now: prerendered unique content per URL, and a real `404.html` (`noindex, follow`, HTTP 404) generated from the app's not-found view and verified live on `/nonexistent-xyz`, `/pricing`, `/plans`, `/country/zz`, `/resume-examples/not-a-real-role`.
 
 ## 4. URL-by-URL findings
 
-Because no Search Console export exists, the auditable URL set is the site's own: 94 sitemap URLs + 37 aliases + 93 trailing-slash variants + 6 must-404 paths + `/admin`. Every one was fetched locally through a Cloudflare-Pages-equivalent server and recorded in `route_audit_2026-11-18.json` (per-path status, title, description length, canonical, robots, `h1` count, JSON-LD blocks, text length, and for redirects the destination, hop count and final status).
+The auditable set is the site's own: **94 sitemap URLs + 37 aliases + 93 slash variants + 6 must-404 paths + `/admin`**, all measured. Full per-URL rows (status, title, description length, canonical, robots, `h1` count, JSON-LD blocks, text length) are in `route_audit_2026-11-20.json`; the redirect rows are in its `redirectMap[]`.
 
-Per-URL result for the canonical set:
+Live per-URL result for all 94 canonical URLs: **200**, self-referencing canonical equal to the sitemap URL, exactly one `h1`, ≥400 characters of crawlable text, indexable robots directive, valid JSON-LD.
 
-| Field | Result across all 94 sitemap URLs |
-|---|---|
-| HTTP status | 200 |
-| Title | present and unique (0 duplicates) |
-| Meta description | present and unique (0 duplicates) |
-| Canonical | self-referencing, `https://globecareer.online…`, matches sitemap |
-| Robots | indexable (no `noindex`) |
-| `h1` | exactly one |
-| Prerendered text | ≥ 400 characters (audit threshold; homepage ≈ 16.9k) |
-| JSON-LD | present and valid |
-| Internal links | every page reachable from header/footer, hub sections or sibling links |
-
-The specific URLs Google listed cannot be matched to rows without the export. If you export the four categories (Search Console → Indexing → Pages → Export), the same audit can be run against those exact URLs field by field.
+The specific URLs Google listed cannot be matched without the export. If the four lists are exported from Search Console, the same script can classify them field by field.
 
 ## 5. Complete redirect map
 
-Machine-readable, with every hop: `route_audit_2026-11-18.json` → `redirectMap[]` (`source`, `status`, `location`, `target`, `finalStatus`, `hops`, `loop`, `expectedTarget`). Summary:
+Machine-readable with every hop: `route_audit_2026-11-20.json` → `redirectMap[]` (`source`, `status`, `location`, `target`, `finalStatus`, `hops`, `loop`, `expectedTarget`). Summary of what is live:
 
 | Group | Count | Rule | Hops | Final |
 |---|---|---|---|---|
-| Alias paths → canonical | 37 | e.g. `/resume-templates` → `/templates` 301 | 1 | 200 |
-| Trailing slash → canonical | 93 | `/templates/` → `/templates` 301 | 1 | 200 |
-| `/admin/` → `/admin` | 1 | trailing-slash normalisation | 1 | 200 |
-| Edge rule (outside `_redirects`) | — | `http://` → `https://` at Cloudflare | 1 | 200 |
-| **Total verified** | **130** | all single-hop | **1** | **200** |
+| Alias path → canonical | 37 | `/resume-templates` → `/templates` 301 | 1 | 200 |
+| Trailing slash → canonical | 93 | `/templates/` → `/templates` (Pages 308) | 1 | 200 |
+| `/admin/` → `/admin` | — | Pages 308 | 1 | 200 |
+| Edge HTTPS upgrade | — | `http://` → `https://` (Cloudflare 301) | 1 | 200 |
+| **Total verified** | **130 +** | all single-hop, none looping | **1** | **200** |
 
-Rules are generated by `scripts/prerender.mjs` from `PATH_TO_PAGE` / `PAGE_TO_PATH`, so a renamed page cannot leave a stale redirect. `/pricing` and `/plans` are deliberately **not** redirected to the homepage (they are empty pages; they 404). `/subscription` and `/billing` 301 to `/job-tracker` because the app has always served that page at those paths (`PAGE_ALIAS_MAP`).
+Alias rules are generated by `scripts/prerender.mjs` from the app's route tables, so renaming a page cannot leave a stale rule. `/pricing` and `/plans` are deliberately **not** redirected to the homepage — they 404. `/subscription` and `/billing` 301 to `/job-tracker`, matching what the app has always served at those paths (`PAGE_ALIAS_MAP`).
 
 ## 6. Canonical audit
 
-- 94/94 sitemap URLs emit a self-referencing canonical on `https://globecareer.online` (non-www, HTTPS).
-- No page canonicalises to the homepage.
-- No canonical points at a redirect source: alias and trailing-slash URLs canonicalise to the 301 destination.
-- Sitemap URLs and canonical URLs are identical strings (checked per URL in the audit).
-- Canonicals are present in the prerendered HTML, before any JavaScript runs.
+- 94/94 canonical URLs emit a self-referencing canonical on `https://globecareer.online` (HTTPS, non-www), identical to their sitemap entry — verified live.
+- No page canonicalises to the homepage; no canonical points at a redirect source.
+- Canonicals are present in the prerendered HTML before any JavaScript executes.
 
 ## 7. Sitemap route results
 
 | Item | Value |
 |---|---|
-| `<loc>` entries | 94 |
+| `<loc>` entries | 94 (live and in `public/sitemap.xml`) |
 | Duplicate entries | 0 |
-| XML declaration and `</urlset>` | present |
-| `<url>` = `</url>` = `<loc>` count | 94 |
+| XML declaration / `</urlset>` / `<url>` = `</url>` = `<loc>` | present / present / equal |
 | Host | `https://globecareer.online` for every entry |
-| Every entry has prerendered HTML | yes (94/94) |
-| Every entry returns 200 | yes |
-| `lastmod` | unchanged; only pages that actually changed carry new dates |
+| Every entry returns 200 on the live domain | **yes, 94/94** |
+| Every entry has prerendered HTML | yes, 94/94 |
+| `lastmod` | unchanged except pages whose content genuinely changed |
 
 ## 8. Discovered-not-indexed fixes
 
-1. Page-specific HTML for all 94 URLs (previously one shell for every URL).
-2. Sitemap contains only 200, canonical, indexable URLs.
-3. Every valuable page has at least one contextual internal link (role pages are linked from the `/resume-examples` hub; country pages from `/country-guides`).
-4. No orphan pages: the audit's prerender inventory and the link graph agree.
+Page-specific HTML for all 94 URLs; sitemap contains only 200, canonical, indexable URLs; every valuable page has at least one contextual internal link (role pages from the `/resume-examples` hub, country pages from `/country-guides`); no orphan pages.
 
 ## 9. Crawled-not-indexed fixes
 
-1. Each role page carries occupation-specific responsibilities, skills, qualifications, experience levels, resume guidance, ATS keywords and four answered FAQs — no invented statistics, salaries or hiring figures.
-2. Duplicate/thin variants now 301 to one URL instead of competing.
-3. Real 404s replace soft 404s.
-4. Titles, descriptions and `h1`s are unique per URL (0 duplicates across the sitemap).
+Role pages carry occupation-specific responsibilities, skills, qualifications, experience levels, resume guidance, ATS keywords and four answered FAQs — no invented statistics, salaries or hiring figures. Duplicate/thin variants consolidate to one URL; soft-404s replaced by real 404s; titles, descriptions and `h1`s unique across the sitemap (0 duplicates).
 
 ## 10. Prerendering results
 
 | Measure | Result |
 |---|---|
 | Unique renders | 95 |
-| HTML files written | 132 (37 alias files reuse the canonical page's HTML; the 301 wins over the file) |
-| Renders failed | 0 |
-| `dist/404.html` | generated, `noindex, follow`, real 404 status |
+| HTML files written | 132 (95 canonical + 37 alias files) |
+| Output layout | `<path>.html` (78 at the root, 54 nested) — required for Pages to serve `/path` with 200 |
+| Failed renders | 0 |
+| `dist/404.html` | generated, `noindex, follow`, served with HTTP 404 |
 | Client-side takeover | unchanged (`createRoot` on the same `#root`) |
 
-Pre-existing, unchanged warning during prerender: a React `NotFoundError` / "error boundary" console message from a component unmounting a detached node. It is non-fatal (build exit 0, output verified) and was present in `c1b2473`.
+Pre-existing, unchanged: a React `NotFoundError` / error-boundary console message during prerender (non-fatal, build exit 0).
 
 ## 11. Sitemap and robots validation
 
-- `robots.txt` (both copies, root and `public/`) allows all crawlers, blocks only `/admin`, `/api/`, `/assets/aistudio/`, `/ZIP_MANIFEST`; declares `Sitemap: https://globecareer.online/sitemap.xml`; `dist/robots.txt` is byte-identical to `public/robots.txt` (audited).
-- No indexable page or asset is blocked.
-- The sitemap is not used as a substitute for canonical or `noindex` directives.
+`robots.txt` (root and `public/`, byte-identical in `dist/`) allows crawling, blocks only `/admin`, `/api/`, `/assets/aistudio/`, `/ZIP_MANIFEST`, and declares `Sitemap: https://globecareer.online/sitemap.xml` — confirmed live. No indexable page or asset is blocked; the sitemap is not used as a substitute for canonical or `noindex`.
 
 ## 12. Internal linking improvements
 
-No new links were added in this pass; the architecture from `c1b2473` was verified instead: role pages ← `/resume-examples` hub ← header/footer; country pages ← `/country-guides`; tools ← header/footer. No sitewide keyword-anchor blocks were introduced.
+No new links added in this pass; the `c1b2473` architecture was verified instead (role pages ← hub ← header/footer; country pages ← `/country-guides`; tools ← header/footer). No sitewide keyword-anchor blocks.
 
 ## 13. Bun lockfile root cause and fix
 
-**Root cause.** Cloudflare Pages detects `bun.lock` and installs with `bun install --frozen-lockfile`. `package.json` had `motion` and `esbuild` removed (commit `c1b2473`), but `bun.lock` was never regenerated, so it still declared both. The frozen install refuses to proceed when the lock and the manifest disagree:
+**Root cause.** Cloudflare Pages detects `bun.lock` and installs with `bun install --frozen-lockfile`. `package.json` had `motion` and `esbuild` removed in `c1b2473`, but `bun.lock` was never regenerated, so the frozen install aborted:
 
 ```
 error: lockfile had changes, but lockfile is frozen
 dependencies in package.json changed since bun.lock was saved: esbuild was removed
 ```
 
-**Fix.** `bun.lock` regenerated with Bun **1.4.4** (the version in Cloudflare's build image and in the failing log), so it matches `package.json` exactly:
+**Fix.** `bun.lock` regenerated with Bun **1.4.4** (the version in the failing log and in Cloudflare's image):
 
-- `motion` removed (unused: no `motion`/`framer-motion` import exists in `src/`).
-- The top-level `esbuild` devDependency entry removed — **not re-added** to silence the error. `esbuild` remains only as Vite's/`tsx`'s transitive dependency at its own resolved version.
-- `jsdom` (already in `package.json`) is now recorded in the workspace section.
-- Lockfile workspace name corrected `react-example` → `globecareer` to match `package.json`.
-- No dependency was added, removed or upgraded beyond removing those two unused entries; `package-lock.json` was not modified.
+- `motion` removed (no `motion`/`framer-motion` import exists in `src/`).
+- The top-level `esbuild` devDependency entry removed — **not re-added** to silence the error; `esbuild` remains only as Vite's/`tsx`'s transitive dependency at its own version.
+- `jsdom` recorded; workspace name corrected `react-example` → `globecareer`.
+- No dependency added, removed (beyond those two unused entries) or upgraded; `package-lock.json` untouched.
 
-Bun was selected by Cloudflare because the repository ships a `bun.lock`; that behaviour is unchanged (the fix makes the lock consistent rather than changing build configuration).
+Bun is still selected because the repository ships `bun.lock`; the fix makes the lock consistent rather than changing build configuration.
 
-**Node.js 24 pin.** The Node 20 end-of-life warning was investigated separately and is a real incompatibility, not just a notice:
+**Node 24 pin (investigated separately).** The Node 20 EOL warning was a real incompatibility, not just a notice:
 
-- The locked Firebase 13 tree declares `node >= 24.12.0` (`@firebase/app`, `@firebase/auth`, `@firebase/ai`, …), and `undici@8.12.4` needs ≥ 22.19.
-- On Node 20.19.5 + npm 10.8.2, `npm ci` **fails** with `ERR_INVALID_ARG_TYPE` while spawning `@google/genai`'s `preinstall` (`echo 'preinstall: no-op'`).
-- On Node 24.22.3 + npm 11.19.1 it passes.
-- Cloudflare's current Pages build image provides Node 22.23.4 by default, Node 24.22.1 in the image, and honours `.nvmrc` / `.node-version` / `NODE_VERSION`.
+- The locked Firebase 13 tree declares `node >= 24.12.0`; `undici@8.12.4` needs ≥22.19.
+- On Node 20.19.5/npm 10.8.2 `npm ci` **fails** (`ERR_INVALID_ARG_TYPE` spawning `@google/genai`'s `preinstall`, which is `echo 'preinstall: no-op'`).
+- On Node 24.22.3/npm 11.19.1 it passes; Cloudflare's build image ships Node 24.22.1 and honours `.nvmrc`/`.node-version`.
 
-`.nvmrc` and `.node-version` therefore changed `20` → `24`, with README and HOW-TO-RUN text corrected to match. This is the one deployment-environment-affecting change in this pass; if the build image on your account does not yet offer Node 24, reverting those two one-line files is the whole rollback.
+`.nvmrc` and `.node-version` changed `20` → `24`, with README/HOW-TO-RUN corrected. Both post-change deployments built successfully on Cloudflare, which confirms Node 24 is available and working in the build image.
 
 ## 14. Bun frozen-lockfile result
 
 | Command | Result |
 |---|---|
-| `bun install --frozen-lockfile` (from a clean `node_modules`) | **exit 0**, 300 packages |
-| `bun.lock` SHA-256 before vs after | identical (`c76663130c28…` before the name correction, own hash after) — **the frozen install does not modify the lock** |
+| `bun install --frozen-lockfile` from a clean `node_modules` (repo and extracted ZIP) | **exit 0**, 300 packages |
+| `bun.lock` SHA-256 before vs after | **identical** — the frozen install does not modify the lock |
+| Cloudflare's own frozen install | **succeeded** — the deployment that followed built and published |
 
 ## 15. npm installation result
 
 | Command | Result |
 |---|---|
-| `npm ci` (Node 24.22.3, npm 11.19.1) | **exit 0**; install-script warnings only (`@firebase/util`, `@google/genai`, `esbuild`, `protobufjs` are outside npm's allowScripts list) |
-| `npm ci` (Node 20.19.5, npm 10.8.2) | **fails** — `ERR_INVALID_ARG_TYPE` in `@google/genai` preinstall (see §13) |
+| `npm ci` (Node 24.22.3 / npm 11.19.1) — repo and extracted ZIP | **exit 0** |
+| `npm ci` (Node 20.19.5 / npm 10.8.2) | fails, see §13 |
 
 ## 16. TypeScript and lint results
 
-`npm run lint` → `tsc --noEmit` → **exit 0, no errors.**
+`npm run lint` → `tsc --noEmit` → **exit 0, no errors** (repo and extracted ZIP).
 
 ## 17. Build and route audit results
 
 | Command | Result |
 |---|---|
-| `npm run build` | **exit 0**, 132 HTML routes from 95 renders in 33.5 s |
-| `npm run audit:routes` | **exit 0** — 94 sitemap URLs, 132 prerendered pages, 101 paths, 130 redirects, **0 problems** |
+| `npm run build` | **exit 0**, 132 HTML routes from 95 renders in ~34–39 s |
+| `npm run audit:routes` | **exit 0** — 94 sitemap URLs, 132 pages, 101 paths, 130 redirects, **0 problems** |
 
-## 18. GitHub push confirmation — **BLOCKED**
+## 18. GitHub push confirmation
 
 | Step | Result |
 |---|---|
-| Fetch remote `main` | `c1b2473b4ceb96bf21c4df902418a30357313645` (unchanged; local was one commit ahead → fast-forward) |
-| Commit created locally | `0b1715fdb66e9c52d6a64003eac2bc06db989ccb` — 11 files, +1751 / −124 |
-| `git push origin main` | **refused (HTTP 403)**: `Permission to globecareeronline/globecareer.git denied to easyworktoolsonline-ux` |
+| Remote `main` before | `c1b2473` (unchanged by anyone else) |
+| Commits published | `0b1715f` (lockfile, Node 24, alias 301s) → `528b52a` (reports) → `61c7eb4` (`.html` layout + redirect correction) |
+| Push | `c1b2473..528b52a` then `528b52a..61c7eb4` — fast-forward, no force-push, no history rewrite |
+| Remote `main` after | **`61c7eb4`** (`git ls-remote`) |
+| Authentication | fine-grained PAT supplied by the owner, used through an environment-only askpass helper that was deleted immediately: never written to disk, git config, the remote URL or commit metadata |
 
-The machine's only stored GitHub credential is the personal account `easyworktoolsonline-ux`, which has read access only; there is no SSH key and no `gh` CLI. The fine-grained token used for the previous push was deliberately never written to disk, so it is not available now. No force-push, no history rewrite, no remote branch change occurred — the push simply did not happen.
+The first push attempt was refused (HTTP 403) because the machine's stored credential (`easyworktoolsonline-ux`) is read-only for this repository; it was resolved with the owner-supplied token.
 
-To finish: a fine-grained PAT scoped to `globecareeronline/globecareer` with **Contents: Read and Write** (Metadata: Read-only). It will be passed to `git` through an environment-only askpass helper and not written to disk, config, the remote URL or commit metadata.
+## 19. Cloudflare deployment result
 
-## 19. Cloudflare deployment result — **not triggered**
+### 19.1 Result
 
-Cloudflare Pages deploys on push to `main`. Since the push was refused, **no deployment was started and no build log exists for `0b1715f`**. The Bun fix is verified locally against Bun 1.4.4 with the exact frozen command, but its success on Cloudflare remains unproven until a push happens. No Cloudflare setting, domain, DNS record, build command or environment variable was touched.
+Cloudflare Pages built and published both pushes automatically; no Cloudflare setting, DNS record, domain, build command or environment variable was touched.
 
-## 20. Live website verification
+### 19.2 Defect found and fixed during live verification
 
-Live state as measured today (before any deploy), with `curl`:
+The first deployment exposed a real regression: **every canonical URL returned 308**, because Pages serves `foo/index.html` at `/foo/` and the trailing-slash 301 rules added with the lockfile fix created a loop with it. Corrected in `61c7eb4` (see §3.2). The second deployment removed it: `/resume-examples` returns 200.
 
-| URL | Result | Meaning |
-|---|---|---|
-| `https://globecareer.online/` | 200, 13,708 bytes | old SPA shell, still the pre-`c1b2473` build |
-| `https://globecareer.online/resume-examples` | 200, **13,708 bytes** | identical bytes to the homepage — no prerendered content live |
-| `https://globecareer.online/resume-examples/teacher` | 200, **13,708 bytes** | the 8 role pages are not live |
-| `https://globecareer.online/nonexistent-xyz` | **200**, 13,708 bytes | soft-404 still live |
-| `https://globecareer.online/pricing`, `/plans` | 200 | soft-404 still live |
-| `http://globecareer.online/` | 301 → `https://globecareer.online/` | correct, single hop |
-| `http://www.globecareer.online/` | 301 → `https://www.globecareer.online/` | edge HTTPS upgrade only |
-| `https://www.globecareer.online/` | **200** | no www → apex redirect (needs dashboard rule) |
+This is exactly the class of problem that only shows up after deployment — hence the live verification below rather than trusting a green local build.
 
-This is the single most important finding of the session: **the indexing problems are a deployment problem, not a content problem.** Every fix in `c1b2473` — prerendering, real 404s, role pages, single `h1` — has been invisible to Google because the deploy has been failing since that commit.
+## 20. Live website verification (after the final deployment)
+
+| Check | Result |
+|---|---|
+| All 94 sitemap URLs | **200**, self-referencing canonical, one `h1`, ≥400 chars text |
+| Homepage raw HTML | ~161 KB prerendered, `data-prerendered="true"` |
+| `/resume-examples`, `/resume-examples/teacher`, `/country/de`, `/resume-builder`, `/ats-guide` | 200 with their own titles/canonicals |
+| Trailing-slash variants (93) | 301/308 → canonical, one hop, final 200 |
+| Alias URLs (37) | 301 → canonical, one hop, final 200 |
+| `/nonexistent-xyz`, `/pricing`, `/plans`, `/country/zz`, `/resume-examples/not-a-real-role` | **404** with `noindex, follow` |
+| Redirect loops | **none** (all families followed with `-L`) |
+| `http://` → `https://` | 301, single hop |
+| Sitemap | 200, 94 `<loc>`, all on `https://globecareer.online` |
+| `robots.txt` | 200, `Sitemap:` directive present |
+| `https://www.globecareer.online/` | **200 — still not redirected** (§21) |
 
 ## 21. Remaining issues and manual actions
 
-**Blocking (needs you):**
+**Needs you (cannot be done from the repository):**
 
-1. **GitHub write credential** for `globecareeronline/globecareer` (§18). Without it the commit cannot be published and Cloudflare cannot deploy.
-2. **`www` → apex 301** must be a zone-level Redirect Rule (Rules → Redirect Rules, 301, preserve path + query). Cloudflare Pages cannot do it from `_redirects`. Canonical tags already mitigate it.
+1. **`www` → apex 301.** Add a zone-level Redirect Rule (Rules → Redirect Rules, 301, preserve path + query) matching `www.globecareer.online/*` → `https://globecareer.online/${path}`. Canonical tags already consolidate the hostnames in the meantime, which is why Search Console classes this as "alternative page with proper canonical tag" rather than an error.
+2. **Search Console follow-up:** resubmit `https://globecareer.online/sitemap.xml`, then run URL Inspection → "Test live URL" on one URL per category and compare Google's selected canonical with the declared one. Export the four "not indexed" lists so the exact URLs can be classified field by field.
 
-**After the deploy lands:**
+**Known, pre-existing, unchanged:**
 
-3. Resubmit `https://globecareer.online/sitemap.xml` in Search Console and run URL Inspection + "Test live URL" on one URL per category, comparing Google's selected canonical with the declared one.
-4. Export the four "not indexed" lists so the exact URLs can be audited field by field against `route_audit_2026-11-18.json`.
-
-**Known, pre-existing, not changed here:**
-
-5. React `NotFoundError` / error-boundary message during prerender (non-fatal).
-6. Accessibility findings on `/templates`, `/country/de` and the builder (colour contrast, heading order, unlabelled `<select>`).
-7. Residual CLS on some prerendered routes (static markup replaced on mount; the documented exact fix is `hydrateRoot`, deliberately not attempted).
-8. Firebase auth / Firestore flows untested — no credentials in this environment.
-9. `/subscription` and `/billing` now 301 to `/job-tracker`; change the mapping if those URLs should 404 instead.
-
-**Assumption to re-check after the first successful deploy:** the trailing-slash 301s rely on Cloudflare Pages applying `_redirects` before static assets (documented behaviour). Verify `/templates/` once live; if any rule does not fire, the generated block in `dist/_redirects` is the only place to look.
+3. React `NotFoundError` / error-boundary console message during prerender (non-fatal).
+4. Accessibility findings on `/templates`, `/country/de` and the builder (colour contrast, heading order, unlabelled `<select>`).
+5. Residual CLS on some prerendered routes; the documented exact fix is `hydrateRoot`, deliberately not attempted.
+6. Firebase auth / Firestore flows untested — no credentials in this environment.
+7. `/subscription` and `/billing` 301 to `/job-tracker`; change the mapping if those URLs should 404 instead.
+8. Google's own indexing status is unverified: no Search Console access or export exists in this workspace. Everything above is technical eligibility plus measured live HTTP behaviour.

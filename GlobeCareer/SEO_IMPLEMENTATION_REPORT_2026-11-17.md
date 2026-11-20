@@ -460,9 +460,10 @@ This pass started from the finding that **none of §15 was ever live**. Measured
 |---|-----|-------|
 | 1 | **Bun lockfile synchronised** with `package.json` using Bun 1.4.4 (Cloudflare's build-image version). `motion` and `esbuild` entries removed rather than re-added; `jsdom` recorded; workspace name corrected to `globecareer`. `bun install --frozen-lockfile` now exits 0 and leaves `bun.lock` byte-identical. | `bun.lock` |
 | 2 | **Node 24 pinned** (`20` → `24`). The locked Firebase 13 packages declare `node >= 24.12.0` and `npm ci` fails on Node 20/npm 10 with `ERR_INVALID_ARG_TYPE` inside `@google/genai`'s preinstall. Verified working on Node 24.22.3/npm 11.19.1; Cloudflare's image supplies Node 24.22.1. | `.nvmrc`, `.node-version`, `README.md`, `HOW-TO-RUN.txt` |
-| 3 | **Duplicate URL consolidation.** 131 static 301 rules generated at build time from the app's route tables: 37 alias paths → canonical, 93 trailing-slash variants → canonical, `/admin/` → `/admin`. No chains, no loops, every destination a 200 page. `/pricing` and `/plans` stay 404 and are never redirected to the homepage. | `scripts/prerender.mjs` |
-| 4 | **Local server now honours `_redirects`**, so the audit tests deployed behaviour instead of only static files — and ignores host-level rules exactly as Cloudflare Pages does. | `scripts/serve-dist.mjs` |
-| 5 | **Audit now proves the redirect layer:** every alias and every sitemap URL's trailing-slash variant must 301 in one hop to the canonical page and end at 200; chains, loops and wrong targets fail the run. Output includes a full `redirectMap[]`. | `scripts/audit-routes.mjs` |
+| 3 | **Duplicate URL consolidation.** 37 static 301 rules generated at build time from the app's route tables (alias path → canonical). `/pricing` and `/plans` stay 404 and are never redirected to the homepage. | `scripts/prerender.mjs` |
+| 4 | **Output layout changed to `<path>.html`.** Cloudflare Pages derives a page's canonical URL from the file name: `foo/index.html` is served at `/foo/` and `/foo` is 308-redirected there, which made every sitemap URL a redirect once the site deployed. `foo.html` is served at `/foo` with **200**, matching the canonicals, sitemap and internal links. Slash variants are then normalised by Pages itself (single 308). | `scripts/prerender.mjs` |
+| 5 | **Local server now reproduces Pages**, honouring `_redirects` first and `html_handling: auto-trailing-slash`, so a loop fails locally instead of shipping. | `scripts/serve-dist.mjs` |
+| 6 | **Audit now proves the redirect layer:** every alias must 301 in one hop to its canonical; every sitemap URL's slash variant must reach the canonical URL in one hop (301 or Pages' 308) and end at 200; chains, loops and wrong targets fail the run. Output includes a full `redirectMap[]`. | `scripts/audit-routes.mjs` |
 | 6 | **Dead `www` rule removed.** Cloudflare Pages `_redirects` cannot redirect by hostname (documented: "Domain-level redirects ❌"), so the rule added in `c1b2473` never fired. The file now documents the required dashboard Redirect Rule instead. | `public/_redirects`, `_redirects` |
 
 ### 16.2 Verification
@@ -474,10 +475,16 @@ This pass started from the finding that **none of §15 was ever live**. Measured
 | `npm run lint` (`tsc --noEmit`) | **Pass**, exit 0 |
 | `npm run build` | **Pass**, 132 HTML routes from 95 renders in 33.5 s |
 | `npm run audit:routes` | **Pass** — 94 sitemap URLs, 132 pages, 101 paths, **130 redirects**, 0 problems |
+| GitHub push (`main`) | **Pass** — `c1b2473` → `61c7eb4` in three fast-forward commits; remote HEAD verified with `git ls-remote` |
+| Cloudflare Pages deployment (automatic, two runs) | **Pass** — the second run removed a 308 redirect loop that the first run exposed (see §16.4) |
+| Live domain verification after deploy | **Pass** — 94/94 sitemap URLs 200 with self-canonical, 93/93 slash variants one hop, 37/37 aliases one hop → 200, unknown/removed URLs 404 + `noindex` |
 
-### 16.3 Not verified
+### 16.4 Defect found by live verification
 
-- **No deployment and no live change.** The push was refused by GitHub (403: the stored credential `easyworktoolsonline-ux` has no write access), so Cloudflare never received commit `0b1715f`. See §18 of `FINAL_GOOGLE_INDEXING_AND_DEPLOYMENT_REPORT_2026-11-18.md`.
+The first deployment made every canonical URL answer **308**, and the trailing-slash 301 rules added with the lockfile fix bounced against it (`/resume-examples` → 308 → `/resume-examples/` → 301 → …). Cause: Pages serves `foo/index.html` at `/foo/`. Fixed in `61c7eb4` by emitting `<path>.html` and letting Pages own slash normalisation; the local server now models that behaviour so the audit catches it. A green local build alone would not have found this.
+
+### 16.5 Not verified
 - **Search Console** still has no export in this workspace, so the reported ~64 non-indexed URLs could not be matched, classified or re-counted. The causes were identified from the live HTML instead.
-- `www` → apex still returns 200 and needs a dashboard Redirect Rule.
+- `www` → apex still returns 200 and needs a dashboard Redirect Rule (Cloudflare Pages cannot redirect by hostname from `_redirects`).
 - Firebase auth / Firestore flows remain untested.
+- Google's indexing status: no Search Console access or export exists here, so no indexing claim is made.
