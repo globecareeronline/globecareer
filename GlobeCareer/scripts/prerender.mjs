@@ -271,7 +271,7 @@ function prepareStaticShell(document) {
   document.head.appendChild(style);
 
   const handoff = document.createElement('script');
-  handoff.textContent = `(function(){var root=document.getElementById('root');var pre=document.getElementById('prerender');if(!root||!pre)return;function hasContent(){return root.childElementCount>0&&(root.textContent||'').trim().length>300;}function reveal(){if(!pre||!hasContent())return;if(pre.parentNode)pre.parentNode.removeChild(pre);pre=null;root.removeAttribute('data-prerender-pending');}var obs=new MutationObserver(reveal);obs.observe(root,{childList:true,subtree:true,characterData:true});var ticks=0;var timer=setInterval(function(){ticks++;reveal();if(!pre||ticks>50)clearInterval(timer);},100);})();`;
+  handoff.textContent = `(function(){var root=document.getElementById('root');var pre=document.getElementById('prerender');if(!root||!pre)return;function hasContent(){if(!root.childElementCount)return false;var m=root.querySelector('#main-content');if(!m)return(root.textContent||'').trim().length>300;if((m.textContent||'').trim().length>300)return true;return !m.querySelector('.animate-spin');}function reveal(){if(!pre||!hasContent())return;if(pre.parentNode)pre.parentNode.removeChild(pre);pre=null;root.removeAttribute('data-prerender-pending');}var obs=new MutationObserver(reveal);obs.observe(root,{childList:true,subtree:true,characterData:true});var ticks=0;var timer=setInterval(function(){ticks++;reveal();if(!pre||ticks>50)clearInterval(timer);},100);})();`;
   document.body.appendChild(handoff);
 }
 

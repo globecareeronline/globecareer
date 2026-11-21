@@ -37,21 +37,9 @@
     <!-- Preload LCP Asset: High-Priority WebP Logo -->
     <link rel="preload" as="image" href="/globecareer-logo.webp" type="image/webp" />
 
-    <!-- High-Performance Google Fonts (Non-Render-Blocking with zero preload warning) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Manrope:wght@600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap"
-      rel="stylesheet"
-      media="print"
-      onload="this.media='all'"
-    />
-    <noscript>
-      <link
-        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Manrope:wght@600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap"
-        rel="stylesheet"
-      />
-    </noscript>
+    <!-- Fonts are self-hosted in /fonts and declared in src/fonts.css, which ships
+         inside the page stylesheet: the faces are then known before the first
+         paint, so text never swaps to another face after it is already visible. -->
 
     <!-- Canonical URL & Agentic Discovery -->
     <link rel="canonical" href="https://globecareer.online/" />
