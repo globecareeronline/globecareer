@@ -27,6 +27,7 @@ import {
   RESIGNATION_FILTER_CATEGORIES,
   ResignationTemplate
 } from '../../data/resignationTemplates';
+import { WorkflowNavigation, WorkflowStep } from '../common/WorkflowNavigation';
 
 export type ResignationType =
   | 'two_weeks'
@@ -135,6 +136,18 @@ export const ResignationLetterGenerator: React.FC<ResignationLetterGeneratorProp
   const [copied, setCopied] = useState<boolean>(false);
   const [copiedTemplateId, setCopiedTemplateId] = useState<string | null>(null);
   const [validationError, setValidationError] = useState<string | null>(null);
+
+  // Guided step-by-step workflow, matching the Resume Builder stepper.
+  const RESIGNATION_STEPS: WorkflowStep[] = [
+    { id: 'employee', label: 'Your Details', description: 'Name and current role' },
+    { id: 'employer', label: 'Employer', description: 'Company and manager' },
+    { id: 'notice', label: 'Notice', description: 'Notice type and last day' },
+    { id: 'closing', label: 'Closing', description: 'Gratitude and handover' },
+  ];
+  const [currentStep, setCurrentStep] = useState<string>('employee');
+  const canProceed =
+    currentStep !== 'employee' ||
+    (formData.employeeName.trim().length > 0 && formData.jobTitle.trim().length > 0);
 
   // Template browser filters
   const [searchQuery, setSearchQuery] = useState('');
@@ -399,6 +412,8 @@ export const ResignationLetterGenerator: React.FC<ResignationLetterGeneratorProp
                   Departure Parameters
                 </h2>
 
+                {currentStep === 'employee' && (
+                  <>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div>
                     <label className="text-xs font-bold text-neutral-700 dark:text-neutral-300 block mb-1">
@@ -429,6 +444,11 @@ export const ResignationLetterGenerator: React.FC<ResignationLetterGeneratorProp
                   </div>
                 </div>
 
+                  </>
+                )}
+
+                {currentStep === 'employer' && (
+                  <>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div>
                     <label className="text-xs font-bold text-neutral-700 dark:text-neutral-300 block mb-1">
@@ -473,6 +493,11 @@ export const ResignationLetterGenerator: React.FC<ResignationLetterGeneratorProp
                   />
                 </div>
 
+                  </>
+                )}
+
+                {currentStep === 'notice' && (
+                  <>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div>
                     <label className="text-xs font-bold text-neutral-700 dark:text-neutral-300 block mb-1">
@@ -509,6 +534,11 @@ export const ResignationLetterGenerator: React.FC<ResignationLetterGeneratorProp
                   </div>
                 </div>
 
+                  </>
+                )}
+
+                {currentStep === 'closing' && (
+                  <>
                 <div>
                   <label className="text-xs font-bold text-neutral-700 dark:text-neutral-300 block mb-1">
                     Expression of Gratitude
@@ -535,20 +565,23 @@ export const ResignationLetterGenerator: React.FC<ResignationLetterGeneratorProp
                   />
                 </div>
 
+                  </>
+                )}
+
                 {validationError && (
                   <div className="p-3 bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900 rounded-xl text-xs text-rose-700 dark:text-rose-300">
                     {validationError}
                   </div>
                 )}
 
-                <button
-                  type="button"
-                  onClick={handleGenerate}
-                  className="w-full py-3 bg-neutral-900 hover:bg-neutral-800 dark:bg-neutral-100 dark:hover:bg-neutral-200 text-white dark:text-neutral-900 rounded-xl text-xs font-bold uppercase tracking-wider transition-colors shadow-sm flex items-center justify-center gap-2 cursor-pointer"
-                >
-                  <Sparkles className="w-4 h-4 text-blue-400 dark:text-blue-600" />
-                  <span>Generate Resignation Letter</span>
-                </button>
+                <WorkflowNavigation
+                  steps={RESIGNATION_STEPS}
+                  currentStepId={currentStep}
+                  onStepChange={setCurrentStep}
+                  onFinish={handleGenerate}
+                  finishLabel="Generate Resignation Letter"
+                  canProceed={canProceed}
+                />
               </div>
             </div>
 

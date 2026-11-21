@@ -20,6 +20,7 @@ import {
   CheckCircle2
 } from 'lucide-react';
 import { BIO_TEMPLATES, BIO_CATEGORIES, BioTemplate } from '../../data/bioTemplates';
+import { WorkflowNavigation, WorkflowStep } from '../common/WorkflowNavigation';
 
 export type BioTone = 'professional' | 'executive' | 'creative' | 'friendly' | 'academic';
 export type BioPerspective = 'first' | 'third';
@@ -68,6 +69,17 @@ export const ProfessionalBioGenerator: React.FC<{
   const [copied, setCopied] = useState<boolean>(false);
   const [copiedTemplateId, setCopiedTemplateId] = useState<string | null>(null);
   const [validationError, setValidationError] = useState<string | null>(null);
+
+  // Guided step-by-step workflow, matching the Resume Builder stepper.
+  const BIO_STEPS: WorkflowStep[] = [
+    { id: 'identity', label: 'Identity', description: 'Name, role and experience' },
+    { id: 'expertise', label: 'Expertise', description: 'Skills, achievements and background' },
+    { id: 'style', label: 'Style', description: 'Voice, tone and perspective' },
+  ];
+  const [currentStep, setCurrentStep] = useState<string>('identity');
+  const canProceed =
+    currentStep !== 'identity' ||
+    (formData.fullName.trim().length > 0 && formData.currentRole.trim().length > 0);
 
   // Template Library Filter State
   const [searchQuery, setSearchQuery] = useState('');
@@ -349,6 +361,8 @@ export const ProfessionalBioGenerator: React.FC<{
                 </div>
               )}
 
+              {currentStep === 'identity' && (
+                <>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="text-xs font-bold text-neutral-700 dark:text-neutral-300 block mb-1">
@@ -411,6 +425,11 @@ export const ProfessionalBioGenerator: React.FC<{
                 </div>
               </div>
 
+                </>
+              )}
+
+              {currentStep === 'expertise' && (
+                <>
               <div>
                 <label className="text-xs font-bold text-neutral-700 dark:text-neutral-300 block mb-1">
                   Core Skills &amp; Focus Areas
@@ -469,6 +488,11 @@ export const ProfessionalBioGenerator: React.FC<{
                 </div>
               </div>
 
+                </>
+              )}
+
+              {currentStep === 'style' && (
+                <>
               {/* Tone & Perspective Controls */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 border-t border-neutral-100 dark:border-neutral-800">
                 <div>
@@ -521,15 +545,18 @@ export const ProfessionalBioGenerator: React.FC<{
                 </div>
               </div>
 
-              {/* Generate Action Button */}
-              <button
-                type="button"
-                onClick={generateBios}
-                className="w-full py-3.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold uppercase tracking-wider transition-colors shadow-sm flex items-center justify-center gap-2 cursor-pointer"
-              >
-                <Sparkles className="w-4 h-4" />
-                <span>Generate Professional Bios</span>
-              </button>
+                </>
+              )}
+
+              {/* Guided Step-by-Step Workflow Navigation */}
+              <WorkflowNavigation
+                steps={BIO_STEPS}
+                currentStepId={currentStep}
+                onStepChange={setCurrentStep}
+                onFinish={generateBios}
+                finishLabel="Generate Professional Bios"
+                canProceed={canProceed}
+              />
             </div>
 
             {/* Right: Output Card with Length Tiers (5 cols) */}

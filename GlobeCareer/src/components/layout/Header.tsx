@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { useTranslation } from '../../context/LanguageContext';
+import { GUIDE_NAV_LINKS, guidePageKey } from '../../data/guideNav';
 import { GlobeCareerLogo } from '../common/GlobeCareerLogo';
 import { LanguageSelector } from '../common/LanguageSelector';
 import {
@@ -53,7 +54,7 @@ export const Header: React.FC<HeaderProps> = ({
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
 
   // Active dropdown on desktop
-  const [openDropdown, setOpenDropdown] = useState<'resume' | 'templates' | 'letters' | 'tools' | 'jobs' | null>(null);
+  const [openDropdown, setOpenDropdown] = useState<'resume' | 'templates' | 'letters' | 'tools' | 'guides' | 'jobs' | null>(null);
   const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const navRef = useRef<HTMLDivElement>(null);
 
@@ -63,7 +64,7 @@ export const Header: React.FC<HeaderProps> = ({
   const authDropdownRef = useRef<HTMLDivElement>(null);
 
   // Hover handlers with small graceful buffer to prevent flicker
-  const handleMouseEnter = (menu: 'resume' | 'templates' | 'letters' | 'tools' | 'jobs') => {
+  const handleMouseEnter = (menu: 'resume' | 'templates' | 'letters' | 'tools' | 'guides' | 'jobs') => {
     if (closeTimeoutRef.current) {
       clearTimeout(closeTimeoutRef.current);
       closeTimeoutRef.current = null;
@@ -133,6 +134,7 @@ export const Header: React.FC<HeaderProps> = ({
   const isLettersActive = ['cover-letter', 'cover-letter-templates', 'recommendation-letter', 'email-generator'].includes(currentPage);
   const isToolsActive = ['bio-generator', 'summary-generator', 'objective-generator', 'phrase-generator', 'resignation-letter', 'interview-prep', 'recommendation-guide', 'resume-word-counter', 'resume-bullet-generator', 'ats-maker', 'resume-map'].includes(currentPage);
   const isJobsActive = ['jobs', 'tracker'].includes(currentPage);
+  const isGuidesActive = currentPage === 'blog' || currentPage === 'article';
 
   return (
     <header className="sticky top-0 z-40 bg-white/95 dark:bg-neutral-900/95 backdrop-blur-md border-b border-neutral-200 dark:border-neutral-800 transition-colors">
@@ -630,6 +632,22 @@ export const Header: React.FC<HeaderProps> = ({
                     </div>
                   </a>
 
+                  {/* 2b. Resume Objective Generator */}
+                  <a
+                    href="/resume-objective-generator"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavClick('objective-generator');
+                    }}
+                    className="flex items-start gap-3 px-4 py-2.5 hover:bg-neutral-50 dark:hover:bg-neutral-800 text-neutral-800 dark:text-neutral-200 focus-visible:bg-neutral-100 dark:focus-visible:bg-neutral-800 border-t border-neutral-100 dark:border-neutral-800"
+                  >
+                    <Target className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />
+                    <div>
+                      <div className="font-bold text-neutral-900 dark:text-neutral-100">Resume Objective Generator</div>
+                      <div className="text-[11px] text-neutral-500">Entry-level and career-change objectives tailored to one role.</div>
+                    </div>
+                  </a>
+
                   {/* 3. Resignation Letter Generator */}
                   <a
                     href="/resignation-letter"
@@ -821,6 +839,73 @@ export const Header: React.FC<HeaderProps> = ({
                       <div className="text-[11px] text-neutral-500">Personal Kanban search pipeline</div>
                     </div>
                   </a>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Category 5: Guides (Hover Dropdown, No Arrow) */}
+          <div
+            className="relative"
+            onMouseEnter={() => handleMouseEnter('guides')}
+            onMouseLeave={handleMouseLeave}
+          >
+            <button
+              type="button"
+              aria-haspopup="true"
+              aria-expanded={openDropdown === 'guides'}
+              onClick={() => setOpenDropdown(openDropdown === 'guides' ? null : 'guides')}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowDown') {
+                  e.preventDefault();
+                  setOpenDropdown('guides');
+                }
+              }}
+              className={`px-3 py-2 rounded-xl transition-colors hover:text-neutral-900 dark:hover:text-neutral-100 hover:bg-neutral-100 dark:hover:bg-neutral-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 ${
+                isGuidesActive
+                  ? 'text-neutral-900 dark:text-neutral-100 font-bold bg-neutral-100/70 dark:bg-neutral-800/70'
+                  : ''
+              }`}
+            >
+              <span>{t('nav.guides', 'Guides')}</span>
+            </button>
+
+            {openDropdown === 'guides' && (
+              <div
+                className="absolute right-0 top-full pt-1.5 w-[36rem] max-w-[calc(100vw-2rem)] z-50 animate-in fade-in slide-in-from-top-1 duration-150"
+              >
+                <div className="bg-white dark:bg-neutral-900 rounded-2xl shadow-xl border border-neutral-200 dark:border-neutral-800 p-2 text-xs">
+                  <a
+                    href="/blog"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavClick('blog');
+                    }}
+                    className="flex items-center justify-between gap-3 px-3 py-2 rounded-xl bg-neutral-50 dark:bg-neutral-800/60 hover:bg-neutral-100 dark:hover:bg-neutral-800 text-neutral-800 dark:text-neutral-200 focus-visible:bg-neutral-100 dark:focus-visible:bg-neutral-800"
+                  >
+                    <span className="flex items-center gap-2 font-bold text-neutral-900 dark:text-neutral-100">
+                      <BookOpen className="w-4 h-4 text-blue-600 shrink-0" />
+                      All career guides
+                    </span>
+                    <span className="text-[11px] text-neutral-500">Guide library</span>
+                  </a>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-0.5 mt-1">
+                    {GUIDE_NAV_LINKS.map((guide) => (
+                      <a
+                        key={guide.slug}
+                        href={`/blog/${guide.slug}`}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handleNavClick(guidePageKey(guide.slug));
+                        }}
+                        className="px-3 py-2 rounded-xl hover:bg-neutral-50 dark:hover:bg-neutral-800 text-neutral-800 dark:text-neutral-200 focus-visible:bg-neutral-100 dark:focus-visible:bg-neutral-800"
+                      >
+                        <div className="font-bold text-neutral-900 dark:text-neutral-100">{guide.label}</div>
+                        <div className="text-[11px] text-neutral-500 line-clamp-1">{guide.description}</div>
+                      </a>
+                    ))}
+                  </div>
                 </div>
               </div>
             )}
@@ -1330,6 +1415,38 @@ export const Header: React.FC<HeaderProps> = ({
               <BookmarkPlus className="w-4 h-4 text-amber-600" />
               <span>{t('nav.jobTracker', 'Job Application Tracker')}</span>
             </a>
+          </div>
+
+          {/* Category 5: Guides */}
+          <div className="border-t border-neutral-100 dark:border-neutral-800 pt-3 space-y-1">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-400 block px-2 pb-1">
+              {t('nav.guides', 'Guides')}
+            </span>
+            <a
+              href="/blog"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick('blog');
+              }}
+              className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl hover:bg-neutral-100 dark:hover:bg-neutral-800 font-semibold"
+            >
+              <BookOpen className="w-4 h-4 text-blue-600" />
+              <span>All career guides</span>
+            </a>
+            {GUIDE_NAV_LINKS.map((guide) => (
+              <a
+                key={guide.slug}
+                href={`/blog/${guide.slug}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick(guidePageKey(guide.slug));
+                }}
+                className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl hover:bg-neutral-100 dark:hover:bg-neutral-800"
+              >
+                <FileText className="w-4 h-4 text-neutral-400" />
+                <span>{guide.label}</span>
+              </a>
+            ))}
           </div>
 
           {/* Mobile Language Selector & Theme */}

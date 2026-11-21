@@ -213,13 +213,16 @@ export const ArticlePage: React.FC<{ slug: string } & NavigateProps> = ({ slug, 
         <div className="mt-12 rounded-2xl bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 p-6 sm:p-8 text-white">
           <h2 className="text-xl sm:text-2xl font-extrabold mb-2">{article.cta.heading}</h2>
           <p className="text-blue-100 text-sm leading-relaxed mb-5 max-w-xl">{article.cta.body}</p>
-          <button
-            type="button"
-            onClick={onStartBuilder}
+          <a
+            href="/resume-builder"
+            onClick={(e) => {
+              e.preventDefault();
+              onStartBuilder();
+            }}
             className="inline-flex items-center gap-2 px-6 py-3 bg-white text-blue-900 hover:bg-neutral-100 font-bold rounded-xl shadow-lg transition-all hover:scale-[1.02] cursor-pointer text-sm"
           >
             {article.cta.label} <ArrowRight className="w-4 h-4" />
-          </button>
+          </a>
         </div>
 
         {/* FAQs */}
@@ -345,13 +348,16 @@ export const BlogIndexPage: React.FC<NavigateProps> = ({ onNavigate, onStartBuil
           <p className="text-blue-100 text-sm leading-relaxed mb-5 max-w-xl mx-auto">
             Build an A4, ATS-friendly CV for any of 47 countries in minutes, free, with no watermark.
           </p>
-          <button
-            type="button"
-            onClick={onStartBuilder}
+          <a
+            href="/resume-builder"
+            onClick={(e) => {
+              e.preventDefault();
+              onStartBuilder();
+            }}
             className="inline-flex items-center gap-2 px-6 py-3 bg-white text-blue-900 hover:bg-neutral-100 font-bold rounded-xl shadow-lg transition-all hover:scale-[1.02] cursor-pointer text-sm"
           >
             Open the CV builder <ArrowRight className="w-4 h-4" />
-          </button>
+          </a>
         </div>
       </div>
     </div>

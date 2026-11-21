@@ -20,6 +20,7 @@ import {
   TrendingUp,
   Briefcase
 } from 'lucide-react';
+import { WorkflowNavigation, WorkflowStep } from '../common/WorkflowNavigation';
 
 interface ResumePhraseGeneratorProps {
   onNavigate: (page: string) => void;
@@ -150,6 +151,13 @@ export const ResumePhraseGenerator: React.FC<ResumePhraseGeneratorProps> = ({
   onApplyToResume
 }) => {
   const [selectedCatId, setSelectedCatId] = useState<string>('leadership');
+
+  // Guided step-by-step workflow, matching the Resume Builder stepper.
+  const PHRASE_STEPS: WorkflowStep[] = [
+    { id: 'competency', label: 'Competency', description: 'Skill area and action verb' },
+    { id: 'impact', label: 'Impact', description: 'Scope and quantified result' },
+  ];
+  const [currentStep, setCurrentStep] = useState<string>('competency');
   const [selectedLevel, setSelectedLevel] = useState<SeniorityLevel>('senior');
   const [actionVerb, setActionVerb] = useState<string>('Spearheaded');
   const [projectInput, setProjectInput] = useState<string>('cross-functional engineering and design team across 3 time zones');
@@ -281,6 +289,8 @@ export const ResumePhraseGenerator: React.FC<ResumePhraseGeneratorProps> = ({
             </button>
           </div>
 
+          {currentStep === 'competency' && (
+            <>
           {/* Category Selector Pills */}
           <div className="space-y-2">
             <label className="text-xs font-bold text-neutral-700 dark:text-neutral-300">
@@ -327,6 +337,11 @@ export const ResumePhraseGenerator: React.FC<ResumePhraseGeneratorProps> = ({
             </div>
           </div>
 
+            </>
+          )}
+
+          {currentStep === 'impact' && (
+            <>
           {/* Project / Scope Field */}
           <div className="space-y-2">
             <label className="text-xs font-bold text-neutral-700 dark:text-neutral-300 flex items-center justify-between">
@@ -354,6 +369,19 @@ export const ResumePhraseGenerator: React.FC<ResumePhraseGeneratorProps> = ({
               className="w-full px-4 py-2.5 rounded-xl border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none"
             />
           </div>
+            </>
+          )}
+
+          <WorkflowNavigation
+            steps={PHRASE_STEPS}
+            currentStepId={currentStep}
+            onStepChange={setCurrentStep}
+            onFinish={() => {
+              const best = generatedVariations[0];
+              if (best) handleApply(best.text, 'gen_0');
+            }}
+            finishLabel="Use Best Phrase in Resume"
+          />
 
         </div>
 

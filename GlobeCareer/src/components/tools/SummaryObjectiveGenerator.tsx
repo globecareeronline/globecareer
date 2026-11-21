@@ -27,6 +27,7 @@ import {
   SUMMARY_FILTER_CATEGORIES,
   SummaryTemplate
 } from '../../data/summaryTemplates';
+import { WorkflowNavigation, WorkflowStep } from '../common/WorkflowNavigation';
 
 export type SummaryMode = 'summary' | 'objective' | 'headline';
 export type ExperienceLevel = 'entry' | 'mid' | 'senior' | 'career_changer';
@@ -136,6 +137,16 @@ export const SummaryObjectiveGenerator: React.FC<SummaryObjectiveGeneratorProps>
   const [appliedIdx, setAppliedIdx] = useState<number | null>(null);
   const [appliedTemplateId, setAppliedTemplateId] = useState<string | null>(null);
   const [validationError, setValidationError] = useState<string | null>(null);
+
+  // Guided step-by-step workflow, matching the Resume Builder stepper.
+  const SUMMARY_STEPS: WorkflowStep[] = [
+    { id: 'statement', label: 'Statement', description: 'Type and target role' },
+    { id: 'experience', label: 'Experience', description: 'Level, years and industry' },
+    { id: 'evidence', label: 'Evidence', description: 'Skills and achievements' },
+  ];
+  const [currentStep, setCurrentStep] = useState<string>('statement');
+  const canProceed =
+    currentStep !== 'statement' || formData.targetJobTitle.trim().length > 0;
 
   // Template browser filters
   const [searchQuery, setSearchQuery] = useState('');
@@ -468,6 +479,8 @@ export const SummaryObjectiveGenerator: React.FC<SummaryObjectiveGeneratorProps>
                 </h2>
 
                 {/* Mode Selector */}
+                {currentStep === 'statement' && (
+                  <>
                 <div>
                   <label className="text-xs font-bold text-neutral-700 dark:text-neutral-300 block mb-1">
                     Statement Type
@@ -523,6 +536,11 @@ export const SummaryObjectiveGenerator: React.FC<SummaryObjectiveGeneratorProps>
                   />
                 </div>
 
+                  </>
+                )}
+
+                {currentStep === 'experience' && (
+                  <>
                 <div className="grid grid-cols-2 gap-3">
                   <div>
                     <label className="text-xs font-bold text-neutral-700 dark:text-neutral-300 block mb-1">
@@ -587,6 +605,11 @@ export const SummaryObjectiveGenerator: React.FC<SummaryObjectiveGeneratorProps>
                   />
                 </div>
 
+                  </>
+                )}
+
+                {currentStep === 'evidence' && (
+                  <>
                 <div>
                   <label className="text-xs font-bold text-neutral-700 dark:text-neutral-300 block mb-1">
                     Core Technical &amp; Soft Skills
@@ -615,20 +638,38 @@ export const SummaryObjectiveGenerator: React.FC<SummaryObjectiveGeneratorProps>
                   />
                 </div>
 
+                  </>
+                )}
+
                 {validationError && (
                   <div className="p-3 bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900 rounded-xl text-xs text-rose-700 dark:text-rose-300">
                     {validationError}
                   </div>
                 )}
 
-                <button
-                  type="button"
-                  onClick={generateStatements}
-                  className="w-full py-3 bg-neutral-900 hover:bg-neutral-800 dark:bg-neutral-100 dark:hover:bg-neutral-200 text-white dark:text-neutral-900 rounded-xl text-xs font-bold uppercase tracking-wider transition-colors shadow-sm flex items-center justify-center gap-2 cursor-pointer"
-                >
-                  <Sparkles className="w-4 h-4 text-blue-400 dark:text-blue-600" />
-                  <span>Generate Profile Statements</span>
-                </button>
+                <WorkflowNavigation
+                  steps={SUMMARY_STEPS}
+                  currentStepId={currentStep}
+                  onStepChange={setCurrentStep}
+                  onFinish={generateStatements}
+                  finishLabel="Generate Profile Statements"
+                  canProceed={canProceed}
+                />
+
+                <p className="text-xs text-neutral-500 dark:text-neutral-400 text-center leading-relaxed">
+                  Need just one statement?{' '}
+                  <a
+                    href="/resume-objective-generator"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onNavigate?.('objective-generator');
+                    }}
+                    className="text-blue-600 dark:text-blue-400 font-semibold hover:underline"
+                  >
+                    Open the Resume Objective Generator
+                  </a>
+                  {' '}for entry-level and career-change objectives.
+                </p>
               </div>
             </div>
 

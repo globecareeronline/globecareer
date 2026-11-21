@@ -16,6 +16,7 @@ import {
   CheckCircle2,
   AlertCircle
 } from 'lucide-react';
+import { WorkflowNavigation, WorkflowStep } from '../common/WorkflowNavigation';
 
 interface ResumeBulletGeneratorProps {
   onNavigate: (page: string) => void;
@@ -116,6 +117,14 @@ export const ResumeBulletGenerator: React.FC<ResumeBulletGeneratorProps> = ({
   onStartBuilder
 }) => {
   const [selectedPresetId, setSelectedPresetId] = useState<string>('software');
+
+  // Guided step-by-step workflow, matching the Resume Builder stepper.
+  const BULLET_STEPS: WorkflowStep[] = [
+    { id: 'verb', label: 'Action Verb', description: 'How the bullet opens' },
+    { id: 'detail', label: 'Detail', description: 'What you did and the impact' },
+    { id: 'context', label: 'Context', description: 'Tools, frameworks or strategy' },
+  ];
+  const [currentStep, setCurrentStep] = useState<string>('verb');
   const [formula, setFormula] = useState<FormulaType>('google_xyz');
 
   const [actionVerb, setActionVerb] = useState<string>('Engineered');
@@ -124,6 +133,8 @@ export const ResumeBulletGenerator: React.FC<ResumeBulletGeneratorProps> = ({
   const [methodTool, setMethodTool] = useState<string>('using Node.js, Redis caching, and AWS Lambda serverless pipelines');
 
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
+
+  const canProceed = currentStep !== 'detail' || taskDescription.trim().length > 0;
 
   const activePreset = PRESETS.find(p => p.id === selectedPresetId) || PRESETS[0];
 
@@ -312,6 +323,8 @@ export const ResumeBulletGenerator: React.FC<ResumeBulletGeneratorProps> = ({
             </div>
 
             {/* Step 1: Action Verb */}
+            {currentStep === 'verb' && (
+              <>
             <div className="space-y-2">
               <label className="block text-xs font-bold uppercase tracking-wider text-neutral-700 dark:text-neutral-300">
                 1. Power Action Verb
@@ -341,7 +354,12 @@ export const ResumeBulletGenerator: React.FC<ResumeBulletGeneratorProps> = ({
               </div>
             </div>
 
+              </>
+            )}
+
             {/* Step 2: Task or Initiative */}
+            {currentStep === 'detail' && (
+              <>
             <div className="space-y-1.5">
               <label className="block text-xs font-bold uppercase tracking-wider text-neutral-700 dark:text-neutral-300">
                 2. What Did You Do? (Initiative / Project)
@@ -372,7 +390,12 @@ export const ResumeBulletGenerator: React.FC<ResumeBulletGeneratorProps> = ({
               />
             </div>
 
+              </>
+            )}
+
             {/* Step 4: Tools & Methodology */}
+            {currentStep === 'context' && (
+              <>
             <div className="space-y-1.5">
               <label className="block text-xs font-bold uppercase tracking-wider text-neutral-700 dark:text-neutral-300">
                 4. Tools, Frameworks, or Strategy Used
@@ -385,6 +408,9 @@ export const ResumeBulletGenerator: React.FC<ResumeBulletGeneratorProps> = ({
                 className="w-full px-3.5 py-2 rounded-xl bg-neutral-50 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
               />
             </div>
+
+              </>
+            )}
 
             {/* Strength Meter */}
             <div className="p-4 rounded-2xl bg-neutral-50 dark:bg-neutral-800/60 border border-neutral-200 dark:border-neutral-700 space-y-2">
@@ -419,6 +445,15 @@ export const ResumeBulletGenerator: React.FC<ResumeBulletGeneratorProps> = ({
                 ))}
               </ul>
             </div>
+
+            <WorkflowNavigation
+              steps={BULLET_STEPS}
+              currentStepId={currentStep}
+              onStepChange={setCurrentStep}
+              onFinish={handleStartResume}
+              finishLabel="Build Resume With These Bullets"
+              canProceed={canProceed}
+            />
 
           </div>
 

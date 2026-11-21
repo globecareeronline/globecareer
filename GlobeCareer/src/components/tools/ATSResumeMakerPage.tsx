@@ -29,6 +29,7 @@ import { COUNTRIES, getCountryById } from '../../data/countries';
 import { JOB_CATEGORIES } from '../../data/jobCategories';
 import { TemplateId } from '../../types/resume';
 import { SamplePersonaType } from '../../data/sampleResumes';
+import { WorkflowNavigation, WorkflowStep } from '../common/WorkflowNavigation';
 
 export interface ATSResumeMakerOptions {
   countryId: string;
@@ -201,6 +202,15 @@ export const ATSResumeMakerPage: React.FC<ATSResumeMakerPageProps> = ({
   const [startMode, setStartMode] = useState<'sample' | 'blank'>('sample');
   const [selectedPersona, setSelectedPersona] = useState<SamplePersonaType>('experienced');
 
+  // Guided step-by-step workflow, matching the Resume Builder stepper.
+  const ATS_STEPS: WorkflowStep[] = [
+    { id: 'country', label: 'Country', description: 'Regional legal standard and paper size' },
+    { id: 'industry', label: 'Industry', description: 'Keyword taxonomy' },
+    { id: 'layout', label: 'Layout', description: 'Verified single-column template' },
+    { id: 'start', label: 'Start', description: 'Sample or blank canvas' },
+  ];
+  const [currentStep, setCurrentStep] = useState<string>('country');
+
   const countryInfo = getCountryById(selectedCountry);
   const activeCategory = JOB_CATEGORIES.find(c => c.id === selectedCategory) || JOB_CATEGORIES[0];
 
@@ -298,6 +308,8 @@ export const ATSResumeMakerPage: React.FC<ATSResumeMakerPageProps> = ({
         </div>
 
         {/* Step 1: Select Country & Regional ATS Standard */}
+        {currentStep === 'country' && (
+          <>
         <div className="space-y-3">
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold text-neutral-900 dark:text-neutral-100 uppercase tracking-wider flex items-center gap-2">
@@ -361,7 +373,12 @@ export const ATSResumeMakerPage: React.FC<ATSResumeMakerPageProps> = ({
           </div>
         </div>
 
+          </>
+        )}
+
         {/* Step 2: Select Job Category & Industry Keyword Set */}
+        {currentStep === 'industry' && (
+          <>
         <div className="space-y-3 pt-4 border-t border-neutral-100 dark:border-neutral-800">
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold text-neutral-900 dark:text-neutral-100 uppercase tracking-wider flex items-center gap-2">
@@ -404,7 +421,12 @@ export const ATSResumeMakerPage: React.FC<ATSResumeMakerPageProps> = ({
           </div>
         </div>
 
+          </>
+        )}
+
         {/* Step 3: Select ATS-Verified Single-Column Layout */}
+        {currentStep === 'layout' && (
+          <>
         <div className="space-y-3 pt-4 border-t border-neutral-100 dark:border-neutral-800">
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold text-neutral-900 dark:text-neutral-100 uppercase tracking-wider flex items-center gap-2">
@@ -444,7 +466,12 @@ export const ATSResumeMakerPage: React.FC<ATSResumeMakerPageProps> = ({
           </div>
         </div>
 
+          </>
+        )}
+
         {/* Step 4: Starting Preference */}
+        {currentStep === 'start' && (
+          <>
         <div className="space-y-3 pt-4 border-t border-neutral-100 dark:border-neutral-800">
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold text-neutral-900 dark:text-neutral-100 uppercase tracking-wider flex items-center gap-2">
@@ -527,7 +554,19 @@ export const ATSResumeMakerPage: React.FC<ATSResumeMakerPageProps> = ({
           </div>
         </div>
 
+          </>
+        )}
+
+        <WorkflowNavigation
+          steps={ATS_STEPS}
+          currentStepId={currentStep}
+          onStepChange={setCurrentStep}
+          onFinish={handleLaunchBuilder}
+          finishLabel="Launch ATS Resume Builder"
+        />
+
         {/* High-Converting Launch Button Ribbon */}
+        {currentStep === 'start' && (
         <div className="p-6 rounded-2xl bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 text-white flex flex-col sm:flex-row items-center justify-between gap-5 shadow-lg">
           <div className="space-y-1.5 text-center sm:text-left">
             <div className="flex items-center justify-center sm:justify-start gap-2">
@@ -556,6 +595,7 @@ export const ATSResumeMakerPage: React.FC<ATSResumeMakerPageProps> = ({
           </button>
         </div>
 
+        )}
       </div>
 
       {/* Feature List: What Makes GlobeCareer ATS Maker Superior */}

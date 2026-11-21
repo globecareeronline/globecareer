@@ -2,6 +2,7 @@ import React from 'react';
 import { GlobeCareerLogo } from '../common/GlobeCareerLogo';
 import { LanguageSelector } from '../common/LanguageSelector';
 import { useTranslation } from '../../context/LanguageContext';
+import { GUIDE_NAV_LINKS, guidePageKey } from '../../data/guideNav';
 
 interface FooterProps {
   onNavigate: (page: string) => void;
@@ -90,6 +91,14 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 }}
                 className="text-neutral-600 dark:text-neutral-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
               >{t('nav.summaryGenerator', 'Summary & Objective Generator')}</a>
+              <a
+                href="/resume-objective-generator"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigate('objective-generator');
+                }}
+                className="text-neutral-600 dark:text-neutral-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              >Resume Objective Generator</a>
               <a
                 href="/resignation-letter"
                 onClick={(e) => {
@@ -391,19 +400,13 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             >
               All career guides
             </a>
-            {[
-              { slug: 'european-cv-template', label: 'European CV template' },
-              { slug: 'europass-cv-format-explained', label: 'Europass CV format' },
-              { slug: 'eqf-levels-explained', label: 'EQF levels' },
-              { slug: 'diploma-supplement-explained', label: 'Diploma Supplement' },
-              { slug: 'job-in-switzerland', label: 'Jobs in Switzerland' },
-            ].map((guide) => (
+            {GUIDE_NAV_LINKS.map((guide) => (
               <a
                 key={guide.slug}
                 href={`/blog/${guide.slug}`}
                 onClick={(e) => {
                   e.preventDefault();
-                  onNavigate(`article:${guide.slug}`);
+                  onNavigate(guidePageKey(guide.slug));
                 }}
                 className="text-neutral-600 dark:text-neutral-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
               >

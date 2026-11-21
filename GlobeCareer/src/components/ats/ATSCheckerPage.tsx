@@ -3,6 +3,7 @@ import { ResumeData } from '../../types/resume';
 import { runGenuineATSAnalysis, RealATSAnalysis, SAMPLE_JOB_BENCHMARKS } from '../../utils/realAtsEngine';
 import { COUNTRIES, getCountryById } from '../../data/countries';
 import { useTranslation } from '../../context/LanguageContext';
+import { WorkflowNavigation, WorkflowStep } from '../common/WorkflowNavigation';
 import {
   Search,
   Sparkles,
@@ -44,6 +45,13 @@ export const ATSCheckerPage: React.FC<ATSCheckerPageProps> = ({
   const [isScanning, setIsScanning] = useState(false);
   const [copiedMissing, setCopiedMissing] = useState(false);
   const [uploadFileName, setUploadFileName] = useState<string | null>(null);
+
+  // Guided step-by-step workflow, matching the Resume Builder stepper.
+  const ATS_CHECK_STEPS: WorkflowStep[] = [
+    { id: 'resume', label: 'Your Resume', description: 'Source and target country' },
+    { id: 'job', label: 'Job Description', description: 'Requisition to match against' },
+  ];
+  const [currentStep, setCurrentStep] = useState<string>('resume');
 
   // Resume content depending on active source
   const currentResumeContent = sourceType === 'active' ? resumeData : customText;
@@ -131,8 +139,9 @@ export const ATSCheckerPage: React.FC<ATSCheckerPageProps> = ({
       </div>
 
       {/* Input Configuration Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 gap-8">
         {/* Left Column: Resume Input */}
+        {currentStep === 'resume' && (
         <div className="bg-white dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-800 p-6 space-y-5 shadow-xs">
           <div className="flex items-center justify-between pb-3 border-b border-neutral-100 dark:border-neutral-800">
             <div className="flex items-center gap-2">
@@ -249,7 +258,10 @@ export const ATSCheckerPage: React.FC<ATSCheckerPageProps> = ({
           )}
         </div>
 
+        )}
+
         {/* Right Column: Job Description Input */}
+        {currentStep === 'job' && (
         <div className="bg-white dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-800 p-6 space-y-4 shadow-xs">
           <div className="flex items-center justify-between pb-3 border-b border-neutral-100 dark:border-neutral-800">
             <div className="flex items-center gap-2">
@@ -295,31 +307,29 @@ export const ATSCheckerPage: React.FC<ATSCheckerPageProps> = ({
             className="w-full text-xs font-mono p-3 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 focus:outline-none focus:ring-2 focus:ring-purple-500 placeholder:text-neutral-400 resize-none"
           />
 
-          <div className="pt-2 flex items-center justify-between">
+          <div className="pt-2">
             <span className="text-[11px] text-neutral-400">
               {jobDescription.trim() ? `${jobDescription.trim().split(/\s+/).length} words in requisition` : '0 words'}
             </span>
-            <button
-              type="button"
-              onClick={handleScan}
-              disabled={isScanning}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-md hover:shadow-lg transition-all cursor-pointer disabled:opacity-50"
-            >
-              {isScanning ? (
-                <>
-                  <div className="w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                  <span>Analyzing Match Criteria...</span>
-                </>
-              ) : (
-                <>
-                  <Sparkles className="w-4 h-4" />
-                  <span>{hasScanned ? 'Re-Analyze Match' : 'Run Genuine ATS Diagnostic'}</span>
-                </>
-              )}
-            </button>
           </div>
         </div>
+        )}
       </div>
+
+      <WorkflowNavigation
+        steps={ATS_CHECK_STEPS}
+        currentStepId={currentStep}
+        onStepChange={setCurrentStep}
+        onFinish={handleScan}
+        finishLabel={hasScanned ? 'Re-Analyze Match' : 'Run Genuine ATS Diagnostic'}
+      />
+
+      {isScanning && (
+        <div className="flex items-center justify-center gap-2 text-xs font-bold text-blue-600 dark:text-blue-400">
+          <div className="w-3.5 h-3.5 border-2 border-blue-600 border-t-transparent rounded-full animate-spin" />
+          <span>Analyzing match criteria...</span>
+        </div>
+      )}
 
       {/* Analysis Results */}
       <div className="space-y-8 animate-in fade-in duration-300">
