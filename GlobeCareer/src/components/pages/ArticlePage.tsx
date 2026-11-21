@@ -311,7 +311,7 @@ export const BlogIndexPage: React.FC<NavigateProps> = ({ onNavigate, onStartBuil
         </div>
       </div>
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 -mt-8">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 pt-3">
         {clusters.map((cluster) => {
           const items = ARTICLES.filter((a) => a.cluster === cluster);
           if (!items.length) return null;

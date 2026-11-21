@@ -854,9 +854,12 @@ export const Header: React.FC<HeaderProps> = ({
               type="button"
               aria-haspopup="true"
               aria-expanded={openDropdown === 'guides'}
-              onClick={() => setOpenDropdown(openDropdown === 'guides' ? null : 'guides')}
+              onClick={() => {
+                setOpenDropdown(null);
+                handleNavClick('blog');
+              }}
               onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowDown') {
+                if (e.key === 'ArrowDown') {
                   e.preventDefault();
                   setOpenDropdown('guides');
                 }
