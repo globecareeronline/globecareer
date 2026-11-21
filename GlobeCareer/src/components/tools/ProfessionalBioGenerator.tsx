@@ -21,6 +21,9 @@ import {
 } from 'lucide-react';
 import { BIO_TEMPLATES, BIO_CATEGORIES, BioTemplate } from '../../data/bioTemplates';
 import { WorkflowNavigation, WorkflowStep } from '../common/WorkflowNavigation';
+import { OutputLanguageSelector } from '../common/OutputLanguageSelector';
+import { useOutputLanguage } from '../../i18n/useOutputLanguage';
+import { buildBio } from '../../i18n/generation';
 
 export type BioTone = 'professional' | 'executive' | 'creative' | 'friendly' | 'academic';
 export type BioPerspective = 'first' | 'third';
@@ -69,6 +72,14 @@ export const ProfessionalBioGenerator: React.FC<{
   const [copied, setCopied] = useState<boolean>(false);
   const [copiedTemplateId, setCopiedTemplateId] = useState<string | null>(null);
   const [validationError, setValidationError] = useState<string | null>(null);
+
+  // Language of the generated biography (independent of the site UI language).
+  const {
+    language: outputLanguage,
+    setLanguage: setOutputLanguage,
+    info: outputLanguageInfo,
+    countryLanguages,
+  } = useOutputLanguage();
 
   // Guided step-by-step workflow, matching the Resume Builder stepper.
   const BIO_STEPS: WorkflowStep[] = [
@@ -134,6 +145,26 @@ export const ProfessionalBioGenerator: React.FC<{
     }
     if (!formData.currentRole.trim()) {
       setValidationError('Please provide your current or target professional role.');
+      return;
+    }
+
+    // Non-English output is generated natively from the selected language's
+    // own sentence frames; the English path below is unchanged.
+    if (outputLanguage !== 'en') {
+      setGeneratedBio(
+        buildBio(outputLanguage, {
+          name: formData.fullName.trim(),
+          role: formData.currentRole.trim(),
+          company: formData.companyOrBrand.trim(),
+          years: formData.yearsOfExperience.trim(),
+          skills: formData.coreSkills.trim(),
+          achievement: formData.keyAchievements.trim(),
+          education: formData.educationOrCert.trim(),
+          personal: formData.personalTouch.trim(),
+          tone: formData.tone,
+          perspective: formData.perspective,
+        })
+      );
       return;
     }
 
@@ -246,6 +277,12 @@ export const ProfessionalBioGenerator: React.FC<{
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
+      <OutputLanguageSelector
+        language={outputLanguage}
+        onChange={setOutputLanguage}
+        countryLanguages={countryLanguages}
+      />
+
       {/* Page Header */}
       <div className="space-y-4">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-900 text-blue-700 dark:text-blue-300 text-xs font-bold uppercase tracking-wider">
@@ -567,7 +604,7 @@ export const ProfessionalBioGenerator: React.FC<{
                     Generated Bio Output
                   </h3>
                   <span className="text-[11px] text-neutral-500">
-                    {formData.perspective === 'first' ? 'First Person POV' : 'Third Person POV'} · {formData.tone}
+                    {formData.perspective === 'first' ? 'First Person POV' : 'Third Person POV'} · {formData.tone} · {outputLanguageInfo.nativeName}
                   </span>
                 </div>
 
@@ -637,7 +674,10 @@ export const ProfessionalBioGenerator: React.FC<{
               {/* Bio Display Container */}
               {generatedBio ? (
                 <div className="space-y-4">
-                  <div className="p-6 bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl text-neutral-800 dark:text-neutral-200 text-sm leading-relaxed font-sans min-h-[160px]">
+                  <div
+                    dir={outputLanguageInfo.rtl ? 'rtl' : 'ltr'}
+                    className="p-6 bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl text-neutral-800 dark:text-neutral-200 text-sm leading-relaxed font-sans min-h-[160px]"
+                  >
                     {currentDisplayBio}
                   </div>
 

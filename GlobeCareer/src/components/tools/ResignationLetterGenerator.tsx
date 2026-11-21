@@ -28,6 +28,10 @@ import {
   ResignationTemplate
 } from '../../data/resignationTemplates';
 import { WorkflowNavigation, WorkflowStep } from '../common/WorkflowNavigation';
+import { OutputLanguageSelector } from '../common/OutputLanguageSelector';
+import { useOutputLanguage } from '../../i18n/useOutputLanguage';
+import { buildResignation } from '../../i18n/generation';
+import { formatOutputDate } from '../../i18n/outputLanguages';
 
 export type ResignationType =
   | 'two_weeks'
@@ -137,6 +141,14 @@ export const ResignationLetterGenerator: React.FC<ResignationLetterGeneratorProp
   const [copiedTemplateId, setCopiedTemplateId] = useState<string | null>(null);
   const [validationError, setValidationError] = useState<string | null>(null);
 
+  // Language of the generated letter (independent of the site UI language).
+  const {
+    language: outputLanguage,
+    setLanguage: setOutputLanguage,
+    info: outputLanguageInfo,
+    countryLanguages,
+  } = useOutputLanguage();
+
   // Guided step-by-step workflow, matching the Resume Builder stepper.
   const RESIGNATION_STEPS: WorkflowStep[] = [
     { id: 'employee', label: 'Your Details', description: 'Name and current role' },
@@ -205,6 +217,45 @@ export const ResignationLetterGenerator: React.FC<ResignationLetterGeneratorProp
     const reason = formData.reasonForLeaving.trim() || 'pursuing a new professional opportunity';
     const transition = formData.transitionAssistance.trim();
     const gratitude = formData.gratitudeNote.trim();
+
+    // Non-English letters are written natively in the selected language. The
+    // user's own gratitude / handover text and all names and dates are kept
+    // exactly as entered.
+    if (outputLanguage !== 'en') {
+      const localized = buildResignation(outputLanguage, {
+        role,
+        company,
+        manager: mgrName,
+        lastDay,
+        kind: formData.resignationType,
+      });
+      return [
+        formatOutputDate(new Date(), outputLanguage),
+        '',
+        mgrName,
+        mgrTitle,
+        company,
+        '',
+        localized.salutation,
+        '',
+        localized.opening,
+        '',
+        // Untouched sample paragraphs are written in the selected language;
+        // anything the user edited is kept exactly as typed.
+        gratitude && gratitude !== INITIAL_FORM.gratitudeNote ? gratitude : localized.gratitude,
+        '',
+        transition && transition !== INITIAL_FORM.transitionAssistance
+          ? transition
+          : localized.transition,
+        '',
+        localized.closing,
+        '',
+        localized.signoff,
+        '',
+        empName,
+        role,
+      ].join('\n');
+    }
 
     let openingSentence = '';
     if (formData.resignationType === 'immediate') {
@@ -304,6 +355,11 @@ export const ResignationLetterGenerator: React.FC<ResignationLetterGeneratorProp
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10">
+      <OutputLanguageSelector
+        language={outputLanguage}
+        onChange={setOutputLanguage}
+        countryLanguages={countryLanguages}
+      />
       {/* Header & Tabs */}
       <div className="space-y-6 no-print">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
@@ -759,7 +815,10 @@ export const ResignationLetterGenerator: React.FC<ResignationLetterGeneratorProp
 
                   {/* Letter Sample Preview */}
                   <div className="p-4 bg-neutral-50 dark:bg-neutral-950 border border-neutral-200/80 dark:border-neutral-800/80 rounded-2xl max-h-48 overflow-y-auto">
-                    <pre className="text-[11px] text-neutral-800 dark:text-neutral-200 font-sans whitespace-pre-line leading-relaxed">
+                    <pre
+                      dir={outputLanguageInfo.rtl ? 'rtl' : 'ltr'}
+                      className="text-[11px] text-neutral-800 dark:text-neutral-200 font-sans whitespace-pre-line leading-relaxed"
+                    >
                       {tpl.sampleLetter}
                     </pre>
                   </div>

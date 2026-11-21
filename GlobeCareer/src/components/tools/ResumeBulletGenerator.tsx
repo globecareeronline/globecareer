@@ -17,6 +17,10 @@ import {
   AlertCircle
 } from 'lucide-react';
 import { WorkflowNavigation, WorkflowStep } from '../common/WorkflowNavigation';
+import { OutputLanguageSelector } from '../common/OutputLanguageSelector';
+import { useOutputLanguage } from '../../i18n/useOutputLanguage';
+import { buildBullets } from '../../i18n/generation';
+import { getLabels } from '../../i18n/generation/labels';
 
 interface ResumeBulletGeneratorProps {
   onNavigate: (page: string) => void;
@@ -146,6 +150,14 @@ export const ResumeBulletGenerator: React.FC<ResumeBulletGeneratorProps> = ({
     setMethodTool(preset.defaultMethod);
   };
 
+  // Language of the generated bullets (independent of the site UI language).
+  const {
+    language: outputLanguage,
+    setLanguage: setOutputLanguage,
+    info: outputLanguageInfo,
+    countryLanguages,
+  } = useOutputLanguage();
+
   // Generate 4 distinct bullet variations
   const generatedBullets = useMemo(() => {
     const verb = actionVerb.trim();
@@ -155,6 +167,23 @@ export const ResumeBulletGenerator: React.FC<ResumeBulletGeneratorProps> = ({
 
     if (!verb || !task) {
       return [];
+    }
+
+    // Non-English bullets are composed from the selected language's own frames.
+    if (outputLanguage !== 'en') {
+      const labels = getLabels(outputLanguage);
+      const localized = buildBullets(outputLanguage, {
+        verb,
+        task: task.replace(/\.$/, ''),
+        metric: metric.replace(/\.$/, ''),
+        method: method.replace(/\.$/, ''),
+      });
+      return [
+        { title: labels.bulletFormula, badge: outputLanguageInfo.nativeName, text: localized.verbFirst },
+        { title: labels.bulletMetric, badge: outputLanguageInfo.nativeName, text: localized.metricFirst },
+        { title: labels.bulletMethod, badge: outputLanguageInfo.nativeName, text: localized.methodFirst },
+        { title: labels.bulletConcise, badge: outputLanguageInfo.nativeName, text: localized.concise },
+      ];
     }
 
     // Clean punctuation
@@ -195,7 +224,7 @@ export const ResumeBulletGenerator: React.FC<ResumeBulletGeneratorProps> = ({
     ];
 
     return variations;
-  }, [actionVerb, taskDescription, metricImpact, methodTool]);
+  }, [actionVerb, taskDescription, metricImpact, methodTool, outputLanguage]);
 
   // Quality check score
   const qualityCheck = useMemo(() => {
@@ -241,7 +270,12 @@ export const ResumeBulletGenerator: React.FC<ResumeBulletGeneratorProps> = ({
   return (
     <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100 py-10 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto space-y-8">
-        
+        <OutputLanguageSelector
+          language={outputLanguage}
+          onChange={setOutputLanguage}
+          countryLanguages={countryLanguages}
+        />
+
         {/* Header Breadcrumbs & Title */}
         <div className="space-y-3">
           <div className="flex items-center gap-2 text-xs font-semibold text-neutral-500 uppercase tracking-wider">

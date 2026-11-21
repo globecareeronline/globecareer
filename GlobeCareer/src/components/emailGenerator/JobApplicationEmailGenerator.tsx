@@ -19,6 +19,9 @@ import {
 import { WorkflowNavigation, WorkflowStep } from '../common/WorkflowNavigation';
 import { UnifiedDownloadButton, DownloadFormatOption } from '../common/UnifiedDownloadButton';
 import { exportEmailToEml, exportTextDocumentToDocx, exportTextToTxt } from '../../utils/documentExport';
+import { OutputLanguageSelector } from '../common/OutputLanguageSelector';
+import { useOutputLanguage } from '../../i18n/useOutputLanguage';
+import { buildEmail } from '../../i18n/generation';
 import confetti from 'canvas-confetti';
 
 export type EmailPurpose =
@@ -187,6 +190,14 @@ export const JobApplicationEmailGenerator: React.FC<JobApplicationEmailGenerator
   const [copiedBody, setCopiedBody] = useState<boolean>(false);
   const [validationError, setValidationError] = useState<string | null>(null);
 
+  // Language of the generated email (independent of the site UI language).
+  const {
+    language: outputLanguage,
+    setLanguage: setOutputLanguage,
+    info: outputLanguageInfo,
+    countryLanguages,
+  } = useOutputLanguage();
+
   // Sync initial preset if passed from Templates Hub
   React.useEffect(() => {
     if (initialPreset) {
@@ -240,6 +251,40 @@ export const JobApplicationEmailGenerator: React.FC<JobApplicationEmailGenerator
     const portfolio = formData.portfolioUrl.trim();
     const connection = formData.mutualConnection.trim();
     const days = formData.followUpDaysSince.trim() || '10';
+
+    // Non-English emails are written natively in the selected language.
+    if (outputLanguage !== 'en') {
+      const localized = buildEmail(outputLanguage, {
+        recipient,
+        role,
+        company: cName,
+        name: sName,
+        // Empty skills fall back to the pack's default phrase, not English text.
+        skills: formData.skillsAndExperience.trim(),
+      });
+      const localizedBody = [
+        localized.greeting,
+        '',
+        localized.intro,
+        '',
+        localized.value,
+        context ? `\n${context}` : '',
+        '',
+        `${localized.attachment}${portfolio ? ` ${portfolio}` : ''}`,
+        '',
+        localized.request,
+        '',
+        localized.signoff,
+        '',
+        sName,
+        sTitle,
+      ]
+        .filter((line, index, arr) => !(line === '' && arr[index - 1] === ''))
+        .join('\n');
+      setSubjectLine(localized.subject);
+      setEmailBody(localizedBody);
+      return;
+    }
 
     let greeting = `Dear ${recipient},`;
     if (recipient.toLowerCase().includes('team') || recipient.toLowerCase().includes('committee')) {
@@ -464,6 +509,11 @@ export const JobApplicationEmailGenerator: React.FC<JobApplicationEmailGenerator
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10">
+      <OutputLanguageSelector
+        language={outputLanguage}
+        onChange={setOutputLanguage}
+        countryLanguages={countryLanguages}
+      />
       {/* Tool Header */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 border-b border-neutral-200 dark:border-neutral-800 pb-6 no-print">
         <div className="space-y-2">
@@ -966,6 +1016,7 @@ export const JobApplicationEmailGenerator: React.FC<JobApplicationEmailGenerator
                   <textarea
                     value={emailBody}
                     onChange={(e) => setEmailBody(e.target.value)}
+                    dir={outputLanguageInfo.rtl ? 'rtl' : 'ltr'}
                     rows={16}
                     className="w-full font-sans text-xs text-neutral-800 dark:text-neutral-200 bg-transparent resize-y focus:outline-none leading-relaxed tracking-normal p-2 border border-transparent focus:border-blue-400 rounded-xl"
                   />

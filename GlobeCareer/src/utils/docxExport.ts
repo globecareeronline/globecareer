@@ -1,8 +1,17 @@
 import { Document, Paragraph, TextRun, HeadingLevel, Packer, AlignmentType, BorderStyle } from 'docx';
 import { ResumeData } from '../types/resume';
+import { sectionHeading, type SectionId } from '../i18n/generation';
+import { getLabels } from '../i18n/generation/labels';
+import type { OutputLanguageCode } from '../i18n/outputLanguages';
 
-export async function exportResumeToDocx(resume: ResumeData, filename: string = 'Resume'): Promise<void> {
+export async function exportResumeToDocx(
+  resume: ResumeData,
+  filename: string = 'Resume',
+  options: { language?: OutputLanguageCode } = {}
+): Promise<void> {
   const children: Paragraph[] = [];
+  const outputLanguage = options.language || 'en';
+  const outputLabels = getLabels(outputLanguage);
 
   // 1. Header: Name
   children.push(
@@ -72,7 +81,7 @@ export async function exportResumeToDocx(resume: ResumeData, filename: string = 
         spacing: { after: 200 },
         children: [
           new TextRun({
-            text: `Work Status: ${resume.personal.workAuthorization}`,
+            text: `${outputLabels.statusLabel}: ${resume.personal.workAuthorization}`,
             italics: true,
             size: 19,
             color: '475569'
@@ -91,7 +100,7 @@ export async function exportResumeToDocx(resume: ResumeData, filename: string = 
 
   const getSectionTitle = (id: string, defaultTitle: string): string => {
     const s = resume.sectionsOrder?.find(item => item.id === id);
-    return s?.title || defaultTitle;
+    return sectionHeading(outputLanguage, id as SectionId, s?.title) || defaultTitle;
   };
 
   // Divider helper

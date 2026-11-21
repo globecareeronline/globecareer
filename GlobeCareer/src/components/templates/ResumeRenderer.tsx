@@ -1,6 +1,9 @@
 import React from 'react';
 import { ResumeData } from '../../types/resume';
 import { getCountryById } from '../../data/countries';
+import { sectionHeading, type SectionId } from '../../i18n/generation';
+import { getLabels } from '../../i18n/generation/labels';
+import { getOutputLanguage, type OutputLanguageCode } from '../../i18n/outputLanguages';
 import { 
   Mail, Phone, MapPin, Linkedin, Github, Globe, 
   ExternalLink, Award, BookOpen, HeartHandshake, FileText, CheckCircle2 
@@ -10,13 +13,19 @@ interface ResumeRendererProps {
   data: ResumeData;
   scale?: number; // Zoom level (e.g. 1, 0.85, 1.1)
   className?: string;
+  /** Language of the document's section headings and fixed phrases. */
+  outputLanguage?: OutputLanguageCode;
 }
 
 export const ResumeRenderer: React.FC<ResumeRendererProps> = ({
   data,
   scale = 1,
-  className = ''
+  className = '',
+  outputLanguage = 'en'
 }) => {
+  const language = outputLanguage;
+  const rtl = Boolean(getOutputLanguage(language).rtl);
+  const labels = getLabels(language);
   const country = getCountryById(data.targetCountryId);
   const design = data.design;
   const isLetter = design.paperSize === 'letter';
@@ -59,7 +68,7 @@ export const ResumeRenderer: React.FC<ResumeRendererProps> = ({
   // Helper: section titles
   const getSectionTitle = (id: string, defaultTitle: string) => {
     const meta = data.sectionsOrder?.find(s => s.id === id);
-    return meta?.title || defaultTitle;
+    return sectionHeading(language, id as SectionId, meta?.title) || defaultTitle;
   };
 
   return (
@@ -69,6 +78,8 @@ export const ResumeRenderer: React.FC<ResumeRendererProps> = ({
     >
       <div 
         id="resume-document"
+        lang={language}
+        dir={rtl ? 'rtl' : 'ltr'}
         className={`resume-paper bg-white text-neutral-900 shadow-2xl relative transition-all duration-200 overflow-hidden ${fontClass} ${baseTextSize}`}
         style={{
           width: isLetter ? '8.5in' : '210mm',
@@ -461,7 +472,7 @@ export const ResumeRenderer: React.FC<ResumeRendererProps> = ({
                   {/* Work authorization badge if specified */}
                   {data.personal.workAuthorization && (
                     <div className="mt-1.5 inline-block text-xs font-medium text-neutral-700 bg-neutral-100 px-2 py-0.5 rounded">
-                      Status: {data.personal.workAuthorization}
+                      {labels.statusLabel}: {data.personal.workAuthorization}
                     </div>
                   )}
                 </div>
@@ -751,7 +762,7 @@ export const ResumeRenderer: React.FC<ResumeRendererProps> = ({
                   </h3>
                   <p className="text-xs text-neutral-600 italic">
                     {data.referencesUponRequestOnly 
-                      ? 'References available upon request.' 
+                      ? labels.referencesAvailable 
                       : data.references.map(r => `${r.name} – ${r.role}, ${r.company} (${r.email || r.phone || ''})`).join('  |  ')}
                   </p>
                 </div>

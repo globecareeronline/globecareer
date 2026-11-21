@@ -13,6 +13,9 @@ import {
 } from 'lucide-react';
 
 import { CoverLetterTemplateSpec, COVER_LETTER_TEMPLATES } from '../pages/CoverLetterTemplatesPage';
+import { OutputLanguageSelector } from '../common/OutputLanguageSelector';
+import { useOutputLanguage } from '../../i18n/useOutputLanguage';
+import { buildCoverLetter } from '../../i18n/generation';
 
 interface CoverLetterBuilderProps {
   resumeData?: ResumeData;
@@ -69,6 +72,41 @@ export const CoverLetterBuilder: React.FC<CoverLetterBuilderProps> = ({
   });
 
   const [copied, setCopied] = useState(false);
+
+  // Language of the generated letter (independent of the site UI language).
+  const {
+    language: outputLanguage,
+    setLanguage: setOutputLanguage,
+    info: outputLanguageInfo,
+    countryLanguages,
+  } = useOutputLanguage(countryId);
+
+  // The visitor's own English draft is restored when they switch back to English.
+  const englishDraftRef = React.useRef<typeof letterData | null>(null);
+  React.useEffect(() => {
+    if (outputLanguage === 'en') {
+      if (englishDraftRef.current) {
+        setLetterData(englishDraftRef.current);
+        englishDraftRef.current = null;
+      }
+      return;
+    }
+    setLetterData((prev) => {
+      if (!englishDraftRef.current) englishDraftRef.current = prev;
+      const copy = buildCoverLetter(outputLanguage, {
+        role: prev.jobTitle,
+        company: prev.companyName,
+      });
+      return {
+        ...prev,
+        salutation: copy.salutation,
+        signoff: copy.signoff,
+        openingParagraph: copy.opening,
+        bodyParagraphs: [copy.body],
+        closingParagraph: copy.closing,
+      };
+    });
+  }, [outputLanguage]);
 
   // Sync template if changed from templates hub
   React.useEffect(() => {
@@ -149,7 +187,9 @@ ${letterData.recipientTitle}
 ${letterData.companyName}
 ${letterData.companyAddress}
 
-Subject: Application for ${letterData.jobTitle} ${letterData.referenceNumber ? `(Ref: ${letterData.referenceNumber})` : ''}
+${outputLanguage === 'en'
+      ? `Subject: Application for ${letterData.jobTitle} ${letterData.referenceNumber ? `(Ref: ${letterData.referenceNumber})` : ''}`.trim()
+      : buildCoverLetter(outputLanguage, { role: letterData.jobTitle, company: letterData.companyName }).subject}
 
 ${letterData.salutation}
 
@@ -214,6 +254,12 @@ ${letterData.senderName}
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+      <OutputLanguageSelector
+        language={outputLanguage}
+        onChange={setOutputLanguage}
+        countryLanguages={countryLanguages}
+      />
+
       {/* Top Header */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 border-b border-neutral-200 dark:border-neutral-800 pb-6 no-print">
         <div>
@@ -656,8 +702,13 @@ ${letterData.senderName}
             </div>
 
             {/* Betreff / Subject Line */}
-            <div className="font-bold text-neutral-900 text-sm border-l-2 border-blue-600 pl-3 py-0.5">
-              Subject: Application for {letterData.jobTitle} {letterData.referenceNumber ? `(Ref: ${letterData.referenceNumber})` : ''}
+            <div
+              dir={outputLanguageInfo.rtl ? 'rtl' : 'ltr'}
+              className="font-bold text-neutral-900 text-sm border-l-2 border-blue-600 pl-3 py-0.5"
+            >
+              {outputLanguage === 'en'
+                ? `Subject: Application for ${letterData.jobTitle} ${letterData.referenceNumber ? `(Ref: ${letterData.referenceNumber})` : ''}`.trim()
+                : buildCoverLetter(outputLanguage, { role: letterData.jobTitle, company: letterData.companyName }).subject}
             </div>
 
             {/* Salutation */}
@@ -666,7 +717,10 @@ ${letterData.senderName}
             </div>
 
             {/* Body */}
-            <div className="space-y-4 text-neutral-800 text-justify">
+            <div
+              dir={outputLanguageInfo.rtl ? 'rtl' : 'ltr'}
+              className="space-y-4 text-neutral-800 text-justify"
+            >
               <p>{letterData.openingParagraph}</p>
               {letterData.bodyParagraphs.map((p: string, idx: number) => (
                 <p key={idx}>{p}</p>

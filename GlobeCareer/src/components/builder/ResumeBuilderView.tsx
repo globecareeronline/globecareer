@@ -14,6 +14,8 @@ import { SkillsEditor } from '../editor/SkillsEditor';
 import { AdditionalSectionsEditor } from '../editor/AdditionalSectionsEditor';
 import { DesignCustomizer } from '../editor/DesignCustomizer';
 import { ResumeRenderer } from '../templates/ResumeRenderer';
+import { OutputLanguageSelector } from '../common/OutputLanguageSelector';
+import { useOutputLanguage } from '../../i18n/useOutputLanguage';
 import { ATSJobMatcherModal } from '../ats/ATSJobMatcherModal';
 import { WorkflowNavigation, WorkflowStep } from '../common/WorkflowNavigation';
 import { UnifiedDownloadButton, DownloadFormatOption } from '../common/UnifiedDownloadButton';
@@ -49,6 +51,13 @@ export const ResumeBuilderView: React.FC<ResumeBuilderViewProps> = ({
   onOpenCloudResumes
 }) => {
   const { t } = useTranslation();
+
+  // Language of the document being built (section headings and fixed phrases).
+  const {
+    language: outputLanguage,
+    setLanguage: setOutputLanguage,
+    countryLanguages,
+  } = useOutputLanguage();
 
   // Current active resume data state
   const [resumeData, setResumeData] = useState<ResumeData>(() => {
@@ -270,7 +279,7 @@ export const ResumeBuilderView: React.FC<ResumeBuilderViewProps> = ({
 
   const handleDownloadDocx = () => {
     const filename = `${resumeData.personal.fullName || 'Resume'}_${country.name}_${resumeData.design.templateId}`;
-    exportResumeToDocx(resumeData, filename);
+    exportResumeToDocx(resumeData, filename, { language: outputLanguage });
     try {
       confetti({
         particleCount: 40,
@@ -507,6 +516,13 @@ export const ResumeBuilderView: React.FC<ResumeBuilderViewProps> = ({
               </div>
             </div>
 
+            {/* Language of the document being built */}
+            <OutputLanguageSelector
+              language={outputLanguage}
+              onChange={setOutputLanguage}
+              countryLanguages={countryLanguages}
+            />
+
             {/* Cloud Resumes */}
             <button
               type="button"
@@ -718,7 +734,7 @@ export const ResumeBuilderView: React.FC<ResumeBuilderViewProps> = ({
             ref={previewScrollRef}
             className="flex-1 overflow-y-auto p-4 sm:p-8 flex justify-center items-start print:overflow-visible print:p-0 print:m-0 print:block print:w-full scroll-smooth"
           >
-            <ResumeRenderer data={resumeData} scale={zoomLevel} />
+            <ResumeRenderer data={resumeData} scale={zoomLevel} outputLanguage={outputLanguage} />
           </div>
         </div>
       </div>

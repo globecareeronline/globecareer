@@ -30,6 +30,8 @@ import { JOB_CATEGORIES } from '../../data/jobCategories';
 import { TemplateId } from '../../types/resume';
 import { SamplePersonaType } from '../../data/sampleResumes';
 import { WorkflowNavigation, WorkflowStep } from '../common/WorkflowNavigation';
+import { OutputLanguageSelector } from '../common/OutputLanguageSelector';
+import { useOutputLanguage } from '../../i18n/useOutputLanguage';
 
 export interface ATSResumeMakerOptions {
   countryId: string;
@@ -202,6 +204,13 @@ export const ATSResumeMakerPage: React.FC<ATSResumeMakerPageProps> = ({
   const [startMode, setStartMode] = useState<'sample' | 'blank'>('sample');
   const [selectedPersona, setSelectedPersona] = useState<SamplePersonaType>('experienced');
 
+  // Language the generated ATS resume will use (persisted for the builder).
+  const {
+    language: outputLanguage,
+    setLanguage: setOutputLanguage,
+    countryLanguages,
+  } = useOutputLanguage(selectedCountry);
+
   // Guided step-by-step workflow, matching the Resume Builder stepper.
   const ATS_STEPS: WorkflowStep[] = [
     { id: 'country', label: 'Country', description: 'Regional legal standard and paper size' },
@@ -244,7 +253,12 @@ export const ATSResumeMakerPage: React.FC<ATSResumeMakerPageProps> = ({
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
-      
+      <OutputLanguageSelector
+        language={outputLanguage}
+        onChange={setOutputLanguage}
+        countryLanguages={countryLanguages}
+      />
+
       {/* Hero Section */}
       <div className="space-y-4">
         <div className="flex flex-wrap items-center gap-2">

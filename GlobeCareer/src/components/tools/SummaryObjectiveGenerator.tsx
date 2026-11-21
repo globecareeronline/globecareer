@@ -28,6 +28,10 @@ import {
   SummaryTemplate
 } from '../../data/summaryTemplates';
 import { WorkflowNavigation, WorkflowStep } from '../common/WorkflowNavigation';
+import { OutputLanguageSelector } from '../common/OutputLanguageSelector';
+import { useOutputLanguage } from '../../i18n/useOutputLanguage';
+import { buildObjective, buildSummary } from '../../i18n/generation';
+import { getLabels } from '../../i18n/generation/labels';
 
 export type SummaryMode = 'summary' | 'objective' | 'headline';
 export type ExperienceLevel = 'entry' | 'mid' | 'senior' | 'career_changer';
@@ -138,6 +142,14 @@ export const SummaryObjectiveGenerator: React.FC<SummaryObjectiveGeneratorProps>
   const [appliedTemplateId, setAppliedTemplateId] = useState<string | null>(null);
   const [validationError, setValidationError] = useState<string | null>(null);
 
+  // Language of the generated statements (independent of the site UI language).
+  const {
+    language: outputLanguage,
+    setLanguage: setOutputLanguage,
+    info: outputLanguageInfo,
+    countryLanguages,
+  } = useOutputLanguage();
+
   // Guided step-by-step workflow, matching the Resume Builder stepper.
   const SUMMARY_STEPS: WorkflowStep[] = [
     { id: 'statement', label: 'Statement', description: 'Type and target role' },
@@ -240,6 +252,70 @@ export const SummaryObjectiveGenerator: React.FC<SummaryObjectiveGeneratorProps>
     const years = formData.yearsOfExperience.trim();
     const industry = formData.industry.trim() || 'global enterprise';
     const prevField = formData.previousField.trim();
+
+    // Non-English output is generated natively in the selected language.
+    if (outputLanguage !== 'en') {
+      const labels = getLabels(outputLanguage);
+      const facts = {
+        role: title,
+        years,
+        // An empty field falls back to the pack's own default phrase, never English.
+        skills: formData.keySkills.trim(),
+        industry,
+        achievement: achievements,
+      };
+      if (formData.mode === 'summary') {
+        setGeneratedOptions([
+          {
+            title: labels.summaryMetrics,
+            text: buildSummary(outputLanguage, 'metrics', facts),
+            atsScore: '99/100',
+            focus: labels.summaryMetrics,
+          },
+          {
+            title: labels.summaryLeadership,
+            text: buildSummary(outputLanguage, 'leadership', facts),
+            atsScore: '97/100',
+            focus: labels.summaryLeadership,
+          },
+          {
+            title: labels.summaryConcise,
+            text: buildSummary(outputLanguage, 'concise', facts),
+            atsScore: '95/100',
+            focus: labels.summaryConcise,
+          },
+        ]);
+      } else if (formData.mode === 'objective') {
+        const objectiveText = buildObjective(outputLanguage, facts);
+        setGeneratedOptions([
+          { title: labels.objective, text: objectiveText, atsScore: '98/100', focus: labels.objective },
+          {
+            title: labels.summaryConcise,
+            text: buildSummary(outputLanguage, 'concise', facts),
+            atsScore: '96/100',
+            focus: labels.summaryConcise,
+          },
+          {
+            title: labels.summaryMetrics,
+            text: buildSummary(outputLanguage, 'metrics', facts),
+            atsScore: '94/100',
+            focus: labels.summaryMetrics,
+          },
+        ]);
+      } else {
+        const keywordSkills = skills.split(',').slice(0, 3).join(' • ');
+        setGeneratedOptions([
+          { title: labels.headline, text: `${title} | ${keywordSkills}`, atsScore: '99/100', focus: labels.headline },
+          {
+            title: labels.summaryLeadership,
+            text: `${title} | ${keywordSkills}`,
+            atsScore: '96/100',
+            focus: labels.summaryLeadership,
+          },
+        ]);
+      }
+      return;
+    }
 
     const options: GeneratedOption[] = [];
 
@@ -371,6 +447,11 @@ export const SummaryObjectiveGenerator: React.FC<SummaryObjectiveGeneratorProps>
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10">
+      <OutputLanguageSelector
+        language={outputLanguage}
+        onChange={setOutputLanguage}
+        countryLanguages={countryLanguages}
+      />
       {/* Header & Tabs */}
       <div className="space-y-6">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
@@ -708,7 +789,10 @@ export const SummaryObjectiveGenerator: React.FC<SummaryObjectiveGeneratorProps>
                           </div>
                         </div>
 
-                        <p className="text-xs text-neutral-800 dark:text-neutral-200 leading-relaxed font-sans">
+                        <p
+                          dir={outputLanguageInfo.rtl ? 'rtl' : 'ltr'}
+                          className="text-xs text-neutral-800 dark:text-neutral-200 leading-relaxed font-sans"
+                        >
                           {opt.text}
                         </p>
 

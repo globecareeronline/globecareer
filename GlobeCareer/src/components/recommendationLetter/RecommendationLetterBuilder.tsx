@@ -20,6 +20,10 @@ import {
 import { WorkflowNavigation, WorkflowStep } from '../common/WorkflowNavigation';
 import { UnifiedDownloadButton, DownloadFormatOption } from '../common/UnifiedDownloadButton';
 import { exportRecommendationLetterToDocx, exportTextToTxt } from '../../utils/documentExport';
+import { OutputLanguageSelector } from '../common/OutputLanguageSelector';
+import { useOutputLanguage } from '../../i18n/useOutputLanguage';
+import { buildRecommendation } from '../../i18n/generation';
+import { formatOutputDate } from '../../i18n/outputLanguages';
 import confetti from 'canvas-confetti';
 
 export type RecommendationPurpose =
@@ -170,6 +174,14 @@ export const RecommendationLetterBuilder: React.FC<RecommendationLetterBuilderPr
   const [copied, setCopied] = useState<boolean>(false);
   const [validationError, setValidationError] = useState<string | null>(null);
 
+  // Language of the generated letter (independent of the site UI language).
+  const {
+    language: outputLanguage,
+    setLanguage: setOutputLanguage,
+    info: outputLanguageInfo,
+    countryLanguages,
+  } = useOutputLanguage();
+
   // Sync initial preset if passed from Templates Hub
   React.useEffect(() => {
     if (initialPreset) {
@@ -209,6 +221,50 @@ export const RecommendationLetterBuilder: React.FC<RecommendationLetterBuilderPr
     const rel = formData.relationship.trim() || 'supervisor';
     const strengths = formData.candidateStrengths.trim() || 'exceptional dedication, technical acumen, and exemplary collaboration';
     const achievements = formData.candidateAchievements.trim();
+
+    // Non-English letters are written natively in the selected language. Names,
+    // organisations, roles and dates the user entered are preserved verbatim.
+    if (outputLanguage !== 'en') {
+      const localized = buildRecommendation(outputLanguage, {
+        candidate: cName,
+        targetRole: tRole,
+        targetOrg: tOrg,
+        org: rOrg,
+        relationship: rel,
+        years,
+        strengths: formData.candidateStrengths.trim(),
+        achievements,
+        recipient: recTitle,
+      });
+      const localizedLines = [
+        rName,
+        rTitle,
+        rOrg,
+        rEmail,
+        formatOutputDate(new Date(), outputLanguage),
+        '',
+        recTitle,
+        tOrg,
+        '',
+        localized.salutation,
+        '',
+        localized.opening,
+        '',
+        localized.skills,
+        '',
+        localized.achievements,
+        formData.length !== 'concise' ? localized.character : '',
+        '',
+        localized.closing,
+        '',
+        localized.signoff,
+        '',
+        rName,
+        `${rTitle}, ${rOrg}`,
+        rEmail,
+      ];
+      return localizedLines.filter((line) => line !== '').join('\n').replace(/\n{3,}/g, '\n\n');
+    }
 
     // 1. Salutation
     let salutation = `Dear ${recTitle},`;
@@ -403,6 +459,11 @@ export const RecommendationLetterBuilder: React.FC<RecommendationLetterBuilderPr
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10">
+      <OutputLanguageSelector
+        language={outputLanguage}
+        onChange={setOutputLanguage}
+        countryLanguages={countryLanguages}
+      />
       {/* Tool Header */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 border-b border-neutral-200 dark:border-neutral-800 pb-6 no-print">
         <div className="space-y-2">
@@ -942,6 +1003,7 @@ export const RecommendationLetterBuilder: React.FC<RecommendationLetterBuilderPr
                   <textarea
                     value={generatedLetter}
                     onChange={(e) => setGeneratedLetter(e.target.value)}
+                    dir={outputLanguageInfo.rtl ? 'rtl' : 'ltr'}
                     rows={20}
                     className="w-full font-serif text-sm text-neutral-800 dark:text-neutral-200 bg-transparent resize-y focus:outline-none leading-relaxed tracking-normal p-2 border border-transparent focus:border-blue-400 rounded-xl"
                   />

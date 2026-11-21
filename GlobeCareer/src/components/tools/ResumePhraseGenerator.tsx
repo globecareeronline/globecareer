@@ -21,6 +21,10 @@ import {
   Briefcase
 } from 'lucide-react';
 import { WorkflowNavigation, WorkflowStep } from '../common/WorkflowNavigation';
+import { OutputLanguageSelector } from '../common/OutputLanguageSelector';
+import { useOutputLanguage } from '../../i18n/useOutputLanguage';
+import { buildBullets } from '../../i18n/generation';
+import { getLabels } from '../../i18n/generation/labels';
 
 interface ResumePhraseGeneratorProps {
   onNavigate: (page: string) => void;
@@ -177,11 +181,30 @@ export const ResumePhraseGenerator: React.FC<ResumePhraseGeneratorProps> = ({
     setMetricInput(cat.defaultMetric);
   };
 
+  // Language of the generated phrases (independent of the site UI language).
+  const {
+    language: outputLanguage,
+    setLanguage: setOutputLanguage,
+    info: outputLanguageInfo,
+    countryLanguages,
+  } = useOutputLanguage();
+
   // 3 Dynamic Generated Phrase Variations
   const generatedVariations = useMemo(() => {
     const v = actionVerb.trim();
     const p = projectInput.trim() || 'core project initiatives';
     const m = metricInput.trim() || 'delivering measurable operational improvements';
+
+    // Non-English phrases are composed from the selected language's own frames.
+    if (outputLanguage !== 'en') {
+      const labels = getLabels(outputLanguage);
+      const localized = buildBullets(outputLanguage, { verb: v, task: p, metric: m });
+      return [
+        { title: labels.bulletFormula, formula: labels.bulletFormula, text: localized.verbFirst },
+        { title: labels.bulletMetric, formula: labels.bulletMetric, text: localized.metricFirst },
+        { title: labels.bulletMethod, formula: labels.bulletMethod, text: localized.concise },
+      ];
+    }
 
     return [
       {
@@ -200,7 +223,7 @@ export const ResumePhraseGenerator: React.FC<ResumePhraseGeneratorProps> = ({
         text: `${v} ${p} to optimize delivery velocity, successfully ${m}.`
       }
     ];
-  }, [actionVerb, projectInput, metricInput]);
+  }, [actionVerb, projectInput, metricInput, outputLanguage]);
 
   const handleCopy = (text: string, id: string) => {
     navigator.clipboard.writeText(text);
