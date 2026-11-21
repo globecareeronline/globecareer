@@ -38,8 +38,11 @@
     <link rel="preload" as="image" href="/globecareer-logo.webp" type="image/webp" />
 
     <!-- Fonts are self-hosted in /fonts and declared in src/fonts.css, which ships
-         inside the page stylesheet: the faces are then known before the first
-         paint, so text never swaps to another face after it is already visible. -->
+         inside the page stylesheet. The two faces that paint the hero are
+         preloaded so they are in place before the first paint instead of
+         swapping in afterwards and re-flowing the section below. -->
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/xn7gYHE41ni1AdIRggexSg.woff2" />
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/LDIoaomQNQcsA88c7O9yZ4KMCoOg4Ko20yw.woff2" />
 
     <!-- Canonical URL & Agentic Discovery -->
     <link rel="canonical" href="https://globecareer.online/" />
