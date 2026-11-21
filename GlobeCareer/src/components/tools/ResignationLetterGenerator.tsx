@@ -30,7 +30,7 @@ import {
 import { WorkflowNavigation, WorkflowStep } from '../common/WorkflowNavigation';
 import { OutputLanguageSelector } from '../common/OutputLanguageSelector';
 import { useOutputLanguage } from '../../i18n/useOutputLanguage';
-import { buildResignation } from '../../i18n/generation';
+import { buildResignation, getCopy } from '../../i18n/generation';
 import { formatOutputDate } from '../../i18n/outputLanguages';
 
 export type ResignationType =
@@ -170,6 +170,27 @@ export const ResignationLetterGenerator: React.FC<ResignationLetterGeneratorProp
     setFormData(prev => ({ ...prev, [name]: value }));
     setValidationError(null);
   };
+
+  // Keep the sample gratitude / handover paragraphs in the selected language,
+  // but never overwrite a paragraph the visitor has edited.
+  // INITIAL_FORM holds the English samples, so the first comparison is against English.
+  const previousDefaults = React.useRef(getCopy('en').defaults);
+  React.useEffect(() => {
+    const nextDefaults = getCopy(outputLanguage).defaults;
+    const prevDefaults = previousDefaults.current;
+    previousDefaults.current = nextDefaults;
+    setFormData(prev => ({
+      ...prev,
+      gratitudeNote:
+        !prev.gratitudeNote.trim() || prev.gratitudeNote === prevDefaults.gratitude
+          ? nextDefaults.gratitude
+          : prev.gratitudeNote,
+      transitionAssistance:
+        !prev.transitionAssistance.trim() || prev.transitionAssistance === prevDefaults.transition
+          ? nextDefaults.transition
+          : prev.transitionAssistance,
+    }));
+  }, [outputLanguage]);
 
   const loadPreset = (presetData: Partial<ResignationFormData>) => {
     setFormData(prev => ({ ...prev, ...presetData }));
