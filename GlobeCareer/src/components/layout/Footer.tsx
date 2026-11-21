@@ -2,7 +2,6 @@ import React from 'react';
 import { GlobeCareerLogo } from '../common/GlobeCareerLogo';
 import { LanguageSelector } from '../common/LanguageSelector';
 import { useTranslation } from '../../context/LanguageContext';
-import { GUIDE_NAV_LINKS, guidePageKey } from '../../data/guideNav';
 
 interface FooterProps {
   onNavigate: (page: string) => void;
@@ -381,38 +380,6 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 Cookie Preferences
               </a>
             </div>
-          </div>
-        </div>
-
-        {/* Guides strip: site-wide entry point into the article library */}
-        <div className="pt-6 border-b border-neutral-200 dark:border-neutral-800 pb-6">
-          <h3 className="font-bold text-neutral-900 dark:text-neutral-100 uppercase tracking-wider text-[11px] mb-3">
-            Guides
-          </h3>
-          <div className="flex flex-wrap gap-x-5 gap-y-2 text-xs">
-            <a
-              href="/blog"
-              onClick={(e) => {
-                e.preventDefault();
-                onNavigate('blog');
-              }}
-              className="font-semibold text-blue-700 dark:text-blue-400 hover:underline"
-            >
-              All career guides
-            </a>
-            {GUIDE_NAV_LINKS.map((guide) => (
-              <a
-                key={guide.slug}
-                href={`/blog/${guide.slug}`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  onNavigate(guidePageKey(guide.slug));
-                }}
-                className="text-neutral-600 dark:text-neutral-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-              >
-                {guide.label}
-              </a>
-            ))}
           </div>
         </div>
 
