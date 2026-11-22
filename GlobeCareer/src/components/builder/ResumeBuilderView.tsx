@@ -95,6 +95,34 @@ export const ResumeBuilderView: React.FC<ResumeBuilderViewProps> = ({
   const [importJsonText, setImportJsonText] = useState('');
   const [importError, setImportError] = useState('');
 
+  // Toolbar menus are click-driven (not hover-driven) so they stay open while
+  // the pointer travels to an item, and work on touch devices too.
+  const [showSampleMenu, setShowSampleMenu] = useState(false);
+  const [showBackupMenu, setShowBackupMenu] = useState(false);
+  const sampleMenuRef = useRef<HTMLDivElement>(null);
+  const backupMenuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!showSampleMenu && !showBackupMenu) return;
+    const onDocDown = (event: MouseEvent) => {
+      const target = event.target as Node;
+      if (showSampleMenu && !sampleMenuRef.current?.contains(target)) setShowSampleMenu(false);
+      if (showBackupMenu && !backupMenuRef.current?.contains(target)) setShowBackupMenu(false);
+    };
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setShowSampleMenu(false);
+        setShowBackupMenu(false);
+      }
+    };
+    document.addEventListener('mousedown', onDocDown);
+    document.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.removeEventListener('mousedown', onDocDown);
+      document.removeEventListener('keydown', onKeyDown);
+    };
+  }, [showSampleMenu, showBackupMenu]);
+
   const country = getCountryById(resumeData.targetCountryId);
   const atsResult = analyzeResumeATS(resumeData);
 
@@ -390,17 +418,17 @@ export const ResumeBuilderView: React.FC<ResumeBuilderViewProps> = ({
           {/* Left Controls: Country & Job Repertoire */}
           <div className="flex flex-wrap items-center gap-2 min-w-0">
             {/* Country Selector */}
-            <div className="flex items-center gap-1.5 min-w-0 max-w-full bg-neutral-50 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 px-2.5 py-1.5 rounded-xl shadow-xs">
-              <span className="text-base">{country.flag}</span>
+            <div className="flex items-center gap-1 min-w-0 max-w-full bg-neutral-50 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 px-2 py-1.5 rounded-xl shadow-xs">
+              <span className="text-xs leading-none shrink-0">{country.flag}</span>
               <select
                 value={resumeData.targetCountryId}
                 onChange={(e) => handleCountryChange(e.target.value)}
                 aria-label="Target country and CV terminology"
-                className="bg-transparent text-xs font-bold text-neutral-800 dark:text-neutral-200 focus:outline-none cursor-pointer pr-1 min-w-0 max-w-full truncate"
+                className="bg-transparent text-xs font-bold text-neutral-800 dark:text-neutral-200 focus:outline-none cursor-pointer pr-0.5 min-w-0 max-w-[9rem] truncate"
               >
                 {COUNTRIES.map(c => (
                   <option key={c.id} value={c.id} className="dark:bg-neutral-900">
-                    {c.name} ({c.cvTerminology})
+                    {c.cvTerminology === 'Resume' ? c.name : `${c.name} (${c.cvTerminology})`}
                   </option>
                 ))}
               </select>
@@ -450,7 +478,7 @@ export const ResumeBuilderView: React.FC<ResumeBuilderViewProps> = ({
           {/* Right Action Tools: ATS Score, Samples, Export DOCX, Print PDF.
               flex-wrap + min-w-0 lets the cluster reflow onto a second line on
               narrow phones instead of forcing page-level horizontal scroll. */}
-          <div className="flex items-center gap-2 flex-wrap justify-end min-w-0">
+          <div className="flex items-center gap-2 flex-wrap justify-end min-w-0 ms-auto">
             {/* ATS Score Button */}
             <button
               type="button"
@@ -474,101 +502,123 @@ export const ResumeBuilderView: React.FC<ResumeBuilderViewProps> = ({
               </button>
             )}
 
-            {/* Load Sample Dropdown */}
-            <div className="relative group">
-              <button
-                type="button"
-                className="px-2.5 py-1.5 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-xs font-semibold text-neutral-700 dark:text-neutral-300 rounded-xl hover:bg-neutral-50 flex items-center gap-1 transition-colors"
-              >
-                <Sparkles className="w-3 h-3 text-neutral-400" />
-                Fill Sample
-              </button>
-              <div className="absolute right-0 mt-1 w-48 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-xl shadow-xl py-1 hidden group-hover:block z-40 text-xs">
+            {/* Right toolbar actions, in this order: Fill Sample, Output
+                Language, Download, then Backup & Import. */}
+            <div className="flex flex-wrap items-center justify-end gap-2 min-w-0 max-w-full">
+              {/* Load Sample Dropdown */}
+              <div className="relative shrink-0" ref={sampleMenuRef}>
                 <button
                   type="button"
-                  onClick={() => handleLoadSample('experienced')}
-                  className="w-full text-left px-3 py-2 hover:bg-neutral-50 dark:hover:bg-neutral-800 text-neutral-800 dark:text-neutral-200"
+                  onClick={() => setShowSampleMenu(v => !v)}
+                  aria-haspopup="menu"
+                  aria-expanded={showSampleMenu}
+                  className="px-2.5 py-1.5 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-xs font-semibold text-neutral-700 dark:text-neutral-300 rounded-xl hover:bg-neutral-50 flex items-center gap-1 transition-colors cursor-pointer"
                 >
-                  Senior Professional
+                  <Sparkles className="w-3 h-3 text-neutral-400" />
+                  Fill Sample
                 </button>
+                <div
+                  role="menu"
+                  className={`absolute right-0 mt-1 w-48 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-xl shadow-xl py-1 z-50 text-xs ${showSampleMenu ? 'block' : 'hidden'}`}
+                >
+                  <button
+                    type="button"
+                    role="menuitem"
+                    onClick={() => { setShowSampleMenu(false); handleLoadSample('experienced'); }}
+                    className="w-full text-left px-3 py-2 hover:bg-neutral-50 dark:hover:bg-neutral-800 text-neutral-800 dark:text-neutral-200"
+                  >
+                    Senior Professional
+                  </button>
+                  <button
+                    type="button"
+                    role="menuitem"
+                    onClick={() => { setShowSampleMenu(false); handleLoadSample('graduate'); }}
+                    className="w-full text-left px-3 py-2 hover:bg-neutral-50 dark:hover:bg-neutral-800 text-neutral-800 dark:text-neutral-200"
+                  >
+                    Recent Graduate
+                  </button>
+                  <button
+                    type="button"
+                    role="menuitem"
+                    onClick={() => { setShowSampleMenu(false); handleLoadSample('career_changer'); }}
+                    className="w-full text-left px-3 py-2 hover:bg-neutral-50 dark:hover:bg-neutral-800 text-neutral-800 dark:text-neutral-200"
+                  >
+                    Career Transition
+                  </button>
+                  <div className="border-t border-neutral-100 dark:border-neutral-800 my-1"></div>
+                  <button
+                    type="button"
+                    role="menuitem"
+                    onClick={() => { setShowSampleMenu(false); handleResetBlank(); }}
+                    className="w-full text-left px-3 py-2 hover:bg-red-50 text-red-600"
+                  >
+                    Reset to Blank Canvas
+                  </button>
+                </div>
+              </div>
+
+              {/* Language of the document */}
+              <OutputLanguageSelector
+                variant="inline"
+                size="sm"
+                language={outputLanguage}
+                onChange={setOutputLanguage}
+                countryLanguages={countryLanguages}
+              />
+
+              {/* Unified Download Button */}
+              <UnifiedDownloadButton
+                documentTitle="Resume"
+                formats={downloadFormats}
+                size="sm"
+              />
+
+              {/* Backup & Import: cloud library, JSON backup, JSON restore */}
+              <div className="relative shrink-0" ref={backupMenuRef}>
                 <button
                   type="button"
-                  onClick={() => handleLoadSample('graduate')}
-                  className="w-full text-left px-3 py-2 hover:bg-neutral-50 dark:hover:bg-neutral-800 text-neutral-800 dark:text-neutral-200"
+                  onClick={() => setShowBackupMenu(v => !v)}
+                  aria-haspopup="menu"
+                  aria-expanded={showBackupMenu}
+                  className="inline-flex h-7 items-center gap-1.5 px-2 text-neutral-600 dark:text-neutral-300 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-xl hover:bg-neutral-50 dark:hover:bg-neutral-700/60 cursor-pointer"
+                  title={t('builder.backupImport', 'Backup & Import')}
                 >
-                  Recent Graduate
+                  <Upload className="w-3.5 h-3.5" />
+                  <span className="hidden lg:inline text-[11px] font-semibold">Backup</span>
                 </button>
-                <button
-                  type="button"
-                  onClick={() => handleLoadSample('career_changer')}
-                  className="w-full text-left px-3 py-2 hover:bg-neutral-50 dark:hover:bg-neutral-800 text-neutral-800 dark:text-neutral-200"
+                <div
+                  role="menu"
+                  className={`absolute right-0 mt-1 w-52 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-xl shadow-xl py-1 z-50 text-xs ${showBackupMenu ? 'block' : 'hidden'}`}
                 >
-                  Career Transition
-                </button>
-                <div className="border-t border-neutral-100 dark:border-neutral-800 my-1"></div>
-                <button
-                  type="button"
-                  onClick={handleResetBlank}
-                  className="w-full text-left px-3 py-2 hover:bg-red-50 text-red-600"
-                >
-                  Reset to Blank Canvas
-                </button>
+                  <button
+                    type="button"
+                    role="menuitem"
+                    onClick={() => { setShowBackupMenu(false); onOpenCloudResumes?.(); }}
+                    className="w-full flex items-center gap-2 text-left px-3 py-2 hover:bg-neutral-50 dark:hover:bg-neutral-800 text-neutral-800 dark:text-neutral-200"
+                  >
+                    <Cloud className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400 shrink-0" />
+                    Cloud Saved Resume
+                  </button>
+                  <div className="border-t border-neutral-100 dark:border-neutral-800 my-1"></div>
+                  <button
+                    type="button"
+                    role="menuitem"
+                    onClick={() => { setShowBackupMenu(false); handleDownloadJSON(); }}
+                    className="w-full text-left px-3 py-2 hover:bg-neutral-50 dark:hover:bg-neutral-800 text-neutral-800 dark:text-neutral-200"
+                  >
+                    Download JSON Backup
+                  </button>
+                  <button
+                    type="button"
+                    role="menuitem"
+                    onClick={() => { setShowBackupMenu(false); setShowImportModal(true); }}
+                    className="w-full text-left px-3 py-2 hover:bg-neutral-50 dark:hover:bg-neutral-800 text-neutral-800 dark:text-neutral-200"
+                  >
+                    Import JSON Draft
+                  </button>
+                </div>
               </div>
             </div>
-
-            {/* Cloud Resumes */}
-            <button
-              type="button"
-              onClick={onOpenCloudResumes}
-              className="px-2.5 py-1.5 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-xs font-semibold text-neutral-700 dark:text-neutral-300 rounded-xl hover:bg-neutral-50 flex items-center gap-1.5 transition-colors cursor-pointer shadow-xs"
-              title={t('nav.cloudResumes', 'Cloud Resumes')}
-            >
-              <Cloud className="w-3.5 h-3.5 text-indigo-600" />
-              <span className="hidden md:inline">{t('nav.cloudResumes', 'Cloud Resumes')}</span>
-            </button>
-
-            {/* Backup JSON dropdown */}
-            <div className="relative group hidden sm:block">
-              <button
-                type="button"
-                className="p-1.5 text-neutral-500 hover:text-neutral-800 dark:hover:text-neutral-200 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-xl"
-                title="Backup / Import"
-              >
-                <Upload className="w-4 h-4" />
-              </button>
-              <div className="absolute right-0 mt-1 w-44 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-xl shadow-xl py-1 hidden group-hover:block z-40 text-xs">
-                <button
-                  type="button"
-                  onClick={handleDownloadJSON}
-                  className="w-full text-left px-3 py-2 hover:bg-neutral-50 dark:hover:bg-neutral-800 text-neutral-800 dark:text-neutral-200"
-                >
-                  Download JSON Backup
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setShowImportModal(true)}
-                  className="w-full text-left px-3 py-2 hover:bg-neutral-50 dark:hover:bg-neutral-800 text-neutral-800 dark:text-neutral-200"
-                >
-                  Import JSON Draft
-                </button>
-              </div>
-            </div>
-
-            {/* Language of the document, immediately left of Download */}
-            <OutputLanguageSelector
-              variant="inline"
-              size="sm"
-              language={outputLanguage}
-              onChange={setOutputLanguage}
-              countryLanguages={countryLanguages}
-            />
-
-            {/* Unified Download Button */}
-            <UnifiedDownloadButton
-              documentTitle="Resume"
-              formats={downloadFormats}
-              size="sm"
-            />
           </div>
         </div>
       </div>
