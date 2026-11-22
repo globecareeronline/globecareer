@@ -340,7 +340,7 @@ export const ResumeBuilderView: React.FC<ResumeBuilderViewProps> = ({
       badge: 'ATS-Friendly',
       onExport: () => {
         const filename = `${resumeData.personal.fullName || 'Resume'}_${country.name}_ATS`;
-        exportResumeToTxt(resumeData, filename);
+        exportResumeToTxt(resumeData, filename, { language: outputLanguage });
       }
     },
     {
@@ -351,7 +351,7 @@ export const ResumeBuilderView: React.FC<ResumeBuilderViewProps> = ({
       badge: 'Web',
       onExport: () => {
         const filename = `${resumeData.personal.fullName || 'Resume'}_${country.name}_Web`;
-        exportResumeToHtml(resumeData, filename);
+        exportResumeToHtml(resumeData, filename, { language: outputLanguage });
       }
     },
     {
@@ -516,13 +516,6 @@ export const ResumeBuilderView: React.FC<ResumeBuilderViewProps> = ({
               </div>
             </div>
 
-            {/* Language of the document being built */}
-            <OutputLanguageSelector
-              language={outputLanguage}
-              onChange={setOutputLanguage}
-              countryLanguages={countryLanguages}
-            />
-
             {/* Cloud Resumes */}
             <button
               type="button"
@@ -560,6 +553,15 @@ export const ResumeBuilderView: React.FC<ResumeBuilderViewProps> = ({
                 </button>
               </div>
             </div>
+
+            {/* Language of the document, immediately left of Download */}
+            <OutputLanguageSelector
+              variant="inline"
+              size="sm"
+              language={outputLanguage}
+              onChange={setOutputLanguage}
+              countryLanguages={countryLanguages}
+            />
 
             {/* Unified Download Button */}
             <UnifiedDownloadButton

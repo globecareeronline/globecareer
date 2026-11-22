@@ -254,12 +254,6 @@ ${letterData.senderName}
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-      <OutputLanguageSelector
-        language={outputLanguage}
-        onChange={setOutputLanguage}
-        countryLanguages={countryLanguages}
-      />
-
       {/* Top Header */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 border-b border-neutral-200 dark:border-neutral-800 pb-6 no-print">
         <div>
@@ -295,12 +289,22 @@ ${letterData.senderName}
             <span>{copied ? 'Copied Text' : 'Copy Text'}</span>
           </button>
 
-          {/* Unified Download Button */}
-          <UnifiedDownloadButton
-            documentTitle="Cover Letter"
-            formats={downloadFormats}
-            size="md"
-          />
+          {/* Output language, immediately left of Download */}
+          <div className="flex flex-wrap items-center gap-2.5">
+            <OutputLanguageSelector
+              variant="inline"
+              language={outputLanguage}
+              onChange={setOutputLanguage}
+              countryLanguages={countryLanguages}
+            />
+
+            {/* Unified Download Button */}
+            <UnifiedDownloadButton
+              documentTitle="Cover Letter"
+              formats={downloadFormats}
+              size="md"
+            />
+          </div>
         </div>
       </div>
 

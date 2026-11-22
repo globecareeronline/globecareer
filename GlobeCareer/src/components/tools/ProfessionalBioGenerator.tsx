@@ -277,12 +277,6 @@ export const ProfessionalBioGenerator: React.FC<{
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
-      <OutputLanguageSelector
-        language={outputLanguage}
-        onChange={setOutputLanguage}
-        countryLanguages={countryLanguages}
-      />
-
       {/* Page Header */}
       <div className="space-y-4">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-900 text-blue-700 dark:text-blue-300 text-xs font-bold uppercase tracking-wider">
@@ -608,8 +602,16 @@ export const ProfessionalBioGenerator: React.FC<{
                   </span>
                 </div>
 
-                {generatedBio && (
-                  <div className="flex items-center gap-1.5">
+                <div className="flex flex-wrap items-center justify-end gap-1.5">
+                  <OutputLanguageSelector
+                    variant="inline"
+                    size="sm"
+                    language={outputLanguage}
+                    onChange={setOutputLanguage}
+                    countryLanguages={countryLanguages}
+                  />
+                  {generatedBio && (
+                    <>
                     <button
                       type="button"
                       onClick={handleCopy}
@@ -628,8 +630,9 @@ export const ProfessionalBioGenerator: React.FC<{
                     >
                       <Download className="w-3.5 h-3.5" />
                     </button>
-                  </div>
-                )}
+                    </>
+                  )}
+                </div>
               </div>
 
               {/* Length Tier Tabs */}

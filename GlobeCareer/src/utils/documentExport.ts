@@ -1,5 +1,7 @@
 import { Document, Paragraph, TextRun, HeadingLevel, Packer, AlignmentType } from 'docx';
 import { ResumeData } from '../types/resume';
+import { sectionHeading, type SectionId } from '../i18n/generation';
+import { getOutputLanguage, type OutputLanguageCode } from '../i18n/outputLanguages';
 import { exportResumeToDocx, exportCoverLetterToDocx } from './docxExport';
 
 export { exportResumeToDocx, exportCoverLetterToDocx };
@@ -172,7 +174,19 @@ export async function exportTextDocumentToDocx(
 /**
  * Exports a resume to clean, ATS-optimized plain text (.txt)
  */
-export function exportResumeToTxt(resume: ResumeData, filename: string = 'Resume'): void {
+export function exportResumeToTxt(
+  resume: ResumeData,
+  filename: string = 'Resume',
+  options: { language?: OutputLanguageCode } = {}
+): void {
+  const language = options.language || 'en';
+  // Section headings follow the document language, and a heading the visitor
+  // renamed is left exactly as they wrote it.
+  const heading = (id: SectionId, englishDefault: string): string => {
+    const stored = resume.sectionsOrder?.find((s) => s.id === id)?.title;
+    const localized = sectionHeading(language, id, stored) || stored || englishDefault;
+    return `--- ${localized.toUpperCase()} ---`;
+  };
   const lines: string[] = [];
 
   // Header
@@ -196,14 +210,14 @@ export function exportResumeToTxt(resume: ResumeData, filename: string = 'Resume
 
   // Summary
   if (resume.summary) {
-    lines.push('--- PROFESSIONAL SUMMARY ---');
+    lines.push(heading('summary', 'Professional Summary'));
     lines.push(resume.summary);
     lines.push('');
   }
 
   // Experience
   if (resume.experience && resume.experience.length > 0) {
-    lines.push('--- WORK EXPERIENCE ---');
+    lines.push(heading('experience', 'Work Experience'));
     resume.experience.forEach(exp => {
       const dates = `${exp.startDate} - ${exp.isCurrent ? 'Present' : exp.endDate}`;
       lines.push(`${exp.jobTitle} | ${exp.company} (${exp.location || 'Remote'}) | ${dates}`);
@@ -218,7 +232,7 @@ export function exportResumeToTxt(resume: ResumeData, filename: string = 'Resume
 
   // Education
   if (resume.education && resume.education.length > 0) {
-    lines.push('--- EDUCATION ---');
+    lines.push(heading('education', 'Education'));
     resume.education.forEach(edu => {
       lines.push(`${edu.degree} in ${edu.fieldOfStudy} | ${edu.institution} (${edu.startDate} - ${edu.endDate})`);
       if (edu.gradeOrHonors) lines.push(`  GPA / Grade: ${edu.gradeOrHonors}`);
@@ -233,7 +247,7 @@ export function exportResumeToTxt(resume: ResumeData, filename: string = 'Resume
 
   // Skills
   if (resume.skills && resume.skills.length > 0) {
-    lines.push('--- SKILLS & COMPETENCIES ---');
+    lines.push(heading('skills', 'Key Skills & Competencies'));
     const skillList = resume.skills.map(s => s.name).join(', ');
     lines.push(skillList);
     lines.push('');
@@ -241,14 +255,14 @@ export function exportResumeToTxt(resume: ResumeData, filename: string = 'Resume
 
   // Languages
   if (resume.languages && resume.languages.length > 0) {
-    lines.push('--- LANGUAGES ---');
+    lines.push(heading('languages', 'Languages'));
     resume.languages.forEach(l => lines.push(`  * ${l.language} (${l.proficiency})`));
     lines.push('');
   }
 
   // Certifications
   if (resume.certifications && resume.certifications.length > 0) {
-    lines.push('--- CERTIFICATIONS ---');
+    lines.push(heading('certifications', 'Certifications'));
     resume.certifications.forEach(c => lines.push(`  * ${c.name} - ${c.issuer} (${c.issueDate})`));
     lines.push('');
   }
@@ -275,9 +289,19 @@ export function exportResumeToTxt(resume: ResumeData, filename: string = 'Resume
 /**
  * Exports a resume to standalone self-contained HTML
  */
-export function exportResumeToHtml(resume: ResumeData, filename: string = 'Resume'): void {
+export function exportResumeToHtml(
+  resume: ResumeData,
+  filename: string = 'Resume',
+  options: { language?: OutputLanguageCode } = {}
+): void {
+  const language = options.language || 'en';
+  const dir = getOutputLanguage(language).rtl ? 'rtl' : 'ltr';
+  const label = (id: SectionId, englishDefault: string): string => {
+    const stored = resume.sectionsOrder?.find((s) => s.id === id)?.title;
+    return sectionHeading(language, id, stored) || stored || englishDefault;
+  };
   const htmlContent = `<!DOCTYPE html>
-<html lang="en">
+<html lang="${language}" dir="${dir}">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -309,10 +333,10 @@ export function exportResumeToHtml(resume: ResumeData, filename: string = 'Resum
     ].filter(Boolean).join(' • ')}
   </div>
 
-  ${resume.summary ? `<h3>Professional Summary</h3><p>${resume.summary}</p>` : ''}
+  ${resume.summary ? `<h3>${label('summary', 'Professional Summary')}</h3><p>${resume.summary}</p>` : ''}
 
   ${resume.experience && resume.experience.length > 0 ? `
-    <h3>Work Experience</h3>
+    <h3>${label('experience', 'Work Experience')}</h3>
     ${resume.experience.map(e => `
       <div class="item">
         <div class="item-header">
@@ -345,7 +369,7 @@ export function exportResumeToHtml(resume: ResumeData, filename: string = 'Resum
   ` : ''}
 
   ${resume.skills && resume.skills.length > 0 ? `
-    <h3>Skills</h3>
+    <h3>${label('skills', 'Key Skills & Competencies')}</h3>
     <div class="skills">
       ${resume.skills.map(s => `<span class="skill-tag">${s.name}</span>`).join('')}
     </div>

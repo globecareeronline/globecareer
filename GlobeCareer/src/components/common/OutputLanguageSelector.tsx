@@ -12,21 +12,31 @@ interface OutputLanguageSelectorProps {
   /** Optional country voice: its languages are listed first. */
   countryLanguages?: OutputLanguageCode[];
   className?: string;
+  /**
+   * 'card'   – the wide banner with the explanatory caption.
+   * 'inline' – the compact button that sits immediately left of Download.
+   */
+  variant?: 'card' | 'inline';
+  /** Height of the inline button; 'md' matches the default Download button (32px). */
+  size?: 'sm' | 'md';
 }
 
 /**
  * The one Output Language control used by every generator on the site.
  *
- * Identical markup, dimensions and position in each tool. It controls the
- * language of the generated document only; the website interface keeps its own
- * language setting. Nothing is ever preselected from the visitor's location.
+ * It controls the language of the generated document only; the website
+ * interface keeps its own language setting. Nothing is ever preselected from
+ * the visitor's location.
  */
 export const OutputLanguageSelector: React.FC<OutputLanguageSelectorProps> = ({
   language,
   onChange,
   countryLanguages = [],
   className = '',
+  variant = 'card',
+  size = 'md',
 }) => {
+  const labelId = `${React.useId()}-output-language-label`;
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [activeIndex, setActiveIndex] = useState(0);
@@ -99,6 +109,111 @@ export const OutputLanguageSelector: React.FC<OutputLanguageSelectorProps> = ({
     }
   };
 
+  const languageName = (
+    <>
+      <span className="truncate">{current.nativeName}</span>
+      {current.nativeName !== current.name && (
+        <span className="ms-1.5 text-[10px] font-medium text-neutral-500 dark:text-neutral-400">
+          ({current.name})
+        </span>
+      )}
+    </>
+  );
+
+  const menu = open && (
+    <div className="absolute z-50 mt-1.5 start-0 w-72 min-w-[16rem] rounded-2xl bg-white dark:bg-neutral-900 shadow-2xl border border-neutral-200 dark:border-neutral-800 py-2">
+      <div className="px-2.5 pb-2">
+        <div className="flex items-center gap-2 px-2.5 py-1.5 bg-neutral-50 dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700">
+          <Search className="w-3.5 h-3.5 text-neutral-400 shrink-0" aria-hidden="true" />
+          <input
+            ref={searchRef}
+            type="text"
+            value={query}
+            onChange={(e) => {
+              setQuery(e.target.value);
+              setActiveIndex(0);
+            }}
+            placeholder="Search language…"
+            aria-label="Search output language"
+            className="w-full bg-transparent border-none text-xs text-neutral-800 dark:text-neutral-100 focus:outline-none placeholder:text-neutral-400"
+          />
+        </div>
+      </div>
+
+      <ul role="listbox" aria-labelledby={labelId} className="max-h-64 overflow-y-auto py-1">
+        {filtered.length === 0 && (
+          <li className="px-4 py-3 text-xs text-neutral-400 text-center">No matching language</li>
+        )}
+        {filtered.map((option, index) => {
+          const selected = option.code === language;
+          return (
+            <li key={option.code} role="none">
+              <button
+                type="button"
+                role="option"
+                aria-selected={selected}
+                onMouseEnter={() => setActiveIndex(index)}
+                onClick={() => commit(option.code)}
+                className={`w-full flex items-center justify-between gap-2 px-3.5 py-2 text-xs text-start transition-colors cursor-pointer ${
+                  index === activeIndex ? 'bg-neutral-100 dark:bg-neutral-800' : 'bg-transparent'
+                } ${selected ? 'font-bold text-blue-700 dark:text-blue-300' : 'text-neutral-700 dark:text-neutral-200'}`}
+              >
+                <span className="truncate">
+                  {option.nativeName}
+                  {option.nativeName !== option.name && (
+                    <span className="ms-1.5 text-[10px] font-normal text-neutral-500 dark:text-neutral-400">
+                      ({option.name})
+                    </span>
+                  )}
+                </span>
+                {selected && <Check className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />}
+              </button>
+            </li>
+          );
+        })}
+      </ul>
+
+      <div className="px-3 pt-2 pb-1 border-t border-neutral-100 dark:border-neutral-800 text-[10px] text-neutral-400">
+        {OUTPUT_LANGUAGES.length} output languages · your choice is remembered
+      </div>
+    </div>
+  );
+
+  // Compact form: exactly the height of the Download button it sits next to.
+  if (variant === 'inline') {
+    return (
+      <div className={`relative min-w-0 max-w-full ${className}`} ref={containerRef} onKeyDown={onKeyDown}>
+        <button
+          type="button"
+          ref={buttonRef}
+          onClick={() => setOpen((v) => !v)}
+          aria-haspopup="listbox"
+          aria-expanded={open}
+          aria-labelledby={labelId}
+          className={`inline-flex items-center rounded-xl border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-neutral-700 dark:text-neutral-200 font-semibold whitespace-nowrap shadow-2xs hover:border-neutral-400 dark:hover:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer ${
+            size === 'sm' ? 'h-7 px-2.5 gap-1.5 text-[11px]' : 'h-8 px-3 gap-2 text-xs'
+          }`}
+        >
+          <Globe2 className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400 shrink-0" aria-hidden="true" />
+          <span
+            id={labelId}
+            className="text-[10px] font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400"
+          >
+            Output Language
+          </span>
+          <span className="truncate max-w-[7.5rem] text-neutral-900 dark:text-neutral-100">
+            {languageName}
+          </span>
+          <ChevronDown
+            className={`w-3.5 h-3.5 shrink-0 opacity-60 transition-transform ${open ? 'rotate-180' : ''}`}
+            aria-hidden="true"
+          />
+        </button>
+        {menu}
+      </div>
+    );
+  }
+
   return (
     <div
       className={`rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 px-4 py-3 shadow-xs ${className}`}
@@ -108,7 +223,7 @@ export const OutputLanguageSelector: React.FC<OutputLanguageSelectorProps> = ({
           <Globe2 className="w-4 h-4 text-blue-600 dark:text-blue-400 mt-0.5 shrink-0" aria-hidden="true" />
           <div>
             <span
-              id="output-language-label"
+              id={labelId}
               className="block text-xs font-bold uppercase tracking-wider text-neutral-700 dark:text-neutral-300"
             >
               Output Language
@@ -126,83 +241,16 @@ export const OutputLanguageSelector: React.FC<OutputLanguageSelectorProps> = ({
             onClick={() => setOpen((v) => !v)}
             aria-haspopup="listbox"
             aria-expanded={open}
-            aria-labelledby="output-language-label"
+            aria-labelledby={labelId}
             className="w-full h-[38px] flex items-center justify-between gap-2 px-3 rounded-xl border border-neutral-300 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100 text-xs font-semibold hover:border-neutral-400 dark:hover:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer"
           >
-            <span className="truncate">
-              {current.nativeName}
-              {current.nativeName !== current.name && (
-                <span className="ms-1.5 text-[10px] font-medium text-neutral-500 dark:text-neutral-400">
-                  ({current.name})
-                </span>
-              )}
-            </span>
+            <span className="truncate">{languageName}</span>
             <ChevronDown
               className={`w-3.5 h-3.5 shrink-0 opacity-60 transition-transform ${open ? 'rotate-180' : ''}`}
               aria-hidden="true"
             />
           </button>
-
-          {open && (
-            <div className="absolute z-50 mt-1.5 w-full min-w-[16rem] rounded-2xl bg-white dark:bg-neutral-900 shadow-2xl border border-neutral-200 dark:border-neutral-800 py-2">
-              <div className="px-2.5 pb-2">
-                <div className="flex items-center gap-2 px-2.5 py-1.5 bg-neutral-50 dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700">
-                  <Search className="w-3.5 h-3.5 text-neutral-400 shrink-0" aria-hidden="true" />
-                  <input
-                    ref={searchRef}
-                    type="text"
-                    value={query}
-                    onChange={(e) => {
-                      setQuery(e.target.value);
-                      setActiveIndex(0);
-                    }}
-                    placeholder="Search language…"
-                    aria-label="Search output language"
-                    className="w-full bg-transparent border-none text-xs text-neutral-800 dark:text-neutral-100 focus:outline-none placeholder:text-neutral-400"
-                  />
-                </div>
-              </div>
-
-              <ul role="listbox" aria-labelledby="output-language-label" className="max-h-64 overflow-y-auto py-1">
-                {filtered.length === 0 && (
-                  <li className="px-4 py-3 text-xs text-neutral-400 text-center">No matching language</li>
-                )}
-                {filtered.map((option, index) => {
-                  const selected = option.code === language;
-                  return (
-                    <li key={option.code} role="none">
-                      <button
-                        type="button"
-                        role="option"
-                        aria-selected={selected}
-                        onMouseEnter={() => setActiveIndex(index)}
-                        onClick={() => commit(option.code)}
-                        className={`w-full flex items-center justify-between gap-2 px-3.5 py-2 text-xs text-start transition-colors cursor-pointer ${
-                          index === activeIndex
-                            ? 'bg-neutral-100 dark:bg-neutral-800'
-                            : 'bg-transparent'
-                        } ${selected ? 'font-bold text-blue-700 dark:text-blue-300' : 'text-neutral-700 dark:text-neutral-200'}`}
-                      >
-                        <span className="truncate">
-                          {option.nativeName}
-                          {option.nativeName !== option.name && (
-                            <span className="ms-1.5 text-[10px] font-normal text-neutral-500 dark:text-neutral-400">
-                              ({option.name})
-                            </span>
-                          )}
-                        </span>
-                        {selected && <Check className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />}
-                      </button>
-                    </li>
-                  );
-                })}
-              </ul>
-
-              <div className="px-3 pt-2 pb-1 border-t border-neutral-100 dark:border-neutral-800 text-[10px] text-neutral-400">
-                {OUTPUT_LANGUAGES.length} output languages · your choice is remembered
-              </div>
-            </div>
-          )}
+          {menu}
         </div>
 
         <p className="text-[11px] text-neutral-500 dark:text-neutral-400 sm:flex-1">

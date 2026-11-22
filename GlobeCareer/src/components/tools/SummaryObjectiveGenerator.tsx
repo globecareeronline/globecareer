@@ -447,11 +447,6 @@ export const SummaryObjectiveGenerator: React.FC<SummaryObjectiveGeneratorProps>
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10">
-      <OutputLanguageSelector
-        language={outputLanguage}
-        onChange={setOutputLanguage}
-        countryLanguages={countryLanguages}
-      />
       {/* Header & Tabs */}
       <div className="space-y-6">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
@@ -757,13 +752,22 @@ export const SummaryObjectiveGenerator: React.FC<SummaryObjectiveGeneratorProps>
             {/* Right Output: 7 Cols */}
             <div className="lg:col-span-7 space-y-4">
               <div className="p-6 sm:p-8 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-3xl shadow-sm space-y-6">
-                <div className="border-b border-neutral-200 dark:border-neutral-800 pb-4">
-                  <span className="text-xs uppercase font-bold tracking-wider text-blue-600 dark:text-blue-400 block mb-1">
-                    Generated Variations &amp; ATS Scoring
-                  </span>
-                  <h3 className="text-xl font-bold text-neutral-900 dark:text-neutral-100">
-                    {formData.targetJobTitle ? `${formData.targetJobTitle} – Tailored Options` : 'Your Tailored Statements'}
-                  </h3>
+                <div className="border-b border-neutral-200 dark:border-neutral-800 pb-4 flex flex-wrap items-start justify-between gap-3">
+                  <div>
+                    <span className="text-xs uppercase font-bold tracking-wider text-blue-600 dark:text-blue-400 block mb-1">
+                      Generated Variations &amp; ATS Scoring
+                    </span>
+                    <h3 className="text-xl font-bold text-neutral-900 dark:text-neutral-100">
+                      {formData.targetJobTitle ? `${formData.targetJobTitle} – Tailored Options` : 'Your Tailored Statements'}
+                    </h3>
+                  </div>
+                  <OutputLanguageSelector
+                    variant="inline"
+                    size="sm"
+                    language={outputLanguage}
+                    onChange={setOutputLanguage}
+                    countryLanguages={countryLanguages}
+                  />
                 </div>
 
                 {generatedOptions ? (

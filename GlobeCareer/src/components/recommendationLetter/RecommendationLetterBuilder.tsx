@@ -459,11 +459,6 @@ export const RecommendationLetterBuilder: React.FC<RecommendationLetterBuilderPr
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10">
-      <OutputLanguageSelector
-        language={outputLanguage}
-        onChange={setOutputLanguage}
-        countryLanguages={countryLanguages}
-      />
       {/* Tool Header */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 border-b border-neutral-200 dark:border-neutral-800 pb-6 no-print">
         <div className="space-y-2">
@@ -492,11 +487,21 @@ export const RecommendationLetterBuilder: React.FC<RecommendationLetterBuilderPr
             </button>
           )}
 
-          <UnifiedDownloadButton
-            documentTitle="Recommendation Letter"
-            formats={downloadFormats}
-            size="md"
-          />
+          {/* Output language, immediately left of Download */}
+          <div className="flex flex-wrap items-center gap-2.5">
+            <OutputLanguageSelector
+              variant="inline"
+              language={outputLanguage}
+              onChange={setOutputLanguage}
+              countryLanguages={countryLanguages}
+            />
+
+            <UnifiedDownloadButton
+              documentTitle="Recommendation Letter"
+              formats={downloadFormats}
+              size="md"
+            />
+          </div>
         </div>
       </div>
 
@@ -969,7 +974,7 @@ export const RecommendationLetterBuilder: React.FC<RecommendationLetterBuilderPr
                 )}
               </div>
 
-              <div className="flex items-center gap-2">
+              <div className="flex flex-wrap items-center justify-end gap-2">
                 <button
                   type="button"
                   disabled={!generatedLetter}
@@ -980,6 +985,15 @@ export const RecommendationLetterBuilder: React.FC<RecommendationLetterBuilderPr
                   {copied ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
                   <span>{copied ? 'Copied!' : 'Copy Text'}</span>
                 </button>
+
+                {/* Output language, then download */}
+                <OutputLanguageSelector
+                  variant="inline"
+                  size="sm"
+                  language={outputLanguage}
+                  onChange={setOutputLanguage}
+                  countryLanguages={countryLanguages}
+                />
 
                 {/* Unified Download Button */}
                 <UnifiedDownloadButton

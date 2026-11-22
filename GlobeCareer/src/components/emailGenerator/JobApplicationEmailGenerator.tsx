@@ -509,11 +509,6 @@ export const JobApplicationEmailGenerator: React.FC<JobApplicationEmailGenerator
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10">
-      <OutputLanguageSelector
-        language={outputLanguage}
-        onChange={setOutputLanguage}
-        countryLanguages={countryLanguages}
-      />
       {/* Tool Header */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 border-b border-neutral-200 dark:border-neutral-800 pb-6 no-print">
         <div className="space-y-2">
@@ -542,11 +537,21 @@ export const JobApplicationEmailGenerator: React.FC<JobApplicationEmailGenerator
             </button>
           )}
 
-          <UnifiedDownloadButton
-            documentTitle="Application Email"
-            formats={downloadFormats}
-            size="md"
-          />
+          {/* Output language, immediately left of Download */}
+          <div className="flex flex-wrap items-center gap-2.5">
+            <OutputLanguageSelector
+              variant="inline"
+              language={outputLanguage}
+              onChange={setOutputLanguage}
+              countryLanguages={countryLanguages}
+            />
+
+            <UnifiedDownloadButton
+              documentTitle="Application Email"
+              formats={downloadFormats}
+              size="md"
+            />
+          </div>
         </div>
       </div>
 
@@ -900,6 +905,13 @@ export const JobApplicationEmailGenerator: React.FC<JobApplicationEmailGenerator
               </div>
 
               <div className="pt-2">
+                <OutputLanguageSelector
+                  variant="inline"
+                  language={outputLanguage}
+                  onChange={setOutputLanguage}
+                  countryLanguages={countryLanguages}
+                  className="block w-full mb-2"
+                />
                 <UnifiedDownloadButton
                   documentTitle="Application Email"
                   formats={downloadFormats}
@@ -968,6 +980,14 @@ export const JobApplicationEmailGenerator: React.FC<JobApplicationEmailGenerator
                     {copiedBody ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
                     <span>{copiedBody ? 'Copied!' : 'Copy Email'}</span>
                   </button>
+
+                  <OutputLanguageSelector
+                    variant="inline"
+                    size="sm"
+                    language={outputLanguage}
+                    onChange={setOutputLanguage}
+                    countryLanguages={countryLanguages}
+                  />
 
                   <UnifiedDownloadButton
                     documentTitle="Application Email"

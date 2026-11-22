@@ -270,12 +270,6 @@ export const ResumeBulletGenerator: React.FC<ResumeBulletGeneratorProps> = ({
   return (
     <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100 py-10 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto space-y-8">
-        <OutputLanguageSelector
-          language={outputLanguage}
-          onChange={setOutputLanguage}
-          countryLanguages={countryLanguages}
-        />
-
         {/* Header Breadcrumbs & Title */}
         <div className="space-y-3">
           <div className="flex items-center gap-2 text-xs font-semibold text-neutral-500 uppercase tracking-wider">
@@ -501,7 +495,16 @@ export const ResumeBulletGenerator: React.FC<ResumeBulletGeneratorProps> = ({
                   Generated ATS Bullet Points
                 </h3>
               </div>
-              <span className="text-xs text-neutral-500 font-medium">Click any bullet to copy</span>
+              <div className="flex items-center gap-2">
+                <OutputLanguageSelector
+                  variant="inline"
+                  size="sm"
+                  language={outputLanguage}
+                  onChange={setOutputLanguage}
+                  countryLanguages={countryLanguages}
+                />
+                <span className="hidden sm:inline text-xs text-neutral-500 font-medium">Click any bullet to copy</span>
+              </div>
             </div>
 
             {/* Generated Variation Cards */}
