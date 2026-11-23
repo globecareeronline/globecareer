@@ -32,7 +32,8 @@ interface Env {
 
 const MAX_LIMIT = 100;
 const DEFAULT_LIMIT = 25;
-const MAX_LIST_KEYS = 1000;
+const LIST_PAGE_SIZE = 1000;
+const MAX_LIST_PAGES = 10;
 const MIN_TOKEN_LENGTH = 32;
 const FAILURE_WINDOW_SECONDS = 15 * 60;
 const MAX_FAILURES = 10;
@@ -119,6 +120,27 @@ function fullRecord(key: string, record: StoredRecord) {
   };
 }
 
+/**
+ * KV `list` walks keys in ascending lexical order, one page at a time, so the
+ * newest messages sit at the far end of the namespace. Read every page (bounded)
+ * instead of only the first, otherwise the owner reader would silently stop
+ * showing new submissions once the namespace grows past one page.
+ */
+async function listAllKeys(storage: KVNamespaceLike): Promise<{ names: string[]; truncated: boolean }> {
+  const names: string[] = [];
+  let cursor: string | undefined;
+  for (let page = 0; page < MAX_LIST_PAGES; page += 1) {
+    const result = await storage.list({ prefix: 'msg:', limit: LIST_PAGE_SIZE, cursor });
+    for (const entry of result.keys) names.push(entry.name);
+    if (result.list_complete === false && result.cursor) {
+      cursor = result.cursor;
+      continue;
+    }
+    return { names, truncated: result.list_complete === false };
+  }
+  return { names, truncated: true };
+}
+
 export async function onRequestGet(context: { request: Request; env: Env }): Promise<Response> {
   const { request, env } = context;
   const requestId = crypto.randomUUID();
@@ -166,13 +188,13 @@ export async function onRequestGet(context: { request: Request; env: Env }): Pro
   try {
     if (id) {
       if (!/^[0-9a-fA-F-]{36}$/.test(id)) return json(400, { error: 'Invalid message reference.' });
-      const listed = await storage.list({ prefix: 'msg:', limit: MAX_LIST_KEYS });
-      const match = listed.keys.find((entry) => entry.name.endsWith(`:${id}`));
+      const { names } = await listAllKeys(storage);
+      const match = names.find((name) => name.endsWith(`:${id}`));
       if (!match) return notFound();
-      const raw = await storage.get(match.name);
+      const raw = await storage.get(match);
       if (!raw) return notFound();
       const parsed = JSON.parse(raw) as StoredRecord;
-      return json(200, { message: fullRecord(match.name, parsed) });
+      return json(200, { message: fullRecord(match, parsed) });
     }
 
     const requested = Number.parseInt(url.searchParams.get('limit') ?? '', 10);
@@ -180,9 +202,9 @@ export async function onRequestGet(context: { request: Request; env: Env }): Pro
       ? Math.min(Math.max(requested, 1), MAX_LIMIT)
       : DEFAULT_LIMIT;
 
-    const listed = await storage.list({ prefix: 'msg:', limit: MAX_LIST_KEYS });
     // Keys are `msg:<ISO timestamp>:<uuid>`; reverse lexical order is newest first.
-    const keys = listed.keys.map((entry) => entry.name).sort().reverse().slice(0, limit);
+    const { names, truncated } = await listAllKeys(storage);
+    const keys = names.sort().reverse().slice(0, limit);
 
     const messages = [];
     for (const key of keys) {
@@ -197,7 +219,7 @@ export async function onRequestGet(context: { request: Request; env: Env }): Pro
 
     return json(200, {
       count: messages.length,
-      truncated: listed.list_complete === false,
+      truncated,
       messages,
     });
   } catch (error) {
