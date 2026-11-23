@@ -43,6 +43,7 @@ export const AboutUsPage: React.FC = () => {
 
 export const ContactPage: React.FC = () => {
   const [submitted, setSubmitted] = useState(false);
+  const [savedWithoutNotice, setSavedWithoutNotice] = useState(false);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
@@ -69,9 +70,9 @@ export const ContactPage: React.FC = () => {
         body: JSON.stringify({ name, email, message, turnstileToken: token }),
       });
 
-      let payload: { error?: string } | null = null;
+      let payload: { error?: string; notified?: boolean } | null = null;
       try {
-        payload = (await response.json()) as { error?: string };
+        payload = (await response.json()) as { error?: string; notified?: boolean };
       } catch {
         payload = null;
       }
@@ -83,6 +84,7 @@ export const ContactPage: React.FC = () => {
         return;
       }
 
+      setSavedWithoutNotice(payload?.notified === false);
       setSubmitted(true);
     } catch {
       setError('We could not reach the server. Please check your connection and try again.');
@@ -115,8 +117,15 @@ export const ContactPage: React.FC = () => {
               Message Received
             </h3>
             <p className="text-xs text-neutral-600 dark:text-neutral-400 max-w-sm mx-auto">
-              Thank you for contacting GlobeCareer. Our team reviews all inquiries promptly.
+              Thank you for contacting GlobeCareer. Your message has been received and saved, and our team
+              reviews all inquiries promptly.
             </p>
+            {savedWithoutNotice && (
+              <p className="text-xs text-neutral-600 dark:text-neutral-400 max-w-sm mx-auto">
+                Our email notification is delayed right now, but your message is stored safely and will be
+                reviewed. If you need a reply sooner, write to info@globecareer.online.
+              </p>
+            )}
             <button
               type="button"
               onClick={() => setSubmitted(false)}

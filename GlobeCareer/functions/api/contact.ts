@@ -2,16 +2,28 @@
  * POST /api/contact — Cloudflare Pages Function.
  *
  * Verifies a Cloudflare Turnstile token server-side before accepting a contact
- * message, validates the payload, rejects replays and duplicates, and stores the
- * accepted message in KV (binding CONTACT_MESSAGES) so nothing is swallowed.
+ * message, validates the payload, rejects replays and duplicates, stores the
+ * accepted message in KV (binding CONTACT_MESSAGES), then notifies the owner by
+ * email through Resend (functions/lib/email.ts).
+ *
+ * Ordering is deliberate: the message is durable in KV *before* the email is
+ * attempted, so an email outage can never lose a submission. A visitor is told
+ * their message was received and saved; the response only claims an email was
+ * sent when the provider actually accepted it (`notified: true`).
  *
  * Required configuration (Pages -> Settings -> Variables and secrets):
  *   TURNSTILE_SECRET_KEY  secret   Turnstile widget secret key (never in the client)
  *   CONTACT_MESSAGES      KV       namespace binding that stores accepted messages
- * Optional:
+ * Optional (email notification; submissions are still stored without them):
+ *   RESEND_API_KEY        secret   Resend API key
+ *   CONTACT_TO_EMAIL      text     owner inbox for notifications
+ *   CONTACT_FROM_EMAIL    text     verified sender, e.g. "GlobeCareer <contact@globecareer.online>"
+ *   CONTACT_REPLY_TO      text     fallback Reply-To address
  *   CONTACT_ALLOWED_HOSTNAMES  text  comma-separated hostnames the token may come
  *                                    from (default: globecareer.online,www.globecareer.online)
  */
+
+import { sendContactNotification, type EmailEnv } from '../lib/email';
 
 interface KVNamespaceLike {
   get(key: string): Promise<string | null>;
@@ -22,7 +34,7 @@ interface KVNamespaceLike {
   ): Promise<void>;
 }
 
-interface Env {
+interface Env extends EmailEnv {
   TURNSTILE_SECRET_KEY?: string;
   CONTACT_MESSAGES?: KVNamespaceLike;
   CONTACT_ALLOWED_HOSTNAMES?: string;
@@ -242,7 +254,20 @@ export async function onRequestPost(context: {
 
   const receivedAt = new Date().toISOString();
   const id = crypto.randomUUID();
-  const record = {
+  const key = `msg:${receivedAt}:${id}`;
+  const metadata = { name, email, receivedAt };
+
+  const record: {
+    id: string;
+    receivedAt: string;
+    name: string;
+    email: string;
+    message: string;
+    ip: string | null;
+    userAgent: string;
+    turnstile: { hostname: string | null; challengeTs: string | null; action: string | null };
+    notification?: { status: string; attemptedAt: string; providerId?: string | null; reason?: string };
+  } = {
     id,
     receivedAt,
     name,
@@ -257,16 +282,40 @@ export async function onRequestPost(context: {
     },
   };
 
+  // 1. Persist first. Nothing below may discard an accepted message.
   try {
-    await storage.put(`msg:${receivedAt}:${id}`, JSON.stringify(record), {
-      metadata: { name, email, receivedAt },
-    });
+    await storage.put(key, JSON.stringify(record), { metadata });
     await storage.put(duplicateKey, id, { expirationTtl: DUPLICATE_TTL_SECONDS });
   } catch {
     console.error('contact: storage write failed', { requestId });
     return json(500, { error: 'We could not save your message. Please try again in a moment.' }, requestId);
   }
 
-  console.log('contact: message stored', { requestId, id });
-  return json(201, { ok: true, id }, requestId);
+  // 2. Notify the owner. A failure here is recorded, never surfaced as success.
+  const outcome = await sendContactNotification(env, record);
+  record.notification = {
+    status: outcome.status,
+    attemptedAt: outcome.attemptedAt,
+    ...(outcome.status === 'sent' ? { providerId: outcome.providerId } : { reason: outcome.reason }),
+  };
+
+  try {
+    await storage.put(key, JSON.stringify(record), { metadata });
+  } catch {
+    // The original record is already durable; only the notification status is lost.
+    console.error('contact: could not record notification status', { requestId, id });
+  }
+
+  if (outcome.status !== 'sent') {
+    console.warn('contact: owner notification not delivered; message retained in KV', {
+      requestId,
+      id,
+      status: outcome.status,
+      reason: outcome.status === 'not-configured' ? outcome.reason : 'delivery-failed',
+    });
+  } else {
+    console.log('contact: message stored and owner notified', { requestId, id });
+  }
+
+  return json(201, { ok: true, id, notified: outcome.status === 'sent' }, requestId);
 }
