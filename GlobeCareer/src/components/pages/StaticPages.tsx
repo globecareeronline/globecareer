@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Mail, Shield, CheckCircle2, Trash2, Send } from 'lucide-react';
+import { TurnstileWidget } from '../TurnstileWidget';
 
 export const AboutUsPage: React.FC = () => {
   return (
@@ -45,10 +46,51 @@ export const ContactPage: React.FC = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+  const [token, setToken] = useState<string | null>(null);
+  const [pending, setPending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [resetKey, setResetKey] = useState(0);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    if (pending) return;
+    setError(null);
+
+    if (!token) {
+      setError('Please complete the verification check before sending.');
+      return;
+    }
+
+    setPending(true);
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, message, turnstileToken: token }),
+      });
+
+      let payload: { error?: string } | null = null;
+      try {
+        payload = (await response.json()) as { error?: string };
+      } catch {
+        payload = null;
+      }
+
+      if (!response.ok) {
+        setError(payload?.error || 'We could not send your message right now. Please try again.');
+        setToken(null);
+        setResetKey((value) => value + 1);
+        return;
+      }
+
+      setSubmitted(true);
+    } catch {
+      setError('We could not reach the server. Please check your connection and try again.');
+      setToken(null);
+      setResetKey((value) => value + 1);
+    } finally {
+      setPending(false);
+    }
   };
 
   return (
@@ -124,9 +166,18 @@ export const ContactPage: React.FC = () => {
                 className="w-full p-3 bg-neutral-50 dark:bg-neutral-950 border border-neutral-300 dark:border-neutral-700 rounded-xl focus:outline-none leading-relaxed"
               />
             </div>
+            <div className="pt-1">
+              <TurnstileWidget onToken={setToken} resetKey={resetKey} />
+            </div>
+            {error ? (
+              <p role="alert" className="text-xs font-medium text-red-600 dark:text-red-400 leading-relaxed">
+                {error}
+              </p>
+            ) : null}
             <button
               type="submit"
-              className="px-6 py-2.5 text-xs font-bold uppercase tracking-wider bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-900 rounded-xl hover:bg-neutral-800 transition-colors flex items-center gap-2"
+              disabled={pending}
+              className="px-6 py-2.5 text-xs font-bold uppercase tracking-wider bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-900 rounded-xl hover:bg-neutral-800 transition-colors flex items-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
             >
               <Send className="w-3.5 h-3.5" />
               Send Message
