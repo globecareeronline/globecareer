@@ -11,6 +11,7 @@
     "audit:routes": "node scripts/audit-routes.mjs",
     "audit:seo": "node scripts/audit-seo.mjs",
     "report:search": "node scripts/search-intelligence.mjs",
+    "submit:indexnow": "node scripts/indexnow.mjs",
     "serve:dist": "node scripts/serve-dist.mjs",
     "preview": "vite preview",
     "clean": "rm -rf dist server.js",
