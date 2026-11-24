@@ -757,9 +757,9 @@ export const SummaryObjectiveGenerator: React.FC<SummaryObjectiveGeneratorProps>
                     <span className="text-xs uppercase font-bold tracking-wider text-blue-600 dark:text-blue-400 block mb-1">
                       Generated Variations &amp; ATS Scoring
                     </span>
-                    <h3 className="text-xl font-bold text-neutral-900 dark:text-neutral-100">
+                    <h2 className="text-xl font-bold text-neutral-900 dark:text-neutral-100">
                       {formData.targetJobTitle ? `${formData.targetJobTitle} – Tailored Options` : 'Your Tailored Statements'}
-                    </h3>
+                    </h2>
                   </div>
                   <OutputLanguageSelector
                     variant="inline"
@@ -941,9 +941,9 @@ export const SummaryObjectiveGenerator: React.FC<SummaryObjectiveGeneratorProps>
 
                   {/* Template Title & Target Role */}
                   <div>
-                    <h3 className="text-base font-bold text-neutral-900 dark:text-neutral-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                    <h2 className="text-base font-bold text-neutral-900 dark:text-neutral-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                       {tpl.title}
-                    </h3>
+                    </h2>
                     <p className="text-xs text-neutral-500 font-medium">
                       Target Role: <span className="text-neutral-700 dark:text-neutral-300 font-semibold">{tpl.targetRole}</span>
                     </p>
@@ -1021,9 +1021,9 @@ export const SummaryObjectiveGenerator: React.FC<SummaryObjectiveGeneratorProps>
           <span className="text-xs uppercase font-bold tracking-wider text-blue-600 dark:text-blue-400 block mb-1">
             Strategic Comparison
           </span>
-          <h3 className="text-xl font-bold text-neutral-900 dark:text-neutral-100">
+          <h2 className="text-xl font-bold text-neutral-900 dark:text-neutral-100">
             Professional Summary vs. Career Objective vs. LinkedIn Headline
-          </h3>
+          </h2>
           <p className="text-xs text-neutral-500 mt-1 max-w-2xl">
             Choose the right profile statement format based on your career stage, target hiring country, and platform requirements.
           </p>

@@ -665,9 +665,9 @@ export const ResignationLetterGenerator: React.FC<ResignationLetterGeneratorProp
                     <span className="text-xs uppercase font-bold tracking-wider text-blue-600 dark:text-blue-400 block mb-1">
                       Formal Letter Preview
                     </span>
-                    <h3 className="text-xl font-bold text-neutral-900 dark:text-neutral-100">
+                    <h2 className="text-xl font-bold text-neutral-900 dark:text-neutral-100">
                       {formData.companyName ? `Resignation – ${formData.companyName}` : 'Your Resignation Letter'}
-                    </h3>
+                    </h2>
                   </div>
 
                   <div className="flex flex-wrap items-center justify-end gap-2">
@@ -829,9 +829,9 @@ export const ResignationLetterGenerator: React.FC<ResignationLetterGeneratorProp
 
                   {/* Title & Description */}
                   <div>
-                    <h3 className="text-base font-bold text-neutral-900 dark:text-neutral-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                    <h2 className="text-base font-bold text-neutral-900 dark:text-neutral-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                       {tpl.title}
-                    </h3>
+                    </h2>
                     <p className="text-xs text-neutral-500 mt-1 leading-relaxed">
                       {tpl.description}
                     </p>
@@ -893,9 +893,9 @@ export const ResignationLetterGenerator: React.FC<ResignationLetterGeneratorProp
           <span className="text-xs uppercase font-bold tracking-wider text-blue-600 dark:text-blue-400 block mb-1">
             Global Compliance &amp; Professional Etiquette
           </span>
-          <h3 className="text-xl font-bold text-neutral-900 dark:text-neutral-100">
+          <h2 className="text-xl font-bold text-neutral-900 dark:text-neutral-100">
             Resignation Notice Standards by Jurisdiction
-          </h3>
+          </h2>
           <p className="text-xs text-neutral-500 mt-1 max-w-2xl">
             Notice periods vary substantially by jurisdiction and employment contract. Review these general standards before finalizing your departure date.
           </p>

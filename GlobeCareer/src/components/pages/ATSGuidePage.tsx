@@ -262,7 +262,7 @@ export const ATSGuidePage: React.FC<ATSGuidePageProps> = ({ onStartBuilder, onNa
               <span>Country-Specific Guides</span>
             </div>
             <p className="text-[11px] text-neutral-500 leading-relaxed">
-              Verify local photo laws, paper sizes, and ATS conventions across 40 nations.
+              Verify local photo laws, paper sizes, and ATS conventions across 47 nations.
             </p>
           </a>
         </div>

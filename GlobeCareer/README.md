@@ -6,7 +6,7 @@ GlobeCareer is a 100% free international career development platform. It enables
 
 ## 🌟 Key Features
 
-- **Country-Tailored Resume Builder:** Adapts formatting, date conventions, paper geometry (US Letter vs. International A4), and photo regulations for 40 countries (US, UK, Germany, Canada, Australia, France, Japan, UAE, Singapore, etc.).
+- **Country-Tailored Resume Builder:** Adapts formatting, date conventions, paper geometry (US Letter vs. International A4), and photo regulations for 47 countries (US, UK, Germany, Canada, Australia, France, Japan, UAE, Singapore, etc.).
 - **100% Free Exports:** Unlimited downloads of vector PDF and Microsoft Word (`.docx`) documents with zero watermarks and no required registration.
 - **Professional Bio Generator (`/bio-generator`, `/bio-templates`):** 15+ industry templates with Short, Medium, and Extended outputs in 1st-person and 3rd-person perspectives.
 - **Resume Summary & Objective Generator (`/summary-generator`, `/summary-templates`):** 18+ ATS-tested professional summaries, career objectives, and LinkedIn headlines with 1-click insertion into the Resume Builder.

@@ -37,7 +37,7 @@ export const ROLE_EXAMPLES: RoleExample[] = [
     slug: 'customer-service',
     roleName: 'Customer Service Representative',
     h1: 'Customer Service Resume Example & Writing Guide',
-    metaTitle: 'Customer Service Resume Example, Skills & ATS Keywords | GlobeCareer',
+    metaTitle: 'Customer Service Resume Example & ATS Keywords | GlobeCareer',
     metaDescription:
       'Customer service resume example with real responsibility statements, the skills recruiters screen for, and the ATS keywords that match support job descriptions.',
     alsoCalled: ['Customer Support Specialist', 'Client Service Representative', 'Contact Centre Agent'],
@@ -113,7 +113,7 @@ export const ROLE_EXAMPLES: RoleExample[] = [
     slug: 'software-engineer',
     roleName: 'Software Engineer',
     h1: 'Software Engineer Resume Example & Writing Guide',
-    metaTitle: 'Software Engineer Resume Example, Skills & ATS Keywords | GlobeCareer',
+    metaTitle: 'Software Engineer Resume Example & ATS Keywords | GlobeCareer',
     metaDescription:
       'Software engineer resume example with responsibility statements by level, the tools recruiters search for, and guidance on writing impact-focused bullets.',
     alsoCalled: ['Software Developer', 'Backend Engineer', 'Full-Stack Engineer', 'Application Developer'],
@@ -190,7 +190,7 @@ export const ROLE_EXAMPLES: RoleExample[] = [
     slug: 'registered-nurse',
     roleName: 'Registered Nurse',
     h1: 'Registered Nurse Resume Example & Writing Guide',
-    metaTitle: 'Registered Nurse Resume Example, Skills & ATS Keywords | GlobeCareer',
+    metaTitle: 'Registered Nurse Resume Example & ATS Keywords | GlobeCareer',
     metaDescription:
       'Registered nurse resume example covering clinical responsibilities, licences, specialisms and the screening keywords used in nursing job descriptions.',
     alsoCalled: ['Staff Nurse', 'RN', 'Clinical Nurse', 'Ward Nurse'],
@@ -267,7 +267,7 @@ export const ROLE_EXAMPLES: RoleExample[] = [
     slug: 'teacher',
     roleName: 'Teacher',
     h1: 'Teacher Resume Example & Writing Guide',
-    metaTitle: 'Teacher Resume Example, Skills & ATS Keywords | GlobeCareer',
+    metaTitle: 'Teacher Resume Example & ATS Keywords | GlobeCareer',
     metaDescription:
       'Teacher resume example with classroom responsibilities, qualification and certification requirements, and the keywords used in teaching job descriptions.',
     alsoCalled: ['Classroom Teacher', 'Subject Teacher', 'Primary Teacher', 'Secondary Teacher'],
@@ -344,7 +344,7 @@ export const ROLE_EXAMPLES: RoleExample[] = [
     slug: 'data-analyst',
     roleName: 'Data Analyst',
     h1: 'Data Analyst Resume Example & Writing Guide',
-    metaTitle: 'Data Analyst Resume Example, Skills & ATS Keywords | GlobeCareer',
+    metaTitle: 'Data Analyst Resume Example & ATS Keywords | GlobeCareer',
     metaDescription:
       'Data analyst resume example with SQL, dashboarding and stakeholder responsibilities, the tools hiring teams screen for, and guidance on proving business impact.',
     alsoCalled: ['Business Analyst (Data)', 'BI Analyst', 'Reporting Analyst', 'Insights Analyst'],
@@ -421,7 +421,7 @@ export const ROLE_EXAMPLES: RoleExample[] = [
     slug: 'project-manager',
     roleName: 'Project Manager',
     h1: 'Project Manager Resume Example & Writing Guide',
-    metaTitle: 'Project Manager Resume Example, Skills & ATS Keywords | GlobeCareer',
+    metaTitle: 'Project Manager Resume Example & ATS Keywords | GlobeCareer',
     metaDescription:
       'Project manager resume example with delivery responsibilities, methodology and stakeholder skills, plus how to quantify scope, budget and schedule outcomes.',
     alsoCalled: ['Delivery Manager', 'Programme Manager', 'Project Lead', 'PM'],
@@ -498,7 +498,7 @@ export const ROLE_EXAMPLES: RoleExample[] = [
     slug: 'marketing-manager',
     roleName: 'Marketing Manager',
     h1: 'Marketing Manager Resume Example & Writing Guide',
-    metaTitle: 'Marketing Manager Resume Example, Skills & ATS Keywords | GlobeCareer',
+    metaTitle: 'Marketing Manager Resume Example & ATS Keywords | GlobeCareer',
     metaDescription:
       'Marketing manager resume example with campaign, channel and budget responsibilities, the metrics hiring teams look for, and the tools they screen for by name.',
     alsoCalled: ['Digital Marketing Manager', 'Growth Manager', 'Brand Manager', 'Campaign Manager'],
@@ -575,7 +575,7 @@ export const ROLE_EXAMPLES: RoleExample[] = [
     slug: 'sales-representative',
     roleName: 'Sales Representative',
     h1: 'Sales Representative Resume Example & Writing Guide',
-    metaTitle: 'Sales Representative Resume Example, Skills & ATS Keywords | GlobeCareer',
+    metaTitle: 'Sales Representative Resume Example & ATS Keywords | GlobeCareer',
     metaDescription:
       'Sales representative resume example with quota, pipeline and account responsibilities, plus how to present targets, territory and CRM experience credibly.',
     alsoCalled: ['Account Executive', 'Business Development Representative', 'Sales Executive', 'Territory Manager'],

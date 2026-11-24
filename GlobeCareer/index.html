@@ -59,7 +59,7 @@
       content="Free international career platform. Create ATS-friendly resumes, cover letters, recommendation letters, outreach emails, and interview preparation for 40+ countries."
     />
     <meta property="og:site_name" content="GlobeCareer" />
-    <meta property="og:image" content="/og-image.png" />
+    <meta property="og:image" content="https://globecareer.online/og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
@@ -68,34 +68,13 @@
       name="twitter:description"
       content="Free international career platform. Create ATS-friendly resumes, cover letters, recommendation letters, outreach emails, and interview preparation for 40+ countries."
     />
-    <meta name="twitter:image" content="/og-image.png" />
+    <meta name="twitter:image" content="https://globecareer.online/og-image.png" />
 
-    <!-- Schema.org WebApplication & Organization Structured Data -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "WebApplication",
-          "name": "GlobeCareer",
-          "applicationCategory": "BusinessApplication",
-          "operatingSystem": "All",
-          "description": "International CV and resume platform tailored for hiring rules and formats across 40 countries.",
-          "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "USD"
-          }
-        },
-        {
-          "@type": "Organization",
-          "name": "GlobeCareer",
-          "url": "https://globecareer.online",
-          "logo": "https://globecareer.online/globecareer-logo.png"
-        }
-      ]
-    }
-    </script>
+    <!-- Schema.org structured data is injected per page by src/utils/seo.ts
+         (applyPageSEO), which writes one @graph describing that page. A second
+         static block here would duplicate the Organization and
+         WebApplication entities on every page, so this file intentionally
+         ships none. -->
 
     <!-- Local file:// protocol stylesheet fallback -->
     <script>

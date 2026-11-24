@@ -1,6 +1,6 @@
 # GlobeCareer — Full Technical & Platform Documentation
 
-> [GlobeCareer](https://globecareer.online) is a free international CV/resume builder, career document engine, and verified job portal designed for cross-border professionals across 40 countries.
+> [GlobeCareer](https://globecareer.online) is a free international CV/resume builder, career document engine, and verified job portal designed for cross-border professionals across 47 countries.
 
 ## 1. System Overview
 
@@ -34,7 +34,7 @@ GlobeCareer eliminates the friction of cross-border employment by automating com
 
 ### 2.4 Verified International Jobs Portal
 - **URL:** https://globecareer.online/jobs
-- **Purpose:** Direct verified job listings aggregated directly from official employer career pages (Greenhouse, Lever, Workday) across 40 countries with no synthetic or scraped third-party ads.
+- **Purpose:** Direct verified job listings aggregated directly from official employer career pages (Greenhouse, Lever, Workday) across 47 countries with no synthetic or scraped third-party ads.
 
 ### 2.5 Job Application Tracker
 - **URL:** https://globecareer.online/job-tracker

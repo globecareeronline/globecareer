@@ -614,7 +614,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                 <span className="text-[11px] font-bold uppercase tracking-wider text-blue-700 dark:text-blue-400">Core Document</span>
                 <h3 className="text-xl font-bold">Resume Builder</h3>
                 <p className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
-                  Format compliant resumes for 40 countries with photo regulation enforcement, live multi-template selection, and unrestricted vector PDF and DOCX downloads.
+                  Format compliant resumes for 47 countries with photo regulation enforcement, live multi-template selection, and unrestricted vector PDF and DOCX downloads.
                 </p>
               </div>
               <ul className="space-y-2 pt-3 border-t border-neutral-100 dark:border-neutral-800 text-xs text-neutral-600 dark:text-neutral-400">

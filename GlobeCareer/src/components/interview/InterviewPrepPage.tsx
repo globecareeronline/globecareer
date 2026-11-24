@@ -630,9 +630,9 @@ export const InterviewPrepPage: React.FC<{ onNavigate?: (page: string) => void }
                           {q.category.replace('_', ' ')}
                         </span>
                       </div>
-                      <h3 className="text-sm sm:text-base font-bold text-neutral-900 dark:text-neutral-100">
+                      <h2 className="text-sm sm:text-base font-bold text-neutral-900 dark:text-neutral-100">
                         {q.question}
-                      </h3>
+                      </h2>
                     </div>
 
                     <div className="flex items-center gap-2 shrink-0">
@@ -825,7 +825,7 @@ export const InterviewPrepPage: React.FC<{ onNavigate?: (page: string) => void }
             {savedAnswers.length === 0 ? (
               <div className="p-12 text-center bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-2xl space-y-2">
                 <FileText className="w-8 h-8 text-neutral-400 mx-auto" />
-                <h3 className="text-sm font-bold text-neutral-800 dark:text-neutral-200">No Saved Answers Yet</h3>
+                <h2 className="text-sm font-bold text-neutral-800 dark:text-neutral-200">No Saved Answers Yet</h2>
                 <p className="text-xs text-neutral-500 max-w-xs mx-auto">
                   Draft your STAR responses on the left and save them here for quick review before your interviews.
                 </p>
@@ -962,9 +962,9 @@ export const InterviewPrepPage: React.FC<{ onNavigate?: (page: string) => void }
             <div className="p-6 sm:p-8 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-3xl shadow-md space-y-6 animate-in fade-in zoom-in-95 duration-150">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-neutral-100 dark:border-neutral-800 pb-4">
                 <div>
-                  <h3 className="text-base font-bold text-neutral-900 dark:text-neutral-100">
+                  <h2 className="text-base font-bold text-neutral-900 dark:text-neutral-100">
                     Mock Response Analysis & Rubric
-                  </h3>
+                  </h2>
                   <p className="text-xs text-neutral-500">
                     Scored using local linguistic checklists (STAR structure, impact metrics, and action verbs).
                   </p>

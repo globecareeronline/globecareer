@@ -113,9 +113,9 @@ export const ContactPage: React.FC = () => {
         {submitted ? (
           <div className="p-6 text-center space-y-3">
             <CheckCircle2 className="w-10 h-10 text-emerald-500 mx-auto" />
-            <h3 className="text-lg font-bold text-neutral-900 dark:text-neutral-100">
+            <h2 className="text-lg font-bold text-neutral-900 dark:text-neutral-100">
               Message Received
-            </h3>
+            </h2>
             <p className="text-xs text-neutral-600 dark:text-neutral-400 max-w-sm mx-auto">
               Thank you for contacting GlobeCareer. Your message has been received and saved, and our team
               reviews all inquiries promptly.
@@ -223,23 +223,23 @@ export const PrivacyPolicyPage: React.FC = () => {
       </div>
 
       <div className="p-8 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-3xl shadow-sm space-y-5 text-xs text-neutral-700 dark:text-neutral-300 leading-relaxed">
-        <h3 className="text-sm font-bold text-neutral-900 dark:text-neutral-100">
+        <h2 className="text-sm font-bold text-neutral-900 dark:text-neutral-100">
           1. Data Minimization & Local Storage Architecture
-        </h3>
+        </h2>
         <p>
           GlobeCareer operates under strict privacy-by-design standards. We do not require registration or personal account creation. Any information you input into the resume or cover letter builder—including your full name, contact information, work history, education, and uploaded photos—is stored strictly within your browser’s local client storage (<code className="font-mono bg-neutral-100 dark:bg-neutral-800 px-1 py-0.5 rounded">window.localStorage</code>).
         </p>
 
-        <h3 className="text-sm font-bold text-neutral-900 dark:text-neutral-100">
+        <h2 className="text-sm font-bold text-neutral-900 dark:text-neutral-100">
           2. No Third-Party Sales or Brokerage
-        </h3>
+        </h2>
         <p>
           We never sell, rent, or monetize your resume data, employment credentials, or contact details with data brokers, recruiters, or advertisers.
         </p>
 
-        <h3 className="text-sm font-bold text-neutral-900 dark:text-neutral-100">
+        <h2 className="text-sm font-bold text-neutral-900 dark:text-neutral-100">
           3. Document Generation
-        </h3>
+        </h2>
         <p>
           Both PDF print output and Microsoft Word (.docx) generation occur directly in-memory on your device using client-side JavaScript libraries. No copies of your documents are stored on remote web servers.
         </p>
@@ -286,51 +286,51 @@ export const TermsOfServicePage: React.FC = () => {
       </div>
 
       <div className="p-8 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-3xl shadow-sm space-y-5 text-xs text-neutral-700 dark:text-neutral-300 leading-relaxed">
-        <h3 className="text-sm font-bold text-neutral-900 dark:text-neutral-100">
+        <h2 className="text-sm font-bold text-neutral-900 dark:text-neutral-100">
           1. Terms of Acceptance
-        </h3>
+        </h2>
         <p>
           By accessing or using GlobeCareer, you agree to comply with and be bound by these Terms of Service. If you disagree with any portion of these terms, please discontinue using the service.
         </p>
 
-        <h3 className="text-sm font-bold text-neutral-900 dark:text-neutral-100">
+        <h2 className="text-sm font-bold text-neutral-900 dark:text-neutral-100">
           2. Accuracy of Representation
-        </h3>
+        </h2>
         <p>
           GlobeCareer provides formatting templates, regulatory guidelines, and structural recommendations. Users are solely responsible for ensuring the truthfulness and accuracy of all employment histories, qualifications, degrees, licenses, and achievements entered into their documents. GlobeCareer strictly condemns fabricated resumes.
         </p>
 
-        <h3 className="text-sm font-bold text-neutral-900 dark:text-neutral-100">
+        <h2 className="text-sm font-bold text-neutral-900 dark:text-neutral-100">
           3. No Employment Guarantee
-        </h3>
+        </h2>
         <p>
           GlobeCareer does not warrant or guarantee that utilizing our templates, ATS optimizations, or country-specific recommendations will guarantee job interviews, employment offers, or specific recruitment outcomes.
         </p>
 
-        <h3 className="text-sm font-bold text-neutral-900 dark:text-neutral-100">
+        <h2 className="text-sm font-bold text-neutral-900 dark:text-neutral-100">
           4. Intellectual Property
-        </h3>
+        </h2>
         <p>
           You retain complete ownership of all personal content and text you create. GlobeCareer retains all rights to its application code, formatting algorithms, and design templates.
         </p>
 
-        <h3 className="text-sm font-bold text-neutral-900 dark:text-neutral-100">
+        <h2 className="text-sm font-bold text-neutral-900 dark:text-neutral-100">
           5. 100% Free Access & Usage Terms
-        </h3>
+        </h2>
         <p>
           GlobeCareer provides 100% free access to all core career tools: the Resume Builder, Cover Letter Builder, Recommendation Letter Builder, Job Application Email Generator, Interview Preparation Toolkit, and ATS Resume Checker. No subscriptions, credit cards, or payment credentials are required to generate, edit, or download documents in PDF or Microsoft Word DOCX formats.
         </p>
 
-        <h3 className="text-sm font-bold text-neutral-900 dark:text-neutral-100">
+        <h2 className="text-sm font-bold text-neutral-900 dark:text-neutral-100">
           6. Verified Job Opportunities & Anti-Scam Standards
-        </h3>
+        </h2>
         <p>
           Verified job listings in the GlobeCareer portal are audited against official employer career systems, direct ATS gateways, and verified corporate sources without placement fees or paywalls. GlobeCareer is not an employer, recruiter, or staffing firm, and cannot guarantee hiring decisions, interviews, or employment offers.
         </p>
 
-        <h3 className="text-sm font-bold text-neutral-900 dark:text-neutral-100">
+        <h2 className="text-sm font-bold text-neutral-900 dark:text-neutral-100">
           7. Responsible Tool Usage
-        </h3>
+        </h2>
         <p>
           Users agree to provide truthful, accurate career information when generating resumes, letters of recommendation, and application materials. Automated scraping or abusive bot submissions to third-party employer portals are strictly prohibited.
         </p>

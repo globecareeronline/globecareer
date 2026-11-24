@@ -594,9 +594,9 @@ export const ProfessionalBioGenerator: React.FC<{
             <div className="lg:col-span-5 p-6 sm:p-8 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-3xl space-y-6 shadow-xs sticky top-20">
               <div className="flex items-center justify-between border-b border-neutral-100 dark:border-neutral-800 pb-4">
                 <div>
-                  <h3 className="font-bold text-sm text-neutral-900 dark:text-neutral-100">
+                  <h2 className="font-bold text-sm text-neutral-900 dark:text-neutral-100">
                     Generated Bio Output
-                  </h3>
+                  </h2>
                   <span className="text-[11px] text-neutral-500">
                     {formData.perspective === 'first' ? 'First Person POV' : 'Third Person POV'} · {formData.tone} · {outputLanguageInfo.nativeName}
                   </span>
@@ -850,9 +850,9 @@ export const ProfessionalBioGenerator: React.FC<{
                     </div>
 
                     <div>
-                      <h3 className="font-bold text-sm text-neutral-900 dark:text-neutral-100 group-hover:text-blue-600 transition-colors">
+                      <h2 className="font-bold text-sm text-neutral-900 dark:text-neutral-100 group-hover:text-blue-600 transition-colors">
                         {tpl.title}
-                      </h3>
+                      </h2>
                       <p className="text-[11px] text-neutral-500 line-clamp-1 mt-0.5">
                         Target: {tpl.targetAudience}
                       </p>
@@ -901,9 +901,9 @@ export const ProfessionalBioGenerator: React.FC<{
           {filteredTemplates.length === 0 && (
             <div className="p-12 text-center bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-3xl space-y-3">
               <Search className="w-8 h-8 text-neutral-400 mx-auto" />
-              <h3 className="font-bold text-sm text-neutral-900 dark:text-neutral-100">
+              <h2 className="font-bold text-sm text-neutral-900 dark:text-neutral-100">
                 No Bio Templates Found
-              </h3>
+              </h2>
               <p className="text-xs text-neutral-500 max-w-sm mx-auto">
                 No templates matched "{searchQuery}". Try selecting "All Templates" or search for a broader industry term.
               </p>

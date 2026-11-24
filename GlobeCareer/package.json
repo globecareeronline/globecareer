@@ -9,6 +9,7 @@
     "sitemap": "node scripts/gen-sitemap.mjs",
     "prerender": "node scripts/prerender.mjs",
     "audit:routes": "node scripts/audit-routes.mjs",
+    "audit:seo": "node scripts/audit-seo.mjs",
     "serve:dist": "node scripts/serve-dist.mjs",
     "preview": "vite preview",
     "clean": "rm -rf dist server.js",

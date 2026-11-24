@@ -19,6 +19,7 @@ export interface PageSEOMetadata {
 }
 
 const BASE_DOMAIN = 'https://globecareer.online';
+const OG_IMAGE_PATH = '/og-image.png';
 
 export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => PageSEOMetadata> = {
   home: () => ({
@@ -44,7 +45,7 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
           url: BASE_DOMAIN,
           applicationCategory: 'BusinessApplication',
           operatingSystem: 'All',
-          description: 'International resume and CV builder tailored to hiring regulations and formatting standards across 40 nations.',
+          description: 'International resume and CV builder tailored to hiring regulations and formatting standards across 47 nations.',
           offers: {
             '@type': 'Offer',
             price: '0',
@@ -100,7 +101,7 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
   }),
 
   guides: () => ({
-    title: 'Global CV Standards & Hiring Rules Across 47 Countries | GlobeCareer',
+    title: 'CV Standards & Hiring Rules Across 47 Countries | GlobeCareer',
     description: 'Explore verified CV formats, photo rules, paper sizes, and legal hiring standards across 47 nations, including US, UK, Canada, India, Pakistan, Brazil, and Germany.',
     canonicalPath: '/country-guides',
     ogType: 'website',
@@ -117,7 +118,7 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
       '@type': 'CollectionPage',
       name: 'Country-Specific CV and Resume Guides (47 Countries)',
       url: `${BASE_DOMAIN}/country-guides`,
-      description: 'Directory of verified hiring conventions, photo regulations, and resume formats for 40 countries worldwide.',
+      description: 'Directory of verified hiring conventions, photo regulations, and resume formats for 47 countries worldwide.',
       mainEntity: {
         '@type': 'ItemList',
         itemListElement: COUNTRIES.slice(0, 15).map((c, idx) => ({
@@ -154,7 +155,7 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
 
     if (countryId === 'uk') {
       return {
-        title: 'UK CV Format & Template Guide (2-Page British Standard) | GlobeCareer',
+        title: 'UK CV Format (2-Page British Standard) | GlobeCareer',
         description: 'Master the standard 2-page British Curriculum Vitae format with personal profile, Equality Act photo guidelines, and UK spelling conventions.',
         canonicalPath: '/country/uk',
         ogType: 'article',
@@ -356,7 +357,7 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
       };
     }
     return {
-      title: `${c.name} ${c.cvTerminology} Format & Hiring Guide | GlobeCareer`,
+      title: `${c.name} CV & Resume Format Guide | GlobeCareer`,
       description: `Official hiring guidelines for ${c.name}: ${c.photoRule === 'discouraged' ? 'Photo discouraged' : c.photoRule === 'standard' ? 'Photo customary' : 'Photo optional'}, standard length ${c.standardLength}, ${c.paperSize.toUpperCase()} paper size.`,
       canonicalPath: `/country/${c.id}`,
       ogType: 'article',
@@ -372,7 +373,7 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
   },
 
   templates: () => ({
-    title: 'Free Resume Templates for Word & Google Docs (ATS-Ready) | GlobeCareer',
+    title: 'Free Resume Templates (Word & PDF, ATS-Ready) | GlobeCareer',
     description: 'Download free Microsoft Word (.docx) and Google Docs resume templates, plus country-specific photo CV layouts for 47 countries. Single-column, ATS-safe.',
     canonicalPath: '/templates',
     ogType: 'website',
@@ -401,7 +402,7 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
   }),
 
   'job-examples': () => ({
-    title: 'Resume Examples by Role & Resume Example for Applying Abroad | GlobeCareer',
+    title: 'Resume Examples by Role & Country | GlobeCareer',
     description: 'Browse resume examples and ATS keyword banks for 19 industries, plus country-specific guidance for a resume example for applying abroad.',
     canonicalPath: '/resume-examples',
     ogType: 'website',
@@ -478,7 +479,7 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
   },
 
   'ats-guide': () => ({
-    title: 'ATS Resume Optimization Handbook & Screening Checklist | GlobeCareer',
+    title: 'ATS Resume Optimization Handbook & Checklist | GlobeCareer',
     description: 'Understand how Applicant Tracking Systems parse resumes. Learn parsing mechanics, avoid formatting pitfalls, and follow our verified ATS checklist.',
     canonicalPath: '/ats-guide',
     ogType: 'article',
@@ -499,7 +500,7 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
   }),
 
   'writing-guide': () => ({
-    title: 'How Long Should a Resume Be? Resume Length Guide by Country | GlobeCareer',
+    title: 'How Long Should a Resume Be? Guide by Country | GlobeCareer',
     description: 'How long should a resume be? Compare 1-page US and 2-page UK/EU standards across 47 countries, plus how to list certifications and volunteer work.',
     canonicalPath: '/resume-writing-guide',
     ogType: 'article',
@@ -525,7 +526,7 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
   }),
 
   'cover-letter': () => ({
-    title: 'Free Cover Letter Generator & Career Document Builder | GlobeCareer',
+    title: 'Cover Letter Builder – Free & ATS-Friendly | GlobeCareer',
     description: 'Create tailored, professional cover letters matched to your target role and country hiring norms. Live preview with instant download.',
     canonicalPath: '/cover-letter-builder',
     ogType: 'website',
@@ -570,7 +571,7 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
   }),
 
   'letter-templates': () => ({
-    title: 'Free Cover Letter, Recommendation & Job Application Email Templates | GlobeCareer',
+    title: 'Cover Letter, Reference & Email Templates | GlobeCareer',
     description: 'Explore verified cover letter formats, recommendation letter templates, and job application email templates for international career advancement.',
     canonicalPath: '/letter-templates',
     ogType: 'website',
@@ -590,7 +591,7 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
   }),
 
   'bio-generator': () => ({
-    title: 'Short Professional Bio Generator – 1-Click LinkedIn, Twitter & Executive Bios | GlobeCareer',
+    title: 'Professional Bio Generator – Free LinkedIn Bios | GlobeCareer',
     description: 'Generate concise 2-sentence to 150-word professional bios for LinkedIn, executive portfolios, speakers, and resumes. 100% free with 5 custom tone options.',
     canonicalPath: '/bio-generator',
     ogType: 'website',
@@ -647,7 +648,7 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
   }),
 
   'resignation-letter': () => ({
-    title: 'Free Resignation Letter Generator (2 Weeks Notice & Immediate) | GlobeCareer',
+    title: 'Free Resignation Letter Generator | GlobeCareer',
     description: 'Create respectful, formal resignation letters for standard two weeks notice, short notice, and international relocation. Free download and print formatting.',
     canonicalPath: '/resignation-letter',
     ogType: 'website',
@@ -675,7 +676,7 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
   }),
 
   'bio-templates': () => ({
-    title: 'Free Professional Bio Templates & Executive Bio Examples | GlobeCareer',
+    title: 'Free Professional Bio Templates & Examples | GlobeCareer',
     description: 'Browse free professional bio templates for engineers, executives, designers, consultants and founders, in first and third person, with 1-click export.',
     canonicalPath: '/bio-templates',
     ogType: 'website',
@@ -702,7 +703,7 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
   }),
 
   'summary-templates': () => ({
-    title: 'Free Resume Summary & Career Objective Templates (18+ ATS Formats) | GlobeCareer',
+    title: 'Resume Summary & Career Objective Templates | GlobeCareer',
     description: '18+ ATS-tested resume summaries, entry-level career objectives, and LinkedIn headline templates across Tech, Design, Finance, Healthcare, and Operations.',
     canonicalPath: '/summary-templates',
     ogType: 'website',
@@ -729,7 +730,7 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
   }),
 
   'resignation-letter-templates': () => ({
-    title: '11+ Free Resignation Letter Templates – 2 Weeks Notice & Immediate | GlobeCareer',
+    title: 'Resignation Letter Templates (2 Weeks Notice) | GlobeCareer',
     description: 'Download and copy 11+ professional resignation letter templates for two weeks notice, short notice, relocation, and career pivots. Free formal DOCX & text.',
     canonicalPath: '/resignation-letter-templates',
     ogType: 'website',
@@ -756,7 +757,7 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
   }),
 
   'recommendation-guide': () => ({
-    title: 'How to Write a Letter of Recommendation: Guide, Formats & FAQs | GlobeCareer',
+    title: 'How to Write a Letter of Recommendation | GlobeCareer',
     description: 'Learn the exact 4-part structure, examples, and professional formatting for employment, academic, and graduate school recommendation letters.',
     canonicalPath: '/recommendation-letter-guide',
     ogType: 'article',
@@ -777,7 +778,7 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
   }),
 
   jobs: () => ({
-    title: 'Verified International Jobs & Visa Sponsorship Listings | GlobeCareer',
+    title: 'Verified International Jobs & Visa Sponsorship | GlobeCareer',
     description: 'Discover verified international positions and remote opportunities across the US, UK, Canada, and Australia with anti-scam authenticity verification.',
     canonicalPath: '/jobs',
     ogType: 'website',
@@ -798,7 +799,7 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
   }),
 
   tracker: () => ({
-    title: 'Job Application Tracker – Kanban Pipeline & Management | GlobeCareer',
+    title: 'Job Application Tracker – Free Kanban Board | GlobeCareer',
     description: 'Organize your job search with a free Kanban application tracker. Track wishlists, interviews, salaries, and follow-ups with local and cloud backup.',
     canonicalPath: '/job-tracker',
     ogType: 'website',
@@ -878,7 +879,7 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
   }),
 
   'interview-prep': () => ({
-    title: 'Interview Preparation Toolkit – STAR Method & Mock Practice | GlobeCareer',
+    title: 'Interview Preparation: STAR Method & Practice | GlobeCareer',
     description: 'Master behavioral and role-specific interviews with question frameworks, country-specific hiring tips, STAR answer builder, and mock interview practice.',
     canonicalPath: '/interview-prep',
     ogType: 'website',
@@ -932,7 +933,7 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
   }),
 
   faq: () => ({
-    title: 'International CV & Resume FAQ – Guidelines & Formats | GlobeCareer',
+    title: 'International CV & Resume FAQ | GlobeCareer',
     description: 'Frequently asked questions regarding international CV formats, paper sizes (US Letter vs A4), photo rules, ATS parsing, and vector exports.',
     canonicalPath: '/faq',
     ogType: 'website',
@@ -1174,7 +1175,7 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
   }),
 
   'resume-word-counter': () => ({
-    title: 'Resume Word Counter – Length, Reading Time & ATS Analyzer | GlobeCareer',
+    title: 'Resume Word Counter – Length & ATS Analyzer | GlobeCareer',
     description: 'Free online resume word counter. Check word count, character count, recruiter reading time, action verb density, and 1-page vs 2-page fit instantly.',
     canonicalPath: '/resume-word-counter',
     ogType: 'website',
@@ -1229,7 +1230,7 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
   }),
 
   'resume-bullet-generator': () => ({
-    title: 'Resume Bullet Point Generator – Google X-Y-Z Impact Formula | GlobeCareer',
+    title: 'Resume Bullet Point Generator – X-Y-Z Formula | GlobeCareer',
     description: 'Generate high-impact, quantifiable resume bullets using the Google X-Y-Z and PAR formulas. Transform passive job duties into ATS-optimized achievement statements.',
     canonicalPath: '/resume-bullet-generator',
     ogType: 'website',
@@ -1283,7 +1284,7 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
   }),
 
   'reverse-chronological': () => ({
-    title: 'Reverse Chronological Resume Format: Guide, Examples & Free Template | GlobeCareer',
+    title: 'Reverse Chronological Resume Format: Guide & Examples',
     description: 'Master the reverse chronological resume format: a section-by-section breakdown, formatting rules, and a free downloadable template.',
     canonicalPath: '/reverse-chronological-resume-format',
     ogType: 'article',
@@ -1330,7 +1331,7 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
   }),
 
   'references-on-resume': () => ({
-    title: 'References on a Resume: Should You Include Them? (2026 Guide) | GlobeCareer',
+    title: 'References on a Resume: Should You Include Them? | GlobeCareer',
     description: 'Learn why you should not put references on a resume, how to create a professional standalone reference sheet, and copy email request templates.',
     canonicalPath: '/references-on-resume',
     ogType: 'article',
@@ -1377,7 +1378,7 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
   }),
 
   'objective-generator': () => ({
-    title: 'Free Resume Objective Generator – Entry-Level & Career Change ATS Objectives | GlobeCareer',
+    title: 'Resume Objective Generator – Free ATS Objectives | GlobeCareer',
     description: 'Create tailored, ATS-friendly resume objectives for entry-level jobs, internships, graduates and career pivots, generated instantly and free.',
     canonicalPath: '/resume-objective-generator',
     ogType: 'website',
@@ -1485,7 +1486,7 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
   }),
 
   'ats-maker': () => ({
-    title: 'Free ATS Resume Maker – Build Applicant Tracking System-Proof CVs | GlobeCareer',
+    title: 'Free ATS Resume Maker (ATS-Proof CV Builder) | GlobeCareer',
     description: 'Create an ATS-proof resume guaranteed to parse cleanly into Workday, Taleo, Greenhouse, and Lever. Single-column templates with instant PDF & Word export.',
     canonicalPath: '/ats-resume-maker',
     ogType: 'website',
@@ -1539,7 +1540,7 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
   }),
 
   'resume-map': () => ({
-    title: 'Online Resume Map – Global CV & Hiring Standards Across 47 Countries | GlobeCareer',
+    title: 'Online Resume Map – Global CV Standards by Country | GlobeCareer',
     description: 'Explore interactive international CV standards across 47 countries. Compare photo rules, US Letter vs A4 paper sizes, and regional hiring regulations.',
     canonicalPath: '/resume-map',
     ogType: 'website',
@@ -1593,7 +1594,7 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
   }),
 
   blog: () => ({
-    title: 'Career Guides: European CVs, Qualifications & Applications | GlobeCareer',
+    title: 'Career Guides: European CVs & Applications | GlobeCareer',
     description:
       'Practical guides to European CV formats, qualification frameworks and cross-border applications, written for people applying outside the country where they studied.',
     canonicalPath: '/blog',
@@ -1811,11 +1812,19 @@ export function applyPageSEO(pageKey: string, params?: Record<string, any>): Pag
   }
 
   // 4. OpenGraph tags
+  // og:image must be an absolute URL: scrapers do not resolve relative paths,
+  // so a relative value silently produces a card with no image.
   const ogTags: Record<string, string> = {
     'og:title': meta.title,
     'og:description': meta.description,
     'og:url': targetCanonical,
-    'og:type': meta.ogType || 'website'
+    'og:type': meta.ogType || 'website',
+    'og:site_name': 'GlobeCareer',
+    'og:locale': 'en_US',
+    'og:image': `${BASE_DOMAIN}${OG_IMAGE_PATH}`,
+    'og:image:width': '1200',
+    'og:image:height': '630',
+    'og:image:alt': 'GlobeCareer — free international resume, CV and cover letter builders'
   };
 
   Object.entries(ogTags).forEach(([prop, val]) => {
@@ -1832,8 +1841,10 @@ export function applyPageSEO(pageKey: string, params?: Record<string, any>): Pag
 
   // 5. Twitter tags
   const twitterTags: Record<string, string> = {
+    'twitter:card': 'summary_large_image',
     'twitter:title': meta.title,
-    'twitter:description': meta.description
+    'twitter:description': meta.description,
+    'twitter:image': `${BASE_DOMAIN}${OG_IMAGE_PATH}`
   };
 
   Object.entries(twitterTags).forEach(([name, val]) => {

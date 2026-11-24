@@ -152,9 +152,9 @@ export const CountryGuidesPage: React.FC<CountryGuidesPageProps> = ({
                 <div className="flex items-center gap-2.5">
                   <span className="text-2xl">{country.flag}</span>
                   <div>
-                    <h3 className="text-base font-bold text-neutral-900 dark:text-neutral-100">
+                    <h2 className="text-base font-bold text-neutral-900 dark:text-neutral-100">
                       {country.name}
-                    </h3>
+                    </h2>
                     <span className="text-xs text-neutral-500 font-mono">
                       {country.cvTerminology} · {country.paperSize.toUpperCase()}
                     </span>
