@@ -4,7 +4,7 @@
  * Verifies a Cloudflare Turnstile token server-side before accepting a contact
  * message, validates the payload, rejects replays and duplicates, stores the
  * accepted message in KV (binding CONTACT_MESSAGES), then notifies the owner by
- * email through Resend (functions/lib/email.ts).
+ * email through the Google Apps Script Web App (functions/lib/email.ts).
  *
  * Ordering is deliberate: the message is durable in KV *before* the email is
  * attempted, so an email outage can never lose a submission. A visitor is told
@@ -14,11 +14,11 @@
  * Required configuration (Pages -> Settings -> Variables and secrets):
  *   TURNSTILE_SECRET_KEY  secret   Turnstile widget secret key (never in the client)
  *   CONTACT_MESSAGES      KV       namespace binding that stores accepted messages
- * Optional (email notification; submissions are still stored without them):
- *   RESEND_API_KEY        secret   Resend API key
- *   CONTACT_TO_EMAIL      text     owner inbox for notifications
- *   CONTACT_FROM_EMAIL    text     verified sender, e.g. "GlobeCareer <contact@globecareer.online>"
- *   CONTACT_REPLY_TO      text     fallback Reply-To address
+ * Optional (owner notification through the Google Apps Script Web App; the
+ * submission is still stored when these are absent):
+ *   CONTACT_WEBHOOK_URL     text    deployed Apps Script Web App /exec URL
+ *   CONTACT_WEBHOOK_SECRET  secret  shared secret, also held in the script's
+ *                                   Script Property WEBHOOK_SECRET
  *   CONTACT_ALLOWED_HOSTNAMES  text  comma-separated hostnames the token may come
  *                                    from (default: globecareer.online,www.globecareer.online)
  */
@@ -266,7 +266,7 @@ export async function onRequestPost(context: {
     ip: string | null;
     userAgent: string;
     turnstile: { hostname: string | null; challengeTs: string | null; action: string | null };
-    notification?: { status: string; attemptedAt: string; providerId?: string | null; reason?: string };
+    notification?: { status: string; attemptedAt: string; detail?: string; reason?: string };
   } = {
     id,
     receivedAt,
@@ -296,7 +296,7 @@ export async function onRequestPost(context: {
   record.notification = {
     status: outcome.status,
     attemptedAt: outcome.attemptedAt,
-    ...(outcome.status === 'sent' ? { providerId: outcome.providerId } : { reason: outcome.reason }),
+    ...(outcome.status === 'sent' ? { detail: outcome.detail } : { reason: outcome.reason }),
   };
 
   try {
