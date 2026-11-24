@@ -84,7 +84,7 @@ export const EN_TRANSLATIONS: Translations = {
     'nav.jobsAndMobility': 'Jobs & Mobility',
     'nav.verifiedJobs': 'Verified Jobs Portal',
     'nav.jobTracker': 'Job Application Tracker',
-    'nav.countryGuides': '40 Country Guides',
+    'nav.countryGuides': '47 Country Guides',
     'nav.signIn': 'Sign In',
     'nav.signUp': 'Sign Up Free',
     'nav.signOut': 'Sign Out',
@@ -93,10 +93,10 @@ export const EN_TRANSLATIONS: Translations = {
     'nav.myTracker': 'My Application Tracker',
 
     // Home
-    'home.badge': '100% Free · 40 Country Standards · Zero Watermarks',
+    'home.badge': '100% Free · 47 Country Standards · Zero Watermarks',
     'home.heroTitle1': 'Build Your Global Career.',
     'home.heroTitle2': 'Stand Out Anywhere.',
-    'home.heroSubtitle': 'Create country-tailored, ATS-friendly resumes, cover letters, and application outreach matching hiring norms in 40 jurisdictions. Free forever.',
+    'home.heroSubtitle': 'Create country-tailored, ATS-friendly resumes, cover letters, and application outreach matching hiring norms in 47 jurisdictions. Free forever.',
     'home.targetDestination': 'Target Destination',
     'home.targetIndustry': 'Target Industry',
     'home.previewCvRules': 'Preview CV Rules',
@@ -180,7 +180,7 @@ export const EN_TRANSLATIONS: Translations = {
     'common.copied': 'Copied!',
     'common.download': 'Download',
     'common.search': 'Search',
-    'common.allCountries': 'All 40 Countries',
+    'common.allCountries': 'All 47 Countries',
     'common.language': 'Language',
   };
 

@@ -269,7 +269,7 @@ export const EXTRA_TRANSLATIONS: Partial<Record<LanguageCode, Translations>> = {
     'home.badge': '100% Gratis · Normas de 40 países · Sin marcas de agua',
     'home.heroTitle1': 'Impulsa tu carrera internacional.',
     'home.heroTitle2': 'Destaca en cualquier país.',
-    'home.heroSubtitle': 'Crea currículums adaptados a las normas de contratación de 40 jurisdicciones y optimizados para ATS. Gratis para siempre.',
+    'home.heroSubtitle': 'Crea currículums adaptados a las normas de contratación de 47 jurisdicciones y optimizados para ATS. Gratis para siempre.',
     'home.targetDestination': 'País de destino',
     'home.targetIndustry': 'Sector profesional',
     'home.previewCvRules': 'Ver normas de CV',

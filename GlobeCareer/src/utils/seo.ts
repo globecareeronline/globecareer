@@ -24,7 +24,7 @@ const OG_IMAGE_PATH = '/og-image.png';
 export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => PageSEOMetadata> = {
   home: () => ({
     title: 'GlobeCareer – Build Your Global Career. Stand Out Anywhere.',
-    description: 'Free international career platform. Create ATS-friendly resumes, cover letters, recommendation letters, outreach emails, and interview preparation for 40+ countries.',
+    description: 'Free international career platform. Create ATS-friendly resumes, cover letters, recommendation letters, outreach emails, and interview preparation for 47 countries.',
     canonicalPath: '/',
     ogType: 'website',
     keywords: [
@@ -52,7 +52,7 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
             priceCurrency: 'USD'
           },
           featureList: [
-            '40 Country-Specific Hiring Standards',
+            '47 Country-Specific Hiring Standards',
             'Photo vs No-Photo Regulation Filtering',
             '100% Vector PDF and Microsoft Word DOCX Export',
             'Real-Time ATS Keyword Matcher',

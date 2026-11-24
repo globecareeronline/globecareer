@@ -442,7 +442,7 @@ export const CountryDetailPage: React.FC<CountryDetailPageProps> = ({
               onClick={onBack}
               className="text-xs font-bold text-blue-600 hover:text-blue-700 flex items-center gap-1 transition-colors self-start sm:self-auto"
             >
-              <span>View All 40 Country Guides</span>
+              <span>View All 47 Country Guides</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </div>

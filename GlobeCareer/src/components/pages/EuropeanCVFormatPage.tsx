@@ -383,7 +383,7 @@ export const EuropeanCVFormatPage: React.FC<EuropeanCVFormatPageProps> = ({
               onClick={() => onNavigate('country-guides')}
               className="text-blue-600 dark:text-blue-400 font-bold hover:underline flex items-center gap-1"
             >
-              Browse Complete Directory of 40 Country CV Guides
+              Browse Complete Directory of 47 Country CV Guides
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </div>

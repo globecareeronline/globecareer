@@ -10,6 +10,7 @@
     "prerender": "node scripts/prerender.mjs",
     "audit:routes": "node scripts/audit-routes.mjs",
     "audit:seo": "node scripts/audit-seo.mjs",
+    "report:search": "node scripts/search-intelligence.mjs",
     "serve:dist": "node scripts/serve-dist.mjs",
     "preview": "vite preview",
     "clean": "rm -rf dist server.js",
