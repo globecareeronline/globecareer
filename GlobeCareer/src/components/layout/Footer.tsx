@@ -36,7 +36,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           </div>
         </div>
 
-        {/* 2. Four Main Sections in Upper Row: Career Tools, Template Libraries, Jobs & Mobility, About & Legal */}
+        {/* 2. Four Main Sections in Upper Row: Career Tools, Jobs & Mobility, Templates, About & Legal */}
         <div className="py-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 border-b border-neutral-200 dark:border-neutral-800">
           {/* Group 1: Career Tools */}
           <div className="space-y-3">
@@ -165,62 +165,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             </div>
           </div>
 
-          {/* Group 2: Template Libraries */}
-          <div className="space-y-3">
-            <h3 className="font-bold text-neutral-900 dark:text-neutral-100 uppercase tracking-wider text-[11px]">{t('nav.resumeTemplates', 'Template Libraries')}</h3>
-            <div className="flex flex-col space-y-2 text-xs">
-              <a
-                href="/templates"
-                onClick={(e) => {
-                  e.preventDefault();
-                  onNavigate('templates');
-                }}
-                className="text-neutral-600 dark:text-neutral-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-              >{t('nav.resumeTemplates', 'Resume & CV Templates')}</a>
-              <a
-                href="/letter-templates"
-                onClick={(e) => {
-                  e.preventDefault();
-                  onNavigate('letter-templates');
-                }}
-                className="text-neutral-600 dark:text-neutral-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-              >{t('nav.letterTemplates', 'Letter & Email Templates')}</a>
-              <a
-                href="/bio-templates"
-                onClick={(e) => {
-                  e.preventDefault();
-                  onNavigate('bio-templates');
-                }}
-                className="text-neutral-600 dark:text-neutral-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
-              >{t('nav.bioGenerator', 'Professional Bio Templates (15)')}</a>
-              <a
-                href="/summary-templates"
-                onClick={(e) => {
-                  e.preventDefault();
-                  onNavigate('summary-templates');
-                }}
-                className="text-neutral-600 dark:text-neutral-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
-              >{t('nav.summaryGenerator', 'Summary & Objective Templates (18)')}</a>
-              <a
-                href="/resignation-letter-templates"
-                onClick={(e) => {
-                  e.preventDefault();
-                  onNavigate('resignation-letter-templates');
-                }}
-                className="text-neutral-600 dark:text-neutral-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
-              >{t('nav.resignationLetter', 'Resignation Letter Templates (11)')}</a>
-              <a
-                href="/resume-examples"
-                onClick={(e) => {
-                  e.preventDefault();
-                  onNavigate('job-examples');
-                }}
-                className="text-neutral-600 dark:text-neutral-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-              >{t('nav.resumeExamples', 'Role-Specific Resume Examples')}</a>
-            </div>
-          </div>
-
-          {/* Group 3: Jobs & Mobility */}
+          {/* Group 2: Jobs & Mobility */}
           <div className="space-y-3">
             <h3 className="font-bold text-neutral-900 dark:text-neutral-100 uppercase tracking-wider text-[11px]">{t('nav.jobsAndMobility', 'Jobs & Mobility')}</h3>
             <div className="flex flex-col space-y-2 text-xs">
@@ -312,6 +257,61 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 }}
                 className="text-neutral-600 dark:text-neutral-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium text-blue-600/90 dark:text-blue-400/90"
               >References on a Resume Guide</a>
+            </div>
+          </div>
+
+          {/* Group 3: Templates */}
+          <div className="space-y-3">
+            <h3 className="font-bold text-neutral-900 dark:text-neutral-100 uppercase tracking-wider text-[11px]">{t('nav.templates', 'Templates')}</h3>
+            <div className="flex flex-col space-y-2 text-xs">
+              <a
+                href="/templates"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigate('templates');
+                }}
+                className="text-neutral-600 dark:text-neutral-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              >{t('nav.resumeTemplates', 'Resume & CV Templates')}</a>
+              <a
+                href="/letter-templates"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigate('letter-templates');
+                }}
+                className="text-neutral-600 dark:text-neutral-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              >{t('nav.letterTemplates', 'Letter & Email Templates')}</a>
+              <a
+                href="/bio-templates"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigate('bio-templates');
+                }}
+                className="text-neutral-600 dark:text-neutral-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
+              >{t('nav.bioGenerator', 'Professional Bio Templates (15)')}</a>
+              <a
+                href="/summary-templates"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigate('summary-templates');
+                }}
+                className="text-neutral-600 dark:text-neutral-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
+              >{t('nav.summaryGenerator', 'Summary & Objective Templates (18)')}</a>
+              <a
+                href="/resignation-letter-templates"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigate('resignation-letter-templates');
+                }}
+                className="text-neutral-600 dark:text-neutral-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
+              >{t('nav.resignationLetter', 'Resignation Letter Templates (11)')}</a>
+              <a
+                href="/resume-examples"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigate('job-examples');
+                }}
+                className="text-neutral-600 dark:text-neutral-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              >{t('nav.resumeExamples', 'Role-Specific Resume Examples')}</a>
             </div>
           </div>
 
