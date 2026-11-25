@@ -1366,7 +1366,7 @@ export const HomePage: React.FC<HomePageProps> = ({
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="p-6 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-3xl space-y-3 shadow-xs">
             <p className="text-xs text-neutral-700 dark:text-neutral-300 leading-relaxed">
-              Selecting the United States switches to Letter paper, a single-column one-page layout, and no photo — the format US recruiters and resume parsers expect.
+              Selecting the United States applies Letter paper, a single-column layout, a one-page format, and no profile photo, following common US resume conventions.
             </p>
             <div className="pt-2 border-t border-neutral-100 dark:border-neutral-800">
               <span className="text-xs font-bold block">US formatting, applied automatically</span>
