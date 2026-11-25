@@ -57,8 +57,8 @@ export const HomePage: React.FC<HomePageProps> = ({
       a: "In the United States and Canada, a resume is a concise 1-page document strictly focused on relevant work achievements without personal details or headshots. In the United Kingdom, Europe, and Australia, 'Curriculum Vitae' or 'CV' is standard, typically 2 pages, with Europe customarily expecting professional headshots and date of birth. GlobeCareer automatically reformats your document according to your target nation's legal and cultural standards."
     },
     {
-      q: "Why are photos strictly prohibited on US and UK resumes?",
-      a: "Under US EEOC regulations and the UK Equality Act 2010, hiring managers and applicant tracking systems often reject resumes with photos on sight to protect against unconscious bias or discrimination claims regarding age, race, or gender. Conversely, in Germany, Austria, and Switzerland, a professional headshot (Bewerbungsfoto) remains customary."
+      q: "Should a US or UK resume include a photo?",
+      a: "Conventionally, no. US university careers guidance advises leaving out photographs and other personal data, and UK government careers guidance says to omit your age, date of birth, marital status and nationality. Anti-discrimination law in both countries governs how employers must treat applicants, but neither bans a photo on a CV. In Germany, Austria and Switzerland a professional headshot (Bewerbungsfoto) remains a common convention."
     },
     {
       q: "How does GlobeCareer verify international job listings?",
@@ -241,10 +241,10 @@ export const HomePage: React.FC<HomePageProps> = ({
             </div>
             <div className="text-xs text-rose-700 dark:text-rose-400 font-semibold flex items-center gap-1.5">
               <AlertTriangle className="w-3.5 h-3.5" />
-              Photos Strictly Prohibited
+              Photos Omitted by Convention
             </div>
             <p className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
-              EEOC civil rights regulations lead corporations to discard resumes with photos to avoid discrimination claims. Metrics ($ and %) are essential.
+              US careers guidance advises leaving photos and personal details off a resume; federal anti-discrimination law governs hiring decisions but does not ban a CV photo. Metrics ($ and %) are essential.
             </p>
           </div>
 
@@ -259,10 +259,10 @@ export const HomePage: React.FC<HomePageProps> = ({
             </div>
             <div className="text-xs text-blue-700 dark:text-blue-400 font-semibold flex items-center gap-1.5">
               <CheckCircle2 className="w-3.5 h-3.5" />
-              Photo Customary & Expected
+              Photo Customary, Not Required
             </div>
             <p className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
-              Employers expect a formal Bewerbungsfoto in the upper corner. Chronological dates, birth place, and certified German language levels (A1–C2) are standard.
+              A formal Bewerbungsfoto in the upper corner is still a common convention, but the Federal Employment Agency notes a photo is no longer a must. Chronological dates and certified German language levels (A1–C2) are standard.
             </p>
           </div>
 
@@ -277,7 +277,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             </div>
             <div className="text-xs text-rose-700 dark:text-rose-400 font-semibold flex items-center gap-1.5">
               <AlertTriangle className="w-3.5 h-3.5" />
-              No Headshots (Equality Act)
+              No Photo by Convention
             </div>
             <p className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
               Two pages is standard. Leads with a concise Personal Profile. British English spelling and "References available upon request" are expected.
@@ -295,10 +295,10 @@ export const HomePage: React.FC<HomePageProps> = ({
             </div>
             <div className="text-xs text-purple-700 dark:text-purple-400 font-semibold flex items-center gap-1.5">
               <ShieldCheck className="w-3.5 h-3.5" />
-              Mandatory GDPR Clause
+              Optional Privacy Clause
             </div>
             <p className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
-              Polish law strictly forbids recruiters from reviewing CVs without the statutory RODO consent clause. GlobeCareer automatically injects this verified disclaimer.
+              Polish labour law sets the data an employer may collect from a candidate. The data protection authority (UODO) says a blanket recruitment-consent clause in a CV is not appropriate and may be needed only in specific situations. GlobeCareer adds a privacy clause by default that you can edit or remove.
             </p>
           </div>
         </div>
@@ -1386,7 +1386,7 @@ export const HomePage: React.FC<HomePageProps> = ({
 
           <div className="p-6 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-3xl space-y-3 shadow-xs">
             <p className="text-xs text-neutral-700 dark:text-neutral-300 leading-relaxed italic">
-              "Having the Polish statutory RODO clause automatically added to my CV saved me from getting my application rejected during the first screening round in Warsaw."
+              "Having a Polish privacy clause added automatically to my CV meant I was not scrambling to fix the paperwork before the first screening round in Warsaw."
             </p>
             <div className="pt-2 border-t border-neutral-100 dark:border-neutral-800">
               <span className="text-xs font-bold block">Mikołaj Zieliński</span>

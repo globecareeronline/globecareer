@@ -11,7 +11,7 @@ export const COUNTRIES: CountryConfig[] = [
     standardLength: '1 page strictly (2 pages max for 10+ years experience)',
     paperSize: 'letter',
     photoRule: 'discouraged',
-    photoNotice: 'Photographs are strictly discouraged on US resumes under EEOC (Equal Employment Opportunity Commission) anti-discrimination practices. Resumes with photos are often discarded immediately to prevent bias claims.',
+    photoNotice: 'US careers guidance advises leaving photographs and other personal details off a resume. Federal equal-employment law (EEOC) covers discrimination in hiring but has no photo-specific rule, so omitting a photo is a strong convention rather than a legal prohibition.',
     dateConvention: 'MM/YYYY',
     dateFormatExample: '05/2021 – Present',
     addressConvention: 'City, State (e.g., Austin, TX)',
@@ -36,7 +36,8 @@ export const COUNTRIES: CountryConfig[] = [
       'State US work authorization if applying from abroad or on visa'
     ],
     sources: [
-      { title: 'EEOC Pre-Employment Inquiries Guidelines', institution: 'US Equal Employment Opportunity Commission', notes: 'Prohibits asking for age, marital status, photo' },
+      { title: 'EEOC - Overview', institution: 'US Equal Employment Opportunity Commission', notes: 'Federal anti-discrimination law covers hiring; no photo-specific rule' },
+      { title: 'Resume Content & Formatting', institution: 'Georgetown University Cawley Career Education Center', notes: 'Advises omitting photograph, birth date and marital status' },
       { title: 'USAJOBS Federal Resume Guide', institution: 'US Office of Personnel Management', notes: 'Detailed specs for US government employment' }
     ]
   },
@@ -87,7 +88,7 @@ export const COUNTRIES: CountryConfig[] = [
     standardLength: 'Strictly 2 pages standard',
     paperSize: 'a4',
     photoRule: 'discouraged',
-    photoNotice: 'Photographs are not recommended in the UK under the Equality Act 2010. Including a headshot is seen as unorthodox in corporate hiring and risks automatic ATS rejection.',
+    photoNotice: 'Leave the photograph off a UK CV: government careers guidance also says to omit age, date of birth, marital status and nationality. The Equality Act 2010 protects applicants from discrimination but does not itself prohibit a CV photo.',
     dateConvention: 'MM/YYYY or Month Year',
     dateFormatExample: 'Sept 2021 – Present',
     addressConvention: 'Town/City, County / Postcode (e.g., Manchester, M1 4BT)',
@@ -198,7 +199,7 @@ export const COUNTRIES: CountryConfig[] = [
     standardLength: '1 to 2 pages (tabular format)',
     paperSize: 'a4',
     photoRule: 'standard',
-    photoNotice: 'A professional application photograph (Bewerbungsfoto) is traditional and widely expected in Germany, positioned in the top right corner. While legally not mandatory under the AGG (General Equal Treatment Act), recruiters still strongly prefer it.',
+    photoNotice: 'A professional application photograph (Bewerbungsfoto) in the top right corner remains a common German convention, especially in traditional sectors, but it is not required: the Federal Employment Agency notes a photo is no longer a must. Omitting it breaches no legal obligation.',
     dateConvention: 'MM/YYYY or DD.MM.YYYY',
     dateFormatExample: '04/2020 – Heute',
     addressConvention: 'Straße, Hausnr., PLZ Ort (e.g., Musterstr. 12, 10115 Berlin)',
@@ -223,7 +224,7 @@ export const COUNTRIES: CountryConfig[] = [
       'Traditional applications include City, Date, and handwritten/digital signature at bottom'
     ],
     sources: [
-      { title: 'Bewerbungstipps: Der Lebenslauf', institution: 'Bundesagentur für Arbeit', notes: 'German Federal Employment Agency' }
+      { title: 'Bewerbungstipps: Der Lebenslauf', institution: 'Bundesagentur für Arbeit', notes: 'German Federal Employment Agency; states a CV photo is no longer a must' }
     ]
   },
   {
@@ -236,7 +237,7 @@ export const COUNTRIES: CountryConfig[] = [
     standardLength: 'Strictly 1 page for junior/mid, 2 pages for senior/exec',
     paperSize: 'a4',
     photoRule: 'standard',
-    photoNotice: 'A clean professional photo is standard on French CVs. While French labor code forbids discrimination, recruiters still customary expect a professional portrait.',
+    photoNotice: 'A clean professional photo is a common convention on French CVs, not a legal requirement. French labour law bars discrimination in hiring and limits applicant data to what relates directly to the job.',
     dateConvention: 'MM/YYYY',
     dateFormatExample: '01/2021 – Présent',
     addressConvention: 'Code Postal, Ville (e.g., 75008 Paris)',
@@ -311,7 +312,7 @@ export const COUNTRIES: CountryConfig[] = [
     standardLength: '2 pages standard',
     paperSize: 'a4',
     photoRule: 'discouraged',
-    photoNotice: 'Photos are discouraged in Ireland under the Employment Equality Acts 1998-2015 to prevent bias based on gender, race, or age.',
+    photoNotice: 'Photos are not the convention on Irish CVs: EURES advises supplying a photograph only if an application form requests one. The Employment Equality Acts 1998-2015 prohibit discrimination in hiring but do not ban a CV photo.',
     dateConvention: 'MM/YYYY',
     dateFormatExample: '08/2021 – Present',
     addressConvention: 'Town, County, Eircode (e.g., Dublin 2, D02 X285)',
@@ -364,7 +365,7 @@ export const COUNTRIES: CountryConfig[] = [
       gdprClauseText: 'Autorizzo il trattamento dei miei dati personali ai sensi del D.Lgs. 196/2003 e del Regolamento UE 2016/679 (GDPR).',
       drivingLicenseCommon: true
     },
-    atsRecommendations: 'Ensure privacy consent clause is present at the end of the document, otherwise recruiters cannot process data under Italian law.',
+    atsRecommendations: 'Include a short privacy authorisation at the end of the document; Italian employers generally expect consent for processing application data under the GDPR.',
     recommendedStructure: ['summary', 'experience', 'education', 'skills', 'languages', 'certifications'],
     keyHiringNuances: [
       'Include the legal privacy consent clause at the footer',
@@ -459,7 +460,7 @@ export const COUNTRIES: CountryConfig[] = [
     standardLength: '1 to 2 pages',
     paperSize: 'a4',
     photoRule: 'standard',
-    photoNotice: 'A professional photograph is standard and expected in Poland. Furthermore, Polish law strictly mandates a GDPR (RODO) consent clause at the bottom.',
+    photoNotice: 'A professional photograph is a common convention on Polish CVs, though labour-law provisions do not require one. A privacy (RODO) clause is optional: the Polish data protection authority (UODO) says a blanket recruitment-consent clause in a CV is not appropriate, and extra data may be processed on consent where genuinely needed.',
     dateConvention: 'MM.YYYY or MM/YYYY',
     dateFormatExample: '09.2021 – obecnie',
     addressConvention: 'Kod pocztowy, Miejscowość (e.g., 00-001 Warszawa)',
@@ -476,15 +477,16 @@ export const COUNTRIES: CountryConfig[] = [
       gdprClauseText: 'Wyrażam zgodę na przetwarzanie moich danych osobowych dla potrzeb niezbędnych do realizacji procesu rekrutacji (zgodnie z ustawą z dnia 10 maja 2018 roku o ochronie danych osobowych (Dz. Ustaw z 2018, poz. 1000) oraz zgodnie z Rozporządzeniem Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. w sprawie ochrony osób fizycznych w związku z przetwarzaniem danych osobowych i w sprawie swobodnego przepływu takich danych oraz uchylenia dyrektywy 95/46/WE (RODO)).',
       drivingLicenseCommon: true
     },
-    atsRecommendations: 'MANDATORY: You must include the Polish GDPR/RODO clause in the footer; Polish recruiters are legally prohibited from reviewing CVs without this clause.',
+    atsRecommendations: 'COMMONLY USED, NOT MANDATORY: a short RODO privacy clause is widely included in Polish applications and the builder adds one by default. UODO warns a blanket consent clause in a CV is not appropriate, so treat it as an editable convention rather than a statutory requirement.',
     recommendedStructure: ['summary', 'experience', 'education', 'skills', 'languages', 'certifications'],
     keyHiringNuances: [
-      'RODO consent clause is a strict legal requirement in Poland',
+      'RODO consent clause is a common convention, not a statutory requirement (UODO guidance)',
       'Photo is standard practice',
       'Tech sector in Warsaw/Kraków/Wrocław accepts English CVs with Polish RODO clause'
     ],
     sources: [
-      { title: 'Zasady ochrony danych w rekrutacji (RODO)', institution: 'UODO (Urząd Ochrony Danych Osobowych)', notes: 'Polish Data Protection Office' }
+      { title: 'ABC rekrutacji', institution: 'UODO (Urząd Ochrony Danych Osobowych)', notes: 'Photo not required by labour law; extra data may be processed on consent' },
+      { title: 'Ochrona danych osobowych w miejscu pracy - Poradnik dla pracodawców', institution: 'UODO (Urząd Ochrony Danych Osobowych)', notes: 'States a blanket recruitment-consent clause in a CV is not appropriate' }
     ]
   },
   {

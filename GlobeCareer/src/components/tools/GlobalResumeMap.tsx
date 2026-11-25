@@ -374,10 +374,10 @@ export const GlobalResumeMap: React.FC<GlobalResumeMapProps> = ({
           <tbody className="divide-y divide-neutral-100 dark:divide-neutral-800">
             <tr>
               <td className="py-3.5 px-3 font-bold text-neutral-900 dark:text-neutral-100">North America (US & Canada)</td>
-              <td className="py-3.5 px-3 text-rose-600 font-semibold">Strictly Discouraged</td>
+              <td className="py-3.5 px-3 text-rose-600 font-semibold">Discouraged</td>
               <td className="py-3.5 px-3">1 Page (2 max for 10+ yrs)</td>
               <td className="py-3.5 px-3">US Letter</td>
-              <td className="py-3.5 px-3 text-neutral-500">EEOC / Canadian Human Rights Act</td>
+              <td className="py-3.5 px-3 text-neutral-500">Anti-discrimination law (no photo rule)</td>
               <td className="py-3.5 px-3">
                 <button
                   type="button"
@@ -393,7 +393,7 @@ export const GlobalResumeMap: React.FC<GlobalResumeMapProps> = ({
               <td className="py-3.5 px-3 text-rose-600 font-semibold">Discouraged</td>
               <td className="py-3.5 px-3">Strictly 2 Pages</td>
               <td className="py-3.5 px-3">A4</td>
-              <td className="py-3.5 px-3 text-neutral-500">Equality Act 2010</td>
+              <td className="py-3.5 px-3 text-neutral-500">Equality Act 2010 (no photo rule)</td>
               <td className="py-3.5 px-3">
                 <button
                   type="button"

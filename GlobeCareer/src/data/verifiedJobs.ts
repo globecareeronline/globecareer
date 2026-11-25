@@ -30,7 +30,7 @@ export const VERIFIED_JOBS: VerifiedJob[] = [
     canonicalUrl: 'https://boards.greenhouse.io/stripe/jobs/cloud-eng',
     applicationUrl: 'https://boards.greenhouse.io/stripe/jobs/cloud-eng#apply',
     employerContactEmail: undefined, // Stripe uses direct ATS submission only; no public recruitment email published
-    contactEmailNotes: 'Stripe exclusively processes candidates via Greenhouse ATS to preserve EEOC audit trails.',
+    contactEmailNotes: 'Stripe processes candidates through Greenhouse, its applicant tracking system.',
     verificationStatus: 'verified',
     status: 'active',
     deadline: undefined, // Employer has not published a fixed deadline; rolling evaluation
@@ -190,7 +190,7 @@ export const VERIFIED_JOBS: VerifiedJob[] = [
       'Knowledge of UK FCA regulations and Open Banking standards'
     ],
     skills: ['TypeScript', 'React', 'Go', 'Microservices', 'PostgreSQL', 'Docker'],
-    applicationInstructions: 'Apply with your 2-page UK standard CV (no photo required per UK Equality Act 2010).',
+    applicationInstructions: 'Apply with your 2-page UK standard CV (no photo by UK convention).',
     verificationEvidence: {
       domainChecked: true,
       domainName: 'monzo.com',

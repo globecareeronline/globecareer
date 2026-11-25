@@ -311,10 +311,10 @@ export const PersonalEditor: React.FC<PersonalEditorProps> = ({ data, onChange }
           <div className="p-3.5 bg-neutral-100 dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-700 rounded-xl space-y-2">
             <div className="flex items-center gap-2 text-xs font-bold text-neutral-800 dark:text-neutral-200">
               <ShieldCheck className="w-4 h-4 text-blue-600" />
-              Mandatory Polish GDPR (RODO) Recruitment Clause
+              Polish GDPR (RODO) Privacy Clause (optional)
             </div>
             <p className="text-[11px] text-neutral-600 dark:text-neutral-400">
-              Polish law strictly prohibits employers from reviewing CVs without this clause.
+              Commonly included on Polish CVs. The data protection authority (UODO) notes a blanket consent clause is not appropriate, so edit or remove this text to fit the application.
             </p>
             <textarea
               rows={3}

@@ -138,8 +138,8 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
     // Highly customized SEO metadata for major search countries
     if (countryId === 'us') {
       return {
-        title: 'USA Resume Format & Template Guide (No-Photo EEOC) | GlobeCareer',
-        description: 'Learn strict US resume standards: 1-page limit, US Letter dimensions, and EEOC anti-discrimination photo prohibitions. Download ATS templates.',
+        title: 'USA Resume Format & Template Guide | GlobeCareer',
+        description: 'US resume conventions: 1-page limit, US Letter size, and why photos are omitted (federal law bars hiring discrimination, not CV photos).',
         canonicalPath: '/country/us',
         ogType: 'article',
         keywords: ['usa resume format', 'resume template usa', 'federal resume example', 'us resume photo rules', 'eeoc resume standards'],
@@ -147,7 +147,7 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
           '@context': 'https://schema.org',
           '@type': 'Article',
           headline: 'United States Resume Standards & Hiring Regulations',
-          description: 'Official hiring guidelines for US resumes: photo prohibitions, 1-page limits, and EEOC compliance.',
+          description: 'US resume conventions: photos omitted by custom, 1-page limits, and the anti-discrimination framework that governs hiring.',
           mainEntityOfPage: `${BASE_DOMAIN}/country/us`
         }
       };
@@ -156,7 +156,7 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
     if (countryId === 'uk') {
       return {
         title: 'UK CV Format (2-Page British Standard) | GlobeCareer',
-        description: 'Master the standard 2-page British Curriculum Vitae format with personal profile, Equality Act photo guidelines, and UK spelling conventions.',
+        description: 'Master the standard 2-page British Curriculum Vitae format with personal profile, photo convention guidance, and UK spelling conventions.',
         canonicalPath: '/country/uk',
         ogType: 'article',
         keywords: ['uk cv format', 'cv format uk', 'cv example uk', 'british resume template', 'uk cv length'],
@@ -164,7 +164,7 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
           '@context': 'https://schema.org',
           '@type': 'Article',
           headline: 'United Kingdom Curriculum Vitae Standards',
-          description: 'Official British CV standards: 2-page format, Equality Act photo guidelines, and personal profile structure.',
+          description: 'British CV conventions: 2-page format, photo guidance, and personal profile structure.',
           mainEntityOfPage: `${BASE_DOMAIN}/country/uk`
         }
       };
@@ -173,7 +173,7 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
     if (countryId === 'de') {
       return {
         title: 'German CV Format (Tabellarischer Lebenslauf Guide) | GlobeCareer',
-        description: 'Comprehensive guide to the German Tabellarischer Lebenslauf: Bewerbungsfoto placement, chronological structure, and DIN A4 formatting standards.',
+        description: 'Comprehensive guide to the German Tabellarischer Lebenslauf: optional Bewerbungsfoto placement, chronological structure, and DIN A4 formatting standards.',
         canonicalPath: '/country/de',
         ogType: 'article',
         keywords: ['german cv format', 'tabellarischer lebenslauf', 'cv germany', 'deutsch cv format', 'bewerbungsfoto guide'],
@@ -181,7 +181,7 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
           '@context': 'https://schema.org',
           '@type': 'Article',
           headline: 'German Tabellarischer Lebenslauf Standards',
-          description: 'German employment documentation requirements including Bewerbungsfoto norms and tabular chronology.',
+          description: 'German CV conventions including Bewerbungsfoto placement and tabular chronology.',
           mainEntityOfPage: `${BASE_DOMAIN}/country/de`
         }
       };
@@ -1573,10 +1573,10 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
           mainEntity: [
             {
               '@type': 'Question',
-              name: 'Which countries strictly prohibit photos on resumes?',
+              name: 'Which countries conventionally leave photos off resumes?',
               acceptedAnswer: {
                 '@type': 'Answer',
-                text: 'Photos are strictly discouraged in the United States (EEOC guidelines), United Kingdom (Equality Act 2010), Canada (Human Rights Act), Australia, and Ireland to avoid unconscious bias claims.'
+                text: 'Photos are conventionally left off resumes in the United States, United Kingdom, Canada, Australia and Ireland to avoid unconscious bias. This is careers guidance rather than a statutory ban: anti-discrimination law governs hiring decisions, not the presence of a photograph.'
               }
             },
             {
@@ -1584,7 +1584,7 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
               name: 'Which countries require a professional photo on a CV?',
               acceptedAnswer: {
                 '@type': 'Answer',
-                text: 'Professional photos are standard and customary in Germany (Lebenslauf), Austria, Switzerland, France, Japan (Rirekisho), and commonly expected across the Middle East (UAE, Saudi Arabia, Qatar).'
+                text: 'Photos are commonly used and customary in Germany (Lebenslauf), Austria, Switzerland, France, Japan (Rirekisho), and across the Middle East (UAE, Saudi Arabia, Qatar), though they are not generally a legal requirement.'
               }
             }
           ]

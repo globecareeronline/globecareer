@@ -33,7 +33,7 @@ export const EuropeanCVFormatPage: React.FC<EuropeanCVFormatPageProps> = ({
 
   const euCountryRules = [
     { country: 'Germany', code: 'de', photo: 'Customary (Bewerbungsfoto)', pages: '1–2 Pages', language: 'German or English', note: 'Sign & date at bottom; chronological tabular format (Tabellarischer Lebenslauf).' },
-    { country: 'United Kingdom', code: 'uk', photo: 'Strictly Discouraged', pages: '2 Pages Standard', language: 'British English', note: 'UK Equality Act prohibits discrimination; omit photo, DOB, marital status, nationality.' },
+    { country: 'United Kingdom', code: 'uk', photo: 'Discouraged', pages: '2 Pages Standard', language: 'British English', note: 'Omit photo, date of birth, marital status and nationality by convention; the Equality Act 2010 covers discrimination in hiring.' },
     { country: 'France', code: 'fr', photo: 'Optional / Customary', pages: '1–2 Pages', language: 'French or English', note: 'Concise layout; include professional title, mobility/driving license, and language proficiencies.' },
     { country: 'Netherlands', code: 'nl', photo: 'Neutral / Optional', pages: '1–2 Pages', language: 'Dutch or English', note: 'Direct and factual; high emphasis on measurable competencies and project outcomes.' },
     { country: 'Ireland', code: 'ie', photo: 'Strictly Discouraged', pages: '2 Pages', language: 'English', note: 'Similar to UK conventions; personal profile at the top, clear chronological work history.' },
@@ -303,7 +303,7 @@ export const EuropeanCVFormatPage: React.FC<EuropeanCVFormatPageProps> = ({
                 What is the difference between a European CV and an American resume?
               </h3>
               <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
-                An American resume strictly adheres to a 1-page rule (for professionals under 10 years experience), US Letter paper dimensions, and strictly forbids photos under EEOC regulations. A European CV is standardly 2 pages on ISO A4 paper, frequently accommodates professional headshots in mainland Europe (Germany, France, Austria, Switzerland), and features standardized language ratings (CEFR).
+                An American resume conventionally follows a 1-page rule (for professionals under 10 years experience), uses US Letter paper dimensions, and leaves photographs out by convention (US equal-employment law bars hiring discrimination but does not ban a CV photo). A European CV is standardly 2 pages on ISO A4 paper, frequently accommodates professional headshots in mainland Europe (Germany, France, Austria, Switzerland), and features standardized language ratings (CEFR).
               </p>
             </div>
 
@@ -312,7 +312,7 @@ export const EuropeanCVFormatPage: React.FC<EuropeanCVFormatPageProps> = ({
                 Should I put a photo on my European CV?
               </h3>
               <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
-                It depends on the specific country. In Germany, Austria, and Switzerland, a professional headshot (Bewerbungsfoto) is customary. In France and Spain, photos are widely accepted. However, in the United Kingdom and Ireland, photographs are strictly discouraged to avoid violating anti-discrimination legislation.
+                It depends on the specific country. In Germany, Austria, and Switzerland, a professional headshot (Bewerbungsfoto) is customary. In France and Spain, photos are widely accepted. However, in the United Kingdom and Ireland, photographs are conventionally left off; that is careers guidance, not a statutory ban.
               </p>
             </div>
 

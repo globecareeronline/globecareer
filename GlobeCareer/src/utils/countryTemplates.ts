@@ -27,12 +27,12 @@ const COUNTRY_TEMPLATE_MAP: Record<string, { templateId: TemplateId; rationale: 
   // North America
   us: {
     templateId: 'ats_classic',
-    rationale: 'Engineered for US ATS parsing and strict EEOC anti-discrimination compliance: clean single-column hierarchy, no headshot photo, standard section headings, and quantifiable achievement metrics.',
-    governingRuleOrLaw: 'US EEOC (Equal Employment Opportunity Commission) Pre-Employment Guidelines'
+    rationale: 'Engineered for US ATS parsing and US resume conventions: clean single-column hierarchy, no headshot photo, standard section headings, and quantifiable achievement metrics.',
+    governingRuleOrLaw: 'US Letter format; EEOC anti-discrimination law (no photo-specific rule)'
   },
   ca: {
     templateId: 'ats_classic',
-    rationale: 'Fully compliant with Canadian Human Rights Act standards: blind-screening single-column ATS architecture, zero headshot or SIN, Letter size, and dedicated prominence for achievements and volunteer experience.',
+    rationale: 'Aligned with Canadian resume conventions: blind-screening single-column ATS architecture, zero headshot or SIN, Letter size, and dedicated prominence for achievements and volunteer experience.',
     governingRuleOrLaw: 'Canadian Human Rights Act & Job Bank Canada Standards'
   },
 
@@ -44,17 +44,17 @@ const COUNTRY_TEMPLATE_MAP: Record<string, { templateId: TemplateId; rationale: 
   },
   au: {
     templateId: 'uk_corporate',
-    rationale: 'Tailored for Australian employment practices: comprehensive 2 to 3 page Commonwealth layout with detailed organizational scope, Fair Work Act blind screening (no photo), and formal referees section.',
+    rationale: 'Tailored for Australian employment practices: comprehensive 2 to 3 page Commonwealth layout with detailed organizational scope, no-photo convention, and formal referees section.',
     governingRuleOrLaw: 'Fair Work Act 2009 & Workforce Australia Guidelines'
   },
   nz: {
     templateId: 'uk_corporate',
-    rationale: 'Aligned with New Zealand employment norms: chronological 2-page CV structure, no photo to uphold Human Rights Act compliance, and clear professional referee statements.',
+    rationale: 'Aligned with New Zealand employment norms: chronological 2-page CV structure, no-photo convention, and clear professional referee statements.',
     governingRuleOrLaw: 'Careers New Zealand & Employment New Zealand Standards'
   },
   ie: {
     templateId: 'uk_corporate',
-    rationale: 'Strictly complies with Irish Employment Equality Acts: standard 2-page European English CV, no headshot, and concise personal statement.',
+    rationale: 'Aligned with Irish CV conventions and the Employment Equality Acts: standard 2-page European English CV, no headshot, and concise personal statement.',
     governingRuleOrLaw: 'Irish Employment Equality Acts (WRC)'
   },
   za: {
@@ -66,7 +66,7 @@ const COUNTRY_TEMPLATE_MAP: Record<string, { templateId: TemplateId; rationale: 
   // DACH & Continental Europe (Photo Customary)
   de: {
     templateId: 'european_modern',
-    rationale: 'Traditional German tabular Lebenslauf layout: designated placement for a professional Bewerbungsfoto, chronological date-range milestones, A4 sizing, and standardized language proficiency grading.',
+    rationale: 'Traditional German tabular Lebenslauf layout: optional placement for a professional Bewerbungsfoto, chronological date-range milestones, A4 sizing, and standardized language proficiency grading.',
     governingRuleOrLaw: 'German Bundesagentur für Arbeit Standards (Allgemeines Gleichbehandlungsgesetz)'
   },
   at: {
@@ -125,8 +125,8 @@ const COUNTRY_TEMPLATE_MAP: Record<string, { templateId: TemplateId; rationale: 
   // Central & Eastern Europe
   pl: {
     templateId: 'european_modern',
-    rationale: 'Standard Polish CV format: includes professional photograph, contact demographics, and dedicated footer space for the mandatory Polish RODO/GDPR consent clause.',
-    governingRuleOrLaw: 'Polish Labor Code (Kodeks Pracy) & RODO Requirements'
+    rationale: 'Standard Polish CV format: commonly includes a professional photograph, contact details, and footer space for an optional Polish RODO/GDPR privacy clause.',
+    governingRuleOrLaw: 'Polish Labour Code (Kodeks Pracy) & GDPR/RODO (privacy clause optional per UODO)'
   },
   cz: {
     templateId: 'european_modern',

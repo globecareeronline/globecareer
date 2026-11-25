@@ -189,7 +189,7 @@ export const CountryDetailPage: React.FC<CountryDetailPageProps> = ({
               <div className="p-4 bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-900 rounded-xl space-y-2">
                 <div className="text-xs font-bold text-blue-900 dark:text-blue-200 flex items-center gap-1.5">
                   <ShieldCheck className="w-4 h-4 text-blue-600" />
-                  Mandatory Statutory Clause Requirement:
+                  Commonly Used Privacy Clause (optional):
                 </div>
                 <p className="text-[11px] text-blue-800 dark:text-blue-300 font-mono italic leading-relaxed">
                   "{country.personalDataRules.gdprClauseText}"

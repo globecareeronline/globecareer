@@ -514,8 +514,8 @@ export function runGenuineATSAnalysis(
         id: 'country-photo-warning',
         pillar: 'country',
         severity: 'critical',
-        title: `Anti-Bias Photo Violation (${country.name})`,
-        description: `Headshot photographs are discouraged in ${country.name} under EEOC/employment anti-bias regulations. Some enterprise ATS tools reject resumes with photos.`,
+        title: `Photo Convention Mismatch (${country.name})`,
+        description: `Headshot photographs are conventionally left off ${country.name} CVs, and some enterprise ATS tools handle image-heavy resumes poorly. This is local convention rather than a specific statutory ban.`,
         suggestion: 'Switch to a No-Photo template or toggle off photo inclusion.'
       });
     }
@@ -529,9 +529,9 @@ export function runGenuineATSAnalysis(
         id: 'country-gdpr-missing',
         pillar: 'country',
         severity: 'critical',
-        title: 'Polish RODO GDPR Clause Missing',
-        description: 'Under Polish labor law, recruiters cannot legally retain or process CVs without the statutory RODO consent statement.',
-        suggestion: 'Enable the RODO GDPR clause in the Personal section.'
+        title: 'Polish RODO Privacy Clause Not Found',
+        description: 'Polish CVs commonly include a short RODO privacy clause. It is a strong convention rather than a statutory requirement: UODO advises against a blanket consent clause, so treat this as a formatting recommendation.',
+        suggestion: 'Add a RODO privacy clause in the Personal section if you want to follow Polish convention.'
       });
     }
   }

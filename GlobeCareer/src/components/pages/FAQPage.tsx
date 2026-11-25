@@ -11,12 +11,12 @@ const FAQS: FAQItem[] = [
   {
     q: 'Why are photographs discouraged in the United States and United Kingdom, but expected in Germany and Japan?',
     category: 'Photos',
-    a: 'In the US (under EEOC guidelines), Canada (Canadian Human Rights Act), the UK (Equality Act 2010), and Australia, employers avoid photos to prevent allegations of unconscious racial, gender, or age discrimination during preliminary screening. Many large US corporations have software that automatically discards resumes containing images. In contrast, in Germany, Austria, Switzerland, Japan, and the UAE, a formal professional headshot is deeply ingrained in commercial culture as a mark of professionalism and transparency.'
+    a: 'In the US, Canada, the UK and Australia, careers guidance advises leaving photographs off a CV so that screening focuses on skills rather than appearance, and many large employers run image-heavy documents through parsers that handle them poorly. Anti-discrimination law in these countries governs hiring decisions but does not ban a CV photo. In Germany, Austria, Switzerland, Japan and the UAE, a formal professional headshot is a long-standing convention rather than a legal requirement.'
   },
   {
-    q: 'What is the Polish RODO clause and why is it legally mandatory?',
+    q: 'What is the Polish RODO clause and do I need one?',
     category: 'International Rules',
-    a: 'Under the Polish implementation of the European General Data Protection Regulation (RODO / Dz. Ustaw z 2018, poz. 1000), recruitment teams are legally prohibited from processing, reviewing, or storing a candidate’s personal data without an explicit written consent clause. Submitting a CV to a Polish employer without this disclaimer will result in immediate disqualification by HR compliance officers.'
+    a: 'RODO is the Polish name for the GDPR. Polish labour-law provisions set the data an employer may collect from a candidate (name, contact details, qualifications and employment history), and anything beyond that needs a lawful basis such as consent. Poland’s data protection authority (UODO) states that a blanket recruitment-consent clause attached to every CV is not appropriate, because consent must be freely given for a specific purpose. A short privacy clause is therefore a common convention that you can adapt or leave out, not a statutory condition for your application being read.'
   },
   {
     q: 'What is the actual difference between a "Resume" and a "Curriculum Vitae" (CV)?',
@@ -81,7 +81,7 @@ export const FAQPage: React.FC = () => {
           Frequently Asked Questions
         </h1>
         <p className="text-sm sm:text-base text-neutral-600 dark:text-neutral-400 leading-relaxed">
-          Clear answers to common questions regarding international photo customs, ATS parsers, GDPR/RODO legal requirements, and formatting standards.
+          Clear answers to common questions regarding international photo customs, ATS parsers, GDPR/RODO practice, and formatting standards.
         </p>
       </div>
 

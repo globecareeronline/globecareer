@@ -36,7 +36,7 @@ export const CVvsResumeGuidePage: React.FC<CVvsResumeGuidePageProps> = ({
     },
     {
       feature: 'Photograph Rules',
-      resume: 'Strictly prohibited (anti-bias EEOC)',
+      resume: 'Omitted by convention',
       internationalCV: 'Prohibited in UK/IE; customary in DE/FR/ES',
       academicCV: 'Rarely included; optional for symposium bios'
     },

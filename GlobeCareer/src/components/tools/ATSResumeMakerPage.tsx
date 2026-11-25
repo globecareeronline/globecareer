@@ -67,7 +67,7 @@ const ATS_FEATURES = [
     icon: Compass,
     badge: '47 Countries',
     title: 'Automated Regional Guardrails',
-    desc: 'Different countries enforce distinct hiring regulations. We automatically calibrate paper dimensions (US Letter vs. ISO A4) and enforce strict no-photo guidelines for US (EEOC), UK (Equality Act), and Canada (Human Rights Act).'
+    desc: 'Different countries follow different hiring conventions. We automatically calibrate paper dimensions (US Letter vs. ISO A4) and apply local photo conventions, including no-photo defaults for the US, UK and Canada.'
   },
   {
     icon: Sparkles,
@@ -159,9 +159,9 @@ const ATS_AUDIT_COMPARISON = [
   {
     element: 'Candidate Photo',
     fail: 'Portrait headshot embedded in US/UK/Canada resumes',
-    failReason: 'Violates EEOC & UK Equality Act compliance; causes automatic filtering',
+    failReason: 'Breaks US/UK/Canada photo conventions and adds image-parsing errors to the resume',
     pass: 'No photo on US/UK/CA resumes; clean text identity header',
-    passBenefit: 'Full anti-bias compliance and zero image decoding errors'
+    passBenefit: 'Convention-aligned layout and zero image decoding errors'
   },
   {
     element: 'Skill Representation',
@@ -335,9 +335,9 @@ export const ATSResumeMakerPage: React.FC<ATSResumeMakerPageProps> = ({
 
           <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-4 gap-3">
             {[
-              { id: 'us', name: 'United States', flag: '🇺🇸', standard: 'Letter • EEOC No-Photo Rule' },
-              { id: 'uk', name: 'United Kingdom', flag: '🇬🇧', standard: 'A4 • Equality Act Compliant' },
-              { id: 'ca', name: 'Canada', flag: '🇨🇦', standard: 'Letter • Human Rights Act' },
+              { id: 'us', name: 'United States', flag: '🇺🇸', standard: 'Letter • No-Photo Convention' },
+              { id: 'uk', name: 'United Kingdom', flag: '🇬🇧', standard: 'A4 • No-Photo Convention' },
+              { id: 'ca', name: 'Canada', flag: '🇨🇦', standard: 'Letter • No-Photo Convention' },
               { id: 'au', name: 'Australia', flag: '🇦🇺', standard: 'A4 • Chronological Format' },
               { id: 'de', name: 'Germany', flag: '🇩🇪', standard: 'A4 • Tabular Lebenslauf' },
               { id: 'in', name: 'India', flag: '🇮🇳', standard: 'A4 • Tech Competency Focus' },
@@ -595,7 +595,7 @@ export const ATSResumeMakerPage: React.FC<ATSResumeMakerPageProps> = ({
               Ready to Build Your ATS-Proof Resume?
             </h3>
             <p className="text-xs text-blue-100 max-w-xl">
-              Opens the full Resume Builder with your selected single-column layout, zero photo (EEOC compliant), and verified industry skills pre-configured.
+              Opens the full Resume Builder with your selected single-column layout, zero photo (matching US/UK convention), and verified industry skills pre-configured.
             </p>
           </div>
 
@@ -841,7 +841,7 @@ export const ATSResumeMakerPage: React.FC<ATSResumeMakerPageProps> = ({
               Should I include a photo on my ATS resume?
             </h3>
             <p className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
-              In the United States, United Kingdom, and Canada, candidate photos are strictly discouraged due to anti-discrimination regulations (EEOC and Equality Act). Many corporate ATS systems reject resumes with photos to avoid potential bias lawsuits. In Continental Europe (Germany, Austria), photos remain standard practice. GlobeCareer automatically applies the correct rule for your target country.
+              In the United States, United Kingdom and Canada, careers guidance advises leaving candidate photos off a resume, and many corporate ATS parsers handle image-heavy documents poorly. This is convention rather than a specific legal prohibition: anti-discrimination law in those countries governs hiring decisions, not the presence of a photograph. In Continental Europe (Germany, Austria), photos remain a common convention, though they are not required. GlobeCareer automatically applies the local convention for your target country.
             </p>
           </div>
 

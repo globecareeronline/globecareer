@@ -79,7 +79,7 @@ export const DesignCustomizer: React.FC<DesignCustomizerProps> = ({ data, onChan
           <AlertTriangle className="w-5 h-5 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
           <div className="text-xs text-amber-900 dark:text-amber-200 leading-relaxed">
             <span className="font-semibold block mb-0.5">Format Caution for {country.name}:</span>
-            You have selected a photo-based template for {country.name}, where photographs are strictly discouraged by anti-discrimination hiring regulations (EEOC / Equality Act). Consider switching to a No-Photo template like <strong>ATS Classic Clean</strong> or <strong>Ivy League Compact</strong>.
+            You have selected a photo-based template for {country.name}, where photographs are conventionally left off. Consider switching to a No-Photo template like <strong>ATS Classic Clean</strong> or <strong>Ivy League Compact</strong>.
           </div>
         </div>
       )}

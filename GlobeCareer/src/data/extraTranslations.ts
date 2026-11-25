@@ -503,7 +503,7 @@ export const EXTRA_TRANSLATIONS: Partial<Record<LanguageCode, Translations>> = {
     'home.badge': '100% Za darmo · Standardy 40 krajów · Bez znaków wodnych',
     'home.heroTitle1': 'Zbuduj swoją globalną karierę.',
     'home.heroTitle2': 'Wyróżnij się w każdym kraju.',
-    'home.heroSubtitle': 'Twórz CV i listy motywacyjne dopasowane do prawa pracy 40 państw (w tym RODO), zoptymalizowane pod ATS.',
+    'home.heroSubtitle': 'Twórz CV i listy motywacyjne dopasowane do konwencji i przepisów 40 państw, z opcjonalną klauzulą RODO, zoptymalizowane pod ATS.',
     'home.targetDestination': 'Kraj docelowy',
     'home.targetIndustry': 'Branża',
     'home.previewCvRules': 'Zobacz wymogi CV',
