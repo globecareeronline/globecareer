@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { getCountryById, getCountriesByRegion } from '../../data/countries';
+import { getCountryInsight } from '../../data/countryInsights';
 import { generateSampleResume, SamplePersonaType } from '../../data/sampleResumes';
 import { ResumeRenderer } from '../templates/ResumeRenderer';
 import { exportResumeToDocx } from '../../utils/docxExport';
@@ -23,6 +24,7 @@ export const CountryDetailPage: React.FC<CountryDetailPageProps> = ({
   onNavigate
 }) => {
   const country = getCountryById(countryId);
+  const insight = getCountryInsight(country.id);
   const [samplePersona, setSamplePersona] = useState<SamplePersonaType>('experienced');
   const sampleResume = generateSampleResume(country.id, samplePersona);
 
@@ -151,6 +153,33 @@ export const CountryDetailPage: React.FC<CountryDetailPageProps> = ({
               ))}
             </ul>
           </div>
+
+          {/* Country-specific differentiation: what is different, and what to avoid */}
+          {insight && (
+            <div className="p-6 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-2xl space-y-4">
+              <h3 className="text-sm font-bold uppercase tracking-wider text-neutral-900 dark:text-neutral-100 flex items-center gap-2">
+                <Target className="w-4 h-4 text-blue-600" />
+                What Makes Applying in {country.name} Different
+              </h3>
+              <p className="text-xs text-neutral-700 dark:text-neutral-300 leading-relaxed">
+                {insight.edge}
+              </p>
+              <div className="pt-3 border-t border-neutral-100 dark:border-neutral-800 space-y-2">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-rose-700 dark:text-rose-400 flex items-center gap-1.5">
+                  <AlertTriangle className="w-3.5 h-3.5" />
+                  Mistakes to avoid in {country.name}
+                </span>
+                <ul className="space-y-2 text-xs text-neutral-700 dark:text-neutral-300">
+                  {insight.mistakes.map((mistake, idx) => (
+                    <li key={idx} className="flex items-start gap-2.5 leading-relaxed">
+                      <span className="w-1.5 h-1.5 rounded-full bg-rose-500 shrink-0 mt-1.5"></span>
+                      <span>{mistake}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          )}
 
           {/* Personal Information Rules */}
           <div className="p-6 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-2xl space-y-4">
@@ -328,6 +357,28 @@ export const CountryDetailPage: React.FC<CountryDetailPageProps> = ({
             </div>
           </div>
 
+          {/* Country-specific questions */}
+          {insight && insight.faq.length > 0 && (
+            <div className="p-6 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-2xl space-y-3">
+              <h3 className="text-sm font-bold uppercase tracking-wider text-neutral-900 dark:text-neutral-100">
+                Questions Applicants Ask About {country.name}
+              </h3>
+              <div className="divide-y divide-neutral-200 dark:divide-neutral-800 border-y border-neutral-200 dark:border-neutral-800">
+                {insight.faq.map((item) => (
+                  <details key={item.q} className="group py-3">
+                    <summary className="cursor-pointer list-none flex items-start justify-between gap-3 text-xs font-semibold text-neutral-900 dark:text-neutral-100">
+                      <span>{item.q}</span>
+                      <span className="text-neutral-400 group-open:rotate-45 transition-transform shrink-0">+</span>
+                    </summary>
+                    <p className="mt-2 text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                      {item.a}
+                    </p>
+                  </details>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* Authoritative Sources & Regulatory Bodies */}
           <div className="p-6 bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl space-y-3">
             <h3 className="text-xs font-bold uppercase tracking-wider text-neutral-500">
@@ -338,7 +389,13 @@ export const CountryDetailPage: React.FC<CountryDetailPageProps> = ({
                 <div key={idx} className="text-xs text-neutral-600 dark:text-neutral-400 flex items-start gap-2">
                   <ExternalLink className="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" />
                   <div>
-                    <strong className="text-neutral-800 dark:text-neutral-200">{src.title}</strong> — {src.institution}
+                    <strong className="text-neutral-800 dark:text-neutral-200">
+                      {src.url ? (
+                        <a href={src.url} target="_blank" rel="noopener noreferrer" className="hover:underline">{src.title}</a>
+                      ) : (
+                        src.title
+                      )}
+                    </strong> — {src.institution}
                     <div className="text-[11px] text-neutral-500">{src.notes}</div>
                   </div>
                 </div>

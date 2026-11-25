@@ -475,6 +475,122 @@ export const ApplicationTrackerPage: React.FC<ApplicationTrackerPageProps> = ({
           </div>
         </div>
       )}
+      {/* Editorial guidance: how the tracker works and how to use it */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12">
+        <div className="max-w-4xl space-y-10">
+          <div className="space-y-3">
+            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100">
+              How this job application tracker works
+            </h2>
+            <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              Every role you are chasing becomes one card on a five-column board: Wishlist, Applied, Interviewing,
+              Offered and Archived. A card records the job title, company, location, target country, salary range,
+              the source you applied through, the date you applied and a free-text note. You add cards with
+              <strong> Track New Application</strong>, move them with the stage selector inside each card, and delete
+              them once they are no longer useful. The board is the whole product: there is no separate database to
+              maintain and no spreadsheet to keep in sync.
+            </p>
+          </div>
+
+          <div className="space-y-3">
+            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100">
+              A ten-minute weekly review that keeps a search moving
+            </h2>
+            <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              A tracker only helps if it is reviewed. Once a week, walk the board left to right:
+            </p>
+            <ol className="list-decimal pl-5 space-y-2 text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              <li><strong>Wishlist:</strong> delete roles you no longer want. A long wishlist hides the applications that actually matter.</li>
+              <li><strong>Applied:</strong> check the applied date. Anything untouched for more than ten business days is a candidate for one polite follow-up, then for archiving.</li>
+              <li><strong>Interviewing:</strong> write the next concrete step and its date into the notes, so the card reminds you what you owe whom.</li>
+              <li><strong>Offered:</strong> record the salary and deadline discussed. An offer with a date is a decision, and decisions need a record.</li>
+              <li><strong>Archived:</strong> keep rejections and withdrawals here for a month. Patterns in this column (same stage, same reason) are the most useful feedback a job search produces.</li>
+            </ol>
+          </div>
+
+          <div className="space-y-3">
+            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100">
+              What to write in the notes field
+            </h2>
+            <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              The notes field is where an application tracker earns its place. Record the things you will otherwise
+              forget in three weeks: which version of your CV you sent (a one-page US resume and a two-page German
+              Lebenslauf are different documents), the recruiter or hiring manager you spoke to, the interview format,
+              the salary figure that was mentioned, and the date you promised to follow up. Notes are free text, so
+              short fragments work better than paragraphs.
+            </p>
+          </div>
+
+          <div className="space-y-3">
+            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100">
+              Where your tracker data is stored
+            </h2>
+            <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              If you are not signed in, your board is saved in this browser only, under the local storage key
+              <code className="font-mono text-[11px] bg-neutral-100 dark:bg-neutral-800 px-1 py-0.5 rounded mx-1">globecareer_applications</code>.
+              Nothing is uploaded, and clearing this site's data removes the board. If you sign in, the same entries
+              synchronise to your private account so your phone and laptop show one board; signing out leaves the last
+              copy in the browser. The tracker does not currently export to CSV or Excel, so the board itself is the
+              record.
+            </p>
+          </div>
+
+          <div className="space-y-3">
+            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100">
+              Using it for a cross-border search
+            </h2>
+            <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              The target country field exists because applications do not behave the same way everywhere. Two roles
+              with identical titles can need different documents, different paper sizes and different follow-up
+              etiquette. Keep the country on the card, then check the conventions before you send:
+              <a href="/country-guides" className="text-blue-600 dark:text-blue-400 font-semibold underline hover:text-blue-700 dark:hover:text-blue-300"> country CV guides</a> cover photo rules, length and
+              terminology, and <a href="/jobs" className="text-blue-600 dark:text-blue-400 font-semibold underline hover:text-blue-700 dark:hover:text-blue-300">verified job listings</a> take you to the employer's
+              own application system rather than an aggregator.
+            </p>
+          </div>
+
+          <div className="space-y-3">
+            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100">
+              Job application tracker: common questions
+            </h2>
+            <div className="divide-y divide-neutral-200 dark:divide-neutral-800 border-y border-neutral-200 dark:border-neutral-800">
+              {[
+                {
+                  q: 'Is the job application tracker free?',
+                  a: 'Yes. The board, the stage columns and the notes are free, with no subscription, trial period or payment details. There is no paid tier that unlocks more applications.'
+                },
+                {
+                  q: 'Do I need an account to use it?',
+                  a: 'No. Without an account the board is stored in your browser and works exactly the same. An account is only needed if you want the same board on more than one device, because that requires the entries to be stored somewhere other than the browser.'
+                },
+                {
+                  q: 'How many applications can I track?',
+                  a: 'There is no enforced limit in the interface. In practice a board becomes hard to scan past roughly 40 to 60 live cards, so archive the ones that are finished rather than letting every application stay visible.'
+                },
+                {
+                  q: 'Can I export my applications to Excel or CSV?',
+                  a: 'Not at the moment. The tracker has no CSV, Excel or PDF export, so it is not a replacement for a spreadsheet if you need to hand a list to a coach, a visa adviser or an unemployment office. The board remains the working record.'
+                },
+                {
+                  q: 'What happens to my board if I clear my browser data?',
+                  a: 'Entries stored locally are deleted along with the rest of the site data, and they cannot be recovered. If you are signed in and the board has synchronised, the copy in your account is what remains.'
+                }
+              ].map((item) => (
+                <details key={item.q} className="group py-3">
+                  <summary className="cursor-pointer list-none flex items-start justify-between gap-3 text-xs sm:text-sm font-semibold text-neutral-900 dark:text-neutral-100">
+                    <span>{item.q}</span>
+                    <span className="text-neutral-400 group-open:rotate-45 transition-transform shrink-0">+</span>
+                  </summary>
+                  <p className="mt-2 text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                    {item.a}
+                  </p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
     </div>
   );
 };

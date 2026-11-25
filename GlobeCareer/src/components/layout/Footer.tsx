@@ -31,7 +31,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               {t('home.heroTitle1', 'Build Your Global Career.')} {t('home.heroTitle2', 'Stand Out Anywhere.')}
             </p>
             <p className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
-              Free country-tailored resume builder, cover letters, outreach tools, and career templates across 47+ countries. Zero paywalls, zero watermarks.
+              Free country-tailored resume builder, cover letters, outreach tools, and career templates across 47 countries. Zero paywalls, zero watermarks.
             </p>
           </div>
         </div>
@@ -409,7 +409,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         <div className="mt-8 pt-6 border-t border-neutral-200 dark:border-neutral-800 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-neutral-600 dark:text-neutral-400">
           <p>© {new Date().getFullYear()} GlobeCareer. All rights reserved. Free international career platform.</p>
           <div className="flex items-center gap-6">
-            <span>{t('common.allCountries', '40+ Countries Supported')}</span>
+            <span>{t('common.allCountries', '47 Countries Supported')}</span>
             <span>•</span>
             <span>100% Free &amp; Open Access</span>
             <span>•</span>

@@ -1127,7 +1127,7 @@ export const SummaryObjectiveGenerator: React.FC<SummaryObjectiveGeneratorProps>
           <div className="space-y-1 text-center sm:text-left">
             <h4 className="font-bold text-sm">Ready to put your summary into a complete resume?</h4>
             <p className="text-xs text-blue-100">
-              Format your entire CV for 40+ countries with ATS-tested templates, free PDF and DOCX export.
+              Format your entire CV for 47 countries with ATS-tested templates, free PDF and DOCX export.
             </p>
           </div>
           <button

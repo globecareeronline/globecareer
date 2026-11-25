@@ -503,7 +503,7 @@ export const ResumeWritingGuidePage: React.FC<ResumeWritingGuidePageProps> = ({ 
             className="p-4 text-left bg-white dark:bg-neutral-900 hover:bg-blue-50/50 dark:hover:bg-blue-950/40 border border-neutral-200 dark:border-neutral-800 hover:border-blue-400 rounded-2xl transition-all cursor-pointer group shadow-2xs"
           >
             <div className="font-bold text-xs text-neutral-900 dark:text-neutral-100 group-hover:text-blue-600 flex items-center justify-between">
-              <span>Resume Templates (40 Countries)</span>
+              <span>Resume Templates (47 Countries)</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </div>
             <p className="text-[11px] text-neutral-500 mt-1">

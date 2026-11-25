@@ -592,7 +592,7 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
 
   'bio-generator': () => ({
     title: 'Professional Bio Generator – Free LinkedIn Bios | GlobeCareer',
-    description: 'Generate concise 2-sentence to 150-word professional bios for LinkedIn, executive portfolios, speakers, and resumes. 100% free with 5 custom tone options.',
+    description: 'Generate 50, 120 or 200-word professional bios for LinkedIn, portfolios, speaker pages and press kits. Five tones, first or third person, free.',
     canonicalPath: '/bio-generator',
     ogType: 'website',
     keywords: [
@@ -800,7 +800,7 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
 
   tracker: () => ({
     title: 'Job Application Tracker – Free Kanban Board | GlobeCareer',
-    description: 'Organize your job search with a free Kanban application tracker. Track wishlists, interviews, salaries, and follow-ups with local and cloud backup.',
+    description: 'Track every job application on a free Kanban board: stages, dates, salary and notes. Stored in your browser by default, with optional cloud sync.',
     canonicalPath: '/job-tracker',
     ogType: 'website',
     keywords: [
@@ -853,7 +853,7 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
 
   'email-generator': () => ({
     title: 'Job Application Email Generator – 5 Outreach Formats | GlobeCareer',
-    description: 'Generate professional job application emails, recruiter outreach messages, referral requests, and follow-ups. Edit and copy instantly.',
+    description: 'Write job application emails, recruiter outreach, referral requests, follow-ups and networking notes, with subject lines. Export as .eml, DOCX or TXT.',
     canonicalPath: '/email-generator',
     ogType: 'website',
     keywords: [
@@ -995,8 +995,8 @@ export const PAGE_SEO_MAP: Record<string, (params?: Record<string, any>) => Page
   }),
 
   privacy: () => ({
-    title: 'Privacy Policy – Zero Data Retention Architecture | GlobeCareer',
-    description: 'Read GlobeCareer’s privacy-by-design policy. Your resume data stays in your browser; zero tracking cookies and zero unsolicited data collection.',
+    title: 'Privacy Policy – Local-First Resume Data | GlobeCareer',
+    description: 'How GlobeCareer handles data: resume drafts stay in your browser, accounts are optional, and only the contact form and optional sync send data to us.',
     canonicalPath: '/privacy',
     structuredData: {
       '@context': 'https://schema.org',

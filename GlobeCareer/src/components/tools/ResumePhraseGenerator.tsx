@@ -463,7 +463,7 @@ export const ResumePhraseGenerator: React.FC<ResumePhraseGeneratorProps> = ({
             <div className="p-4 rounded-2xl bg-neutral-800/80 border border-neutral-700/60 space-y-2 text-xs">
               <div className="font-bold text-neutral-200">Export Directly to Your CV</div>
               <p className="text-neutral-400 text-[11px]">
-                Import these phrases into GlobeCareer's ATS-compliant Resume Builder for 40+ country formats with instant PDF and Word DOCX downloads.
+                Import these phrases into GlobeCareer's ATS-compliant Resume Builder for 47 country formats with instant PDF and Word DOCX downloads.
               </p>
               <button
                 type="button"

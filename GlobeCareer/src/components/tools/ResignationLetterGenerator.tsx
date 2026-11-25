@@ -1000,7 +1000,7 @@ export const ResignationLetterGenerator: React.FC<ResignationLetterGeneratorProp
           <div className="space-y-1 text-center sm:text-left">
             <h4 className="font-bold text-sm">Updating your CV for your next chapter?</h4>
             <p className="text-xs text-blue-100">
-              Use GlobeCareer's international resume builder with tailored formatting for 40+ countries.
+              Use GlobeCareer's international resume builder with tailored formatting for 47 countries.
             </p>
           </div>
           <button

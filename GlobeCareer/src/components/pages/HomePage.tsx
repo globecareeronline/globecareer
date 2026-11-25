@@ -37,7 +37,7 @@ import {
 
 interface HomePageProps {
   onStartResume: (countryId?: string, categoryId?: string) => void;
-  onNavigate: (page: string) => void;
+  onNavigate: (page: string, countryId?: string) => void;
 }
 
 export const HomePage: React.FC<HomePageProps> = ({
@@ -86,7 +86,7 @@ export const HomePage: React.FC<HomePageProps> = ({
           {/* Trust Meta */}
           <div className="flex items-center justify-center gap-2 text-xs font-semibold text-neutral-600 dark:text-neutral-400">
             <Globe className="w-4 h-4 text-blue-600 dark:text-blue-400 shrink-0" />
-            <span>40+ Countries</span>
+            <span>47 Countries</span>
             <span aria-hidden="true">·</span>
             <span>Compliant Formats</span>
             <span aria-hidden="true">·</span>
@@ -219,7 +219,7 @@ export const HomePage: React.FC<HomePageProps> = ({
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="text-center max-w-2xl mx-auto space-y-2">
           <span className="text-xs font-mono font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
-            Engineered For 40 Jurisdictions
+            Engineered For 47 Jurisdictions
           </span>
           <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
             Why One Universal Resume Fails Internationally
@@ -235,7 +235,9 @@ export const HomePage: React.FC<HomePageProps> = ({
             <div className="flex items-center gap-2.5">
               <span className="text-2xl">🇺🇸</span>
               <div>
-                <h3 className="font-bold text-sm">United States</h3>
+                <h3 className="font-bold text-sm">
+                  <a href="/country/us" onClick={(e) => { e.preventDefault(); onNavigate('country-detail', 'us'); }} className="hover:text-blue-600 dark:hover:text-blue-400">United States</a>
+                </h3>
                 <span className="text-[11px] text-neutral-600 dark:text-neutral-400">1-Page Strict Resume</span>
               </div>
             </div>
@@ -253,7 +255,9 @@ export const HomePage: React.FC<HomePageProps> = ({
             <div className="flex items-center gap-2.5">
               <span className="text-2xl">🇩🇪</span>
               <div>
-                <h3 className="font-bold text-sm">Germany</h3>
+                <h3 className="font-bold text-sm">
+                  <a href="/country/de" onClick={(e) => { e.preventDefault(); onNavigate('country-detail', 'de'); }} className="hover:text-blue-600 dark:hover:text-blue-400">Germany</a>
+                </h3>
                 <span className="text-[11px] text-neutral-600 dark:text-neutral-400">Tabellarischer Lebenslauf</span>
               </div>
             </div>
@@ -271,7 +275,9 @@ export const HomePage: React.FC<HomePageProps> = ({
             <div className="flex items-center gap-2.5">
               <span className="text-2xl">🇬🇧</span>
               <div>
-                <h3 className="font-bold text-sm">United Kingdom</h3>
+                <h3 className="font-bold text-sm">
+                  <a href="/country/uk" onClick={(e) => { e.preventDefault(); onNavigate('country-detail', 'uk'); }} className="hover:text-blue-600 dark:hover:text-blue-400">United Kingdom</a>
+                </h3>
                 <span className="text-[11px] text-neutral-600 dark:text-neutral-400">2-Page Curriculum Vitae</span>
               </div>
             </div>
@@ -289,7 +295,9 @@ export const HomePage: React.FC<HomePageProps> = ({
             <div className="flex items-center gap-2.5">
               <span className="text-2xl">🇵🇱</span>
               <div>
-                <h3 className="font-bold text-sm">Poland</h3>
+                <h3 className="font-bold text-sm">
+                  <a href="/country/pl" onClick={(e) => { e.preventDefault(); onNavigate('country-detail', 'pl'); }} className="hover:text-blue-600 dark:hover:text-blue-400">Poland</a>
+                </h3>
                 <span className="text-[11px] text-neutral-600 dark:text-neutral-400">CV z Klauzulą RODO</span>
               </div>
             </div>
@@ -447,7 +455,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                 Verified International Jobs Portal
               </h2>
               <p className="text-sm text-neutral-300 leading-relaxed">
-                Connect your country-tailored CV to legitimate vacancies. We research and import real opportunities from official employer career pages, verified ATS portals, and authorized platforms across 40+ countries.
+                Connect your country-tailored CV to legitimate vacancies. We research and import real opportunities from official employer career pages, verified ATS portals, and authorized platforms across 47 countries.
               </p>
             </div>
 
@@ -503,7 +511,7 @@ export const HomePage: React.FC<HomePageProps> = ({
               International Coverage
             </span>
             <h2 className="text-2xl font-bold tracking-tight">
-              Browse 40 Supported Jurisdictions
+              Browse 47 Supported Jurisdictions
             </h2>
             <p className="text-xs text-neutral-600 dark:text-neutral-400 mt-1">
               Select any country to review hiring nuances or start an authentic pre-configured resume.

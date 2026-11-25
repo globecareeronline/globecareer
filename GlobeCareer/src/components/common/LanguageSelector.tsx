@@ -147,7 +147,7 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
           </div>
 
           <div className="px-3 pt-2 pb-1 border-t border-neutral-100 dark:border-neutral-800 text-[10px] text-neutral-400 flex items-center justify-between">
-            <span>22 Languages &bull; 40+ Countries</span>
+            <span>22 Languages &bull; 47 Countries</span>
             <Globe className="w-3 h-3 text-neutral-400" />
           </div>
         </div>

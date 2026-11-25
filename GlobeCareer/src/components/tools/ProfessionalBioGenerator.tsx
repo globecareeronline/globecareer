@@ -921,6 +921,141 @@ export const ProfessionalBioGenerator: React.FC<{
           )}
         </div>
       )}
+      {/* Editorial guidance: what the generator produces and how to use it */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12">
+        <div className="max-w-4xl space-y-10">
+          <div className="space-y-3">
+            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100">
+              What this professional bio generator produces
+            </h2>
+            <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              The generator turns a short set of facts about your work into a finished bio in three lengths: roughly
+              50 words for a social profile or a conference introduction, roughly 120 words for a LinkedIn About
+              section or a portfolio page, and roughly 200 words for a speaker page or a book-jacket style biography.
+              You choose a tone (professional, executive, creative, friendly or academic) and whether the bio speaks in
+              the first person ("I lead...") or the third person ("She leads..."). Output is text you can edit inline
+              and download as a plain text file.
+            </p>
+          </div>
+
+          <div className="space-y-3">
+            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100">
+              How to use it in three steps
+            </h2>
+            <ol className="list-decimal pl-5 space-y-2 text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              <li>Enter your name, current role and the organisation or context the bio is for. These three fields unlock generation.</li>
+              <li>Add the specifics the bio should carry: years of experience, a domain, one or two achievements, and what you are looking for next.</li>
+              <li>Pick a tone, a perspective and a length, generate, then edit the result. The generated text is a draft to be sharpened, not a final statement about you.</li>
+            </ol>
+          </div>
+
+          <div className="space-y-3">
+            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100">
+              Choosing a length and a perspective
+            </h2>
+            <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              Length is decided by where the bio will be read, not by how much you have to say. A 50-word bio has room
+              for a role, a domain and one proof point. A 120-word bio can add a career arc and a line about what you
+              want next. The 200-word version exists for pages where a reader has already chosen to read about you.
+              Perspective matters just as much: first person reads as a self-introduction on a profile, while third
+              person is the convention for speaker programmes, conference handouts and press material, where someone
+              else is nominally introducing you.
+            </p>
+          </div>
+
+          <div className="space-y-3">
+            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100">
+              What separates a useful bio from a forgettable one
+            </h2>
+            <ul className="list-disc pl-5 space-y-2 text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              <li><strong>Say what you do, not how you feel.</strong> "Payments engineer working on fraud detection" beats "passionate innovator".</li>
+              <li><strong>Name the audience's benefit.</strong> A speaker bio should tell organisers what the audience will learn.</li>
+              <li><strong>Use one concrete number or named system.</strong> Specifics are what make a bio credible and memorable.</li>
+              <li><strong>Keep tense consistent.</strong> Present tense for your current role, past tense for previous ones.</li>
+              <li><strong>Cut adjectives before cutting facts.</strong> When you need to shorten, remove "results-driven" and "dynamic" first.</li>
+            </ul>
+          </div>
+
+          <div className="space-y-3">
+            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100">
+              What the output looks like
+            </h2>
+            <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              Three illustrative examples, written for fictional people so you can see the shape of each length:
+            </p>
+            <div className="space-y-3">
+              <div className="p-4 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-xl">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-neutral-500">Short (~50 words)</span>
+                <p className="mt-1.5 text-xs sm:text-sm text-neutral-700 dark:text-neutral-300 leading-relaxed">
+                  "Ana Ruiz is a logistics analyst at a regional freight operator in Valencia, where she models route
+                  costs for temperature-controlled shipments. She previously cut empty-mileage spend by 14% across a
+                  40-vehicle fleet and writes about freight data for operations teams."
+                </p>
+              </div>
+              <div className="p-4 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-xl">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-neutral-500">Medium (~120 words)</span>
+                <p className="mt-1.5 text-xs sm:text-sm text-neutral-700 dark:text-neutral-300 leading-relaxed">
+                  "I am a backend engineer with eight years building payment systems for marketplaces, most recently
+                  at a Berlin fintech where I led the migration of settlement processing from a nightly batch job to an
+                  event-driven pipeline. That work cut reconciliation errors by roughly two thirds and removed a manual
+                  review step from the finance team's week. Before that I built fraud scoring services in Python and
+                  Go. I care about systems that fail loudly rather than quietly, and I am currently looking for a
+                  platform role where reliability is treated as a product feature."
+                </p>
+              </div>
+              <div className="p-4 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-xl">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-neutral-500">Third person (~50 words, speaker style)</span>
+                <p className="mt-1.5 text-xs sm:text-sm text-neutral-700 dark:text-neutral-300 leading-relaxed">
+                  "Dr. Samuel Adeyemi is a clinical epidemiologist at a teaching hospital in Lagos, where he runs
+                  surveillance for antimicrobial resistance. His session covers how small laboratories can build
+                  usable resistance data without a dedicated data team."
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="space-y-3">
+            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100">
+              Professional bio: common questions
+            </h2>
+            <div className="divide-y divide-neutral-200 dark:divide-neutral-800 border-y border-neutral-200 dark:border-neutral-800">
+              {[
+                {
+                  q: 'Is a professional bio the same as a resume summary?',
+                  a: 'No. A resume summary is written for one job and argues why you fit it. A bio is a standing description of who you are professionally and is reused across profiles, speaker pages and portfolios. Keep the two documents separate, even when they share facts.'
+                },
+                {
+                  q: 'Which length should I start with?',
+                  a: 'Start with the 120-word version, then cut it down to 50 for short profile fields. Writing short first tends to produce a list of adjectives; writing medium first and trimming keeps the concrete details.'
+                },
+                {
+                  q: 'Should my LinkedIn About be in first or third person?',
+                  a: 'First person is the norm on LinkedIn and reads more naturally in a feed. Third person is better for pages where an organiser, publisher or colleague is introducing you, such as a conference programme or a press kit.'
+                },
+                {
+                  q: 'Can I use the generated text word for word?',
+                  a: 'You can, but read it first. Generated phrasing is generic by design because it only knows the facts you entered; adding one specific project, number or named tool is what makes the bio yours. You are responsible for the accuracy of every claim in it.'
+                },
+                {
+                  q: 'Does the generator store my bio?',
+                  a: 'Your inputs stay in the browser. The generator runs locally in the page, so nothing you type is sent to a server, and the downloaded file is created on your device.'
+                }
+              ].map((item) => (
+                <details key={item.q} className="group py-3">
+                  <summary className="cursor-pointer list-none flex items-start justify-between gap-3 text-xs sm:text-sm font-semibold text-neutral-900 dark:text-neutral-100">
+                    <span>{item.q}</span>
+                    <span className="text-neutral-400 group-open:rotate-45 transition-transform shrink-0">+</span>
+                  </summary>
+                  <p className="mt-2 text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                    {item.a}
+                  </p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
     </div>
   );
 };

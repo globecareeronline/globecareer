@@ -973,8 +973,8 @@ export const COUNTRIES: CountryConfig[] = [
     cvTerminology: 'Βιογραφικό Σημείωμα (CV)',
     standardLength: '2 pages',
     paperSize: 'a4',
-    photoRule: 'standard',
-    photoNotice: 'A professional photograph is customary and expected on Greek CVs.',
+    photoRule: 'optional',
+    photoNotice: 'A photo is optional. Greek university career offices now advise leaving it out except for specific professions such as customer service, though some traditional employers still expect one.',
     dateConvention: 'MM/YYYY',
     dateFormatExample: '04/2021 – Σήμερα',
     addressConvention: 'Τ.Κ., Πόλη (e.g., 104 31 Αθήνα)',
@@ -995,10 +995,11 @@ export const COUNTRIES: CountryConfig[] = [
     keyHiringNuances: [
       'Military service obligation status is standard for male Greek citizens',
       'English proficiency (e.g., Proficiency Michigan / Cambridge) is heavily emphasized',
-      'Photo is customary'
+      'Photo is optional; career offices advise against it except for specific professions'
     ],
     sources: [
-      { title: 'Σύνταξη Βιογραφικού Σημειώματος', institution: 'ΔΥΠΑ (Public Employment Service Greece)', notes: 'Greek Public Employment Service' }
+      { title: 'Σύνταξη Βιογραφικού Σημειώματος', institution: 'ΔΥΠΑ (Public Employment Service Greece)', notes: 'Greek Public Employment Service' },
+      { title: 'Οδηγός σύνταξης βιογραφικού σημειώματος 2025', institution: 'Γραφείο Διασύνδεσης, Εθνικό και Καποδιστριακό Πανεπιστήμιο Αθηνών', url: 'https://career.uoa.gr/wp-content/uploads/2025/12/CV_Guide_2025_PRINT_5mmBleeds.pdf', notes: 'University career office guide; advises against photo, date of birth and marital status' }
     ]
   },
   {
@@ -1254,7 +1255,8 @@ export const COUNTRIES: CountryConfig[] = [
       'Foreign candidates must state their Japanese visa status'
     ],
     sources: [
-      { title: '履歴書・職務経歴書の書き方', institution: 'Hello Work (Ministry of Health, Labour and Welfare Japan)', notes: 'Official Japanese public employment agency' }
+      { title: '履歴書・職務経歴書の書き方', institution: 'Hello Work (Ministry of Health, Labour and Welfare Japan)', notes: 'Official Japanese public employment agency' },
+      { title: '2027年度卒業・修了予定者等の就職・採用活動に関する要請', institution: 'Ministry of Health, Labour and Welfare (Labour Bureau)', url: 'https://jsite.mhlw.go.jp/ishikawa-roudoukyoku/content/contents/002692719.pdf', notes: 'Government request: publicity from 1 March, selection from 1 June, formal offers from 1 October' }
     ]
   },
   {
@@ -1290,7 +1292,8 @@ export const COUNTRIES: CountryConfig[] = [
       'Do not include full NRIC/FIN number (privacy protection)'
     ],
     sources: [
-      { title: 'Fair Employment Guidelines', institution: 'TAFEP & Ministry of Manpower (MOM)', notes: 'Singapore Government Fair Consideration Framework' }
+      { title: 'Fair Employment Guidelines', institution: 'TAFEP & Ministry of Manpower (MOM)', notes: 'Singapore Government Fair Consideration Framework' },
+      { title: 'Job Applications and Employment', institution: 'Personal Data Protection Commission (PDPC), Singapore', url: 'https://www.pdpc.gov.sg/job-applications-and-employment', notes: 'States you need not provide your NRIC when applying for a job' }
     ]
   },
   {
@@ -1364,7 +1367,8 @@ export const COUNTRIES: CountryConfig[] = [
       'State Arabic and English language proficiency'
     ],
     sources: [
-      { title: 'Labor Guidelines', institution: 'Ministry of Human Resources and Social Development (HRSD)', notes: 'Kingdom of Saudi Arabia Labour Regulations' }
+      { title: 'Labor Guidelines', institution: 'Ministry of Human Resources and Social Development (HRSD)', notes: 'Kingdom of Saudi Arabia Labour Regulations' },
+      { title: 'Saudization Agency', institution: 'Ministry of Human Resources and Social Development (HRSD)', url: 'https://www.hrsd.gov.sa/en/ministry/about-ministry/about-us/ministry-sectors/767512/767566', notes: 'Sectoral Saudization programmes and quotas' }
     ]
   },
   {

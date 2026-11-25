@@ -1072,6 +1072,113 @@ export const JobApplicationEmailGenerator: React.FC<JobApplicationEmailGenerator
         </div>
 
       </div>
+      {/* Editorial guidance: the five email types and how to use them */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12">
+        <div className="max-w-4xl space-y-10">
+          <div className="space-y-3">
+            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100">
+              The five email types this generator writes
+            </h2>
+            <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              Each scenario produces a different structure, because each one is asking for something different:
+            </p>
+            <ul className="list-disc pl-5 space-y-2 text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              <li><strong>Direct job application:</strong> a short cover note sent with your CV when an employer accepts applications by email rather than through an applicant tracking system. It should name the role, state one reason you fit, and stop.</li>
+              <li><strong>Recruiter outreach:</strong> a cold message to a recruiter or hiring manager about a specific opening or a specific team. Short, specific and easy to answer.</li>
+              <li><strong>Referral request:</strong> a message to someone you know asking them to refer you. It must give them everything they need to say yes or no quickly: the role, a link, and a line they can forward.</li>
+              <li><strong>Application follow-up:</strong> a polite check-in after applying or after an interview. It should add one new piece of information rather than only asking for news.</li>
+              <li><strong>Networking and inquiry:</strong> a speculative note to a person or company you have no existing relationship with, where the goal is a conversation rather than an immediate application.</li>
+            </ul>
+          </div>
+
+          <div className="space-y-3">
+            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100">
+              How to use the generator
+            </h2>
+            <ol className="list-decimal pl-5 space-y-2 text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              <li>Pick a scenario and fill in the target role and company. A quick preset can fill the form as a starting point.</li>
+              <li>Add your background, two or three relevant skills, and the tone you want. Paste the job advert into the context field if you have it; the output then borrows the employer's own vocabulary, which is what gets an email read.</li>
+              <li>Generate, then edit the subject line and first paragraph by hand. Those two lines decide whether the rest is read at all.</li>
+              <li>Copy the text, or download it as .eml, .docx or plain text. The .eml file opens as a draft in most mail clients.</li>
+            </ol>
+          </div>
+
+          <div className="space-y-3">
+            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100">
+              Subject lines that survive an inbox
+            </h2>
+            <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              A subject line has one job: tell a busy person what the email is about and why it is addressed to them.
+              Four patterns that work, using fictional examples:
+            </p>
+            <ul className="list-disc pl-5 space-y-1.5 text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              <li>"Application: Operations Analyst (ref. 20481) - Priya Nair" for a direct application.</li>
+              <li>"Backend engineer interested in the payments platform team" for recruiter outreach.</li>
+              <li>"Quick question about the Berlin data role - from Tomas's team" for a referral request.</li>
+              <li>"Following up on Thursday's interview - one addition to my answer on incident response" for a follow-up.</li>
+            </ul>
+            <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              Avoid "Opportunity", "Hello" or a subject line that only says "Application". None of them tell the reader
+              which role, which company or who you are.
+            </p>
+          </div>
+
+          <div className="space-y-3">
+            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100">
+              When to send a follow-up
+            </h2>
+            <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              After an interview, a thank-you note within a day is normal and expected in most markets. After that, one
+              follow-up at around one to two weeks is reasonable if the employer gave no timeline; if they gave one,
+              wait until it has passed. After a cold application with no acknowledgement, one follow-up at roughly a
+              week to ten days is enough. Two unanswered messages is a clear signal to stop and put the energy into the
+              next application. Local norms differ: some markets treat a second follow-up as persistence, others as
+              pressure, so check the country guide before sending a third.
+            </p>
+          </div>
+
+          <div className="space-y-3">
+            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100">
+              Job application email: common questions
+            </h2>
+            <div className="divide-y divide-neutral-200 dark:divide-neutral-800 border-y border-neutral-200 dark:border-neutral-800">
+              {[
+                {
+                  q: 'Should I attach my CV or paste it into the email?',
+                  a: 'Attach it as a PDF unless the employer asks for another format, and mention the attachment in the body. Pasting a full CV into an email body makes it hard to read and easy to lose; keep the email to a few short paragraphs.'
+                },
+                {
+                  q: 'How long should a job application email be?',
+                  a: 'Under about 150 words for a direct application and under 100 for recruiter outreach. The email is a door-opener; the CV carries the detail. If the reader has to scroll, the message is too long.'
+                },
+                {
+                  q: 'Does the generator send the email for me?',
+                  a: 'No. It writes the text and, if you choose, packages it as an .eml draft file. You review it and send it from your own mail client, so nothing is transmitted by GlobeCareer.'
+                },
+                {
+                  q: 'Is a cover letter still needed if I send an email?',
+                  a: 'The email usually replaces a separate cover letter when an employer accepts email applications. If the posting explicitly asks for a cover letter as a separate document, send both and keep the email to two or three sentences.'
+                },
+                {
+                  q: 'Can I use the same email for several applications?',
+                  a: 'Not safely. Names, roles and the reason you fit change every time, and a generic message is recognisable immediately. Regenerate per application; the form takes a minute and is the difference between a reply and silence.'
+                }
+              ].map((item) => (
+                <details key={item.q} className="group py-3">
+                  <summary className="cursor-pointer list-none flex items-start justify-between gap-3 text-xs sm:text-sm font-semibold text-neutral-900 dark:text-neutral-100">
+                    <span>{item.q}</span>
+                    <span className="text-neutral-400 group-open:rotate-45 transition-transform shrink-0">+</span>
+                  </summary>
+                  <p className="mt-2 text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                    {item.a}
+                  </p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
     </div>
   );
 };

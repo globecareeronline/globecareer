@@ -348,7 +348,7 @@ export const CVvsResumeGuidePage: React.FC<CVvsResumeGuidePageProps> = ({
             Build the Exact Document Your Recruiters Expect
           </h2>
           <p className="text-blue-100 max-w-2xl mx-auto mb-8 text-base sm:text-lg">
-            GlobeCareer automatically sets the correct page length, paper size, and photo rules for 40+ countries. 100% free vector PDF and Word DOCX downloads.
+            GlobeCareer automatically sets the correct page length, paper size, and photo rules for 47 countries. 100% free vector PDF and Word DOCX downloads.
           </p>
           <button
             onClick={() => onStartBuilder()}

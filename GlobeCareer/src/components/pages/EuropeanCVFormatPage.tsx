@@ -312,7 +312,7 @@ export const EuropeanCVFormatPage: React.FC<EuropeanCVFormatPageProps> = ({
                 Should I put a photo on my European CV?
               </h3>
               <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
-                It depends on the specific country. In Germany, Austria, and Switzerland, a professional headshot (Bewerbungsfoto) is customary. In France and Spain, photos are widely accepted. However, in the United Kingdom and Ireland, photographs are conventionally left off; that is careers guidance, not a statutory ban.
+                It depends on the specific country. In Germany, Austria, and <a href="/country/ch" onClick={(e) => { e.preventDefault(); onNavigate('country-detail', 'ch'); }} className="text-blue-600 dark:text-blue-400 font-bold underline hover:text-blue-700 dark:hover:text-blue-300">Switzerland</a>, a professional headshot (Bewerbungsfoto) is customary. In France and Spain, photos are widely accepted. However, in the United Kingdom and Ireland, photographs are conventionally left off; that is careers guidance, not a statutory ban.
               </p>
             </div>
 
@@ -359,11 +359,14 @@ export const EuropeanCVFormatPage: React.FC<EuropeanCVFormatPageProps> = ({
               { id: 'es', name: 'Spain', detail: 'Currículum Vitae (DNI/Photo)' },
               { id: 'pl', name: 'Poland', detail: 'Polish CV (RODO clause)' },
             ].map((c) => (
-              <button
+              <a
                 key={c.id}
-                type="button"
-                onClick={() => onNavigate('country-detail', c.id)}
-                className="p-3.5 text-left rounded-xl bg-neutral-50 dark:bg-neutral-900/60 border border-neutral-200 dark:border-neutral-700 hover:border-blue-500 hover:shadow-xs transition-all group"
+                href={`/country/${c.id}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigate('country-detail', c.id);
+                }}
+                className="block p-3.5 text-left rounded-xl bg-neutral-50 dark:bg-neutral-900/60 border border-neutral-200 dark:border-neutral-700 hover:border-blue-500 hover:shadow-xs transition-all group"
               >
                 <div className="text-xs font-bold text-neutral-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 flex items-center justify-between">
                   {c.name}
@@ -372,12 +375,12 @@ export const EuropeanCVFormatPage: React.FC<EuropeanCVFormatPageProps> = ({
                 <div className="text-[11px] text-neutral-500 dark:text-neutral-400 mt-0.5 truncate">
                   {c.detail}
                 </div>
-              </button>
+              </a>
             ))}
           </div>
 
           <div className="pt-4 border-t border-neutral-100 dark:border-neutral-700/60 flex flex-wrap items-center justify-between gap-3 text-xs">
-            <span className="text-neutral-500 dark:text-neutral-400 font-medium">Looking for all 40+ countries?</span>
+            <span className="text-neutral-500 dark:text-neutral-400 font-medium">Looking for all 47 countries?</span>
             <button
               type="button"
               onClick={() => onNavigate('country-guides')}

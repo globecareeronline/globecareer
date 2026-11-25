@@ -1053,6 +1053,118 @@ export const RecommendationLetterBuilder: React.FC<RecommendationLetterBuilderPr
         </div>
 
       </div>
+      {/* Editorial guidance: asking for, writing and formatting a recommendation */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12">
+        <div className="max-w-4xl space-y-10">
+          <div className="space-y-3">
+            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100">
+              Who writes the letter, and who asks for it
+            </h2>
+            <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              A letter of recommendation is written by someone who has supervised, taught or worked closely with the
+              candidate, and it is addressed to whoever is deciding: an employer, an admissions committee, a
+              scholarship panel or an immigration authority. The builder is designed for the person who has to produce
+              the letter, usually with the candidate's factual summary in hand. If you are the candidate, your job is
+              to supply the facts and ask clearly; if you are the recommender, your job is to add the judgement that
+              only you can provide.
+            </p>
+          </div>
+
+          <div className="space-y-3">
+            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100">
+              How to ask for a recommendation letter
+            </h2>
+            <ol className="list-decimal pl-5 space-y-2 text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              <li>Ask someone who has seen your work directly, and ask early. Two to four weeks before the deadline is normal; a fortnight is the minimum most people need.</li>
+              <li>Say what the letter is for, who will read it, and the exact deadline and submission method.</li>
+              <li>Send a one-page brief: the role or programme, your CV, the two or three things you would like emphasised, and any factual details they may not remember (dates, project names, outcomes).</li>
+              <li>Offer an easy way to decline. A recommender who hesitates will write a lukewarm letter, which is worse than a different referee who is enthusiastic.</li>
+              <li>Follow up once, a few days before the deadline, and thank them afterwards whether or not the outcome was positive.</li>
+            </ol>
+          </div>
+
+          <div className="space-y-3">
+            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100">
+              What makes a recommendation letter credible
+            </h2>
+            <ul className="list-disc pl-5 space-y-2 text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              <li><strong>Stated relationship and duration.</strong> "I supervised her for two years as head of credit risk" tells the reader how much weight to give the rest.</li>
+              <li><strong>One or two specific incidents.</strong> A single described situation, with what the person did and what changed, is worth more than a page of adjectives.</li>
+              <li><strong>Comparison where it is honest.</strong> "Among the strongest three analysts I have supervised in a decade" is informative; "the best I have ever worked with" is not, unless it is true and you can stand behind it.</li>
+              <li><strong>Relevance to the destination.</strong> A letter for graduate school should speak to research potential; a letter for a visa should address the relationship and the candidate's standing in their field.</li>
+              <li><strong>A real signature block.</strong> Name, title, organisation, and a way to be contacted if the reader wants to verify.</li>
+            </ul>
+          </div>
+
+          <div className="space-y-3">
+            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100">
+              How the builder works
+            </h2>
+            <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              The builder works in four steps: candidate details, recommender details and relationship, the purpose and
+              tone of the letter, then output. It writes a structured letter with the conventional parts in place
+              (salutation, statement of relationship, evidence, recommendation, closing and signature block). You can
+              edit the generated text directly in the preview before downloading it as a document, and you can choose
+              the output language. The resulting letter is a formatted draft; the facts and the judgement in it must
+              come from the recommender.
+            </p>
+          </div>
+
+          <div className="space-y-3">
+            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100">
+              Mistakes that weaken a recommendation
+            </h2>
+            <ul className="list-disc pl-5 space-y-2 text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              <li>Praising personality instead of describing performance. Nobody hires "a hard-working team player" on that sentence alone.</li>
+              <li>Repeating the CV in prose. The letter should interpret the record, not restate it.</li>
+              <li>Inflating seniority, dates or results. Verifiable falsehoods in a signed letter damage both people.</li>
+              <li>Writing it in the candidate's voice, or letting the candidate write it and signing without reading. Most institutions expect the recommender to be the author.</li>
+              <li>Missing the destination's format: some programmes use their own form or portal and never read a PDF letter.</li>
+            </ul>
+          </div>
+
+          <div className="space-y-3">
+            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100">
+              Recommendation letter: common questions
+            </h2>
+            <div className="divide-y divide-neutral-200 dark:divide-neutral-800 border-y border-neutral-200 dark:border-neutral-800">
+              {[
+                {
+                  q: 'Is this generator free to use?',
+                  a: 'Yes. The builder, the letter preview, editing and download are free, with no account or payment required.'
+                },
+                {
+                  q: 'Can the candidate write the letter and have the recommender sign it?',
+                  a: 'It happens in practice, but it is risky and some institutions explicitly prohibit it. If a recommender asks you to draft it, keep the draft factual, tell them to edit and verify every claim, and make sure they read the final version before signing.'
+                },
+                {
+                  q: 'Does the builder invent achievements?',
+                  a: 'No. It structures the facts you enter into conventional letter phrasing. It cannot verify them, and a letter containing claims the recommender cannot support is worse than no letter.'
+                },
+                {
+                  q: 'How long should the letter be?',
+                  a: 'One page is the standard for employment and most graduate applications. Two pages is acceptable when the relationship is long and the evidence needs detail. Admissions committees read many letters, so length without specificity works against you.'
+                },
+                {
+                  q: 'Can I use it for a visa or immigration letter?',
+                  a: 'The builder covers employment, academic, graduate school and visa purposes, and produces a conventional letter structure. Immigration authorities often prescribe exact content and format, so check the official checklist for your route and treat the generated letter as a starting draft.'
+                }
+              ].map((item) => (
+                <details key={item.q} className="group py-3">
+                  <summary className="cursor-pointer list-none flex items-start justify-between gap-3 text-xs sm:text-sm font-semibold text-neutral-900 dark:text-neutral-100">
+                    <span>{item.q}</span>
+                    <span className="text-neutral-400 group-open:rotate-45 transition-transform shrink-0">+</span>
+                  </summary>
+                  <p className="mt-2 text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                    {item.a}
+                  </p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
     </div>
   );
 };

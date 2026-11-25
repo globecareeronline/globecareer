@@ -188,13 +188,17 @@ export const CountryGuidesPage: React.FC<CountryGuidesPageProps> = ({
             </div>
 
             <div className="flex items-center gap-2 pt-2 border-t border-neutral-100 dark:border-neutral-800">
-              <button
-                type="button"
-                onClick={() => onSelectCountry(country.id)}
-                className="flex-1 py-1.5 px-3 text-xs font-semibold text-neutral-800 dark:text-neutral-200 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded-lg transition-colors text-center"
+              <a
+                href={`/country/${country.id}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  onSelectCountry(country.id);
+                }}
+                aria-label={`${country.name} CV and resume guide`}
+                className="flex-1 block py-1.5 px-3 text-xs font-semibold text-neutral-800 dark:text-neutral-200 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded-lg transition-colors text-center"
               >
-                View Full Guide
-              </button>
+                View {country.name} guide
+              </a>
               <button
                 type="button"
                 onClick={() => onStartResumeForCountry(country.id)}
