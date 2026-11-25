@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { ResumeData, PersonalInfo } from '../../types/resume';
 import { getCountryById } from '../../data/countries';
 import { User, Mail, Phone, MapPin, Upload, Trash2, AlertTriangle, ShieldCheck } from 'lucide-react';
+import { resolveGdprClause } from '../../utils/gdprClause';
 
 interface PersonalEditorProps {
   data: ResumeData;
@@ -318,7 +319,8 @@ export const PersonalEditor: React.FC<PersonalEditorProps> = ({ data, onChange }
             </p>
             <textarea
               rows={3}
-              value={personal.gdprConsentClause || country.personalDataRules.gdprClauseText || ''}
+              value={resolveGdprClause(personal.gdprConsentClause, country.personalDataRules.gdprClauseText)}
+              placeholder="Leave this empty to print the CV without a privacy clause."
               onChange={(e) => updatePersonal('gdprConsentClause', e.target.value)}
               className="w-full p-2 text-xs font-mono bg-white dark:bg-neutral-950 border border-neutral-300 dark:border-neutral-800 rounded-lg focus:outline-none"
             />

@@ -1385,12 +1385,12 @@ export const HomePage: React.FC<HomePageProps> = ({
           </div>
 
           <div className="p-6 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-3xl space-y-3 shadow-xs">
-            <p className="text-xs text-neutral-700 dark:text-neutral-300 leading-relaxed italic">
-              "Having a Polish privacy clause added automatically to my CV meant I was not scrambling to fix the paperwork before the first screening round in Warsaw."
+            <p className="text-xs text-neutral-700 dark:text-neutral-300 leading-relaxed">
+              Polish CVs commonly include a short RODO privacy clause. GlobeCareer fills in a Polish-language default when you select Poland, lets you edit or clear it, and leaves it off the exported document when the field is empty.
             </p>
             <div className="pt-2 border-t border-neutral-100 dark:border-neutral-800">
-              <span className="text-xs font-bold block">Mikołaj Zieliński</span>
-              <span className="text-[11px] text-neutral-600 dark:text-neutral-400">Fintech Product Lead · Kraków, Poland</span>
+              <span className="text-xs font-bold block">Polish RODO clause, built in</span>
+              <span className="text-[11px] text-neutral-600 dark:text-neutral-400">Included by default · Editable · Removable</span>
             </div>
           </div>
         </div>

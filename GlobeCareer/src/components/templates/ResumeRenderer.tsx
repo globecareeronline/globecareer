@@ -4,6 +4,7 @@ import { getCountryById } from '../../data/countries';
 import { sectionHeading, type SectionId } from '../../i18n/generation';
 import { getLabels } from '../../i18n/generation/labels';
 import { getOutputLanguage, type OutputLanguageCode } from '../../i18n/outputLanguages';
+import { shouldRenderGdprClause } from '../../utils/gdprClause';
 import { 
   Mail, Phone, MapPin, Linkedin, Github, Globe, 
   ExternalLink, Award, BookOpen, HeartHandshake, FileText, CheckCircle2 
@@ -446,7 +447,7 @@ export const ResumeRenderer: React.FC<ResumeRendererProps> = ({
               )}
 
               {/* Polish GDPR / RODO Clause or Legal Disclosures */}
-              {data.personal.gdprConsentClause && (
+              {shouldRenderGdprClause(data.personal.gdprConsentClause) && (
                 <div className="pt-4 border-t border-neutral-200 text-[10px] text-neutral-500 leading-tight italic break-inside-avoid">
                   {data.personal.gdprConsentClause}
                 </div>
@@ -769,7 +770,7 @@ export const ResumeRenderer: React.FC<ResumeRendererProps> = ({
               )}
 
               {/* Polish GDPR / RODO Clause or Legal Disclosures */}
-              {data.personal.gdprConsentClause && (
+              {shouldRenderGdprClause(data.personal.gdprConsentClause) && (
                 <div className="pt-3 border-t border-neutral-200 text-[10px] text-neutral-500 leading-tight italic break-inside-avoid">
                   {data.personal.gdprConsentClause}
                 </div>
