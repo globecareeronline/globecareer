@@ -1349,38 +1349,38 @@ export const HomePage: React.FC<HomePageProps> = ({
         </div>
       </section>
 
-      {/* 10. TESTIMONIALS & TRUST SIGNALS */}
+      {/* 10. COUNTRY CAPABILITY HIGHLIGHTS */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="text-center max-w-xl mx-auto space-y-2">
           <span className="text-xs font-mono font-bold uppercase tracking-wider text-blue-700 dark:text-blue-400">
-            Global Candidate Success
+            Country Conventions
           </span>
           <h2 className="text-2xl font-bold tracking-tight">
-            Trusted by Cross-Border Candidates
+            Built for Cross-Border Applications
           </h2>
           <p className="text-xs text-neutral-600 dark:text-neutral-400">
-            Real outcomes from professionals navigating international relocations and cross-border hiring rules.
+            How GlobeCareer adapts your document to each target market's conventions.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="p-6 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-3xl space-y-3 shadow-xs">
-            <p className="text-xs text-neutral-700 dark:text-neutral-300 leading-relaxed italic">
-              "Moving from Berlin to San Francisco, I was clueless about US resume conventions. Removing my headshot and restructuring my experience using the XYZ formula doubled my interview rate."
+            <p className="text-xs text-neutral-700 dark:text-neutral-300 leading-relaxed">
+              Selecting the United States switches to Letter paper, a single-column one-page layout, and no photo — the format US recruiters and resume parsers expect.
             </p>
             <div className="pt-2 border-t border-neutral-100 dark:border-neutral-800">
-              <span className="text-xs font-bold block">Jonas Weber</span>
-              <span className="text-[11px] text-neutral-600 dark:text-neutral-400">Staff Software Engineer · Relocated to California, USA</span>
+              <span className="text-xs font-bold block">US formatting, applied automatically</span>
+              <span className="text-[11px] text-neutral-600 dark:text-neutral-400">Letter paper · 1-page layout · No photo</span>
             </div>
           </div>
 
           <div className="p-6 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-3xl space-y-3 shadow-xs">
-            <p className="text-xs text-neutral-700 dark:text-neutral-300 leading-relaxed italic">
-              "Applying for engineering management roles in Zurich required a Swiss C-Permit statement and tabular Lebenslauf. GlobeCareer's template was perfectly accepted by Swiss HR."
+            <p className="text-xs text-neutral-700 dark:text-neutral-300 leading-relaxed">
+              Selecting Switzerland switches to A4 with a two-page European layout and a field for Swiss permit status (Citizen, B, C, L or G).
             </p>
             <div className="pt-2 border-t border-neutral-100 dark:border-neutral-800">
-              <span className="text-xs font-bold block">Claire Laurent</span>
-              <span className="text-[11px] text-neutral-600 dark:text-neutral-400">Engineering Manager · Relocated to Zurich, Switzerland</span>
+              <span className="text-xs font-bold block">Swiss CV conventions, applied automatically</span>
+              <span className="text-[11px] text-neutral-600 dark:text-neutral-400">A4 · 2-page layout · Permit status field</span>
             </div>
           </div>
 
